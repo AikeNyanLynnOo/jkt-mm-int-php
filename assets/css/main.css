@@ -1368,7 +1368,7 @@ figure img {
   cursor: pointer;
   padding: 10px 5px;
   margin: 10px 5px 10px 0px;
-  float: right
+  float: right;
 }
 
 #enrollmentForm .action-button-previous:hover,
@@ -1379,7 +1379,7 @@ figure img {
 .card {
   z-index: 0;
   border: none;
-  position: relative
+  position: relative;
 }
 
 .enrollForm-title {
@@ -1421,7 +1421,7 @@ figure img {
 #progressbar li {
   list-style-type: none;
   font-size: 15px;
-  width: 20%;
+  width: 25%;
   float: left;
   position: relative;
   font-weight: 400
@@ -1442,14 +1442,9 @@ figure img {
   content: "3"
 }
 
-#progressbar #paymentDetail:before {
-  font-family: FontAwesome;
-  content: "4"
-}
-
 #progressbar #confirm:before {
   font-family: FontAwesome;
-  content: "5"
+  content: "4"
 }
 
 #progressbar li:before {
@@ -1494,7 +1489,28 @@ figure img {
   object-fit: cover
 }
 
+#image-preview{
+  height: 300px;
+  width: 100%;
+  display:block;
+  margin: 15px auto;
+  padding:5px;
+}
 
+#file-input{
+  margin-left: 7px;
+  padding: 10px;
+  background-color: gray;
+}
+
+.bank {
+  margin: 30px auto;
+  text-align: center;
+}
+
+.bank img {
+  border: 2px solid rgb(230, 227, 227);
+}
 
 /* Detail Information Page End */
 

@@ -265,7 +265,6 @@
                         <li class="active" id="personal"></li>
                         <li id="course"></li>
                         <li id="payment"></li>
-                        <li id="paymentDetail"></li>
                         <li id="confirm"></li>
                     </ul>
                     <div class="progress">
@@ -283,36 +282,41 @@
                             </div> 
                             <div class="row">
                               <div class="col-5">
-                              
+                                <img 
+                                  id="image-preview" 
+                                  src="./assets/images/default-profile-icon.jpg" 
+                                  alt="your image"
+                                />
+                                <input type='file' id="file-input" />
                               </div>
                               <div class="col-7">
                                 <label class="fieldlabels">Full Name: *</label> 
-                                <input type="text" name="uname" placeholder="Please Enter Full Name" /> 
+                                <input type="text" name="uname" placeholder="Please Enter Full Name" required /> 
 
                                 <label class="fieldlabels">Date of Birth: *</label> 
-                                <input type="date" name="dob" placeholder="Please Enter Date of Birth" /> 
+                                <input type="date" name="dob" placeholder="Please Enter Date of Birth" required /> 
 
                                 <label class="fieldlabels">Father Name: *</label> 
-                                <input type="text" name="fname" placeholder="Please Enter Father Name" /> 
+                                <input type="text" name="fname" placeholder="Please Enter Father Name" required /> 
 
                                 <label class="fieldlabels">NRC: *</label> 
-                                <input type="text" name="nrc" placeholder="Please Enter NRC" /> 
+                                <input type="text" name="nrc" placeholder="Please Enter NRC" required /> 
                               </div>
                             </div>
                             <div class="row">
                               <div class="col-6">
-                                <label class="fieldlabels">Email: *</label> 
+                                <label class="fieldlabels">Email:</label> 
                                 <input type="email" name="email" placeholder="Please Enter Email" /> 
                               </div>
                               <div class="col-6">
                                 <label class="fieldlabels">Phone Number: *</label> 
-                                <input type="text" name="phone" placeholder="Please Enter Phone Number" />
+                                <input type="text" name="phone" placeholder="Please Enter Phone Number" required />
                               </div>
                             </div>
                             <div class="row">
                               <div class="col-12">
                                 <label class="fieldlabels">Education: *</label>
-                                <textarea name="edu" placeholder="Please Enter Education"></textarea>
+                                <textarea name="edu" placeholder="Please Enter Education" required></textarea>
                               </div>
                             </div>
                         </div> 
@@ -328,7 +332,7 @@
                             <div class="row">
                               <div class="col-12">
                                 <label class="fieldlabels">Class Name: *</label>
-                                <select>
+                                <select required>
                                   <option value="">2</option>
                                 </select>
                               </div>
@@ -336,7 +340,7 @@
                             <div class="row">
                               <div class="col-12">
                                 <label class="fieldlabels">Class Time: *</label>
-                                <select>
+                                <select required>
                                   <option value="">2</option>
                                 </select>
                               </div>
@@ -355,40 +359,26 @@
                                     <h2 class="steps">Step 2 - 4</h2>
                                 </div>
                             </div> 
-                            <label class="fieldlabels">First Name: *</label> 
-                            <input type="text" name="fname" placeholder="First Name" />
-
-                            <label class="fieldlabels">Last Name: *</label> 
-                            <input type="text" name="lname" placeholder="Last Name" /> 
-
-                            <label class="fieldlabels">Contact No.: *</label> 
-                            <input type="text" name="phno" placeholder="Contact No." /> 
-                            
-                            <label class="fieldlabels">Alternate Contact No.: *</label> 
-                            <input type="text" name="phno_2" placeholder="Alternate Contact No." />
+                            <div class="row">
+                              <div class="col-3 bank">
+                                <img src="./assets/images/banks/CB.png" alt="CB bank" height="60" width="150" />
+                              </div>
+                              <div class="col-3 bank">
+                                <img src="./assets/images/banks/kbz.png" alt="KBZ bank" height="60" width="150" />
+                              </div>
+                              <div class="col-3 bank">
+                                <img src="./assets/images/banks/AYA.png" alt="AYA bank" height="60" width="150" />
+                              </div>
+                              <div class="col-3 bank">
+                                <img src="./assets/images/banks/KPAY.png" alt="KPAY bank" height="60" width="150" />
+                              </div>
+                            </div>
+                            <div class="row">
+                              
+                            </div>
                         </div> 
                         <input type="button" name="next" class="next action-button" value="Next" /> 
                         <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
-                    </fieldset>
-                    <fieldset>
-                        <div class="form-card">
-                            <div class="row">
-                                <div class="col-7">
-                                    <h2 class="enrollForm-title">Payment Detail:</h2>
-                                </div>
-                                <div class="col-5">
-                                    <h2 class="steps">Step 3 - 4</h2>
-                                </div>
-                            </div> 
-                            <p class="enroll-description">
-                              KPay Accoount: ... <br>
-                              Name: .....
-                            </p>
-                            
-                            <label class="fieldlabels">Upload Your transfer Screenshot:</label> 
-                            <input type="file" name="pic" accept="image/*">
-                        </div> 
-                        <input type="button" name="next" class="next action-button" value="Submit" /> <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
                     </fieldset>
                     <fieldset>
                         <div class="form-card">
@@ -400,15 +390,15 @@
                                     <h2 class="steps">Step 4 - 4</h2>
                                 </div>
                             </div> <br><br>
-                            <h2 class="purple-text text-center"><strong>Successfully Enrolled!</strong></h2> <br>
+                            <h2 class="purple-text text-center"><strong>Successfully Submitted!</strong></h2> <br>
                             <div class="row justify-content-center">
                                 <div class="col-3"> 
-                                  <img src="https://i.imgur.com/GwStPmg.png" class="fit-image"> 
+                                  <img src="./assets/images/blue-tick.png" class="fit-image"> 
                                 </div>
                             </div> <br><br>
                             <div class="row justify-content-center">
                                 <div class="col-7 text-center">
-                                  <h5 class="purple-text text-center">Receipts will be replied during business hours (9:00~17:00). </h5>
+                                  <h5 class="purple-text text-center">We will send email during business hours (9:00~17:00). Please check your email for payment information. </h5>
                                 </div>
                             </div>
                         </div>
@@ -521,5 +511,6 @@
     <script src="./assets/js/float-panel.js"></script>
     <script src="./assets/js/style.js"></script>
     <script src="./assets/js/multistepForm.js"></script>
+    <script src="./assets/js/userImgPreview.js"></script>
   </body>
 <html>
