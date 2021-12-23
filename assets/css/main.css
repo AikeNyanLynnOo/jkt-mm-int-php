@@ -1421,30 +1421,35 @@ figure img {
 #progressbar li {
   list-style-type: none;
   font-size: 15px;
-  width: 25%;
+  width: 20%;
   float: left;
   position: relative;
   font-weight: 400
 }
 
-#progressbar #account:before {
-  font-family: FontAwesome;
-  content: "\f13e"
-}
-
 #progressbar #personal:before {
   font-family: FontAwesome;
-  content: "\f007"
+  content: "1"
+}
+
+#progressbar #course:before {
+  font-family: FontAwesome;
+  content: "2"
 }
 
 #progressbar #payment:before {
   font-family: FontAwesome;
-  content: "\f030"
+  content: "3"
+}
+
+#progressbar #paymentDetail:before {
+  font-family: FontAwesome;
+  content: "4"
 }
 
 #progressbar #confirm:before {
   font-family: FontAwesome;
-  content: "\f00c"
+  content: "5"
 }
 
 #progressbar li:before {

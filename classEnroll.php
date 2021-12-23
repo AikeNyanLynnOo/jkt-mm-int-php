@@ -255,7 +255,7 @@
     <section>
       <div class="container-fluid">
         <div class="row justify-content-center">
-          <div class="col-11 col-sm-10 col-md-10 col-lg-6 col-xl-5 text-center p-0 mt-3 mb-2">
+          <div class="col-11 col-sm-10 col-md-10 col-lg-6 col-xl-7 text-center p-0 mt-3 mb-2">
             <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
                 <!-- <h2 id="heading">Sign Up Your User Account</h2> -->
                 <p class="enroll-description">Fill all form field to go to next step</p>
@@ -263,8 +263,9 @@
                     <!-- progressbar -->
                     <ul id="progressbar">
                         <li class="active" id="personal"></li>
-                        <li id="account"></li>
+                        <li id="course"></li>
                         <li id="payment"></li>
+                        <li id="paymentDetail"></li>
                         <li id="confirm"></li>
                     </ul>
                     <div class="progress">
@@ -314,6 +315,11 @@
                                 <textarea name="edu" placeholder="Please Enter Education"></textarea>
                               </div>
                             </div>
+                        </div> 
+                        <input type="button" name="next" class="next action-button" value="Next" />
+                    </fieldset>
+                    <fieldset>
+                        <div class="form-card">
                             <div class="row">
                                 <div class="col-7">
                                     <h2 class="enrollForm-title">Class:</h2>
@@ -335,8 +341,9 @@
                                 </select>
                               </div>
                             </div>
-                        </div> 
-                        <input type="button" name="next" class="next action-button" value="Next" />
+                        </div>  
+                        <input type="button" name="next" class="next action-button" value="Next" /> 
+                        <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
                     </fieldset>
                     <fieldset>
                         <div class="form-card">
@@ -360,7 +367,8 @@
                             <label class="fieldlabels">Alternate Contact No.: *</label> 
                             <input type="text" name="phno_2" placeholder="Alternate Contact No." />
                         </div> 
-                        <input type="button" name="next" class="next action-button" value="Next" /> <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                        <input type="button" name="next" class="next action-button" value="Next" /> 
+                        <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
                     </fieldset>
                     <fieldset>
                         <div class="form-card">
@@ -372,10 +380,12 @@
                                     <h2 class="steps">Step 3 - 4</h2>
                                 </div>
                             </div> 
-                            <label class="fieldlabels">Upload Your Photo:</label> 
-                            <input type="file" name="pic" accept="image/*"> 
+                            <p class="enroll-description">
+                              KPay Accoount: ... <br>
+                              Name: .....
+                            </p>
                             
-                            <label class="fieldlabels">Upload Signature Photo:</label> 
+                            <label class="fieldlabels">Upload Your transfer Screenshot:</label> 
                             <input type="file" name="pic" accept="image/*">
                         </div> 
                         <input type="button" name="next" class="next action-button" value="Submit" /> <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
