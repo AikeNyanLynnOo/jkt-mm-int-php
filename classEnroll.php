@@ -37,6 +37,7 @@
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
     />
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css'>
 
     <!-- css -->
     <link rel="stylesheet" href="./assets/css/bootstrap.min.css" />
@@ -249,5 +250,266 @@
       </div>
     </section>
     <!-- JP School header end -->
+
+    <!-- Enrollment Form start -->
+    <section>
+      <div class="container-fluid">
+        <div class="row justify-content-center">
+          <div class="col-11 col-sm-10 col-md-10 col-lg-6 col-xl-5 text-center p-0 mt-3 mb-2">
+            <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+                <!-- <h2 id="heading">Sign Up Your User Account</h2> -->
+                <p class="enroll-description">Fill all form field to go to next step</p>
+                <form id="enrollmentForm">
+                    <!-- progressbar -->
+                    <ul id="progressbar">
+                        <li class="active" id="personal"></li>
+                        <li id="account"></li>
+                        <li id="payment"></li>
+                        <li id="confirm"></li>
+                    </ul>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div> <br> <!-- fieldsets -->
+                    <fieldset>
+                        <div class="form-card">
+                            <div class="row">
+                                <div class="col-7">
+                                    <h2 class="enrollForm-title">User Information:</h2>
+                                </div>
+                                <div class="col-5">
+                                    <h2 class="steps">Step 1 - 4</h2>
+                                </div>
+                            </div> 
+                            <div class="row">
+                              <div class="col-5">
+                              
+                              </div>
+                              <div class="col-7">
+                                <label class="fieldlabels">Full Name: *</label> 
+                                <input type="text" name="uname" placeholder="Please Enter Full Name" /> 
+
+                                <label class="fieldlabels">Date of Birth: *</label> 
+                                <input type="date" name="dob" placeholder="Please Enter Date of Birth" /> 
+
+                                <label class="fieldlabels">Father Name: *</label> 
+                                <input type="text" name="fname" placeholder="Please Enter Father Name" /> 
+
+                                <label class="fieldlabels">NRC: *</label> 
+                                <input type="text" name="nrc" placeholder="Please Enter NRC" /> 
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-6">
+                                <label class="fieldlabels">Email: *</label> 
+                                <input type="email" name="email" placeholder="Please Enter Email" /> 
+                              </div>
+                              <div class="col-6">
+                                <label class="fieldlabels">Phone Number: *</label> 
+                                <input type="text" name="phone" placeholder="Please Enter Phone Number" />
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-12">
+                                <label class="fieldlabels">Education: *</label>
+                                <textarea name="edu" placeholder="Please Enter Education"></textarea>
+                              </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-7">
+                                    <h2 class="enrollForm-title">Class:</h2>
+                                </div>
+                            </div> 
+                            <div class="row">
+                              <div class="col-12">
+                                <label class="fieldlabels">Class Name: *</label>
+                                <select>
+                                  <option value="">2</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-12">
+                                <label class="fieldlabels">Class Time: *</label>
+                                <select>
+                                  <option value="">2</option>
+                                </select>
+                              </div>
+                            </div>
+                        </div> 
+                        <input type="button" name="next" class="next action-button" value="Next" />
+                    </fieldset>
+                    <fieldset>
+                        <div class="form-card">
+                            <div class="row">
+                                <div class="col-7">
+                                    <h2 class="enrollForm-title">Payment Method:</h2>
+                                </div>
+                                <div class="col-5">
+                                    <h2 class="steps">Step 2 - 4</h2>
+                                </div>
+                            </div> 
+                            <label class="fieldlabels">First Name: *</label> 
+                            <input type="text" name="fname" placeholder="First Name" />
+
+                            <label class="fieldlabels">Last Name: *</label> 
+                            <input type="text" name="lname" placeholder="Last Name" /> 
+
+                            <label class="fieldlabels">Contact No.: *</label> 
+                            <input type="text" name="phno" placeholder="Contact No." /> 
+                            
+                            <label class="fieldlabels">Alternate Contact No.: *</label> 
+                            <input type="text" name="phno_2" placeholder="Alternate Contact No." />
+                        </div> 
+                        <input type="button" name="next" class="next action-button" value="Next" /> <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                    </fieldset>
+                    <fieldset>
+                        <div class="form-card">
+                            <div class="row">
+                                <div class="col-7">
+                                    <h2 class="enrollForm-title">Payment Detail:</h2>
+                                </div>
+                                <div class="col-5">
+                                    <h2 class="steps">Step 3 - 4</h2>
+                                </div>
+                            </div> 
+                            <label class="fieldlabels">Upload Your Photo:</label> 
+                            <input type="file" name="pic" accept="image/*"> 
+                            
+                            <label class="fieldlabels">Upload Signature Photo:</label> 
+                            <input type="file" name="pic" accept="image/*">
+                        </div> 
+                        <input type="button" name="next" class="next action-button" value="Submit" /> <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                    </fieldset>
+                    <fieldset>
+                        <div class="form-card">
+                            <div class="row">
+                                <div class="col-7">
+                                    <h2 class="enrollForm-title">Finish:</h2>
+                                </div>
+                                <div class="col-5">
+                                    <h2 class="steps">Step 4 - 4</h2>
+                                </div>
+                            </div> <br><br>
+                            <h2 class="purple-text text-center"><strong>Successfully Enrolled!</strong></h2> <br>
+                            <div class="row justify-content-center">
+                                <div class="col-3"> 
+                                  <img src="https://i.imgur.com/GwStPmg.png" class="fit-image"> 
+                                </div>
+                            </div> <br><br>
+                            <div class="row justify-content-center">
+                                <div class="col-7 text-center">
+                                  <h5 class="purple-text text-center">Receipts will be replied during business hours (9:00~17:00). </h5>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Enrollment Form end -->
+
+    <!-- footer start -->
+    <footer class="footer">
+      <div class="left">
+        <a href="index.html"><span>JKT</span> Myanmar International </a>
+        <div>
+          <a
+            href="https://www.facebook.com/JKT-Myanmar-International-CoLtd-2508681849366709"
+          >
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <i class="fab fa-twitter"></i>
+          <i class="fab fa-instagram"></i>
+        </div>
+      </div>
+      <div class="right">
+        <div class="footer-flex">
+          <div>
+            <header>Join us for your business</header>
+            <p>We're here to give you a hand whenever you need</p>
+          </div>
+          <a href="./contact.html"
+            ><button id="btn-contact" class="primary-btn">CONTACT US</button></a
+          >
+        </div>
+        <div class="footer-flex-nav">
+          <div class="nav">
+            <header>Services</header>
+            <ul class="footer-list" id="first">
+              <li>
+                <span
+                  ><a href="./overseas.html"
+                    >Oversea Employment Services (only Japan)</a
+                  ></span
+                >
+              </li>
+              <li>
+                <span
+                  ><a href="./business.html"
+                    >Business Consultant Service</a
+                  ></span
+                >
+              </li>
+              <li>
+                <span><a href="./announcement.html">IT Services</a></span>
+              </li>
+              <li>
+                <span><a href="./announcement.html">Travel and Tours</a></span>
+              </li>
+            </ul>
+          </div>
+          <div class="nav">
+            <header>Training</header>
+            <ul class="footer-list" id="second">
+              <li>
+                <span
+                  ><a href="./jp-school.html">Japanese Language School</a></span
+                >
+              </li>
+              <li>
+                <span
+                  ><a href="./announcement.html">Vocational Training</a></span
+                >
+              </li>
+              <li>
+                <span><a href="./announcement.html">HR Training</a></span>
+              </li>
+            </ul>
+          </div>
+          <div class="nav">
+            <header>Contact</header>
+            <ul class="footer-list" id="last">
+              <li>
+                <i class="fa fa-phone"></i
+                ><a href="tel:+959269564339">+959 269 564 339</a>
+              </li>
+              <li>
+                <i class="fa fa-phone"></i
+                ><a href="tel:+959770411708">+959 770 411 708</a>
+              </li>
+              <li>
+                <i class="fas fa-map-marker-alt"></i>No.86, 3A, Shinsawpu Road,
+                Near Myaynigone Citymart, Sanchaung Township, Yangon, Myanmar
+              </li>
+              <li>
+                <i class="fa fa-envelope"></i>
+                <a href="mailto:jkt.mm.int@gmail.com">jkt.mm.int@gmail.com</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- script -->
+    <script src="./assets/js/jquery-3.6.0.js"></script>
+    <script src="./assets/js/popper.min.js"></script>
+    <script src="./assets/js/bootstrap.min.js"></script>
+    <script src="./assets/js/float-panel.js"></script>
+    <script src="./assets/js/style.js"></script>
+    <script src="./assets/js/multistepForm.js"></script>
   </body>
 <html>
