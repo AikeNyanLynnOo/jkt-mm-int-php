@@ -1515,21 +1515,25 @@ figure img {
   height: 200px;
   width: 100%;
   display:block;
-  margin: 5px auto 10px;
+  margin: 5px auto 0;
   padding:5px;
 }
 
-#file-input{
-  margin-top: 150px;
+.file-input{
+  display: inline-flex;
+  align-items: flex-end;
+  margin-bottom: 3px;
+  flex-wrap: wrap;
+  margin-top: auto;
 }
 
 .bank-image {
+  display: inline-block;
   width: 150px;
   height: 60px;
   background-position: center center;
   background-repeat: no-repeat;
   background-size: 145px 55px;
-  display: inline-block;
   margin: 30px auto;
 }
 
@@ -1545,11 +1549,21 @@ figure img {
   border: 2px solid rgb(0, 162, 255);
 }
 
+#radioMsg {
+  margin: 5px auto 30px;
+}
+
 .help-block{
   font-size: 14px;
   font-style: italic;
   color: red;
   margin-bottom: 5px;
+}
+
+.radio-alert {
+  background-color: rgba(255, 0, 0, 0.301);
+  padding: 8px;
+  border-radius: 5px;
 }
 
 /* Detail Information Page End */

@@ -281,33 +281,33 @@
                                 </div>
                             </div> 
                             <div class="row mb-3">
-                              <div class="col-4 col-sm-4 col-md-4">
+                              <div class="col-12 col-sm-12 col-md-6 col-lg-5 col-xl-4">
                                   <img 
                                       id="image-preview" 
                                       src="./assets/images/default-profile-icon.jpg" 
                                       alt="user image"
                                   />
                               </div>
-                              <div class="col-8 col-sm-8 col-md-8">
-                                  <input type='file' name="photo" class="form-input" id="file-input" required />
+                              <div class="col-13 col-sm-12 col-md-6 col-lg-7 col-xl-8 file-input">
+                                  <input type='file' name="photo" class="form-input" id="file-input" />
                               </div>
                             </div>
                             <div class="row mb-3">
                                 <div class="col-12 col-sm-12 col-md-12">
                                     <label class="fieldlabels">Full Name: *</label> 
-                                    <input type="text" class="form-input" name="uname" id="uname" placeholder="e.g. Win Win" required />
+                                    <input type="text" class="form-input" name="uname" id="uname" placeholder="e.g. Win Win"  />
                                 </div> 
                             </div>
                             <div class="row mb-3">
                                 <div class="col-12 col-sm-12 col-md-12">
                                     <label class="fieldlabels">Date of Birth: *</label> 
-                                    <input type="date" class="form-input" name="dob" id="dob" required /> 
+                                    <input type="date" class="form-input" name="dob" id="dob"  /> 
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <div class="col-12 col-sm-12 col-md-12">
                                     <label class="fieldlabels">Father Name: *</label> 
-                                    <input type="text" class="form-input" name="fname" id="fname" placeholder="e.g. U Aye" required />
+                                    <input type="text" class="form-input" name="fname" id="fname" placeholder="e.g. U Aye"  />
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -317,7 +317,7 @@
                                     <?php $stateNumberArr = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"] ?>
                                     <!-- <input type="text" class="form-input" name="nrc" id="nrc" placeholder="e.g. Please Enter NRC" required />  -->
                                     <div class="col-3">
-                                      <select name="nrcCode" id="nrcCode" class="form-input" required>
+                                      <select name="nrcCode" id="nrcCode" class="form-input" >
                                         <option value="" selected disabled>State</option>
                                         <?php
                                           for($i=0; $i<count($stateNumberArr); $i++) {
@@ -329,12 +329,12 @@
                                       </select>
                                     </div>
                                     <div class="col-4">
-                                      <select name="township" id="township" class="form-input" required>
+                                      <select name="township" id="township" class="form-input" >
                                         <option value="" selected disabled>Township</option>
                                       </select>
                                     </div>
                                     <div class="col-2">
-                                      <select name="type" id="type" class="form-input" required>
+                                      <select name="type" id="type" class="form-input" >
                                         <option value="" selected disabled>Type</option>
                                         <option value="(E)">(E)</option>
                                         <option value="(N)">(N)</option>
@@ -345,7 +345,7 @@
                                       </select>
                                     </div>
                                     <div class="col-3">
-                                      <input type="text" class="form-input" name="nrcNumber" id="nrcNumber" placeholder="123456" required />
+                                      <input type="text" class="form-input" name="nrcNumber" id="nrcNumber" placeholder="123456"  />
                                     </div>                                  
                                   </div>
                                 </div>
@@ -359,13 +359,13 @@
                             <div class="row mb-3">
                                 <div class="col-12 col-sm-12 col-md-12">
                                     <label class="fieldlabels">Phone Number: *</label> 
-                                    <input type="text" class="form-input" name="phone" id="phone" placeholder="+959000000000 or 09111111111" required />
+                                    <input type="text" class="form-input" name="phone" id="phone" placeholder="+959000000000 or 09111111111"  />
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <div class="col-12 col-sm-12 col-md-12">
                                     <label class="fieldlabels">Education: *</label>
-                                    <textarea name="edu" class="form-input" id="edu" placeholder="e.g. University" required></textarea>
+                                    <textarea name="edu" class="form-input" id="edu" placeholder="e.g. University" ></textarea>
                                 </div>
                             </div>
                             <input type="button" name="next" id="userInfo" class="next action-button" value="Next" />
@@ -380,7 +380,7 @@
                             <div class="row mb-3">
                               <div class="col-12">
                                 <label class="fieldlabels">Class Category: *</label>
-                                <select name="className" id="className" class="form-input" required>
+                                <select name="className" id="className" class="form-input">
                                   <option value="" selected disabled>Choose class</option>
                                   <option value="Japanese Language N5(online)">Japanese Language N5(online)</option>
                                   <option value="Japanese Language N4(online)">Japanese Language N4(online)</option>
@@ -390,7 +390,7 @@
                             <div class="row mb-3">
                               <div class="col-12">
                                 <label class="fieldlabels">Class Time: *</label>
-                                <select name="classTime" id="classTime" class="form-input" required>
+                                <select name="classTime" id="classTime" class="form-input">
                                   <option value="" selected disabled>Choose class time</option>
                                   <option value="12:00~2:00pm">12:00~2:00pm</option>
                                   <option value="10:00~12:00pm">10:00~12:00pm</option>
@@ -411,34 +411,32 @@
                                     <h2 class="steps">Step 2 - 4</h2>
                                 </div>
                             </div> 
-                            <div class="row">
-                              <div class="col-3">
+                            <div class="row bank-container">
+                              <div class="col-12 col-sm-11 col-md-6 col-lg-6 col-xl-3 text-center">
                                 <label class="bank">
                                   <input type="radio" name="bank" value="CB banking" />
                                   <div class="bank-image" style="background-image: url(./assets/images/banks/CB.png)"></div>
                                 </label>
                               </div>
-                              <div class="col-3">
+                              <div class="col-12 col-sm-11 col-md-6 col-lg-6 col-xl-3 text-center">
                                 <label class="bank">
                                   <input type="radio" name="bank" value="KBZ banking" />
                                   <div class="bank-image" style="background-image: url(./assets/images/banks/kbz.png)"></div>
                                 </label>
                               </div>
-                              <div class="col-3">
+                              <div class="col-12 col-sm-11 col-md-6 col-lg-6 col-xl-3 text-center">
                                 <label class="bank">
                                   <input type="radio" name="bank" value="AYA banking" />
                                   <div class="bank-image" style="background-image: url(./assets/images/banks/AYA.png)"></div>
                                 </label>
                               </div>
-                              <div class="col-3">
+                              <div class="col-12 col-sm-11 col-md-6 col-lg-6 col-xl-3 text-center">
                                 <label class="bank">
                                   <input type="radio" name="bank" value="Kpay" />
                                   <div class="bank-image" style="background-image: url(./assets/images/banks/KPAY.png)"></div>
                                 </label>
                               </div>
-                            </div>
-                            <div class="row">
-                              
+                              <span id="radioMsg"></span>
                             </div>
                         </div> 
                         <input type="button" name="next" class="next action-button" value="Next" /> 
