@@ -40,32 +40,28 @@ $education = $_POST['edu'];
 
 
 // STEP 2
-$classId = $_POST['classId'];
+$classId = intval($_POST['classId']);
 $classTime = $_POST['classTime'];
 
 // STEP 3
 $bank = $_POST['bank'];
 
-
-// echo ($photo .
-//     $uname .
-//     $fname .
-//     $nrcCode .
-//     $township .
-//     $type .
-//     $nrcNumber .
-//     $email .
-//     $phone .
-//     $edu .
-//     $classId .
-//     $classTime .
+// echo ($classId .",".
+//     $uname .",".
+//     $dob .",".  
+//     $fname .",".
+//     $nrcCode .",".
+//     $township .",".
+//     $type .",".
+//     $nrcNumber .",".
+//     $email .",".
+//     $phone .",".
+//     $education .",".
+//     $classTime .",".
 //     $bank
 // );
 
-// $sql = "INSERT INTO enrollments (cid, uname, dob, fname, nrc, email, education, address, phone, payment_bank, created_at
-//  updated_at, is_pending) VALUES ('$classId','$uname','$dob','$fname','$nrcNumber','$email','$education','$address','$phone','$bank' ,now(), now(), 1)";
-// mysqli_query($conn, $sql);
-$sql = "INSERT INTO types (title, created_at,
- updated_at) VALUES ('$nrcCode/$township$nrcNumber', now(), now())";
-mysqli_query($conn, $sql);
+$sql = "INSERT INTO enrollments (cid,uname, dob, fname, nrc, email, education, address, phone, payment_bank,created_at,
+updated_at,is_pending) VALUES ('$classId','$uname','$dob','$fname','$nrcNumber','$email','$education','$address','$phone','$bank' , now(), now(),1)";
+mysqli_query($conn, $sql); 
 header("location: success.php");
