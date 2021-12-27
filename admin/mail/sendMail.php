@@ -33,7 +33,7 @@ function sendMail($email,$uname)
 	//Enable HTML
 	$mail->isHTML(true);
 	//Attachment
-	$mail->addAttachment('img/doraemon.png');
+	$mail->addAttachment('./img/doraemon.png');
 	//Email body
 	$mail->Body = "<h1>Dear ". $uname ."</h1></br><p>Check the following image for payment information!</p>";
 	//Add recipient
