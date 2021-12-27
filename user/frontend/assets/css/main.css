@@ -1505,20 +1505,22 @@ figure img {
   margin-bottom: 5px;
 }
 
-.input-row {
-  /* display: flex;
-  flex-direction: column;
-  align-items: baseline; */
-  height: 150px;
+.nrcNo-required {
+  position: absolute;
+  left: 15px;
+  font-style: italic !important;
+  font-size: 14px;
+  color: red;
+  margin-bottom: 10px;
 }
 
-.payment-confirm-warning {
+.ss-required {
   position: absolute;
-  /* top: 100%; */
+  left: 15px;
+  bottom: 100px;
   color: red;
-  margin-top: 10%;
   font-size: 14px;
-  font-style: italic;
+  font-style: oblique;
 }
 
 .radio-alert {
@@ -1571,7 +1573,7 @@ figure img {
   position: absolute;
   outline: none !important;
   left: 0;
-  width: 100%;
+  width: 90%;
   height: 150px;
   cursor: pointer;
   opacity: 0;
@@ -1588,7 +1590,7 @@ figure img {
 
 .preview-zone {
   text-align: center;
-  width: 100%;
+  width: 90%;
   color: #5bafe7;
   font-style: italic;
 }

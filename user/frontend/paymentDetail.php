@@ -260,11 +260,12 @@
                 <!-- <h2 id="heading">Sign Up Your User Account</h2> -->
                 <p class="enroll-description">Fill this form to confirm the payment</p>
                 <form id="paymentForm">
-                    <div class="row my-2">
+                    <div class="row mx-2">
                       <label class="fieldlabels">Your NRC Number: <span class="required-tag">required &nbsp; *</span></label> 
-                      <input type="text" class="form-input payment-input" name="nrcNumber" id="nrcNumber" placeholder="e.g. 123456" />
-                    </div> 
-                    <div class="row my-5">
+                      <input type="text" class="form-input" name="nrcNumber" id="nrcNumber" placeholder="e.g. 123456" />
+                    </div>
+                    <span class="nrcNo-required" id="nrcNoRequired"><em></em></span>
+                    <div class="row mt-5 px-4">
                       <label class="fieldlabels">Please Upload Your Payment Screenshot: <span class="required-tag">required &nbsp; *</span></label> <br>
                       <div class="preview-zone hidden">
                         <div class="box box-solid">
@@ -281,8 +282,11 @@
                         </div>
                         <input type="file" name="paymentImg" class="dropzone payment-input">
                       </div>
+                      <span class="ss-required" id="ssRequired"></span>
                     </div>
-                    <input type="submit" name="paymentSubmit" id="paymentSubmit" class="back-to-courses" value="Submit" />
+                    <div class="mt-5 mb-3">
+                      <input type="submit" name="paymentSubmit" id="paymentSubmit" class="back-to-courses" value="Submit" />
+                    </div>
                 </form>
             </div>
           </div>

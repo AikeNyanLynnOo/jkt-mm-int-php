@@ -30,6 +30,10 @@ function readFile(input) {
 
 $(".dropzone").change(function () {
   readFile(this);
+  if($(".preview-zone").hasClass("hidden")) {
+    console.log("hello")
+    $("#ssRequired").text('');
+  }
 });
 
 $(".dropzone-wrapper").on("dragover", function (e) {
@@ -47,21 +51,33 @@ $(".dropzone-wrapper").on("dragleave", function (e) {
 $(document).ready(function () {
   var paymentForm = $("#paymentForm");
 
-  paymentForm.validate({
-    errorElement: "p",
-    errorClass: "payment-confirm-warning",
-    highlight: function (element, errorClass, validClass) {
-      $(element).closest(".payment-input").addClass("has-error");
+  $.validator.addMethod(
+    "nrcNumber",
+    function (value, element) {
+      return this.optional(element) || /^\d{6}$/i.test(value);
     },
-    unhighlight: function (element, errorClass, validClass) {
-      $(element).closest(".payment-input").removeClass("has-error");
+    "NRC number must contain only numbers"
+  );
+
+  paymentForm.validate({
+    // errorElement: "span",
+    errorPlacement: function(error, element) {
+      if(element.attr("name") === "nrcNumber") {
+        error.appendTo("#nrcNoRequired");
+      } else if (element.attr("name") === "paymentImg") {
+        error.appendTo("#ssRequired");
+      }
     },
     rules: {
       nrcNumber: {
         required: true,
+        minlength: 6,
+        maxlength: 6,
+        nrcNumber: true,
       },
       paymentImg: {
         required: true,
+        extension: "jpg|jpeg|png"
       }
     },
     messages: {
