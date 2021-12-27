@@ -287,7 +287,7 @@
                   <label class="fieldlabels">Select One of the Payment Method: <span class="required-tag">required &nbsp; *</span></label>
                     <div class="col-12 col-sm-11 col-md-6 col-lg-6 col-xl-3 text-center">
                       <label class="bank">
-                        <input type="radio" name="bank" value="CB banking" />
+                        <input type="radio" name="bank" value="CB banking" required/>
                         <div class="bank-image" style="background-image: url(./assets/images/banks/CB.png)"></div>
                       </label>
                     </div>
@@ -336,6 +336,9 @@
                       <h5 class="blue-text text-center">We will send email during business hours (9:00~17:00). Please check your email for payment information. </h5>
                     </div>
                   </div>
+                  <div class="row justify-content-center mt-3">
+                    <a href="classEnroll.php" class="back-to-courses">Browse Courses</a>
+                  </div>
                 </div>
               </fieldset>
             </form>
@@ -343,6 +346,7 @@
         </div>
       </div>
     </div>
+    
   </section>
   <!-- Enrollment Form end -->
 

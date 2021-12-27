@@ -1824,6 +1824,22 @@ figure img {
   animation: separator-width 1.5s ease-out forwards;
 }
 
+.back-to-courses{
+  color: #ffffff;
+  font-size: large;
+  border: none;
+  background-color: #5bafe7;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  padding: 20px 50px;
+}
+.back-to-courses:hover{
+  text-decoration: none;
+}
+
 @-webkit-keyframes separator-width {
   0% {
     width: 0;
