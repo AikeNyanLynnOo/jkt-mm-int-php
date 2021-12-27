@@ -64,5 +64,17 @@ $bank = $_POST['bank'];
 
 $sql = "INSERT INTO enrollments (cid,uname, dob, fname, nrc, email, education, address, phone, payment_bank,created_at,
 updated_at,is_pending) VALUES ('$classId','$uname','$dob','$fname','$nrc','$email','$education','$address','$phone','$bank' , now(), now(),1)";
-mysqli_query($conn, $sql); 
-header("location:javascript://history.go(-1)");
+mysqli_query($conn, $sql);
+
+include("../../admin/mail/sendMail.php");
+
+$afterTryingToSend = sendMail($email,$uname);
+
+if($afterTryingToSend[0]){
+    header("location:javascript://history.go(-1)");
+}else{
+    // mail sent error 
+}
+
+mysqli_close($conn);
+
