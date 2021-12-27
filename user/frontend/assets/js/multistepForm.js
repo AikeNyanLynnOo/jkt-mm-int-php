@@ -67,7 +67,7 @@ $(document).ready(function () {
     "phoneRegex",
     function (value, element) {
       return (
-        this.optional(element) || /^\d{8,10}$/i.test(value)
+        this.optional(element) || /^[0][9]\d{8,10}$/i.test(value)
       );
     },
     "Your phone number's format is invalid"
