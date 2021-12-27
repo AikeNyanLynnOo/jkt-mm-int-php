@@ -2,6 +2,19 @@ function Ascending_sort(a, b) {
   return $(b).text().toUpperCase() < $(a).text().toUpperCase() ? 1 : -1;
 }
 
+var today = new Date();
+var maxMonth = today.getMonth() + 1;     // getMonth() is zero-based
+var maxDay = today.getDate();
+var maxYear = today.getFullYear();
+var minYear = today.getFullYear() - 70;
+maxMonth = maxMonth < 10 ? '0' + maxMonth.toString() : maxMonth;
+maxDay = maxDay < 10 ? '0' + maxDay.toString() : maxDay;
+
+var maxDate = maxYear + '-' + maxMonth + '-' + maxDay;
+$('#dob').attr('max', maxDate);
+var minDate = minYear + '-' + 1 + '-' + 1;
+$('#dob').attr('min', minDate);
+
 var nrc = {
   init: function () {
     $("select#nrcCode").change(function () {
@@ -67,6 +80,20 @@ $(document).ready(function () {
     "NRC number must contain only numbers"
   );
 
+  // $.validator.addMethod(
+  //   "CheckDOB", 
+  //   function (value, element) {
+  //     var  minDate = Date.parse("01/01/1990");  
+  //     var today = new Date();
+  //     console.log(value);
+  //     var DOB = Date.parse(value);  
+  //     if((DOB <= today && DOB >= minDate)) {  
+  //       return true;  
+  //     }  
+  //       return false;  
+  //   }, "NotValid"
+  // );
+
   $(".next").click(function () {
     // current_fs = $(this).parent();
     // next_fs = $(this).parent().next();
@@ -93,6 +120,7 @@ $(document).ready(function () {
         },
         bod: {
           required: true,
+          // CheckDOB: true,
         },
         fname: {
           required: true,
@@ -120,6 +148,10 @@ $(document).ready(function () {
           required: true,
           phoneRegex: true,
           minlength: 10,
+        },
+        address: {
+          required: true,
+          minlength: 8,
         },
         edu: {
           required: true,
@@ -162,6 +194,9 @@ $(document).ready(function () {
         },
         phone: {
           required: "Phone number required",
+        },
+        address: {
+          required: "Address required",
         },
         edu: {
           required: "Education required",

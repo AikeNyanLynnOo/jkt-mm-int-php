@@ -166,7 +166,7 @@
                   <div class="row mb-3">
                     <div class="col-12 col-sm-12 col-md-12">
                       <label class="fieldlabels">Date of Birth: *</label>
-                      <input type="date" class="form-input" name="dob" id="dob" />
+                      <input type="date" class="form-input" name="dob" id="dob" required />
                     </div>
                   </div>
                   <div class="row mb-3">
@@ -224,7 +224,13 @@
                   <div class="row mb-3">
                     <div class="col-12 col-sm-12 col-md-12">
                       <label class="fieldlabels">Phone Number: *</label>
-                      <input type="number" class="form-input" name="phone" id="phone" placeholder="+959000000000 or 09111111111" />
+                      <input type="number" class="form-input" name="phone" id="phone" placeholder="+959XXXXXXXXX or 09XXXXXXXXX" />
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col-12 col-sm-12 col-md-12">
+                      <label class="fieldlabels">Address: *</label>
+                      <textarea name="address" class="form-input" id="address" placeholder="e.g. No.(X), XXX Road, XXX."></textarea>
                     </div>
                   </div>
                   <div class="row mb-3">

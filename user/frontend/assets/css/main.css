@@ -1235,49 +1235,6 @@ figure img {
   outline: none;
 }
 
-/* .step-block {
-  display: flex;
-  width: 60%;
-  padding: 10px 15px;
-  align-items: center;
-  margin: auto;
-}
-
-.step {
-  margin: 20px 0;
-  width: 50px;
-  padding: 10px 0;
-  border: 1px solid #c0cbd8;
-  background-color: #e5ebf1;
-  border-radius: 50%;
-  color: rgb(52, 52, 63);
-  font-size: 20px;
-  text-align: center;
-  vertical-align: middle;
-}
-
-.step-active {
-  background-color: #5BAFE7;
-  color: white;
-}
-
-.line {
-  display: block;
-  width: 30%;
-  height: 5px;
-  border: 1px solid #c0cbd8;
-  background-color: #e5ebf1;
-}
-
-.line-active {
-  background-color: #5BAFE7;
-  color: white;
-}
-
-.first-step {
-  margin-left: 10%;
-} */
-
 .enroll-description {
   color: grey
 }
@@ -1313,21 +1270,15 @@ figure img {
   display: none
 }
 
-/* .input-group {
-  height: 120px;
-  margin-bottom: 20px;
-} */
-
 .form-input {
   padding: 8px 15px 8px 15px;
   border: 1px solid #ccc;
   border-radius: 5px;
   width: 100%;
   margin-bottom: 2px;
-  /* margin-bottom: 20px; */
   margin-top: 2px;
   box-sizing: border-box;
-  font-family: montserrat;
+  font-family: "Playfair Display", serif;
   color: #2C3E50;
   background-color: #f9fdfd;
   font-size: 16px;
@@ -1351,7 +1302,8 @@ figure img {
   cursor: pointer;
   padding: 10px 5px;
   margin: 10px 0px 10px 5px;
-  float: right
+  float: right;
+  font-family: "Playfair Display", serif;
 }
 
 #enrollmentForm .action-button:hover,
@@ -1376,27 +1328,6 @@ figure img {
 #enrollmentForm .action-button-previous:focus {
   background-color: #000000
 }
-
-/* .form-input {
-  width: 100%;
-} */
-
-/* .nrc input,
-.nrc select {
-  padding: 8px 15px 8px 15px;
-  padding: 8px 0 !important;
-  border: 1px solid #ccc;
-  border-radius: 0px;
-  margin-bottom: 2px;
-  margin-top: 2px;
-  width: 100%;
-  box-sizing: border-box;
-  font-family: montserrat;
-  color: #2C3E50;
-  background-color: #ECEFF1;
-  font-size: 16px;
-  letter-spacing: 1px
-} */
 
 .card {
   z-index: 0;
