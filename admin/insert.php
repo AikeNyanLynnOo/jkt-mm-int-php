@@ -1,8 +1,6 @@
 <?php
 // include('checkUser.php');
-?>
 
-<?php
 include("confs/config.php");
 $title = $_POST['title'];
 $sql = "INSERT INTO types (title, created_at,
