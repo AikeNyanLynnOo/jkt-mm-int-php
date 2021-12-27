@@ -259,32 +259,30 @@
             <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
                 <!-- <h2 id="heading">Sign Up Your User Account</h2> -->
                 <p class="enroll-description">Fill this form to confirm the payment</p>
-                <form id="enrollmentForm">
-                    <label class="fieldlabels">Your Enrollment ID: *</label> 
-                    <input type="text" class="form-input" name="enrollID" id="enrollID" placeholder="e.g. 1233"  />
+                <form id="paymentForm">
+                    <div class="row my-2">
+                      <label class="fieldlabels">Your NRC Number: <span class="required-tag">required &nbsp; *</span></label> 
+                      <input type="text" class="form-input payment-input" name="nrcNumber" id="nrcNumber" placeholder="e.g. 123456" />
+                    </div> 
                     <div class="row my-5">
+                      <label class="fieldlabels">Please Upload Your Payment Screenshot: <span class="required-tag">required &nbsp; *</span></label> <br>
                       <div class="preview-zone hidden">
                         <div class="box box-solid">
                           <div class="box-header with-border">
                             <div><b>Preview</b></div>
-                            <!-- <div class="box-tools pull-right">
-                              <button type="button" class="btn btn-danger btn-xs remove-preview">
-                                <i class="fa fa-times"></i> Reset This Form
-                              </button>
-                            </div> -->
                           </div>
                           <div class="box-body"></div>
                         </div>
                       </div>
                       <div class="dropzone-wrapper">
                         <div class="dropzone-desc">
-                          <i class="glyphicon glyphicon-download-alt"></i>
+                          <i class="fas fa-upload"></i>
                           <p>Choose an image file or drag it here.</p>
                         </div>
-                        <input type="file" name="img_logo" class="dropzone">
+                        <input type="file" name="paymentImg" class="dropzone payment-input">
                       </div>
                     </div>
-                    <input type="submit" name="paymentSubmit" id="paymentSubmit" class="next action-button" value="Next" />
+                    <input type="submit" name="paymentSubmit" id="paymentSubmit" class="back-to-courses" value="Submit" />
                 </form>
             </div>
           </div>
@@ -393,7 +391,6 @@
     <script src="./assets/js/popper.min.js"></script>
     <script src="./assets/js/bootstrap.min.js"></script>
     <script src="./assets/js/float-panel.js"></script>
-    <script src="./assets/js/multistepForm.js"></script>
-    <script src="./assets/js/userImgPreview.js"></script>
+    <script src="./assets/js/paymentDetail.js"></script>
   </body>
 <html>

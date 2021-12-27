@@ -24,7 +24,6 @@ function readFile(input) {
       boxZone.empty();
       boxZone.append(htmlPreview);
     };
-
     reader.readAsDataURL(input.files[0]);
   }
 }
@@ -44,3 +43,34 @@ $(".dropzone-wrapper").on("dragleave", function (e) {
   e.stopPropagation();
   $(this).removeClass("dragover");
 });
+
+$(document).ready(function () {
+  var paymentForm = $("#paymentForm");
+
+  paymentForm.validate({
+    errorElement: "p",
+    errorClass: "payment-confirm-warning",
+    highlight: function (element, errorClass, validClass) {
+      $(element).closest(".payment-input").addClass("has-error");
+    },
+    unhighlight: function (element, errorClass, validClass) {
+      $(element).closest(".payment-input").removeClass("has-error");
+    },
+    rules: {
+      nrcNumber: {
+        required: true,
+      },
+      paymentImg: {
+        required: true,
+      }
+    },
+    messages: {
+      nrcNumber: {
+        required: "NRC Number required",
+      },
+      paymentImg: {
+        required: "Payment Screenshot required",
+      }
+    }
+  })
+})
