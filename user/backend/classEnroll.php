@@ -33,8 +33,9 @@ $nrcCode = $_POST['nrcCode'];
 $township = $_POST['township'];
 $type = $_POST['type'];
 $nrcNumber = $_POST['nrcNumber'];
+$nrc = $nrcCode."/".$township.$type.$nrcNumber;
 $email = $_POST['email'];
-$address = "address"; // post value
+$address = $_POST['email'];
 $phone = $_POST['phone'];
 $education = $_POST['edu'];
 
@@ -62,6 +63,6 @@ $bank = $_POST['bank'];
 // );
 
 $sql = "INSERT INTO enrollments (cid,uname, dob, fname, nrc, email, education, address, phone, payment_bank,created_at,
-updated_at,is_pending) VALUES ('$classId','$uname','$dob','$fname','$nrcNumber','$email','$education','$address','$phone','$bank' , now(), now(),1)";
+updated_at,is_pending) VALUES ('$classId','$uname','$dob','$fname','$nrc','$email','$education','$address','$phone','$bank' , now(), now(),1)";
 mysqli_query($conn, $sql); 
 header("location: success.php");
