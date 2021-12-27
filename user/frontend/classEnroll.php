@@ -225,7 +225,7 @@
                   <div class="row mb-3">
                     <div class="col-12 col-sm-12 col-md-12">
                       <label class="fieldlabels">Phone Number: <span class="required-tag">required &nbsp; *</span></label>
-                      <input type="text" class="form-input" name="phone" id="phone" placeholder="XXXXXXXXX or XXXXXXXXX" />
+                      <input type="text" class="form-input" name="phone" id="phone" placeholder="09XXXXXXXXX" />
                     </div>
                   </div>
                   <div class="row mb-3">
@@ -283,8 +283,12 @@
                       <h2 class="steps">Step 2 - 4</h2>
                     </div>
                   </div>
+                  <div class="row mt-4">
+                      <div class="col-12">
+                        <label class="fieldlabels">Select One of the Payment Method: <span class="required-tag">required &nbsp; *</span></label>
+                      </div>
+                  </div>
                   <div class="row bank-container">
-                  <label class="fieldlabels">Select One of the Payment Method: <span class="required-tag">required &nbsp; *</span></label>
                     <div class="col-12 col-sm-11 col-md-6 col-lg-6 col-xl-3 text-center">
                       <label class="bank">
                         <input type="radio" name="bank" value="CB banking" />
