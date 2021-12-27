@@ -1292,6 +1292,10 @@ figure img {
   outline-width: 0
 }
 
+.nrc {
+  padding: 8px 10px !important;
+}
+
 #enrollmentForm .action-button {
   width: 100px;
   background: #5BAFE7;
@@ -1327,6 +1331,16 @@ figure img {
 #enrollmentForm .action-button-previous:hover,
 #enrollmentForm .action-button-previous:focus {
   background-color: #000000
+}
+
+.required-tag {
+  background-color: #5bafe7d7;
+  padding: 2px 5px;
+  font-size: 9px;
+  color: white;
+  border-radius: 5px;
+  border: 1px solid #0b588bb4;
+  font-style: italic;
 }
 
 .card {

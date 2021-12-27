@@ -33,8 +33,9 @@ var nrc = {
         // console.log(value)
         var option = document.createElement("option");
         if (id === value.nrc_code) {
-          option.innerText = value.name_en;
-          option.setAttribute("value", value.name_en);
+          console.log(value)
+          option.innerText = value.name_en + " - " + value.name_mm;
+          option.setAttribute("value", value.name_en + " - " + value.name_mm);
           document.getElementById("township").appendChild(option);
         }
       });
@@ -66,7 +67,7 @@ $(document).ready(function () {
     "phoneRegex",
     function (value, element) {
       return (
-        this.optional(element) || /^([+959]{4}|[09]{2})\d{8,10}$/i.test(value)
+        this.optional(element) || /^\d{8,10}$/i.test(value)
       );
     },
     "Your phone number's format is invalid"
@@ -79,20 +80,6 @@ $(document).ready(function () {
     },
     "NRC number must contain only numbers"
   );
-
-  // $.validator.addMethod(
-  //   "CheckDOB", 
-  //   function (value, element) {
-  //     var  minDate = Date.parse("01/01/1990");  
-  //     var today = new Date();
-  //     console.log(value);
-  //     var DOB = Date.parse(value);  
-  //     if((DOB <= today && DOB >= minDate)) {  
-  //       return true;  
-  //     }  
-  //       return false;  
-  //   }, "NotValid"
-  // );
 
   $(".next").click(function () {
     // current_fs = $(this).parent();
@@ -139,6 +126,7 @@ $(document).ready(function () {
         nrcNumber: {
           required: true,
           minlength: 6,
+          maxlength: 6,
           nrcNumber: true,
         },
         email: {
@@ -147,7 +135,7 @@ $(document).ready(function () {
         phone: {
           required: true,
           phoneRegex: true,
-          minlength: 10,
+          // minlength: 10,
         },
         address: {
           required: true,

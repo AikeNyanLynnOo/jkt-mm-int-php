@@ -124,7 +124,7 @@
   <section>
     <div class="container-fluid">
       <div class="row justify-content-center">
-        <div class="col-11 col-sm-10 col-md-10 col-lg-6 col-xl-6 text-center p-0 mt-3 mb-2">
+        <div class="col-11 col-sm-10 col-md-10 col-lg-8 col-xl-6 text-center p-0 mt-3 mb-2">
           <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
             <!-- <h2 id="heading">Sign Up Your User Account</h2> -->
             <p class="enroll-description">Fill all form field to go to next step</p>
@@ -154,35 +154,36 @@
                       <img id="image-preview" src="./assets/images/default-profile-icon.jpg" alt="user image" />
                     </div>
                     <div class="col-13 col-sm-12 col-md-6 col-lg-7 col-xl-8 file-input">
+                      <label class="fieldlabels">Upload Your Photo: <span class="required-tag">required &nbsp; *</span></label>
                       <input type="file" name="photo" class="form-input" id="file-input" />
                     </div>
                   </div>
                   <div class="row mb-3">
                     <div class="col-12 col-sm-12 col-md-12">
-                      <label class="fieldlabels">Full Name: *</label>
+                      <label class="fieldlabels">Full Name: <span class="required-tag">required &nbsp; *</span></label>
                       <input type="text" class="form-input" name="uname" id="uname" placeholder="e.g. Win Win" />
                     </div>
                   </div>
                   <div class="row mb-3">
                     <div class="col-12 col-sm-12 col-md-12">
-                      <label class="fieldlabels">Date of Birth: *</label>
+                      <label class="fieldlabels">Date of Birth: <span class="required-tag">required &nbsp; *</span></label>
                       <input type="date" class="form-input" name="dob" id="dob" required />
                     </div>
                   </div>
                   <div class="row mb-3">
                     <div class="col-12 col-sm-12 col-md-12">
-                      <label class="fieldlabels">Father Name: *</label>
+                      <label class="fieldlabels">Father Name: <span class="required-tag">required &nbsp; *</span></label>
                       <input type="text" class="form-input" name="fname" id="fname" placeholder="e.g. U Aye" />
                     </div>
                   </div>
                   <div class="row mb-3">
                     <div class="col-12 col-sm-12 col-md-12">
-                      <label class="fieldlabels">NRC: *</label>
+                      <label class="fieldlabels">NRC: <span class="required-tag">required &nbsp; *</span></label>
                       <div class="row">
                         <?php $stateNumberArr = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"] ?>
                         <!-- <input type="text" class="form-input" name="nrc" id="nrc" placeholder="e.g. Please Enter NRC" required />  -->
-                        <div class="col-3">
-                          <select name="nrcCode" id="nrcCode" class="form-input">
+                        <div class="col-12 col-sm-10 col-md-10 col-lg-2 col-xl-2">
+                          <select name="nrcCode" id="nrcCode" class="form-input nrc">
                             <option value="" selected disabled>State</option>
                             <?php
                             for ($i = 0; $i < count($stateNumberArr); $i++) {
@@ -193,24 +194,24 @@
                             ?>
                           </select>
                         </div>
-                        <div class="col-4">
-                          <select name="township" id="township" class="form-input">
+                        <div class="col-12 col-sm-10 col-md-10 col-lg-5 col-xl-5">
+                          <select name="township" id="township" class="form-input nrc">
                             <option value="" selected disabled>Township</option>
                           </select>
                         </div>
-                        <div class="col-2">
-                          <select name="type" id="type" class="form-input">
+                        <div class="col-12 col-sm-10 col-md-10 col-lg-3 col-xl-3">
+                          <select name="type" id="type" class="form-input nrc">
                             <option value="" selected disabled>Type</option>
-                            <option value="(E)">(E)</option>
-                            <option value="(N)">(N)</option>
-                            <option value="(P)">(P)</option>
-                            <option value="(S)">(S)</option>
-                            <option value="(T)">(T)</option>
-                            <option value="(Y)">(Y)</option>
+                            <option value="(C)">(C) - (နိုင်)</option>
+                            <option value="(AC)">(AC) - (ဧည့်)</option>
+                            <option value="(NC)">(NC) - (ပြု)</option>
+                            <option value="(V)">(V) - (စ)</option>
+                            <option value="(M)">(M) - (သ)</option>
+                            <option value="(N)">(N) - (သီ)</option>
                           </select>
                         </div>
-                        <div class="col-3">
-                          <input type="text" class="form-input" name="nrcNumber" id="nrcNumber" placeholder="123456" />
+                        <div class="col-12 col-sm-10 col-md-10 col-lg-2 col-xl-2">
+                          <input type="text" class="form-input nrc" name="nrcNumber" id="nrcNumber" placeholder="123456" />
                         </div>
                       </div>
                     </div>
@@ -223,19 +224,19 @@
                   </div>
                   <div class="row mb-3">
                     <div class="col-12 col-sm-12 col-md-12">
-                      <label class="fieldlabels">Phone Number: *</label>
-                      <input type="number" class="form-input" name="phone" id="phone" placeholder="+959XXXXXXXXX or 09XXXXXXXXX" />
+                      <label class="fieldlabels">Phone Number: <span class="required-tag">required &nbsp; *</span></label>
+                      <input type="text" class="form-input" name="phone" id="phone" placeholder="XXXXXXXXX or XXXXXXXXX" />
                     </div>
                   </div>
                   <div class="row mb-3">
                     <div class="col-12 col-sm-12 col-md-12">
-                      <label class="fieldlabels">Address: *</label>
+                      <label class="fieldlabels">Address: <span class="required-tag">required &nbsp; *</span></label>
                       <textarea name="address" class="form-input" id="address" placeholder="e.g. No.(X), XXX Road, XXX."></textarea>
                     </div>
                   </div>
                   <div class="row mb-3">
                     <div class="col-12 col-sm-12 col-md-12">
-                      <label class="fieldlabels">Education: *</label>
+                      <label class="fieldlabels">Education: <span class="required-tag">required &nbsp; *</span></label>
                       <textarea name="edu" class="form-input" id="edu" placeholder="e.g. University"></textarea>
                     </div>
                   </div>
@@ -250,8 +251,8 @@
                   </div>
                   <div class="row mb-3">
                     <div class="col-12">
-                      <label class="fieldlabels">Class Category: *</label>
-                      <select name="classId" id="className" class="form-input">
+                      <label class="fieldlabels">Class Category: <span class="required-tag">required &nbsp; *</span></label>
+                      <select name="className" id="className" class="form-input">
                         <option value="" selected disabled>Choose class</option>
                         <option value="001">Japanese Language N5(online)</option>
                         <option value="002">Japanese Language N4(online)</option>
@@ -260,7 +261,7 @@
                   </div>
                   <div class="row mb-3">
                     <div class="col-12">
-                      <label class="fieldlabels">Class Time: *</label>
+                      <label class="fieldlabels">Class Time: <span class="required-tag">required &nbsp; *</span></label>
                       <select name="classTime" id="classTime" class="form-input">
                         <option value="" selected disabled>Choose class time</option>
                         <option value="12:00~2:00pm">12:00~2:00pm</option>
@@ -283,6 +284,7 @@
                     </div>
                   </div>
                   <div class="row bank-container">
+                  <label class="fieldlabels">Select One of the Payment Method: <span class="required-tag">required &nbsp; *</span></label>
                     <div class="col-12 col-sm-11 col-md-6 col-lg-6 col-xl-3 text-center">
                       <label class="bank">
                         <input type="radio" name="bank" value="CB banking" />
