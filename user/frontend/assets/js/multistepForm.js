@@ -246,6 +246,7 @@ $(document).ready(function () {
             .eq($("fieldset").index(next_fs))
             .addClass("active");
           setProgressBar(++current);
+          form.submit();
         } else {
           $("#radioMsg").html(
             "<span class='help-block radio-alert' id='error'>" +
