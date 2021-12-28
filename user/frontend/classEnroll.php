@@ -254,8 +254,8 @@
                       <label class="fieldlabels">Class Category: <span class="required-tag">required &nbsp; *</span></label>
                       <select name="classId" id="className" class="form-input">
                         <option value="" selected disabled>Choose class</option>
-                        <option value="001">Japanese Language N5(online)</option>
-                        <option value="002">Japanese Language N4(online)</option>
+                        <option value="001: Japanese Language N5(online)">Japanese Language N5(online)</option>
+                        <option value="002: Japanese Language N4(online)">Japanese Language N4(online)</option>
                       </select>
                     </div>
                   </div>
@@ -291,7 +291,7 @@
                   <div class="row bank-container">
                     <div class="col-12 col-sm-11 col-md-4 col-lg-4 col-xl-4 text-center">
                       <label class="bank">
-                        <input type="radio" name="payment_method" value="CB banking" required/>
+                        <input type="radio" name="payment_method" value="CB banking"/>
                         <div class="bank-image" style="background-image: url(./assets/images/banks/CB.png)"></div>
                       </label>
                     </div>
@@ -317,8 +317,8 @@
                     </div>
                     <div class="col-12 col-sm-11 col-md-4 col-lg-4 col-xl-4 text-center">
                       <label class="bank">
-                        <input type="radio" name="payment_method" value="Cash" required/>
-                        <div class="bank-image" style="background-image: url(./assets/images/banks/money-icon.png)"></div>
+                        <input type="radio" name="payment_method" value="Cash"/>
+                        <div class="bank-image in-cash">In Cash <i class="fas fa-money-check"></i></div>
                       </label>
                     </div>
                     <span id="radioMsg"></span>

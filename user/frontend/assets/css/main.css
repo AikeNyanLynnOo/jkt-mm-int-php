@@ -1483,6 +1483,14 @@ figure img {
   margin: 30px auto;
 }
 
+.in-cash {
+  color: #215eb9;
+  font-size: 28px;
+  font-weight: 900;
+  font-family: monospace;
+  padding-top: 10px;
+}
+
 .bank > input {
   display: none;
 }
