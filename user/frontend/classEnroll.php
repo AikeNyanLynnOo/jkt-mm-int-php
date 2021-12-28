@@ -254,8 +254,8 @@
                       <label class="fieldlabels">Class Category: <span class="required-tag">required &nbsp; *</span></label>
                       <select name="classId" id="className" class="form-input">
                         <option value="" selected disabled>Choose class</option>
-                        <option value="001: Japanese Language N5(online)">Japanese Language N5(online)</option>
-                        <option value="002: Japanese Language N4(online)">Japanese Language N4(online)</option>
+                        <option value="000">Japanese Language N5(online)</option>
+                        <option value="001">Japanese Language N4(online)</option>
                       </select>
                     </div>
                   </div>
