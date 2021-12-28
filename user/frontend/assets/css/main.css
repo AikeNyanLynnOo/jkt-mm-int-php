@@ -1610,6 +1610,33 @@ figure img {
   margin-bottom: 0;
 }
 
+.schedule-badges {
+  padding: 3px 5px;
+  font-size: 14px;
+  border-radius: 5px;
+  color: whitesmoke;
+}
+
+.weekday {
+  background-color: #8ad887;
+}
+
+.weekend {
+  background-color: rgb(233, 176, 71);
+}
+
+.instructor {
+  background-color: #5691b6c0;
+}
+
+.morning {
+  background-color: rgb(201, 126, 142);
+}
+
+.evening {
+  background-color: rgb(211, 164, 132);
+}
+
 /* Confirm payment preview design */
 
 /* Detail Information Page End */
