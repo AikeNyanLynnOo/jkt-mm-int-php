@@ -243,13 +243,17 @@ $(document).ready(function () {
           }
         }
         if(atLeastOneChecked === true) {
-          current_fs = $("#paymentMethod");
-          next_fs = $("#success");
-          $("#progressbar li")
-            .eq($("fieldset").index(next_fs))
-            .addClass("active");
-          setProgressBar(++current);
-          form.submit();
+          $("#confirmationModal").modal("show");
+          $("#submitConfirm").click(function() {
+            current_fs = $("#paymentMethod");
+            next_fs = $("#success");
+            $("#progressbar li")
+              .eq($("fieldset").index(next_fs))
+              .addClass("active");
+            setProgressBar(++current);
+            form.submit();
+          })
+          // form.submit();
         } else {
           $("#radioMsg").html(
             "<span class='help-block radio-alert' id='error'>" +

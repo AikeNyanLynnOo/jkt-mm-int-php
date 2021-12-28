@@ -1639,6 +1639,39 @@ figure img {
 
 /* Confirm payment preview design */
 
+.modal:before {
+  content: '';
+  display: inline-block;
+  height: 20%;
+  vertical-align: middle;
+}
+
+.modal-title {
+  padding-left: 15px;
+  color: #001c69;
+}
+
+.modal-box {
+  width: 35vw;
+}
+
+.modal-body {
+  text-align: center;
+  padding: 50px 30px;
+}
+
+.btn-submit {
+  background-color: #5bafe7;
+  border-radius: 5px;
+  padding: 6px 10px;
+  color: whitesmoke;
+  border: none;
+}
+
+.btn-submit:hover{
+  background-color: #2d99e0;
+}
+
 /* Detail Information Page End */
 
 /* CONTACT PAGE START */
