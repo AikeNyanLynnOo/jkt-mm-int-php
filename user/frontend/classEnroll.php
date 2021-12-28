@@ -277,7 +277,7 @@
                 <div class="form-card">
                   <div class="row">
                     <div class="col-7">
-                      <h2 class="enrollForm-title">Payment Method:</h2>
+                      <h2 class="enrollForm-title">Payment:</h2>
                     </div>
                     <div class="col-5">
                       <h2 class="steps">Step 2 - 4</h2>
@@ -289,28 +289,36 @@
                       </div>
                   </div>
                   <div class="row bank-container">
-                    <div class="col-12 col-sm-11 col-md-6 col-lg-6 col-xl-3 text-center">
+                    <div class="col-12 col-sm-11 col-md-4 col-lg-4 col-xl-4 text-center">
                       <label class="bank">
                         <input type="radio" name="payment_method" value="CB banking" required/>
                         <div class="bank-image" style="background-image: url(./assets/images/banks/CB.png)"></div>
                       </label>
                     </div>
-                    <div class="col-12 col-sm-11 col-md-6 col-lg-6 col-xl-3 text-center">
+                    <div class="col-12 col-sm-11 col-md-4 col-lg-4 col-xl-4 text-center">
                       <label class="bank">
                         <input type="radio" name="payment_method" value="KBZ banking" />
                         <div class="bank-image" style="background-image: url(./assets/images/banks/kbz.png)"></div>
                       </label>
                     </div>
-                    <div class="col-12 col-sm-11 col-md-6 col-lg-6 col-xl-3 text-center">
+                    <div class="col-12 col-sm-11 col-md-4 col-lg-4 col-xl-4 text-center">
                       <label class="bank">
                         <input type="radio" name="payment_method" value="AYA banking" />
                         <div class="bank-image" style="background-image: url(./assets/images/banks/AYA.png)"></div>
                       </label>
                     </div>
-                    <div class="col-12 col-sm-11 col-md-6 col-lg-6 col-xl-3 text-center">
+                  </div>
+                  <div class="row bank-container">
+                    <div class="col-12 col-sm-11 col-md-4 col-lg-4 col-xl-4 text-center">
                       <label class="bank">
                         <input type="radio" name="payment_method" value="Kpay" />
                         <div class="bank-image" style="background-image: url(./assets/images/banks/KPAY.png)"></div>
+                      </label>
+                    </div>
+                    <div class="col-12 col-sm-11 col-md-4 col-lg-4 col-xl-4 text-center">
+                      <label class="bank">
+                        <input type="radio" name="payment_method" value="Cash" required/>
+                        <div class="bank-image" style="background-image: url(./assets/images/banks/money-icon.png)"></div>
                       </label>
                     </div>
                     <span id="radioMsg"></span>
