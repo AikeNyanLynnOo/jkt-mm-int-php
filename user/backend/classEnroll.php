@@ -45,7 +45,8 @@ $classId = intval($_POST['classId']);
 $classTime = $_POST['classTime'];
 
 // STEP 3
-$bank = $_POST['bank'];
+$payment_method = $_POST['bank'];
+$paid_percent = 100;
 
 // echo ($classId .",".
 //     $uname .",".
@@ -62,8 +63,8 @@ $bank = $_POST['bank'];
 //     $bank
 // );
 
-$sql = "INSERT INTO enrollments (cid,uname, dob, fname, nrc, email, education, address, phone, payment_bank,created_at,
-updated_at,is_pending) VALUES ('$classId','$uname','$dob','$fname','$nrc','$email','$education','$address','$phone','$bank' , now(), now(),1)";
+$sql = "INSERT INTO enrollments (class_id,uname, dob, fname, nrc, email, education, address, phone, payment_method,paid_percent,created_at,
+updated_at,is_pending) VALUES ('$classId','$uname','$dob','$fname','$nrc','$email','$education','$address','$phone','$payment_method','$paid_percent' , now(), now(),1)";
 mysqli_query($conn, $sql);
 
 include("../../admin/mail/sendMail.php");

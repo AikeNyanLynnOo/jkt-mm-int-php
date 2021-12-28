@@ -151,7 +151,7 @@ $(document).ready(function () {
         classTime: {
           required: true,
         },
-        bank: {
+        payment_method: {
           required: true,
         },
       },
@@ -195,7 +195,7 @@ $(document).ready(function () {
         classTime: {
           required: "Select the class time",
         },
-        bank: {
+        payment_method: {
           required: "Select banking system",
         },
       },
@@ -232,8 +232,9 @@ $(document).ready(function () {
         setProgressBar(++current);
       } else if ($("#paymentMethod").is(":visible")) {
         var atLeastOneChecked = false;
-        const bankRadioButtons = document.querySelectorAll('input[name="bank"]');
+        const bankRadioButtons = document.querySelectorAll('input[name="payment_method"]');
         for(let bank of bankRadioButtons) {
+          console.log(bank);
           if(bank.checked) {
             atLeastOneChecked = true;
             break;
