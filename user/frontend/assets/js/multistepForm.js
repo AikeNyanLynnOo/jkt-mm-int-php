@@ -33,7 +33,7 @@ var nrc = {
         // console.log(value)
         var option = document.createElement("option");
         if (id === value.nrc_code) {
-          console.log(value)
+          // console.log(value)
           option.innerText = value.name_en + " - " + value.name_mm;
           option.setAttribute("value", value.name_en + " - " + value.name_mm);
           document.getElementById("township").appendChild(option);
@@ -196,7 +196,7 @@ $(document).ready(function () {
           required: "Select the class time",
         },
         payment_method: {
-          required: "Select banking system",
+          required: "Select the banking system",
         },
       },
       errorPlacement: function (error, element) {
@@ -231,11 +231,13 @@ $(document).ready(function () {
           .addClass("active");
         setProgressBar(++current);
       } else if ($("#paymentMethod").is(":visible")) {
+        console.log("hello")
         var atLeastOneChecked = false;
         const bankRadioButtons = document.querySelectorAll('input[name="payment_method"]');
         for(let bank of bankRadioButtons) {
           console.log(bank);
           if(bank.checked) {
+            console.log(true)
             atLeastOneChecked = true;
             break;
           }
