@@ -43,14 +43,14 @@ function sendMail($email,$uname)
 
 	$mail->Body .= "Please fill out the form below to confirm your payment";
 
-	$mail->Body .= "<a href="">Go to Payment Confirm</a>";
+	$mail->Body .= "<a href=''>Go to Payment Confirm</a>";
 
-	$mail->Body .= "<p>For more detailed payment and courses information, you can contact us directly during business hours (9:00 ~ 17:00) </p>"
+	$mail->Body .= "<p>For more detailed payment and courses information, you can contact us directly during business hours (9:00 ~ 17:00) </p>";
 	$mail->Body .= "<h5>Regards, <br> JKT Myanmar Internation </h5>";
 	$mail->Body .= "--------------------------------";
 	$mail->Body .= "<p style='color: lightgrey;'>Phone No.: +959 269 564 339, +959 770 411 708</p>";
 	$mail->Body .= "<p style='color: lightgrey;'>Email: jkt.mm.int@gmail.com</p>";
-	$mail->Body .= "<p style='color: lightgrey;'>No.86, 3A, Shinsawpu Road, Near Myaynigone Citymart, Sanchaung Township, Yangon, Myanmar</p>"
+	$mail->Body .= "<p style='color: lightgrey;'>No.86, 3A, Shinsawpu Road, Near Myaynigone Citymart, Sanchaung Township, Yangon, Myanmar</p>";
 	//Add recipient
 	$mail->addAddress($email);
 	//Finally send email

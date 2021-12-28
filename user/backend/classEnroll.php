@@ -45,7 +45,7 @@ $classId = intval($_POST['classId']);
 $classTime = $_POST['classTime'];
 
 // STEP 3
-$payment_method = $_POST['bank'];
+$payment_method = $_POST['payment_method'];
 $paid_percent = 100;
 
 // echo ($classId .",".
@@ -63,9 +63,14 @@ $paid_percent = 100;
 //     $bank
 // );
 
-$sql = "INSERT INTO enrollments (class_id,uname, dob, fname, nrc, email, education, address, phone, payment_method,paid_percent,created_at,
-updated_at,is_pending) VALUES ('$classId','$uname','$dob','$fname','$nrc','$email','$education','$address','$phone','$payment_method','$paid_percent' , now(), now(),1)";
+
+if($conn){
+    $sql = "INSERT INTO enrollments (class_id,uname, dob, fname, nrc, email, education, address, phone, payment_method,paid_percent,created_at,
+updated_at,is_pending) VALUES ($classId,'$uname','$dob','$fname','$nrc','$email','$education','$address','$phone','$payment_method',$paid_percent , now(), now(),1)";
 mysqli_query($conn, $sql);
+}else{
+    echo "fail to insert";
+}
 
 include("../../admin/mail/sendMail.php");
 
@@ -74,8 +79,8 @@ $afterTryingToSend = sendMail($email,$uname);
 if($afterTryingToSend[0]){
     header("location:javascript://history.go(-1)");
 }else{
-    // mail sent error 
+    echo "fail to send mail"; 
 }
 
-mysqli_close($conn);
+// mysqli_close($conn);
 
