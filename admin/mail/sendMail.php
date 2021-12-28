@@ -35,7 +35,22 @@ function sendMail($email,$uname)
 	//Attachment
 	$mail->addAttachment('./img/doraemon.png');
 	//Email body
-	$mail->Body = "<h1>Dear ". $uname ."</h1></br><p>Check the following image for payment information!</p>";
+	$mail->Body = "<h1>Dear ";
+	$mail->Body .= $uname ;
+	$mail->Body .= "</h1></br>";
+	$mail->Body .= "<h4>Check the payment informationf!</h4>";
+	$mail->Body .= "<h5>". "banking system" ."</h5>";
+
+	$mail->Body .= "Please fill out the form below to confirm your payment";
+
+	$mail->Body .= "<a href="">Go to Payment Confirm</a>";
+
+	$mail->Body .= "<p>For more detailed payment and courses information, you can contact us directly during business hours (9:00 ~ 17:00) </p>"
+	$mail->Body .= "<h5>Regards, <br> JKT Myanmar Internation </h5>";
+	$mail->Body .= "--------------------------------";
+	$mail->Body .= "<p style='color: lightgrey;'>Phone No.: +959 269 564 339, +959 770 411 708</p>";
+	$mail->Body .= "<p style='color: lightgrey;'>Email: jkt.mm.int@gmail.com</p>";
+	$mail->Body .= "<p style='color: lightgrey;'>No.86, 3A, Shinsawpu Road, Near Myaynigone Citymart, Sanchaung Township, Yangon, Myanmar</p>"
 	//Add recipient
 	$mail->addAddress($email);
 	//Finally send email

@@ -252,7 +252,7 @@
                   <div class="row mb-3">
                     <div class="col-12">
                       <label class="fieldlabels">Class Category: <span class="required-tag">required &nbsp; *</span></label>
-                      <select name="className" id="className" class="form-input">
+                      <select name="classId" id="className" class="form-input">
                         <option value="" selected disabled>Choose class</option>
                         <option value="001">Japanese Language N5(online)</option>
                         <option value="002">Japanese Language N4(online)</option>

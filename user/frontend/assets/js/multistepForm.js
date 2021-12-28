@@ -145,7 +145,7 @@ $(document).ready(function () {
           required: true,
           minlength: 8,
         },
-        className: {
+        classId: {
           required: true,
         },
         classTime: {
@@ -189,7 +189,7 @@ $(document).ready(function () {
         edu: {
           required: "Education required",
         },
-        className: {
+        classId: {
           required: "Select the class category",
         },
         classTime: {
