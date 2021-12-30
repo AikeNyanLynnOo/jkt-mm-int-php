@@ -369,7 +369,9 @@
         <!-- Modal Header -->
         <div class="modal-header">
           <h4 class="modal-title">Registration confirmation</h4>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          <button class="btn-close" data-dismiss="modal">
+            <i class='fas fa-times' style='font-size:24px'></i>
+          </button>
         </div>
 
         <!-- Modal body -->
@@ -379,8 +381,8 @@
 
         <!-- Modal footer -->
         <div class="modal-footer">
-          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn-submit" id="submitConfirm" data-bs-dismiss="modal">Submit</button>
+          <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+          <button type="button" class="btn-submit" id="submitConfirm" data-dismiss="modal">Submit</button>
         </div>
 
       </div>
