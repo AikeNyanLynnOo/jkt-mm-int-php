@@ -1,3 +1,9 @@
+<?php
+session_start();
+$response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -120,14 +126,14 @@
   </section>
   <!-- JP School header end -->
 
-    <nav aria-label="breadcrumb" class="breadcrumb-nav">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">Home</a></li>
-        <li class="breadcrumb-item"><a href="#">Trainings</a></li>
-        <li class="breadcrumb-item"><a href="#">Japanese Language School</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Enrollment Form</li>
-      </ol>
-    </nav>
+  <nav aria-label="breadcrumb" class="breadcrumb-nav">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#">Home</a></li>
+      <li class="breadcrumb-item"><a href="#">Trainings</a></li>
+      <li class="breadcrumb-item"><a href="#">Japanese Language School</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Enrollment Form</li>
+    </ol>
+  </nav>
 
   <!-- Enrollment Form start -->
   <section>
@@ -137,121 +143,126 @@
           <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
             <!-- <h2 id="heading">Sign Up Your User Account</h2> -->
             <p class="enroll-description">Fill all form field to go to next step</p>
-            <form id="enrollmentForm" action="../backend/classEnroll.php" method="POST">
-              <!-- progressbar -->
-              <ul id="progressbar">
-                <li class="active" id="personal"></li>
-                <li id="payment"></li>
-                <li id="confirm"></li>
-              </ul>
-              <div class="progress">
-                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
-              </div> <br> <!-- fieldsets -->
-              <fieldset id="userInformation">
-                <div class="form-card">
-                  <div class="row">
-                    <div class="col-7">
-                      <h2 class="enrollForm-title">User Information:</h2>
+            <?php
+
+            if (!empty($response)) {
+            ?>
+              <form id="enrollmentForm" action="../backend/classEnroll.php" method="POST" enctype="multipart/form-data">
+                <!-- progressbar -->
+                <ul id="progressbar">
+                  <li class="active" id="personal"></li>
+                  <li id="payment"></li>
+                  <li id="confirm"></li>
+                </ul>
+                <div class="progress">
+                  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                </div> <br> <!-- fieldsets -->
+                <fieldset id="userInformation">
+                  <div class="form-card">
+                    <div class="row">
+                      <div class="col-7">
+                        <h2 class="enrollForm-title">User Information:</h2>
+                      </div>
+                      <div class="col-5">
+                        <h2 class="steps">Step 1 - 3</h2>
+                      </div>
                     </div>
-                    <div class="col-5">
-                      <h2 class="steps">Step 1 - 3</h2>
+                    <div class="row mb-3">
+                      <div class="col-12 col-sm-12 col-md-6 col-lg-5 col-xl-4">
+                        <img id="image-preview" src="./assets/images/default-profile-icon.jpg" alt="user image" />
+                      </div>
+                      <div class="col-13 col-sm-12 col-md-6 col-lg-7 col-xl-8 file-input">
+                        <label class="fieldlabels">Upload Your Photo: <span class="required-tag">required &nbsp; *</span></label>
+                        <input type="file" name="photo" class="form-input" id="file-input" />
+                      </div>
+                      <p class="alert col-12 pb-0"><?php if($response["type"] === "error") echo $response["message"]; ?></p>
                     </div>
-                  </div>
-                  <div class="row mb-3">
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-5 col-xl-4">
-                      <img id="image-preview" src="./assets/images/default-profile-icon.jpg" alt="user image" />
+                    <input type="hidden" name="courseId" value="<?php if (isset($_GET["courseID"])) echo $_GET["courseID"] ?>" />
+                    <div class="row mb-3">
+                      <div class="col-12 col-sm-12 col-md-12">
+                        <label class="fieldlabels">Full Name: <span class="required-tag">required &nbsp; *</span></label>
+                        <input type="text" class="form-input" name="uname" id="uname" value="<?php echo $response["data"]["uname"] ?>" />
+                      </div>
                     </div>
-                    <div class="col-13 col-sm-12 col-md-6 col-lg-7 col-xl-8 file-input">
-                      <label class="fieldlabels">Upload Your Photo: <span class="required-tag">required &nbsp; *</span></label>
-                      <input type="file" name="photo" class="form-input" id="file-input" />
+                    <div class="row mb-3">
+                      <div class="col-12 col-sm-12 col-md-12">
+                        <label class="fieldlabels">Date of Birth: <span class="required-tag">required &nbsp; *</span></label>
+                        <input type="date" class="form-input" name="dob" id="dob" required />
+                      </div>
                     </div>
-                  </div>
-                  <input type="hidden" name="courseId" value="<?php echo $_GET["courseID"] ?>" />
-                  <div class="row mb-3">
-                    <div class="col-12 col-sm-12 col-md-12">
-                      <label class="fieldlabels">Full Name: <span class="required-tag">required &nbsp; *</span></label>
-                      <input type="text" class="form-input" name="uname" id="uname" placeholder="e.g. Win Win" />
+                    <div class="row mb-3">
+                      <div class="col-12 col-sm-12 col-md-12">
+                        <label class="fieldlabels">Father Name: <span class="required-tag">required &nbsp; *</span></label>
+                        <input type="text" class="form-input" name="fname" id="fname" placeholder="e.g. U Aye" />
+                      </div>
                     </div>
-                  </div>
-                  <div class="row mb-3">
-                    <div class="col-12 col-sm-12 col-md-12">
-                      <label class="fieldlabels">Date of Birth: <span class="required-tag">required &nbsp; *</span></label>
-                      <input type="date" class="form-input" name="dob" id="dob" required />
-                    </div>
-                  </div>
-                  <div class="row mb-3">
-                    <div class="col-12 col-sm-12 col-md-12">
-                      <label class="fieldlabels">Father Name: <span class="required-tag">required &nbsp; *</span></label>
-                      <input type="text" class="form-input" name="fname" id="fname" placeholder="e.g. U Aye" />
-                    </div>
-                  </div>
-                  <div class="row mb-3">
-                    <div class="col-12 col-sm-12 col-md-12">
-                      <label class="fieldlabels">NRC: <span class="required-tag">required &nbsp; *</span></label>
-                      <div class="row">
-                        <?php $stateNumberArr = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"] ?>
-                        <!-- <input type="text" class="form-input" name="nrc" id="nrc" placeholder="e.g. Please Enter NRC" required />  -->
-                        <div class="col-12 col-sm-10 col-md-10 col-lg-2 col-xl-2">
-                          <select name="nrcCode" id="nrcCode" class="form-input nrc">
-                            <option value="" selected disabled>State</option>
-                            <?php
-                            for ($i = 0; $i < count($stateNumberArr); $i++) {
-                              echo "<option value='" . $stateNumberArr[$i] . "'>";
-                              echo $stateNumberArr[$i];
-                              echo "</option>";
-                            }
-                            ?>
-                          </select>
-                        </div>
-                        <div class="col-12 col-sm-10 col-md-10 col-lg-5 col-xl-5">
-                          <select name="township" id="township" class="form-input nrc">
-                            <option value="" selected disabled>Township</option>
-                          </select>
-                        </div>
-                        <div class="col-12 col-sm-10 col-md-10 col-lg-3 col-xl-3">
-                          <select name="type" id="type" class="form-input nrc">
-                            <option value="" selected disabled>Type</option>
-                            <option value="(C)">(C) - (နိုင်)</option>
-                            <option value="(AC)">(AC) - (ဧည့်)</option>
-                            <option value="(NC)">(NC) - (ပြု)</option>
-                            <option value="(V)">(V) - (စ)</option>
-                            <option value="(M)">(M) - (သ)</option>
-                            <option value="(N)">(N) - (သီ)</option>
-                          </select>
-                        </div>
-                        <div class="col-12 col-sm-10 col-md-10 col-lg-2 col-xl-2">
-                          <input type="text" class="form-input nrc" name="nrcNumber" id="nrcNumber" placeholder="123456" />
+                    <div class="row mb-3">
+                      <div class="col-12 col-sm-12 col-md-12">
+                        <label class="fieldlabels">NRC: <span class="required-tag">required &nbsp; *</span></label>
+                        <div class="row">
+                          <?php $stateNumberArr = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"] ?>
+                          <!-- <input type="text" class="form-input" name="nrc" id="nrc" placeholder="e.g. Please Enter NRC" required />  -->
+                          <div class="col-12 col-sm-10 col-md-10 col-lg-2 col-xl-2">
+                            <select name="nrcCode" id="nrcCode" class="form-input nrc">
+                              <option value="" selected disabled>State</option>
+                              <?php
+                              for ($i = 0; $i < count($stateNumberArr); $i++) {
+                                echo "<option value='" . $stateNumberArr[$i] . "'>";
+                                echo $stateNumberArr[$i];
+                                echo "</option>";
+                              }
+                              ?>
+                            </select>
+                          </div>
+                          <div class="col-12 col-sm-10 col-md-10 col-lg-5 col-xl-5">
+                            <select name="township" id="township" class="form-input nrc">
+                              <option value="" selected disabled>Township</option>
+                            </select>
+                          </div>
+                          <div class="col-12 col-sm-10 col-md-10 col-lg-3 col-xl-3">
+                            <select name="type" id="type" class="form-input nrc">
+                              <option value="" selected disabled>Type</option>
+                              <option value="(C)">(C) - (နိုင်)</option>
+                              <option value="(AC)">(AC) - (ဧည့်)</option>
+                              <option value="(NC)">(NC) - (ပြု)</option>
+                              <option value="(V)">(V) - (စ)</option>
+                              <option value="(M)">(M) - (သ)</option>
+                              <option value="(N)">(N) - (သီ)</option>
+                            </select>
+                          </div>
+                          <div class="col-12 col-sm-10 col-md-10 col-lg-2 col-xl-2">
+                            <input type="text" class="form-input nrc" name="nrcNumber" id="nrcNumber" placeholder="123456" />
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="row mb-3">
-                    <div class="col-12 col-sm-12 col-md-12">
-                      <label class="fieldlabels">Email:</label>
-                      <input type="email" class="form-input" name="email" id="email" placeholder="abc@gmail.com" />
+                    <div class="row mb-3">
+                      <div class="col-12 col-sm-12 col-md-12">
+                        <label class="fieldlabels">Email:</label>
+                        <input type="email" class="form-input" name="email" id="email" placeholder="abc@gmail.com" />
+                      </div>
                     </div>
-                  </div>
-                  <div class="row mb-3">
-                    <div class="col-12 col-sm-12 col-md-12">
-                      <label class="fieldlabels">Phone Number: <span class="required-tag">required &nbsp; *</span></label>
-                      <input type="text" class="form-input" name="phone" id="phone" placeholder="09..." />
+                    <div class="row mb-3">
+                      <div class="col-12 col-sm-12 col-md-12">
+                        <label class="fieldlabels">Phone Number: <span class="required-tag">required &nbsp; *</span></label>
+                        <input type="text" class="form-input" name="phone" id="phone" placeholder="09..." />
+                      </div>
                     </div>
-                  </div>
-                  <div class="row mb-3">
-                    <div class="col-12 col-sm-12 col-md-12">
-                      <label class="fieldlabels">Address: <span class="required-tag">required &nbsp; *</span></label>
-                      <textarea name="address" class="form-input" id="address" placeholder="e.g. No.(), (...) Road, (...) City."></textarea>
+                    <div class="row mb-3">
+                      <div class="col-12 col-sm-12 col-md-12">
+                        <label class="fieldlabels">Address: <span class="required-tag">required &nbsp; *</span></label>
+                        <textarea name="address" class="form-input" id="address" placeholder="e.g. No.(), (...) Road, (...) City."></textarea>
+                      </div>
                     </div>
-                  </div>
-                  <div class="row mb-3">
-                    <div class="col-12 col-sm-12 col-md-12">
-                      <label class="fieldlabels">Education: <span class="required-tag">required &nbsp; *</span></label>
-                      <textarea name="edu" class="form-input" id="edu" placeholder="e.g. University"></textarea>
+                    <div class="row mb-3">
+                      <div class="col-12 col-sm-12 col-md-12">
+                        <label class="fieldlabels">Education: <span class="required-tag">required &nbsp; *</span></label>
+                        <textarea name="edu" class="form-input" id="edu" placeholder="e.g. University"></textarea>
+                      </div>
                     </div>
-                  </div>
-                  <input type="button" name="next" id="userInfo" class="next action-button" value="Next" />
-              </fieldset>
-              <!-- <fieldset id="classInformation">
+                    <input type="button" name="next" id="userInfo" class="next action-button" value="Next" />
+                </fieldset>
+                <!-- <fieldset id="classInformation">
                 <div class="form-card">
                   <div class="row">
                     <div class="col-7">
@@ -260,21 +271,25 @@
                   </div>
                   <div class="row mb-3">
                     <div class="col-12">
-                      <?php 
-                        // include_once("../../admin/confs/config.php"); 
-                        // $course = "SELECT course_id, c.title AS course_title, c.level as course_level, t.title AS type_title, 
-                        //             ct.title AS category_title, sections FROM courses c, types t, categories ct 
-                        //             WHERE c.type_id = t.type_id AND c.category_id = ct.category_id";
-                        // $course_result = mysqli_query($conn, $course);
+                      <?php
+                      // include_once("../../admin/confs/config.php"); 
+                      // $course = "SELECT course_id, c.title AS course_title, c.level as course_level, t.title AS type_title, 
+                      //             ct.title AS category_title, sections FROM courses c, types t, categories ct 
+                      //             WHERE c.type_id = t.type_id AND c.category_id = ct.category_id";
+                      // $course_result = mysqli_query($conn, $course);
                       ?>
                       <span id="selected_option"></span>
                       <label class="fieldlabels">Class Category: <span class="required-tag">required &nbsp; *</span></label>
                       <select name="classId" id="className" class="form-input">
                         <option value="" selected disabled>Choose class</option>
-                        <?php 
-                          // while($row = mysqli_fetch_array($course_result)) { ?>
-                          <option value="<?php // echo $row['course_id'] ?>"><?php // echo $row['course_title'] . ' ' . $row['course_level'] . ' (' . $row['type_title'] . ')' ?></option>
-                        <?php //} ?>
+                        <?php
+                        // while($row = mysqli_fetch_array($course_result)) { 
+                        ?>
+                          <option value="<?php // echo $row['course_id'] 
+                                          ?>"><?php // echo $row['course_title'] . ' ' . $row['course_level'] . ' (' . $row['type_title'] . ')' 
+                                              ?></option>
+                        <?php //} 
+                        ?>
                       </select>
                     </div>
                   </div>
@@ -292,87 +307,288 @@
                 <input type="button" name="next" class="next action-button" value="Next" />
                 <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
               </fieldset> -->
-              <fieldset id="paymentMethod">
-                <div class="form-card">
-                  <div class="row">
-                    <div class="col-7">
-                      <h2 class="enrollForm-title">Payment:</h2>
+                <fieldset id="paymentMethod">
+                  <div class="form-card">
+                    <div class="row">
+                      <div class="col-7">
+                        <h2 class="enrollForm-title">Payment:</h2>
+                      </div>
+                      <div class="col-5">
+                        <h2 class="steps">Step 2 - 3</h2>
+                      </div>
                     </div>
-                    <div class="col-5">
-                      <h2 class="steps">Step 2 - 3</h2>
-                    </div>
-                  </div>
-                  <div class="row mt-4">
+                    <div class="row mt-4">
                       <div class="col-12">
                         <label class="fieldlabels">Select One of the Payment Method: <span class="required-tag">required &nbsp; *</span></label>
                       </div>
-                  </div>
-                  <div class="row bank-container">
-                    <div class="col-12 col-sm-11 col-md-4 col-lg-4 col-xl-4 text-center">
-                      <label class="bank">
-                        <input type="radio" name="payment_method" value="CB banking"/>
-                        <div class="bank-image" style="background-image: url(./assets/images/banks/CB.png)"></div>
-                      </label>
                     </div>
-                    <div class="col-12 col-sm-11 col-md-4 col-lg-4 col-xl-4 text-center">
-                      <label class="bank">
-                        <input type="radio" name="payment_method" value="KBZ banking" />
-                        <div class="bank-image" style="background-image: url(./assets/images/banks/kbz.png)"></div>
-                      </label>
+                    <div class="row bank-container">
+                      <div class="col-12 col-sm-11 col-md-4 col-lg-4 col-xl-4 text-center">
+                        <label class="bank">
+                          <input type="radio" name="payment_method" value="CB banking" />
+                          <div class="bank-image" style="background-image: url(./assets/images/banks/CB.png)"></div>
+                        </label>
+                      </div>
+                      <div class="col-12 col-sm-11 col-md-4 col-lg-4 col-xl-4 text-center">
+                        <label class="bank">
+                          <input type="radio" name="payment_method" value="KBZ banking" />
+                          <div class="bank-image" style="background-image: url(./assets/images/banks/kbz.png)"></div>
+                        </label>
+                      </div>
+                      <div class="col-12 col-sm-11 col-md-4 col-lg-4 col-xl-4 text-center">
+                        <label class="bank">
+                          <input type="radio" name="payment_method" value="AYA banking" />
+                          <div class="bank-image" style="background-image: url(./assets/images/banks/AYA.png)"></div>
+                        </label>
+                      </div>
                     </div>
-                    <div class="col-12 col-sm-11 col-md-4 col-lg-4 col-xl-4 text-center">
-                      <label class="bank">
-                        <input type="radio" name="payment_method" value="AYA banking" />
-                        <div class="bank-image" style="background-image: url(./assets/images/banks/AYA.png)"></div>
-                      </label>
-                    </div>
-                  </div>
-                  <div class="row bank-container">
-                    <div class="col-12 col-sm-11 col-md-4 col-lg-4 col-xl-4 text-center">
-                      <label class="bank">
-                        <input type="radio" name="payment_method" value="Kpay" />
-                        <div class="bank-image" style="background-image: url(./assets/images/banks/KPAY.png)"></div>
-                      </label>
-                    </div>
-                    <div class="col-12 col-sm-11 col-md-4 col-lg-4 col-xl-4 text-center">
-                      <label class="bank">
-                        <input type="radio" name="payment_method" value="Cash"/>
-                        <div class="bank-image in-cash">In Cash <i class="fas fa-money-check"></i></div>
-                      </label>
-                    </div>
-                    <span id="radioMsg"></span>
-                  </div>
-                </div>
-                <input type="button" name="next" class="next action-button" value="Next" />
-                <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
-              </fieldset>
-              <fieldset id="success">
-                <div class="form-card">
-                  <div class="row">
-                    <div class="col-7">
-                      <h2 class="enrollForm-title">Finish:</h2>
-                    </div>
-                    <div class="col-5">
-                      <h2 class="steps">Step 3 - 3</h2>
-                    </div>
-                  </div> <br><br>
-                  <h2 class="blue-text text-center"><strong>Successfully Submitted!</strong></h2> <br>
-                  <div class="row justify-content-center">
-                    <div class="col-3">
-                      <img src="./assets/images/blue-tick.png" class="fit-image">
-                    </div>
-                  </div> <br><br>
-                  <div class="row justify-content-center">
-                    <div class="col-7 text-center">
-                      <h5 class="blue-text text-center">We will send email during business hours (9:00~17:00). Please check your email for payment information. </h5>
+                    <div class="row bank-container">
+                      <div class="col-12 col-sm-11 col-md-4 col-lg-4 col-xl-4 text-center">
+                        <label class="bank">
+                          <input type="radio" name="payment_method" value="Kpay" />
+                          <div class="bank-image" style="background-image: url(./assets/images/banks/KPAY.png)"></div>
+                        </label>
+                      </div>
+                      <div class="col-12 col-sm-11 col-md-4 col-lg-4 col-xl-4 text-center">
+                        <label class="bank">
+                          <input type="radio" name="payment_method" value="Cash" />
+                          <div class="bank-image in-cash">In Cash <i class="fas fa-money-check"></i></div>
+                        </label>
+                      </div>
+                      <span id="radioMsg"></span>
                     </div>
                   </div>
-                  <div class="row justify-content-center mt-3">
-                    <a href="classEnroll.php" class="back-to-courses">Browse Courses</a>
+                  <input type="button" name="next" class="next action-button" value="Next" />
+                  <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                </fieldset>
+                <fieldset id="success">
+                  <div class="form-card">
+                    <div class="row">
+                      <div class="col-7">
+                        <h2 class="enrollForm-title">Finish:</h2>
+                      </div>
+                      <div class="col-5">
+                        <h2 class="steps">Step 3 - 3</h2>
+                      </div>
+                    </div> <br><br>
+                    <h2 class="blue-text text-center"><strong>Successfully Submitted!</strong></h2> <br>
+                    <div class="row justify-content-center">
+                      <div class="col-3">
+                        <img src="./assets/images/blue-tick.png" class="fit-image">
+                      </div>
+                    </div> <br><br>
+                    <div class="row justify-content-center">
+                      <div class="col-7 text-center">
+                        <h5 class="blue-text text-center">We will send email during business hours (9:00~17:00). Please check your email for payment information. </h5>
+                      </div>
+                    </div>
+                    <div class="row justify-content-center mt-3">
+                      <a href="classEnroll.php" class="back-to-courses">Browse Courses</a>
+                    </div>
                   </div>
-                </div>
-              </fieldset>
-            </form>
+                </fieldset>
+              </form>
+            <?php } else { ?>
+
+              <form id="enrollmentForm" action="../backend/classEnroll.php" method="POST" enctype="multipart/form-data">
+                <!-- progressbar -->
+                <ul id="progressbar">
+                  <li class="active" id="personal"></li>
+                  <li id="payment"></li>
+                  <li id="confirm"></li>
+                </ul>
+                <div class="progress">
+                  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                </div> <br> <!-- fieldsets -->
+                <fieldset id="userInformation">
+                  <div class="form-card">
+                    <div class="row">
+                      <div class="col-7">
+                        <h2 class="enrollForm-title">User Information:</h2>
+                      </div>
+                      <div class="col-5">
+                        <h2 class="steps">Step 1 - 3</h2>
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                      <div class="col-12 col-sm-12 col-md-6 col-lg-5 col-xl-4">
+                        <img id="image-preview" src="./assets/images/default-profile-icon.jpg" alt="user image" />
+                      </div>
+                      <div class="col-13 col-sm-12 col-md-6 col-lg-7 col-xl-8 file-input">
+                        <label class="fieldlabels">Upload Your Photo: <span class="required-tag">required &nbsp; *</span></label>
+                        <input type="file" name="photo" class="form-input" id="file-input" />
+                      </div>
+                      
+                    </div>
+                    <input type="hidden" name="courseId" value="<?php if (isset($_GET["courseID"])) echo $_GET["courseID"] ?>" />
+                    <div class="row mb-3">
+                      <div class="col-12 col-sm-12 col-md-12">
+                        <label class="fieldlabels">Full Name: <span class="required-tag">required &nbsp; *</span></label>
+                        <input type="text" class="form-input" name="uname" id="uname" placeholder="eg. Win Win" />
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                      <div class="col-12 col-sm-12 col-md-12">
+                        <label class="fieldlabels">Date of Birth: <span class="required-tag">required &nbsp; *</span></label>
+                        <input type="date" class="form-input" name="dob" id="dob" required />
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                      <div class="col-12 col-sm-12 col-md-12">
+                        <label class="fieldlabels">Father Name: <span class="required-tag">required &nbsp; *</span></label>
+                        <input type="text" class="form-input" name="fname" id="fname" placeholder="e.g. U Aye" />
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                      <div class="col-12 col-sm-12 col-md-12">
+                        <label class="fieldlabels">NRC: <span class="required-tag">required &nbsp; *</span></label>
+                        <div class="row">
+                          <?php $stateNumberArr = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"] ?>
+                          <!-- <input type="text" class="form-input" name="nrc" id="nrc" placeholder="e.g. Please Enter NRC" required />  -->
+                          <div class="col-12 col-sm-10 col-md-10 col-lg-2 col-xl-2">
+                            <select name="nrcCode" id="nrcCode" class="form-input nrc">
+                              <option value="" selected disabled>State</option>
+                              <?php
+                              for ($i = 0; $i < count($stateNumberArr); $i++) {
+                                echo "<option value='" . $stateNumberArr[$i] . "'>";
+                                echo $stateNumberArr[$i];
+                                echo "</option>";
+                              }
+                              ?>
+                            </select>
+                          </div>
+                          <div class="col-12 col-sm-10 col-md-10 col-lg-5 col-xl-5">
+                            <select name="township" id="township" class="form-input nrc">
+                              <option value="" selected disabled>Township</option>
+                            </select>
+                          </div>
+                          <div class="col-12 col-sm-10 col-md-10 col-lg-3 col-xl-3">
+                            <select name="type" id="type" class="form-input nrc">
+                              <option value="" selected disabled>Type</option>
+                              <option value="(C)">(C) - (နိုင်)</option>
+                              <option value="(AC)">(AC) - (ဧည့်)</option>
+                              <option value="(NC)">(NC) - (ပြု)</option>
+                              <option value="(V)">(V) - (စ)</option>
+                              <option value="(M)">(M) - (သ)</option>
+                              <option value="(N)">(N) - (သီ)</option>
+                            </select>
+                          </div>
+                          <div class="col-12 col-sm-10 col-md-10 col-lg-2 col-xl-2">
+                            <input type="text" class="form-input nrc" name="nrcNumber" id="nrcNumber" placeholder="123456" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                      <div class="col-12 col-sm-12 col-md-12">
+                        <label class="fieldlabels">Email:</label>
+                        <input type="email" class="form-input" name="email" id="email" placeholder="abc@gmail.com" />
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                      <div class="col-12 col-sm-12 col-md-12">
+                        <label class="fieldlabels">Phone Number: <span class="required-tag">required &nbsp; *</span></label>
+                        <input type="text" class="form-input" name="phone" id="phone" placeholder="09..." />
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                      <div class="col-12 col-sm-12 col-md-12">
+                        <label class="fieldlabels">Address: <span class="required-tag">required &nbsp; *</span></label>
+                        <textarea name="address" class="form-input" id="address" placeholder="e.g. No.(), (...) Road, (...) City."></textarea>
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                      <div class="col-12 col-sm-12 col-md-12">
+                        <label class="fieldlabels">Education: <span class="required-tag">required &nbsp; *</span></label>
+                        <textarea name="edu" class="form-input" id="edu" placeholder="e.g. University"></textarea>
+                      </div>
+                    </div>
+                    <input type="button" name="next" id="userInfo" class="next action-button" value="Next" />
+                </fieldset>
+                <fieldset id="paymentMethod">
+                  <div class="form-card">
+                    <div class="row">
+                      <div class="col-7">
+                        <h2 class="enrollForm-title">Payment:</h2>
+                      </div>
+                      <div class="col-5">
+                        <h2 class="steps">Step 2 - 3</h2>
+                      </div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-12">
+                        <label class="fieldlabels">Select One of the Payment Method: <span class="required-tag">required &nbsp; *</span></label>
+                      </div>
+                    </div>
+                    <div class="row bank-container">
+                      <div class="col-12 col-sm-11 col-md-4 col-lg-4 col-xl-4 text-center">
+                        <label class="bank">
+                          <input type="radio" name="payment_method" value="CB banking" />
+                          <div class="bank-image" style="background-image: url(./assets/images/banks/CB.png)"></div>
+                        </label>
+                      </div>
+                      <div class="col-12 col-sm-11 col-md-4 col-lg-4 col-xl-4 text-center">
+                        <label class="bank">
+                          <input type="radio" name="payment_method" value="KBZ banking" />
+                          <div class="bank-image" style="background-image: url(./assets/images/banks/kbz.png)"></div>
+                        </label>
+                      </div>
+                      <div class="col-12 col-sm-11 col-md-4 col-lg-4 col-xl-4 text-center">
+                        <label class="bank">
+                          <input type="radio" name="payment_method" value="AYA banking" />
+                          <div class="bank-image" style="background-image: url(./assets/images/banks/AYA.png)"></div>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="row bank-container">
+                      <div class="col-12 col-sm-11 col-md-4 col-lg-4 col-xl-4 text-center">
+                        <label class="bank">
+                          <input type="radio" name="payment_method" value="Kpay" />
+                          <div class="bank-image" style="background-image: url(./assets/images/banks/KPAY.png)"></div>
+                        </label>
+                      </div>
+                      <div class="col-12 col-sm-11 col-md-4 col-lg-4 col-xl-4 text-center">
+                        <label class="bank">
+                          <input type="radio" name="payment_method" value="Cash" />
+                          <div class="bank-image in-cash">In Cash <i class="fas fa-money-check"></i></div>
+                        </label>
+                      </div>
+                      <span id="radioMsg"></span>
+                    </div>
+                  </div>
+                  <input type="button" name="next" class="next action-button" value="Next" />
+                  <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                </fieldset>
+                <fieldset id="success">
+                  <div class="form-card">
+                    <div class="row">
+                      <div class="col-7">
+                        <h2 class="enrollForm-title">Finish:</h2>
+                      </div>
+                      <div class="col-5">
+                        <h2 class="steps">Step 3 - 3</h2>
+                      </div>
+                    </div> <br><br>
+                    <h2 class="blue-text text-center"><strong>Successfully Submitted!</strong></h2> <br>
+                    <div class="row justify-content-center">
+                      <div class="col-3">
+                        <img src="./assets/images/blue-tick.png" class="fit-image">
+                      </div>
+                    </div> <br><br>
+                    <div class="row justify-content-center">
+                      <div class="col-7 text-center">
+                        <h5 class="blue-text text-center">We will send email during business hours (9:00~17:00). Please check your email for payment information. </h5>
+                      </div>
+                    </div>
+                    <div class="row justify-content-center mt-3">
+                      <a href="classEnroll.php" class="back-to-courses">Browse Courses</a>
+                    </div>
+                  </div>
+                </fieldset>
+              </form>
+
+
+            <?php } ?>
           </div>
         </div>
       </div>
