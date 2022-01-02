@@ -148,7 +148,7 @@
                 class="dropdown-menu"
                 aria-labelledby="trainingNavbarDropdown"
               >
-                <a class="dropdown-item" href="./jp-school.html"
+                <a class="dropdown-item" href="./jp-school.php"
                   >JAPANESE LANGUAGE SCHOOL</a
                 >
                 <a class="dropdown-item" href="./announcement.html"
@@ -164,7 +164,7 @@
             </li>
             <li class="lang">
               <div class="btn-group" role="group" aria-label="First group">
-                <a href="./jp-school.html"
+                <a href="./jp-school.php"
                   ><button
                     type="button"
                     class="btn btn1"
@@ -176,7 +176,7 @@
                       width="25px"
                     /></button
                 ></a>
-                <a href="./mm/jp-school.html"
+                <a href="./mm/jp-school.php"
                   ><button
                     type="button"
                     class="btn btn2"
@@ -187,7 +187,7 @@
                       width="25px"
                     /></button
                 ></a>
-                <a href="./jp/jp-school.html"
+                <a href="./jp/jp-school.php"
                   ><button
                     type="button"
                     class="btn btn3"
@@ -203,7 +203,7 @@
           </ul>
         </div>
         <div class="btn-group lang-xl" role="group" aria-label="First group">
-          <a href="./jp-school.html"
+          <a href="./jp-school.php"
             ><button
               type="button"
               class="btn btn1"
@@ -215,7 +215,7 @@
                 width="25px"
               /></button
           ></a>
-          <a href="./mm/jp-school.html"
+          <a href="./mm/jp-school.php"
             ><button
               type="button"
               class="btn btn2"
@@ -226,7 +226,7 @@
                 width="25px"
               /></button
           ></a>
-          <a href="./jp/jp-school.html"
+          <a href="./jp/jp-school.php"
             ><button
               type="button"
               class="btn btn3"
@@ -350,7 +350,7 @@
             <ul class="footer-list" id="second">
               <li>
                 <span
-                  ><a href="./jp-school.html">Japanese Language School</a></span
+                  ><a href="./jp-school.php">Japanese Language School</a></span
                 >
               </li>
               <li>

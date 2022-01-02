@@ -79,7 +79,7 @@
               TRAININGS <i class="fas fa-angle-down"></i>
             </a>
             <div class="dropdown-menu" aria-labelledby="trainingNavbarDropdown">
-              <a class="dropdown-item" href="./jp-school.html">JAPANESE LANGUAGE SCHOOL</a>
+              <a class="dropdown-item" href="./jp-school.php">JAPANESE LANGUAGE SCHOOL</a>
               <a class="dropdown-item" href="./announcement.html">VOCATIONAL TRAINING</a>
               <a class="dropdown-item" href="./announcement.html">HR TRAINING</a>
             </div>
@@ -89,22 +89,22 @@
           </li>
           <li class="lang">
             <div class="btn-group" role="group" aria-label="First group">
-              <a href="./jp-school.html"><button type="button" class="btn btn1" style="background-color: rgba(91, 175, 231, 0.5)">
+              <a href="./jp-school.php"><button type="button" class="btn btn1" style="background-color: rgba(91, 175, 231, 0.5)">
                   <img src="./assets/images/icon/ukFlag.png" height="20px" width="25px" /></button></a>
-              <a href="./mm/jp-school.html"><button type="button" class="btn btn2">
+              <a href="./mm/jp-school.php"><button type="button" class="btn btn2">
                   <img src="./assets/images/icon/mmFlag.svg" height="20px" width="25px" /></button></a>
-              <a href="./jp/jp-school.html"><button type="button" class="btn btn3">
+              <a href="./jp/jp-school.php"><button type="button" class="btn btn3">
                   <img src="./assets/images/icon/japanFlag.jpg" height="20px" width="25px" /></button></a>
             </div>
           </li>
         </ul>
       </div>
       <div class="btn-group lang-xl" role="group" aria-label="First group">
-        <a href="./jp-school.html"><button type="button" class="btn btn1" style="background-color: rgba(91, 175, 231, 0.5)">
+        <a href="./jp-school.php"><button type="button" class="btn btn1" style="background-color: rgba(91, 175, 231, 0.5)">
             <img src="./assets/images/icon/ukFlag.png" height="20px" width="25px" /></button></a>
-        <a href="./mm/jp-school.html"><button type="button" class="btn btn2">
+        <a href="./mm/jp-school.php"><button type="button" class="btn btn2">
             <img src="./assets/images/icon/mmFlag.svg" height="20px" width="25px" /></button></a>
-        <a href="./jp/jp-school.html"><button type="button" class="btn btn3">
+        <a href="./jp/jp-school.php"><button type="button" class="btn btn3">
             <img src="./assets/images/icon/japanFlag.jpg" height="20px" width="25px" /></button></a>
       </div>
     </div>
@@ -225,7 +225,7 @@
                   <div class="row mb-3">
                     <div class="col-12 col-sm-12 col-md-12">
                       <label class="fieldlabels">Phone Number: <span class="required-tag">required &nbsp; *</span></label>
-                      <input type="text" class="form-input" name="phone" id="phone" placeholder="09989898989" />
+                      <input type="text" class="form-input" name="phone" id="phone" placeholder="09..." />
                     </div>
                   </div>
                   <div class="row mb-3">
@@ -251,11 +251,20 @@
                   </div>
                   <div class="row mb-3">
                     <div class="col-12">
+                      <?php 
+                        include_once("../../admin/confs/config.php"); 
+                        $course = "SELECT course_id, c.title AS course_title, c.level as course_level, t.title AS type_title, 
+                                    ct.title AS category_title, sections FROM courses c, types t, categories ct 
+                                    WHERE c.type_id = t.type_id AND c.category_id = ct.category_id";
+                        $course_result = mysqli_query($conn, $course);
+                      ?>
+                      <span id="selected_option"></span>
                       <label class="fieldlabels">Class Category: <span class="required-tag">required &nbsp; *</span></label>
                       <select name="classId" id="className" class="form-input">
                         <option value="" selected disabled>Choose class</option>
-                        <option value="000">Japanese Language N5(online)</option>
-                        <option value="001">Japanese Language N4(online)</option>
+                        <?php while($row = mysqli_fetch_array($course_result)) { ?>
+                          <option value="<?php echo $row['course_id'] ?>"><?php echo $row['course_title'] . ' ' . $row['course_level'] . ' (' . $row['type_title'] . ')' ?></option>
+                        <?php } ?>
                       </select>
                     </div>
                   </div>
@@ -327,32 +336,6 @@
                 <input type="button" name="next" class="next action-button" value="Next" />
                 <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
               </fieldset>
-              <fieldset id="success">
-                <div class="form-card">
-                  <div class="row">
-                    <div class="col-7">
-                      <h2 class="enrollForm-title">Finish:</h2>
-                    </div>
-                    <div class="col-5">
-                      <h2 class="steps">Step 4 - 4</h2>
-                    </div>
-                  </div> <br><br>
-                  <h2 class="blue-text text-center"><strong>Successfully Submitted!</strong></h2> <br>
-                  <div class="row justify-content-center">
-                    <div class="col-3">
-                      <img src="./assets/images/blue-tick.png" class="fit-image">
-                    </div>
-                  </div> <br><br>
-                  <div class="row justify-content-center">
-                    <div class="col-7 text-center">
-                      <h5 class="blue-text text-center">We will send email during business hours (9:00~17:00). Please check your email for payment information. </h5>
-                    </div>
-                  </div>
-                  <div class="row justify-content-center mt-3">
-                    <a href="classEnroll.php" class="back-to-courses">Browse Courses</a>
-                  </div>
-                </div>
-              </fieldset>
             </form>
           </div>
         </div>
@@ -362,15 +345,15 @@
   <!-- Enrollment Form end -->
 
   <!-- The Confirmation Modal -->
-  <div class="modal fade" id="confirmationModal">
-    <div class="modal-dialog">
+  <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content modal-box">
 
         <!-- Modal Header -->
         <div class="modal-header">
           <h4 class="modal-title">Registration confirmation</h4>
           <button class="btn-close" data-dismiss="modal">
-            <i class='fas fa-times' style='font-size:24px'></i>
+            <i class='fas fa-times' style='font-size:24px; color: grey'></i>
           </button>
         </div>
 
@@ -381,7 +364,7 @@
 
         <!-- Modal footer -->
         <div class="modal-footer">
-          <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+          <button type="button" class="btn-cancel" data-dismiss="modal">Cancel</button>
           <button type="button" class="btn-submit" id="submitConfirm" data-dismiss="modal">Submit</button>
         </div>
 
@@ -431,7 +414,7 @@
           <header>Training</header>
           <ul class="footer-list" id="second">
             <li>
-              <span><a href="./jp-school.html">Japanese Language School</a></span>
+              <span><a href="./jp-school.php">Japanese Language School</a></span>
             </li>
             <li>
               <span><a href="./announcement.html">Vocational Training</a></span>
@@ -473,5 +456,6 @@
   <script src="./assets/js/float-panel.js"></script>
   <script src="./assets/js/multistepForm.js"></script>
   <script src="./assets/js/userImgPreview.js"></script>
+  <script src="./assets/js/jp-class-schedule.js"></script>
 </body>
 <html>

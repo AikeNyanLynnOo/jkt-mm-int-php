@@ -147,7 +147,7 @@
                 class="dropdown-menu"
                 aria-labelledby="trainingNavbarDropdown"
               >
-                <a class="dropdown-item" href="./jp-school.html"
+                <a class="dropdown-item" href="./jp-school.php"
                   >JAPANESE LANGUAGE SCHOOL</a
                 >
                 <a class="dropdown-item" href="./announcement.html"
@@ -163,7 +163,7 @@
             </li>
             <li class="lang">
               <div class="btn-group" role="group" aria-label="First group">
-                <a href="./jp-school.html"
+                <a href="./jp-school.php"
                   ><button
                     type="button"
                     class="btn btn1"
@@ -175,7 +175,7 @@
                       width="25px"
                     /></button
                 ></a>
-                <a href="./mm/jp-school.html"
+                <a href="./mm/jp-school.php"
                   ><button
                     type="button"
                     class="btn btn2"
@@ -186,7 +186,7 @@
                       width="25px"
                     /></button
                 ></a>
-                <a href="./jp/jp-school.html"
+                <a href="./jp/jp-school.php"
                   ><button
                     type="button"
                     class="btn btn3"
@@ -202,7 +202,7 @@
           </ul>
         </div>
         <div class="btn-group lang-xl" role="group" aria-label="First group">
-          <a href="./jp-school.html"
+          <a href="./jp-school.php"
             ><button
               type="button"
               class="btn btn1"
@@ -214,7 +214,7 @@
                 width="25px"
               /></button
           ></a>
-          <a href="./mm/jp-school.html"
+          <a href="./mm/jp-school.php"
             ><button
               type="button"
               class="btn btn2"
@@ -225,7 +225,7 @@
                 width="25px"
               /></button
           ></a>
-          <a href="./jp/jp-school.html"
+          <a href="./jp/jp-school.php"
             ><button
               type="button"
               class="btn btn3"
@@ -294,33 +294,83 @@
       <div class="container schedule-blog">
         <h1 class="text-center pb-3">Class Schedule</h1>
         <div class="row">
-          <div class="col-12 col-lg-11 schedule-blog-info">
-            <div class="table-responsive schedule-table">
-              <table class="table">
+          <div class="col-12 col-lg-12 schedule-blog-info">
+            <div class="schedule-table-block">
+              <table class="schedule-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Class</th>
+                    <th scope="col">Days & Time</th>
+                    <th scope="col">Fees (Kyats)</th>
+                    <th scope="col">Duration</th>
+                    <th scope="col">Start Date</th>
+                    <th scope="col">Detail</th>
+                    <th scope="col">Enrollment</th>
+                  </tr>
+                </thead>
                 <tbody>
-                  <tr>
-                    <th style="width : 15em;">Class</th>
-                    <th style="width : 11em">Days & Time</th>
-                    <th>Fees (Kyats)</th>
-                    <th style="width : 7em">Duration</th>
-                    <th style="width : 6em">Start Date</th>
-                    <th style="text-align: center;">Detail</th>
-                    <th style="text-align: center;">Enrollment</th>
-                  </tr>
-                  <tr>
-                    <td>N5 Ordinary Class</td>
-                    <td>
-                      <span class="morning schedule-badges">9:00 ~ 11:00</span><br><br>
-                      <span class="weekend schedule-badges">Sat</span>
-                      <span class="weekend schedule-badges">Sun</span>
-                    </td>
-                    <td>750,000 + text book (10,000)</td>
-                    <td>3 months</td>
-                    <td>4.9.2021</td>
-                    <td><button class="detail">Detail</button></td>
-                    <td><a href="./classEnroll.php"><button class="enroll">ENROLL</button></a></td>
-                  </tr>
-                  <tr>
+                  <?php 
+                    include_once("../../admin/confs/config.php"); 
+                    $schedule = "SELECT course_id, c.title AS course_title, cty.title AS category_title, 
+                                 t.title AS type_title, c.level AS course_level, price, instructor, 
+                                 services, discount_percent, start_date, duration, sections
+                                 FROM courses c, categories cty, types t WHERE c.category_id = cty.category_id 
+                                 AND c.type_id = t.type_id";
+                    $schedule_result = mysqli_query($conn, $schedule);
+                    while($row = mysqli_fetch_array($schedule_result)) {
+                  ?>
+                    <tr id="<?php echo $row["course_id"]; ?>">
+                      <td style="display: none">
+                        <span id="category_title" class="row-data"><?php echo $row["category_title"] ?></span>
+                        <span id="type_title" class="row-data"><?php echo $row["type_title"] ?></span>
+                        <span id="course_level" class="row-data"><?php echo $row["course_level"] ?></span>
+                        <span id="instructor" class="row-data"><?php echo $row["instructor"] ?></span>
+                        <span id="services" class="row-data"><?php echo $row["services"] ?></span>
+                        <span id="discount_percent" class="row-data"><?php echo $row["discount_percent"] ?></span>
+                      </td>
+                      <td data-label="Class" scope="row">
+                        <span id="course_title" class="row-data"><?php echo $row["course_title"]; ?></span>
+                      </td>
+                      <td data-label="Days & Time">
+                        <span class="section-hour schedule-badges row-data" id="section_hour">
+                          <?php 
+                            $section_time = json_decode($row["sections"], true);
+                            echo $section_time["sectionHour"];
+                          ?>
+                        </span><br><br>
+                        <?php for($i = 0; $i < count($section_time["days"]); $i++) { ?>
+                          <span id="days" class="days schedule-badges <?php
+                            switch($section_time["days"][$i]) {
+                              case "Sat":
+                              case "Sun":
+                                echo "weekend";
+                                break;
+                              default:
+                                echo "weekday";
+                                break;                           
+                            }  
+                          ?>"><?php echo $section_time["days"][$i];
+                          echo "</span>";
+                        } ?>
+                      </td>
+                      <td data-label="Fees (Kyats)">
+                        <span id="price" class="row-data"><?php echo $row["price"] ?></span>
+                      </td>
+                      <td data-label="Duration">
+                        <span id="duration" class="row-data"><?php echo $row["duration"] ?></span>
+                      </td>
+                      <td data-label="Start Date">
+                        <span id="start_date" class="row-data"><?php echo $row["start_date"] ?></span>
+                      </td>
+                      <td data-label="Detail">
+                        <button class="detail" data-toggle="modal" data-target="#detailModal">Detail</button>
+                      </td>
+                      <td data-label="Enrollment">
+                       <button class="enroll">ENROLL</button>
+                      </td>
+                    </tr>
+                  <?php } ?>
+                  <!-- <tr>
                     <td>N5 Special Class</td>
                     <td>
                       <span class="morning schedule-badges">9:00 ~ 11:00</span><br><br>
@@ -331,7 +381,7 @@
                     <td>180,000</td>
                     <td>3 months</td>
                     <td>23.8.2021</td>
-                    <td><button class="detail">Detail</button></td>
+                    <td><button class="detail" data-toggle="modal" data-target="#detailModal">Detail</button></td>
                     <td><a href="./classEnroll.php"><button class="enroll">ENROLL</button></a></td>
                   </tr>
                   <tr>
@@ -344,7 +394,7 @@
                     <td>750,000 + text book (10,000)</td>
                     <td>3 months</td>
                     <td>1.9.2021</td>
-                    <td><button class="detail">Detail</button></td>
+                    <td><button class="detail" data-toggle="modal" data-target="#detailModal">Detail</button></td>
                     <td><a href="./classEnroll.php"><button class="enroll">ENROLL</button></a></td>
                   </tr>
                   <tr>
@@ -357,7 +407,7 @@
                     <td>180,000</td>
                     <td>3 months</td>
                     <td>2.9.2021</td>
-                    <td><button class="detail">Detail</button></td>
+                    <td><button class="detail" data-toggle="modal" data-target="#detailModal">Detail</button></td>
                     <td><a href="./classEnroll.php"><button class="enroll">ENROLL</button></a></td>
                   </tr>
                   <tr>
@@ -371,7 +421,7 @@
                     <td>200,000</td>
                     <td>3 months</td>
                     <td>1.9.2021</td>
-                    <td><button class="detail">Detail</button></td>
+                    <td><button class="detail" data-toggle="modal" data-target="#detailModal">Detail</button></td>
                     <td><a href="./classEnroll.php"><button class="enroll">ENROLL</button></a></td>
                   </tr>
                   <tr>
@@ -384,9 +434,9 @@
                     <td>100,000</td>
                     <td>3 months</td>
                     <td>2.9.2021</td>
-                    <td><button class="detail">Detail</button></td>
+                    <td><button class="detail" data-toggle="modal" data-target="#detailModal">Detail</button></td>
                     <td><a href="./classEnroll.php"><button class="enroll">ENROLL</button></a></td>
-                  </tr>
+                  </tr> -->
                 </tbody>
               </table>
             </div>
@@ -396,6 +446,96 @@
       </div>
     </section>
     <!-- School Schedule Blog end -->
+
+    <!-- The Detail Modal -->
+    <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detailModalLongTitle" aria-hidden="true">
+      <div class="modal-dialog detail-modal" role="document">
+        <div class="modal-content detail-modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title detail-modal-title">Class Detail Information</h4>
+            <button class="btn-close" data-dismiss="modal">
+              <i class='fas fa-times' style='font-size:24px; color: grey'></i>
+            </button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            <table class="detail-schedule">
+              <tr>
+                <td class="schedule-modal-label">Class :</td>
+                <td>
+                  <span id="modal_course_title"></span><br>
+                  <span id="modal_category_title"></span>
+                  <span id="modal_level"></span>
+                </td>
+              </tr>
+              <tr>
+                <td class="schedule-modal-label">Type :</td>
+                <td>
+                  <span id="modal_type_title"></span>
+                </td>
+              </tr>
+              <tr>
+                <td class="schedule-modal-label">Days :</td>
+                <td id="modal_days">
+                </td>
+              </tr>
+              <tr>
+                <td class="schedule-modal-label">Time :</td>
+                <td>
+                  <span id="modal_time"></span>
+                </td>
+              </tr>
+              <tr>
+                <td class="schedule-modal-label">Fees (Kyats) :</td>
+                <td>
+                  <span id="modal_fees"></span>
+                </td>
+              </tr>
+              <tr>
+                <td class="schedule-modal-label">Duration :</td>
+                <td>
+                  <span id="modal_duration"></span>
+                </td>
+              </tr>
+              <tr>
+                <td class="schedule-modal-label">Start Date :</td>
+                <td>
+                  <span id="modal_start_date"></span>
+                </td>
+              </tr>
+              <tr>
+                <td class="schedule-modal-label">Instructor :</td>
+                <td>
+                  <span id="modal_instructor"></span>
+                </td>
+              </tr>
+              <tr>
+                <td class="schedule-modal-label">Services :</td>
+                <td>
+                  <span id="modal_services"></span>
+                </td>
+              </tr>
+              <tr>
+                <td class="schedule-modal-label">Discount Percent :</td>
+                <td>
+                  <span id="modal_discount_percent"></span>
+                </td>
+              </tr>
+            </table>
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn-cancel" data-dismiss="modal">Cancel</button>
+            <a href="./classEnroll.php"><button type="button" class="btn-submit" id="enroll_class" data-dismiss="modal">Enroll</button></a>
+          </div>
+
+        </div>
+      </div>
+    </div>
 
     <!-- Detail images area start -->
     <section>
@@ -615,7 +755,7 @@
             <ul class="footer-list" id="second">
               <li>
                 <span
-                  ><a href="./jp-school.html">Japanese Language School</a></span
+                  ><a href="./jp-school.php">Japanese Language School</a></span
                 >
               </li>
               <li>
@@ -663,5 +803,6 @@
     <script src="./assets/js/float-panel.js"></script>
     <script src="./assets/js/comment.js"></script>
     <script src="./assets/js/style.js"></script>
+    <script src="./assets/js/jp-class-schedule.js"></script>
   </body>
 </html>

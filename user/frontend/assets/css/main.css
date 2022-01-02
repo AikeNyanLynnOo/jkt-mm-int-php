@@ -209,7 +209,7 @@ html {
   width: 70%;
   left: 50%;
   top: 50%;
-  line-height : 1.5em;	
+  line-height: 1.5em;
   transform: translate(-50%, -50%);
   -webkit-transform: translate(-50%, -50%);
   -moz-transform: translate(-50%, -50%);
@@ -568,7 +568,7 @@ html {
   align-items: center;
   height: auto;
   margin: 0 auto;
-  padding-bottom : 10px;
+  padding-bottom: 10px;
 }
 
 .bod-blockquote {
@@ -1135,12 +1135,42 @@ figure img {
   margin: 20px auto 10px;
 }
 
-.schedule-table td ul {
-  list-style-type: none;
+/* .schedule-table th {
+  font-weight: 800;
+} */
+
+.schedule-table {
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.schedule-table thead tr {
+  border-top: 1.5px solid rgb(240, 240, 240);
+  border-bottom:  1.5px solid rgb(240, 240, 240);
+  padding: .35em;
+}
+
+.schedule-table tbody tr {
+  border-bottom: 1px solid rgb(240, 240, 240);
+  padding: .35em;
 }
 
 .schedule-table th {
   font-weight: 800;
+  font-size: 16px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: .9em .625em;
+  text-align: center;
+}
+
+.schedule-table td {
+  font-size: 16px;
+  padding: .8em .625em;
+  text-align: center;
 }
 
 .detail-item-box-blog-image {
@@ -1216,18 +1246,18 @@ figure img {
 
 #heading {
   text-transform: uppercase;
-  color: #5BAFE7;
-  font-weight: normal
+  color: #5bafe7;
+  font-weight: normal;
 }
 
 .enroll-description {
-  color: grey
+  color: grey;
 }
 
 #enrollmentForm {
   text-align: center;
   position: relative;
-  margin-top: 20px
+  margin-top: 20px;
 }
 
 #enrollmentForm fieldset {
@@ -1238,15 +1268,15 @@ figure img {
   width: 100%;
   margin: 0;
   padding-bottom: 20px;
-  position: relative
+  position: relative;
 }
 
 .form-card {
-  text-align: left
+  text-align: left;
 }
 
 #enrollmentForm fieldset:not(:first-of-type) {
-  display: none
+  display: none;
 }
 
 .form-input {
@@ -1258,7 +1288,7 @@ figure img {
   margin-top: 2px;
   box-sizing: border-box;
   font-family: "Playfair Display", serif;
-  color: #2C3E50;
+  color: #2c3e50;
   background-color: #f9fdfd;
   font-size: 16px;
   letter-spacing: 1px;
@@ -1267,8 +1297,8 @@ figure img {
 
 .form-input:focus {
   box-shadow: inset 0px 0px 2px 1px rgba(0, 0, 0, 0.089);
-  border: 1px solid #5BAFE7;
-  outline-width: 0
+  border: 1px solid #5bafe7;
+  outline-width: 0;
 }
 
 .nrc {
@@ -1277,7 +1307,7 @@ figure img {
 
 #enrollmentForm .action-button {
   width: 100px;
-  background: #5BAFE7;
+  background: #5bafe7;
   font-weight: bold;
   color: white;
   border: 0 none;
@@ -1291,7 +1321,7 @@ figure img {
 
 #enrollmentForm .action-button:hover,
 #enrollmentForm .action-button:focus {
-  background-color: #1077bb
+  background-color: #1077bb;
 }
 
 #enrollmentForm .action-button-previous {
@@ -1309,7 +1339,7 @@ figure img {
 
 #enrollmentForm .action-button-previous:hover,
 #enrollmentForm .action-button-previous:focus {
-  background-color: #000000
+  background-color: #000000;
 }
 
 .required-tag {
@@ -1330,15 +1360,15 @@ figure img {
 
 .enrollForm-title {
   font-size: 25px;
-  color: #5BAFE7;
+  color: #5bafe7;
   margin-bottom: 15px;
   font-weight: normal;
-  text-align: left
+  text-align: left;
 }
 
 .blue-text {
-  color: #5BAFE7;
-  font-weight: normal
+  color: #5bafe7;
+  font-weight: normal;
 }
 
 .steps {
@@ -1346,22 +1376,22 @@ figure img {
   color: gray;
   margin-bottom: 10px;
   font-weight: normal;
-  text-align: right
+  text-align: right;
 }
 
 .fieldlabels {
   color: gray;
-  text-align: left
+  text-align: left;
 }
 
 #progressbar {
   margin-bottom: 30px;
   overflow: hidden;
-  color: lightgrey
+  color: lightgrey;
 }
 
 #progressbar .active {
-  color: #5BAFE7
+  color: #5bafe7;
 }
 
 #progressbar li {
@@ -1370,27 +1400,27 @@ figure img {
   width: 25%;
   float: left;
   position: relative;
-  font-weight: 400
+  font-weight: 400;
 }
 
 #progressbar #personal:before {
   font-family: FontAwesome;
-  content: "1"
+  content: "1";
 }
 
 #progressbar #course:before {
   font-family: FontAwesome;
-  content: "2"
+  content: "2";
 }
 
 #progressbar #payment:before {
   font-family: FontAwesome;
-  content: "3"
+  content: "3";
 }
 
 #progressbar #confirm:before {
   font-family: FontAwesome;
-  content: "4"
+  content: "4";
 }
 
 #progressbar li:before {
@@ -1403,48 +1433,48 @@ figure img {
   background: lightgray;
   border-radius: 50%;
   margin: 0 auto 10px auto;
-  padding: 2px
+  padding: 2px;
 }
 
 #progressbar li:after {
-  content: '';
+  content: "";
   width: 100%;
   height: 2px;
   background: lightgray;
   position: absolute;
   left: 0;
   top: 25px;
-  z-index: -1
+  z-index: -1;
 }
 
 #progressbar li.active:before,
 #progressbar li.active:after {
-  background: #5BAFE7
+  background: #5bafe7;
 }
 
 .progress {
-  height: 20px
+  height: 20px;
 }
 
 .progress-bar {
-  background-color: #5BAFE7
+  background-color: #5bafe7;
 }
 
 .fit-image {
   width: 100%;
-  object-fit: cover
+  object-fit: cover;
 }
 
-#image-preview{
+#image-preview {
   height: 200px;
   width: 100%;
-  display:block;
+  display: block;
   margin: 5px auto 0;
-  padding:5px;
+  padding: 5px;
   object-fit: contain;
 }
 
-.file-input{
+.file-input {
   display: inline-flex;
   align-items: flex-end;
   margin-bottom: 3px;
@@ -1486,7 +1516,7 @@ figure img {
   margin: 5px auto 30px;
 }
 
-.help-block{
+.help-block {
   font-size: 14px;
   font-style: italic;
   color: red;
@@ -1594,10 +1624,11 @@ figure img {
   font-size: 14px;
   border-radius: 5px;
   color: whitesmoke;
+  margin: 5px;
 }
 
 .weekday {
-  background-color: #8ad887;
+  background-color: #4edaab;
 }
 
 .weekend {
@@ -1606,26 +1637,25 @@ figure img {
 
 .instructor {
   background-color: #5691b6c0;
+  font-size: 16px;
 }
 
-.morning {
+.section-hour {
   background-color: rgb(201, 126, 142);
 }
 
-.evening {
-  background-color: rgb(211, 164, 132);
+.modal-badges {
+  padding: 3px 5px;
+  border-radius: 5px;
+  color: whitesmoke;
+  margin: 5px;
+  font-size: 15px;
 }
 
 /* JP school schedule table */
 
-.btn-close {
-  background-color: white;
-  border: none;
-  outline: none;
-}
-
-.btn-close:focus {
-  outline: none;
+.days-time {
+  /* width: 11em !important; */
 }
 
 .enroll {
@@ -1633,13 +1663,13 @@ figure img {
   border: 1px solid #c6c6c6;
   background-color: white;
   color: #131313;
-  font-family: "Roboto", sans-serif;
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 600;
   letter-spacing: 2px;
 }
 
-.enroll:hover {
+.enroll:hover,
+.detail:hover {
   background: rgba(167, 205, 238, 0.342);
   border: 1px solid rgb(0, 0, 0, 0.1);
   text-decoration: none;
@@ -1654,9 +1684,8 @@ figure img {
   border: 1px solid #d3d3d3;
   background-color: #c9dfff3d;
   color: #000000;
-  font-family: "Roboto", sans-serif;
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 600;
   letter-spacing: 2px;
   border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -1664,16 +1693,13 @@ figure img {
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
 }
+
+.detail:focus {
+  outline: none;
+}
 /* JP school schedule table */
 
 /* Confirm payment preview design */
-
-.modal:before {
-  content: '';
-  display: inline-block;
-  height: 20%;
-  vertical-align: middle;
-}
 
 .modal-title {
   padding-left: 15px;
@@ -1684,9 +1710,23 @@ figure img {
   width: 35vw;
 }
 
-.modal-body {
+.confirm-modal-body {
   text-align: center;
   padding: 50px 30px;
+}
+
+.detail-modal {
+  margin: 40px 25%;
+}
+
+.detail-modal-content {
+  width: 50vw;
+}
+
+.schedule-modal-label {
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  font-weight: 700;
 }
 
 .btn-submit {
@@ -1697,8 +1737,56 @@ figure img {
   border: none;
 }
 
-.btn-submit:hover{
+.btn-submit:hover {
   background-color: #2d99e0;
+}
+
+.btn-close {
+  background-color: white;
+  border: none;
+  outline: none;
+}
+
+.btn-close:focus {
+  outline: none;
+}
+
+.btn-cancel {
+  background-color: #c2c6c9;
+  border-radius: 5px;
+  padding: 6px 10px;
+  color: rgb(255, 255, 255);
+  border: none;
+}
+
+.detail-schedule {
+  background-color: #ffffe0;
+  border-collapse: collapse;
+  color: #000;
+  font-size: 16px;
+  width: 90%;
+  margin: 10px auto 30px;
+}
+
+.detail-schedule tr:nth-child(even) {
+  background-color: #edf4fcd2;
+}
+
+.detail-schedule tr:nth-child(odd) {
+  background-color: #fdfafa;
+}
+
+.detail-schedule td {
+  padding: 15px;
+}
+
+.table {
+  table-layout: auto;
+  width: 100%;
+}
+
+.table tr td {
+  vertical-align: middle;
 }
 
 /* Detail Information Page End */
@@ -2014,7 +2102,7 @@ figure img {
   animation: separator-width 1.5s ease-out forwards;
 }
 
-.back-to-courses{
+.back-to-courses {
   color: #ffffff;
   font-size: large;
   border: none;
@@ -2026,7 +2114,7 @@ figure img {
   -o-border-radius: 5px;
   padding: 20px 50px;
 }
-.back-to-courses:hover{
+.back-to-courses:hover {
   text-decoration: none;
 }
 
@@ -2274,7 +2362,7 @@ figure img {
   }
 }
 
-@media only screen and (max-width: 991px) {
+@media screen and (max-width: 991px) {
   #navbarCollapse {
     padding-bottom: 20px;
     box-shadow: 0 2px 20px 0px #ddd;
@@ -2325,6 +2413,58 @@ figure img {
   }
   .blog-day {
     font-size: 20px;
+  }
+  .days-time {
+    width: 11em;
+  }
+  .schedule-table {
+    border: 0;
+  }
+  
+  .schedule-table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  
+  .schedule-table tr {
+    border-top: 1px solid rgb(240, 240, 240);
+    border-right: 1.5px solid rgb(240, 240, 240);
+    border-left: 1.5px solid rgb(240, 240, 240);
+    border-bottom: 3px solid rgb(240, 240, 240) !important;
+    display: block;
+    margin-bottom: .625em;
+  }
+  
+  .schedule-table td {
+    border-bottom: 1px solid rgb(240, 240, 240);
+    display: block;
+    font-size: 1em;
+    text-align: right;
+  }
+  
+  .schedule-table td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .schedule-table td:last-child {
+    border-bottom: 0;
+  }
+
+  .detail-modal {
+    margin: 40px 12%;
+  }
+
+  .detail-modal-content {
+    width: 75vw;
   }
 }
 @media only screen and (max-width: 992px) and (min-width: 767px) {
@@ -2423,6 +2563,27 @@ figure img {
   .bod-section {
     padding: 10px;
   }
+  .detail-schedule {
+    font-size: 13px;
+  }
+  .modal-badges {
+    font-size: 13px;
+  }
+  .detail-modal {
+    margin: 40px 8%;
+  }
+  .detail-modal-content {
+    width: 85vw;
+  }
+  .detail-modal-title {
+    font-size: 18px;
+  }
+}
+
+@media only screen and (min-height: 1365px) {
+  .detail-modal {
+    margin-top: 30%;
+  }
 }
 
 @media only screen and (max-width: 500px) {
@@ -2435,6 +2596,15 @@ figure img {
   .bod-section {
     padding-left: 10px;
     padding-right: 10px;
+  }
+  .detail-modal-title {
+    font-size: 16px;
+  }
+  .detail-schedule {
+    font-size: 10px;
+  }
+  .modal-badges {
+    font-size: 10px;
   }
 }
 

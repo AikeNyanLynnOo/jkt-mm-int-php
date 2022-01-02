@@ -29,6 +29,8 @@ var nrc = {
     xhr.onload = function () {
       var nrcJson = JSON.parse(xhr.responseText);
       nrcJson.sort((a, b) => (a.name_en > b.name_en ? 1 : -1));
+      console.log($("#township").html(``));
+      $("#township").html(`<option value="" selected disabled>Township</option>`);
       nrcJson.forEach((value) => {
         // console.log(value)
         var option = document.createElement("option");
@@ -67,7 +69,7 @@ $(document).ready(function () {
     "phoneRegex",
     function (value, element) {
       return (
-        this.optional(element) || /^[0][9]\d{8,10}$/i.test(value)
+        this.optional(element) || /^\d+$/i.test(value)
       );
     },
     "Your phone number's format is invalid"
@@ -135,7 +137,8 @@ $(document).ready(function () {
         phone: {
           required: true,
           phoneRegex: true,
-          // minlength: 10,
+          minlength: 8,
+          maxlength: 12
         },
         address: {
           required: true,
@@ -246,7 +249,6 @@ $(document).ready(function () {
           $("#confirmationModal").modal("show");
           $("#submitConfirm").click(function() {
             current_fs = $("#paymentMethod");
-            next_fs = $("#success");
             $("#progressbar li")
               .eq($("fieldset").index(next_fs))
               .addClass("active");
@@ -260,11 +262,7 @@ $(document).ready(function () {
               "Please Choose at least one banking system</span>"
           );
         }
-      } else if ($("#success").is(":visible")) {
-        current_fs = $("#success");
-        setProgressBar(++current);
-        // $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
-      }
+      } 
       //show the next fieldset
       next_fs.show();
       //hide the current fieldset with style

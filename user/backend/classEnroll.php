@@ -82,7 +82,7 @@ if ($row) {
     }
 }
 if ($afterTryingToSend[0]) {
-    header("location:javascript://history.go(-1)");
+    header("location: ../frontend/enrollSuccess.php");
 } else {
     echo "fail to send mail";
 }
