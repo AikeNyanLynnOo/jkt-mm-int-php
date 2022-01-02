@@ -250,6 +250,14 @@
     </section>
     <!-- JP School header end -->
 
+    <nav aria-label="breadcrumb" class="breadcrumb-nav">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item"><a href="#">Trainings</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Japanese Language School</li>
+      </ol>
+    </nav>
+
     <!-- Training School Detail Information Blog start -->
     <section>
       <div class="container pt-5">
@@ -329,6 +337,7 @@
                         <span id="discount_percent" class="row-data"><?php echo $row["discount_percent"] ?></span>
                       </td>
                       <td data-label="Class" scope="row">
+
                         <span id="course_title" class="row-data"><?php echo $row["course_title"]; ?></span>
                       </td>
                       <td data-label="Days & Time">
@@ -366,7 +375,7 @@
                         <button class="detail" data-toggle="modal" data-target="#detailModal">Detail</button>
                       </td>
                       <td data-label="Enrollment">
-                       <button class="enroll">ENROLL</button>
+                        <a href="./classEnroll.php?courseID=<?php echo $row['course_id']; ?>"><button class="enroll">ENROLL</button></a>
                       </td>
                     </tr>
                   <?php } ?>

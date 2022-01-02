@@ -46,26 +46,4 @@ $(document).ready(function() {
             $("#modal_days").append(append_day_modal);
         }
     })
-
-    $(".enroll").click(function () {
-        var rowId = $(this).parent().parent().attr('id');
-        var data = document.getElementById(rowId).querySelectorAll(".row-data");
-        // let category_title = data[0].innerHTML;
-        let type_title = data[1].innerHTML;
-        let course_level = data[2].innerHTML;
-        let course_title = data[6].innerHTML;
-        let select_option = course_title + ' ' + course_level + ' (' + type_title + ')';
-        console.log(select_option); 
-        $("#selected_option").text(select_option);
-        var pathName = '', pathArray = window.location.pathname.split('/');
-        for(let i=1; i<pathArray.length-1; i++) {
-            pathName += pathArray[i] + "/";
-        }
-        var enrollURL = window.location.protocol + "//" + window.location.host + "/" + pathName + "classEnroll.php";
-        window.location.replace(enrollURL);
-    })
-
-    let selected_option = $("#selected_option").text();
-    console.log(selected_option);
-    console.log("hello")
 })

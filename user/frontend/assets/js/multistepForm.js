@@ -221,20 +221,13 @@ $(document).ready(function () {
       if ($("#userInformation").is(":visible")) {
         //Add Class Active
         current_fs = $("#userInformation");
-        next_fs = $("#classInformation");
-        $("#progressbar li")
-          .eq($("fieldset").index(next_fs))
-          .addClass("active");
-        setProgressBar(++current);
-      } else if ($("#classInformation").is(":visible")) {
-        current_fs = $("#classInformation");
         next_fs = $("#paymentMethod");
         $("#progressbar li")
           .eq($("fieldset").index(next_fs))
           .addClass("active");
         setProgressBar(++current);
       } else if ($("#paymentMethod").is(":visible")) {
-        console.log("hello")
+        // console.log("hello")
         var atLeastOneChecked = false;
         const bankRadioButtons = document.querySelectorAll('input[name="payment_method"]');
         for(let bank of bankRadioButtons) {
@@ -249,6 +242,7 @@ $(document).ready(function () {
           $("#confirmationModal").modal("show");
           $("#submitConfirm").click(function() {
             current_fs = $("#paymentMethod");
+            next_fs = $("#success");
             $("#progressbar li")
               .eq($("fieldset").index(next_fs))
               .addClass("active");
@@ -262,7 +256,13 @@ $(document).ready(function () {
               "Please Choose at least one banking system</span>"
           );
         }
-      } 
+      } else if ($("#success").is(":visible")) {
+        current_fs = $("#success");
+        $("#progressbar li")
+          .eq($("fieldset").index(next_fs))
+          .addClass("active");
+        setProgressBar(++current);
+      }
       //show the next fieldset
       next_fs.show();
       //hide the current fieldset with style

@@ -120,6 +120,15 @@
   </section>
   <!-- JP School header end -->
 
+    <nav aria-label="breadcrumb" class="breadcrumb-nav">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item"><a href="#">Trainings</a></li>
+        <li class="breadcrumb-item"><a href="#">Japanese Language School</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Enrollment Form</li>
+      </ol>
+    </nav>
+
   <!-- Enrollment Form start -->
   <section>
     <div class="container-fluid">
@@ -132,7 +141,6 @@
               <!-- progressbar -->
               <ul id="progressbar">
                 <li class="active" id="personal"></li>
-                <li id="course"></li>
                 <li id="payment"></li>
                 <li id="confirm"></li>
               </ul>
@@ -146,7 +154,7 @@
                       <h2 class="enrollForm-title">User Information:</h2>
                     </div>
                     <div class="col-5">
-                      <h2 class="steps">Step 1 - 4</h2>
+                      <h2 class="steps">Step 1 - 3</h2>
                     </div>
                   </div>
                   <div class="row mb-3">
@@ -158,6 +166,7 @@
                       <input type="file" name="photo" class="form-input" id="file-input" />
                     </div>
                   </div>
+                  <input type="hidden" name="courseId" value="<?php echo $_GET["courseID"] ?>" />
                   <div class="row mb-3">
                     <div class="col-12 col-sm-12 col-md-12">
                       <label class="fieldlabels">Full Name: <span class="required-tag">required &nbsp; *</span></label>
@@ -242,7 +251,7 @@
                   </div>
                   <input type="button" name="next" id="userInfo" class="next action-button" value="Next" />
               </fieldset>
-              <fieldset id="classInformation">
+              <!-- <fieldset id="classInformation">
                 <div class="form-card">
                   <div class="row">
                     <div class="col-7">
@@ -252,19 +261,20 @@
                   <div class="row mb-3">
                     <div class="col-12">
                       <?php 
-                        include_once("../../admin/confs/config.php"); 
-                        $course = "SELECT course_id, c.title AS course_title, c.level as course_level, t.title AS type_title, 
-                                    ct.title AS category_title, sections FROM courses c, types t, categories ct 
-                                    WHERE c.type_id = t.type_id AND c.category_id = ct.category_id";
-                        $course_result = mysqli_query($conn, $course);
+                        // include_once("../../admin/confs/config.php"); 
+                        // $course = "SELECT course_id, c.title AS course_title, c.level as course_level, t.title AS type_title, 
+                        //             ct.title AS category_title, sections FROM courses c, types t, categories ct 
+                        //             WHERE c.type_id = t.type_id AND c.category_id = ct.category_id";
+                        // $course_result = mysqli_query($conn, $course);
                       ?>
                       <span id="selected_option"></span>
                       <label class="fieldlabels">Class Category: <span class="required-tag">required &nbsp; *</span></label>
                       <select name="classId" id="className" class="form-input">
                         <option value="" selected disabled>Choose class</option>
-                        <?php while($row = mysqli_fetch_array($course_result)) { ?>
-                          <option value="<?php echo $row['course_id'] ?>"><?php echo $row['course_title'] . ' ' . $row['course_level'] . ' (' . $row['type_title'] . ')' ?></option>
-                        <?php } ?>
+                        <?php 
+                          // while($row = mysqli_fetch_array($course_result)) { ?>
+                          <option value="<?php // echo $row['course_id'] ?>"><?php // echo $row['course_title'] . ' ' . $row['course_level'] . ' (' . $row['type_title'] . ')' ?></option>
+                        <?php //} ?>
                       </select>
                     </div>
                   </div>
@@ -281,7 +291,7 @@
                 </div>
                 <input type="button" name="next" class="next action-button" value="Next" />
                 <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
-              </fieldset>
+              </fieldset> -->
               <fieldset id="paymentMethod">
                 <div class="form-card">
                   <div class="row">
@@ -289,7 +299,7 @@
                       <h2 class="enrollForm-title">Payment:</h2>
                     </div>
                     <div class="col-5">
-                      <h2 class="steps">Step 2 - 4</h2>
+                      <h2 class="steps">Step 2 - 3</h2>
                     </div>
                   </div>
                   <div class="row mt-4">
@@ -336,6 +346,32 @@
                 <input type="button" name="next" class="next action-button" value="Next" />
                 <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
               </fieldset>
+              <fieldset id="success">
+                <div class="form-card">
+                  <div class="row">
+                    <div class="col-7">
+                      <h2 class="enrollForm-title">Finish:</h2>
+                    </div>
+                    <div class="col-5">
+                      <h2 class="steps">Step 3 - 3</h2>
+                    </div>
+                  </div> <br><br>
+                  <h2 class="blue-text text-center"><strong>Successfully Submitted!</strong></h2> <br>
+                  <div class="row justify-content-center">
+                    <div class="col-3">
+                      <img src="./assets/images/blue-tick.png" class="fit-image">
+                    </div>
+                  </div> <br><br>
+                  <div class="row justify-content-center">
+                    <div class="col-7 text-center">
+                      <h5 class="blue-text text-center">We will send email during business hours (9:00~17:00). Please check your email for payment information. </h5>
+                    </div>
+                  </div>
+                  <div class="row justify-content-center mt-3">
+                    <a href="classEnroll.php" class="back-to-courses">Browse Courses</a>
+                  </div>
+                </div>
+              </fieldset>
             </form>
           </div>
         </div>
@@ -343,6 +379,9 @@
     </div>
   </section>
   <!-- Enrollment Form end -->
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirmationModal">
+    Launch demo modal
+  </button>
 
   <!-- The Confirmation Modal -->
   <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLongTitle" aria-hidden="true">
@@ -358,8 +397,8 @@
         </div>
 
         <!-- Modal body -->
-        <div class="modal-body">
-          Are you sure you want to submit your enrollment for this course?
+        <div class="modal-body confirm-modal-body">
+          Are you sure, you want to <span style="color: #001c69">submit your enrollment for this course</span>?
         </div>
 
         <!-- Modal footer -->
@@ -456,6 +495,5 @@
   <script src="./assets/js/float-panel.js"></script>
   <script src="./assets/js/multistepForm.js"></script>
   <script src="./assets/js/userImgPreview.js"></script>
-  <script src="./assets/js/jp-class-schedule.js"></script>
 </body>
 <html>

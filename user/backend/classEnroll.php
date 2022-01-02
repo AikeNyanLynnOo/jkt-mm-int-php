@@ -39,7 +39,7 @@ $type = $_POST['type'];
 $nrcNumber = $_POST['nrcNumber'];
 $nrc = $nrcCode . "/" . $township . $type . $nrcNumber;
 $email = $_POST['email'];
-$address = $_POST['email'];
+$address = $_POST['address'];
 $phone = $_POST['phone'];
 $education = $_POST['edu'];
 
@@ -59,8 +59,9 @@ $education = $_POST['edu'];
 // );
 
 // STEP 2
-$classId = intval($_POST['classId']);
-$classTime = $_POST['classTime'];
+// $classId = intval($_POST['classId']);
+$classId = $_POST['courseId'];
+// $classTime = $_POST['classTime'];
 
 // STEP 3
 $payment_method = $_POST['payment_method'];

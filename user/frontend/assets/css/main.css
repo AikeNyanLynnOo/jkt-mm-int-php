@@ -188,6 +188,42 @@ html {
 .btn:focus {
   box-shadow: none !important;
 }
+
+/* .breadcrumb-nav {
+  background-color: #5bafe7 !important;
+} */
+
+.breadcrumb {
+  background-color: #5bafe7;
+  padding: 25px 10%;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.breadcrumb .breadcrumb-item a{
+  color: #fff;
+  font-family: "Roboto", sans-serif;
+  letter-spacing: 1.5px;
+}
+
+.breadcrumb .active {
+  color: #b4ccf0;
+  font-family: "Roboto", sans-serif;
+  letter-spacing: 1.5px;
+}
+
+.breadcrumb .active::before {
+  color: #b4ccf0;
+  padding: 0 10px;
+  margin-right: 5px;
+}
+.breadcrumb .breadcrumb-item::before {
+  color: #b4ccf0;
+  padding: 0 10px;
+  margin-right: 10px;
+  font-size: 16px;
+  font-weight: bolder;
+}
 /* Navgation end */
 
 /* cover  */
@@ -1397,7 +1433,7 @@ figure img {
 #progressbar li {
   list-style-type: none;
   font-size: 15px;
-  width: 25%;
+  width: 33.33%;
   float: left;
   position: relative;
   font-weight: 400;
@@ -1408,19 +1444,14 @@ figure img {
   content: "1";
 }
 
-#progressbar #course:before {
+#progressbar #payment:before {
   font-family: FontAwesome;
   content: "2";
 }
 
-#progressbar #payment:before {
-  font-family: FontAwesome;
-  content: "3";
-}
-
 #progressbar #confirm:before {
   font-family: FontAwesome;
-  content: "4";
+  content: "3";
 }
 
 #progressbar li:before {

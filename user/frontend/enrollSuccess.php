@@ -120,6 +120,15 @@
   </section>
   <!-- JP School header end -->
 
+  <nav aria-label="breadcrumb" class="breadcrumb-nav">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item"><a href="#">Trainings</a></li>
+        <li class="breadcrumb-item"><a href="#">Japanese Language School</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Enroll Successfully </li>
+      </ol>
+    </nav>
+
   <!-- Enrollment Form start -->
   <section>
     <div class="container-fluid">
@@ -131,7 +140,6 @@
               <!-- progressbar -->
               <ul id="progressbar">
                 <li class="active" id="personal"></li>
-                <li class="active" id="course"></li>
                 <li class="active" id="payment"></li>
                 <li class="active" id="confirm"></li>
               </ul>
@@ -145,7 +153,7 @@
                       <h2 class="enrollForm-title">Finish:</h2>
                     </div>
                     <div class="col-5">
-                      <h2 class="steps">Step 4 - 4</h2>
+                      <h2 class="steps">Step 3 - 3</h2>
                     </div>
                   </div> <br><br>
                   <h2 class="blue-text text-center"><strong>Successfully Submitted!</strong></h2> <br>
