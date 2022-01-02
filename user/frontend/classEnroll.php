@@ -231,7 +231,7 @@
                   <div class="row mb-3">
                     <div class="col-12 col-sm-12 col-md-12">
                       <label class="fieldlabels">Address: <span class="required-tag">required &nbsp; *</span></label>
-                      <textarea name="address" class="form-input" id="address" placeholder="e.g. No.(), (---) Road, (---) City."></textarea>
+                      <textarea name="address" class="form-input" id="address" placeholder="e.g. No.(), (...) Road, (...) City."></textarea>
                     </div>
                   </div>
                   <div class="row mb-3">
