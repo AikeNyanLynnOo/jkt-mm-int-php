@@ -357,7 +357,7 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                       <span id="radioMsg"></span>
                     </div>
                   </div>
-                  <input type="button" name="next" class="next action-button" value="Next" />
+                  <input type="button" name="next" class="next action-button" value="次" />
                   <input type="button" name="previous" class="previous action-button-previous" value="戻る" />
                 </fieldset>
                 <fieldset id="success">

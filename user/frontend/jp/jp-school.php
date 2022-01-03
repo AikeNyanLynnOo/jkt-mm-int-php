@@ -465,7 +465,7 @@
           <!-- Modal footer -->
           <div class="modal-footer">
             <button type="button" class="btn-cancel" data-dismiss="modal">キャンセル</button>
-            <a href="./classEnroll.php"><button type="button" class="btn-submit" id="enroll_class" data-dismiss="modal">登録</button></a>
+            <a href="./classEnroll.php"><button type="button" class="btn-submit" id="enroll_class">登録</button></a>
           </div>
 
         </div>

@@ -46,12 +46,12 @@ function sendMail($email, $uname, $classInfo, $isInCash)
 	
 	if ($isInCash) {
 		$mail->Body .= "<p>The course will start on " . $classInfo["start_date"]  . "</p>";
-		$mail->Body .= "<p>You can pay on the first day of the course. If you pay fully at once, 5% discount on your course.If you want to pay installment, we accepted 3 times installment before the course completes.</p>";
+		$mail->Body .= "<p>You can pay on the first day of the course. If you pay fully at once, 5% discount on your course. If you want to pay installment, we accepted 3 times installment before the course completes.</p>";
 	} else {
 		$mail->Body .= "<h4>" . "Banking system" . "</h4>";
 		$mail->Body .= "<p>Please fill out the form below to confirm your payment.";
-		$mail->Body .= "Please be sure to submit payment 2 days from now.";
-		$mail->Body .= "If we don't receive any payment, your course enrollment will be cancelled.</p></br>";
+		$mail->Body .= " Please be sure to submit payment 2 days from now.";
+		$mail->Body .= " If we don't receive any payment, your course enrollment will be cancelled.</p></br>";
 		$mail->Body .= "<a style='
 		text-decoration:none;
 		color:#fff;
