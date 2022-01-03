@@ -4,6 +4,7 @@ function readURL(input) {
     reader.onload = function (e) {
         console.log(e.target.result)
       $("#image-preview").attr("src", e.target.result);
+      $("#src").val(e.target.result);
       $("#image-preview").hide();
       $("#image-preview").fadeIn(650);
     };

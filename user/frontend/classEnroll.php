@@ -169,13 +169,14 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                     </div>
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-6 col-lg-5 col-xl-4">
-                        <img id="image-preview" src="./assets/images/default-profile-icon.jpg" alt="user image" />
+                        <img id="image-preview" src="<?php echo $response["data"]["src"] ?>" alt="user image" />
+                        <input type="hidden" name="src" id="src" value="" />
                       </div>
                       <div class="col-13 col-sm-12 col-md-6 col-lg-7 col-xl-8 file-input">
                         <label class="fieldlabels">Upload Your Photo: <span class="required-tag">required &nbsp; *</span></label>
-                        <input type="file" name="photo" class="form-input" id="file-input" />
+                        <input type="file" name="photo" class="form-input" id="file-input" value="./assets/images/icon/close.png" />
                       </div>
-                      <p class="alert col-12 pb-0"><?php if($response["type"] === "error") echo $response["message"]; ?></p>
+                      <p class="alert col-12 pb-0 help-block"><?php if ($response["type"] === "error") echo $response["message"]; ?></p>
                     </div>
                     <input type="hidden" name="courseId" value="<?php if (isset($_GET["courseID"])) echo $_GET["courseID"] ?>" />
                     <div class="row mb-3">
@@ -187,13 +188,13 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-12">
                         <label class="fieldlabels">Date of Birth: <span class="required-tag">required &nbsp; *</span></label>
-                        <input type="date" class="form-input" name="dob" id="dob" required />
+                        <input type="date" class="form-input" name="dob" id="dob" value="<?php echo $response["data"]["dob"] ?>" required />
                       </div>
                     </div>
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-12">
                         <label class="fieldlabels">Father Name: <span class="required-tag">required &nbsp; *</span></label>
-                        <input type="text" class="form-input" name="fname" id="fname" placeholder="e.g. U Aye" />
+                        <input type="text" class="form-input" name="fname" id="fname" placeholder="e.g. U Aye" value="<?php echo $response["data"]["fname"] ?>" />
                       </div>
                     </div>
                     <div class="row mb-3">
@@ -204,10 +205,14 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                           <!-- <input type="text" class="form-input" name="nrc" id="nrc" placeholder="e.g. Please Enter NRC" required />  -->
                           <div class="col-12 col-sm-10 col-md-10 col-lg-2 col-xl-2">
                             <select name="nrcCode" id="nrcCode" class="form-input nrc">
-                              <option value="" selected disabled>State</option>
+                              <!-- <option  value="<?php echo $response["data"]["nrcCode"] ?>"  selected disabled><?php echo $response["data"]["nrcCode"] ?></option> -->
                               <?php
                               for ($i = 0; $i < count($stateNumberArr); $i++) {
-                                echo "<option value='" . $stateNumberArr[$i] . "'>";
+                                if ($response["data"]["nrcCode"] == $i) {
+                                  echo "<option value='" . $stateNumberArr[$i] . "' selected>";
+                                } else {
+                                  echo "<option value='" . $stateNumberArr[$i] . "'>";
+                                }
                                 echo $stateNumberArr[$i];
                                 echo "</option>";
                               }
@@ -216,22 +221,22 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                           </div>
                           <div class="col-12 col-sm-10 col-md-10 col-lg-5 col-xl-5">
                             <select name="township" id="township" class="form-input nrc">
-                              <option value="" selected disabled>Township</option>
+                              <option value="<?php echo $response["data"]["township"] ?>" selected><?php echo $response["data"]["township"] ?></option>
                             </select>
                           </div>
                           <div class="col-12 col-sm-10 col-md-10 col-lg-3 col-xl-3">
                             <select name="type" id="type" class="form-input nrc">
-                              <option value="" selected disabled>Type</option>
-                              <option value="(C)">(C) - (နိုင်)</option>
-                              <option value="(AC)">(AC) - (ဧည့်)</option>
-                              <option value="(NC)">(NC) - (ပြု)</option>
-                              <option value="(V)">(V) - (စ)</option>
-                              <option value="(M)">(M) - (သ)</option>
-                              <option value="(N)">(N) - (သီ)</option>
+                              <!-- <option value="<?php echo $response["data"]["type"] ?>" selected disabled><?php echo $response["data"]["type"] ?></option> -->
+                              <option value="(C) - (နိုင်)" <?php if ($response["data"]["type"] == "(C) - (နိုင်)") echo "selected" ?>>(C) - (နိုင်)</option>
+                              <option value="(AC) - (ဧည့်)" <?php if ($response["data"]["type"] == "(AC) - (ဧည့်)") echo "selected" ?>>(AC) - (ဧည့်)</option>
+                              <option value="(NC) - (ပြု)" <?php if ($response["data"]["type"] == "(NC) - (ပြု)") echo "selected" ?>>(NC) - (ပြု)</option>
+                              <option value="(V) - (စ)" <?php if ($response["data"]["type"] == "(V)") echo "selected" ?>>(V) - (စ)</option>
+                              <option value="(M) - (သ)" <?php if ($response["data"]["type"] == "(M) - (သ)") echo "selected" ?>>(M) - (သ)</option>
+                              <option value="(N) - (သီ)" <?php if ($response["data"]["type"] == "(N) - (သီ)") echo "selected" ?>>(N) - (သီ)</option>
                             </select>
                           </div>
                           <div class="col-12 col-sm-10 col-md-10 col-lg-2 col-xl-2">
-                            <input type="text" class="form-input nrc" name="nrcNumber" id="nrcNumber" placeholder="123456" />
+                            <input type="text" class="form-input nrc" name="nrcNumber" id="nrcNumber" value="<?php echo $response["data"]["nrcNumber"] ?>" placeholder="123456" />
                           </div>
                         </div>
                       </div>
@@ -239,25 +244,33 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-12">
                         <label class="fieldlabels">Email:</label>
-                        <input type="email" class="form-input" name="email" id="email" placeholder="abc@gmail.com" />
+                        <input type="email" class="form-input" name="email" id="email" value="<?php echo $response["data"]["email"] ?>" placeholder="abc@gmail.com" />
                       </div>
                     </div>
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-12">
                         <label class="fieldlabels">Phone Number: <span class="required-tag">required &nbsp; *</span></label>
-                        <input type="text" class="form-input" name="phone" id="phone" placeholder="09..." />
+                        <input type="text" class="form-input" name="phone" id="phone" value="<?php echo $response["data"]["phone"] ?>" placeholder="09..." />
                       </div>
                     </div>
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-12">
                         <label class="fieldlabels">Address: <span class="required-tag">required &nbsp; *</span></label>
-                        <textarea name="address" class="form-input" id="address" placeholder="e.g. No.(), (...) Road, (...) City."></textarea>
+                        <textarea name="address" class="form-input" id="address" placeholder="e.g. No.(), (...) Road, (...) City."><?php echo htmlspecialchars(
+                                                                                                                                      $response["data"]["address"],
+                                                                                                                                      ENT_QUOTES,
+                                                                                                                                      'UTF-8'
+                                                                                                                                    ) ?></textarea>
                       </div>
                     </div>
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-12">
                         <label class="fieldlabels">Education: <span class="required-tag">required &nbsp; *</span></label>
-                        <textarea name="edu" class="form-input" id="edu" placeholder="e.g. University"></textarea>
+                        <textarea name="edu" class="form-input" id="edu" placeholder="e.g. University"><?php echo htmlspecialchars(
+                                                                                                          $response["data"]["edu"],
+                                                                                                          ENT_QUOTES,
+                                                                                                          'UTF-8'
+                                                                                                        ) ?></textarea>
                       </div>
                     </div>
                     <input type="button" name="next" id="userInfo" class="next action-button" value="Next" />
@@ -325,7 +338,7 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                     <div class="row bank-container">
                       <div class="col-12 col-sm-11 col-md-4 col-lg-4 col-xl-4 text-center">
                         <label class="bank">
-                          <input type="radio" name="payment_method" value="CB banking" />
+                          <input type="radio" name="payment_method" value="CB banking" <?php echo "checked" ?> />
                           <div class="bank-image" style="background-image: url(./assets/images/banks/CB.png)"></div>
                         </label>
                       </div>
@@ -413,12 +426,13 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-6 col-lg-5 col-xl-4">
                         <img id="image-preview" src="./assets/images/default-profile-icon.jpg" alt="user image" />
+                        <input type="hidden" name="src" id="src" value="" />
                       </div>
                       <div class="col-13 col-sm-12 col-md-6 col-lg-7 col-xl-8 file-input">
                         <label class="fieldlabels">Upload Your Photo: <span class="required-tag">required &nbsp; *</span></label>
                         <input type="file" name="photo" class="form-input" id="file-input" />
                       </div>
-                      
+
                     </div>
                     <input type="hidden" name="courseId" value="<?php if (isset($_GET["courseID"])) echo $_GET["courseID"] ?>" />
                     <div class="row mb-3">
