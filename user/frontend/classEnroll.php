@@ -595,9 +595,9 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
     </div>
   </section>
   <!-- Enrollment Form end -->
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirmationModal">
+  <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirmationModal">
     Launch demo modal
-  </button>
+  </button> -->
 
   <!-- The Confirmation Modal -->
   <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLongTitle" aria-hidden="true">
