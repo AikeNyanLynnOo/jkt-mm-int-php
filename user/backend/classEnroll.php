@@ -39,7 +39,7 @@ $township = $_POST['township'];
 $type = $_POST['type'];
 $nrcNumber = $_POST['nrcNumber'];
 $nrc = $nrcCode . "/" . $township . $type . $nrcNumber;
-$email = $_POST['email'];
+$email = isset($_POST['email']) ? $_POST['email'] : "";
 $address = $_POST['address'];
 $phone = $_POST['phone'];
 $education = $_POST['edu'];
@@ -65,7 +65,6 @@ $paid_percent = 0;
 //     $classTime .",".
 //     $payment_method
 // );
-
 
 // Get Image Dimension
 $fileinfo = @getimagesize($_FILES["photo"]["tmp_name"]);
@@ -102,7 +101,7 @@ else if ($width > "300" || $height > "300") {
         "data" => $_POST,
     );
 } else {
-    if(file_exists("uploads/$nrcNumber.$file_extension")) unlink("uploads/$nrcNumber.$file_extension");
+    if (file_exists("uploads/$nrcNumber.$file_extension")) unlink("uploads/$nrcNumber.$file_extension");
     $target = "uploads/" . "$nrcNumber.$file_extension";
     if (move_uploaded_file($_FILES["photo"]["tmp_name"], $target)) {
         // continue to insert to db cuz image upload succeed.
@@ -144,15 +143,21 @@ else if ($width > "300" || $height > "300") {
         $course_result = mysqli_query($conn, $select_from_courses);
 
         $row = mysqli_fetch_assoc($course_result);
-        if ($row) {
-            if ($payment_method === "Cash") {
-                $afterTryingToSend = sendMail($email, $uname, $row, TRUE);
-            } else {
-                $afterTryingToSend = sendMail($email, $uname, $row, FALSE);
+        if ($email == "") {
+            unset($_SESSION['response']);
+            header("location: ../frontend/enrollSuccess.php");
+            exit();
+        } else {
+            if ($row) {
+                if ($payment_method === "Cash") {
+                    $afterTryingToSend = sendMail($email, $uname, $row, TRUE);
+                } else {
+                    $afterTryingToSend = sendMail($email, $uname, $row, FALSE);
+                }
             }
         }
         if ($afterTryingToSend[0]) {
-            unset($_SESSION['response']); 
+            unset($_SESSION['response']);
             header("location: ../frontend/enrollSuccess.php");
             exit();
         } else {
