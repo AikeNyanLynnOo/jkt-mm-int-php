@@ -32,7 +32,7 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-light navbar-expand-lg gray-dark float-panel" data-top="0" data-scroll="300">
+<nav class="navbar navbar-light navbar-expand-lg gray-dark float-panel" data-top="0" data-scroll="300">
     <div class="container-fluid mynav">
       <a href="index.html" class="navbar-brand">
         <img src="../assets/images/logo.jpg" alt="" height="50px" width="50px" />
@@ -53,58 +53,58 @@
       <div id="navbarCollapse" class="collapse navbar-collapse">
         <ul class="navbar-nav ms-auto text-sm-start">
           <li class="nav-item">
-            <a href="index.html" class="nav-link active"> HOME </a>
+            <a href="index.html" class="nav-link active"> ホーム </a>
           </li>
           <li class="nav-item">
-            <a href="./about.html" class="nav-link active"> ABOUT </a>
+            <a href="./about.html" class="nav-link active"> 会社情報 </a>
           </li>
           <li class="nav-item">
             <a href="./activities.html" class="nav-link active">
-              ACTIVITIES
+              活動
             </a>
           </li>
           <li class="nav-item dropdown">
             <a href="./services.html" class="nav-link active" id="serviceNavbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
-              SERVICES <i class="fas fa-angle-down"></i>
+              サービス <i class="fas fa-angle-down"></i>
             </a>
             <div class="dropdown-menu" aria-labelledby="serviceNavbarDropdown">
-              <a class="dropdown-item" href="./overseas.html">OVERSEAS EMPLOYMENT</a>
-              <a class="dropdown-item" href="./business.html">BUSINESS CONSULTANT</a>
-              <a class="dropdown-item" href="./announcement.html">IT SERVICES</a>
-              <a class="dropdown-item" href="./announcement.html">TRAVEL AND TOULS</a>
+              <a class="dropdown-item" href="./overseas.html">海外での雇用</a>
+              <a class="dropdown-item" href="./business.html">ビジネスコンサルタント</a>
+              <a class="dropdown-item" href="./announcement.html">ITサービス</a>
+              <a class="dropdown-item" href="./announcement.html">旅行サービス</a>
             </div>
           </li>
           <li class="nav-item dropdown">
             <a href="./trainings.html" class="nav-link" id="trainingNavbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
-              TRAININGS <i class="fas fa-angle-down"></i>
+              トレーニング <i class="fas fa-angle-down"></i>
             </a>
             <div class="dropdown-menu" aria-labelledby="trainingNavbarDropdown">
-              <a class="dropdown-item" href="./jp-school.php">JAPANESE LANGUAGE SCHOOL</a>
-              <a class="dropdown-item" href="./announcement.html">VOCATIONAL TRAINING</a>
-              <a class="dropdown-item" href="./announcement.html">HR TRAINING</a>
+              <a class="dropdown-item" href="./jp-school.php">日本語学校</a>
+              <a class="dropdown-item" href="./announcement.html">職業訓練</a>
+              <a class="dropdown-item" href="./announcement.html">人材トレーニング</a>
             </div>
           </li>
           <li class="nav-item">
-            <a href="./contact.html" class="nav-link active"> CONTACT </a>
+            <a href="./contact.html" class="nav-link active"> お問い合わせ </a>
           </li>
           <li class="lang">
             <div class="btn-group" role="group" aria-label="First group">
-              <a href="../enrollSuccess.php"><button type="button" class="btn btn1" style="background-color: rgba(91, 175, 231, 0.5)">
+              <a href="../classEnroll.php"><button type="button" class="btn btn1">
                   <img src="../assets/images/icon/ukFlag.png" height="20px" width="25px" /></button></a>
-              <a href="../mm/enrollSuccess.php"><button type="button" class="btn btn2">
+              <a href="../mm/classEnroll.php"><button type="button" class="btn btn2">
                   <img src="../assets/images/icon/mmFlag.svg" height="20px" width="25px" /></button></a>
-              <a href="../jp/enrollSuccess.php"><button type="button" class="btn btn3">
+              <a href="./classEnroll.php"><button type="button" class="btn btn3" style="background-color: rgba(91, 175, 231, 0.5)">
                   <img src="../assets/images/icon/japanFlag.jpg" height="20px" width="25px" /></button></a>
             </div>
           </li>
         </ul>
       </div>
       <div class="btn-group lang-xl" role="group" aria-label="First group">
-        <a href="../enrollSuccess.php"><button type="button" class="btn btn1" style="background-color: rgba(91, 175, 231, 0.5)">
+        <a href="../classEnroll.php"><button type="button" class="btn btn1">
             <img src="../assets/images/icon/ukFlag.png" height="20px" width="25px" /></button></a>
-        <a href="./enrollSuccess.php"><button type="button" class="btn btn2">
+        <a href="../mm/classEnroll.php"><button type="button" class="btn btn2">
             <img src="../assets/images/icon/mmFlag.svg" height="20px" width="25px" /></button></a>
-        <a href="../jp/enrollSuccess.php"><button type="button" class="btn btn3">
+        <a href="./classEnroll.php"><button type="button" class="btn btn3" style="background-color: rgba(91, 175, 231, 0.5)">
             <img src="../assets/images/icon/japanFlag.jpg" height="20px" width="25px" /></button></a>
       </div>
     </div>
@@ -121,13 +121,13 @@
   <!-- JP School header end -->
 
   <nav aria-label="breadcrumb" class="breadcrumb-nav">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="./index.html">Home</a></li>
-        <li class="breadcrumb-item"><a href="./trainings.html">Trainings</a></li>
-        <li class="breadcrumb-item"><a href="./jp-school.php">Japanese Language School</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Enroll Successfully </li>
-      </ol>
-    </nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="./index.html">ホーム</a></li>
+      <li class="breadcrumb-item"><a href="./trainings.html">トレーニング</a></li>
+      <li class="breadcrumb-item"><a href="./jp-school.php">日本語学校</a></li>
+      <li class="breadcrumb-item active" aria-current="page">首尾よく登録</li>
+    </ol>
+  </nav>
 
   <!-- Enrollment Form start -->
   <section>
@@ -136,7 +136,7 @@
         <div class="col-11 col-sm-10 col-md-10 col-lg-8 col-xl-6 text-center p-0 mt-3 mb-2">
           <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
             <!-- <h2 id="heading">Sign Up Your User Account</h2> -->
-            <p class="enroll-description">Fill all form field to go to next step</p>
+            <p class="enroll-description">すべてのフォームフィールドに入力して、次の手順に進みます</p>
               <!-- progressbar -->
               <ul id="progressbar">
                 <li class="active" id="personal"></li>
@@ -150,13 +150,13 @@
                 <div class="form-card">
                   <div class="row">
                     <div class="col-7">
-                      <h2 class="enrollForm-title">Finish:</h2>
+                      <h2 class="enrollForm-title">終了:</h2>
                     </div>
                     <div class="col-5">
-                      <h2 class="steps">Step 3 - 3</h2>
+                      <h2 class="steps">ステップ 3 - 3</h2>
                     </div>
                   </div> <br><br>
-                  <h2 class="blue-text text-center"><strong>Successfully Submitted!</strong></h2> <br>
+                  <h2 class="blue-text text-center"><strong>正常に送信されました!</strong></h2> <br>
                   <div class="row justify-content-center">
                     <div class="col-3">
                       <img src="../assets/images/blue-tick.png" class="fit-image">
@@ -164,11 +164,11 @@
                   </div> <br><br>
                   <div class="row justify-content-center">
                     <div class="col-7 text-center">
-                      <h5 class="blue-text text-center">We will send email during business hours (9:00~17:00). Please check your email for payment information. </h5>
+                      <h5 class="blue-text text-center">メールは営業時間内（9：00〜17：00）に送信されます。お支払い情報についてはメールを確認してください。 </h5>
                     </div>
                   </div>
                   <div class="row justify-content-center mt-3">
-                    <a href="classEnroll.php" class="back-to-courses">Browse Courses</a>
+                    <a href="classEnroll.php" class="back-to-courses">コースを閲覧する</a>
                   </div>
                 </div>
               </fieldset>
@@ -194,45 +194,45 @@
     <div class="right">
       <div class="footer-flex">
         <div>
-          <header>Join us for your business</header>
-          <p>We're here to give you a hand whenever you need</p>
+          <header>ご連絡ください。</header>
+          <p>私たちはあなたと一緒に働く準備ができています。</p>
         </div>
-        <a href="./contact.html"><button id="btn-contact" class="primary-btn">CONTACT US</button></a>
+        <a href="./contact.html"><button id="btn-contact" class="primary-btn">お問い合わせ</button></a>
       </div>
       <div class="footer-flex-nav">
         <div class="nav">
-          <header>Services</header>
+          <header>サービス</header>
           <ul class="footer-list" id="first">
             <li>
-              <span><a href="./overseas.html">Oversea Employment Services (only Japan)</a></span>
+              <span><a href="./overseas.html">海外雇用サービス（日本のみ）</a></span>
             </li>
             <li>
-              <span><a href="./business.html">Business Consultant Service</a></span>
+              <span><a href="./business.html">ビジネスコンサルタント</a></span>
             </li>
             <li>
-              <span><a href="./announcement.html">IT Services</a></span>
+              <span><a href="./announcement.html">ITサービス</a></span>
             </li>
             <li>
-              <span><a href="./announcement.html">Travel and Tours</a></span>
+              <span><a href="./announcement.html">旅行サービス</a></span>
             </li>
           </ul>
         </div>
         <div class="nav">
-          <header>Training</header>
+          <header>トレーニング</header>
           <ul class="footer-list" id="second">
             <li>
-              <span><a href="./jp-school.php">Japanese Language School</a></span>
+              <span><a href="./jp-school.php">日本語学校</a></span>
             </li>
             <li>
-              <span><a href="./announcement.html">Vocational Training</a></span>
+              <span><a href="./announcement.html">職業訓練</a></span>
             </li>
             <li>
-              <span><a href="./announcement.html">HR Training</a></span>
+              <span><a href="./announcement.html">人材トレーニング</a></span>
             </li>
           </ul>
         </div>
         <div class="nav">
-          <header>Contact</header>
+          <header>お問い合わせ</header>
           <ul class="footer-list" id="last">
             <li>
               <i class="fa fa-phone"></i><a href="tel:+959269564339">+959 269 564 339</a>

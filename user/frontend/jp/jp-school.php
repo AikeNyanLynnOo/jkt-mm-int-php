@@ -368,7 +368,7 @@
                         <button class="detail" data-toggle="modal" data-target="#detailModal">Detail</button>
                       </td>
                       <td data-label="登録">
-                        <a href="./classEnroll.php?courseID=<?php echo $row['course_id']; ?>"><button class="enroll">ENROLL</button></a>
+                        <a href="./classEnroll.php"><button class="enroll">ENROLL</button></a>
                       </td>
                     </tr>
                   <?php } ?>

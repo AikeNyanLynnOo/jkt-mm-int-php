@@ -203,7 +203,7 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                           <!-- <input type="text" class="form-input" name="nrc" id="nrc" placeholder="e.g. Please Enter NRC" required />  -->
                           <div class="col-12 col-sm-10 col-md-10 col-lg-2 col-xl-2">
                             <select name="nrcCode" id="nrcCode" class="form-input nrc">
-                              <option value="" selected disabled>州番号</option>
+                              <option value="" selected disabled>State</option>
                               <?php
                               for ($i = 0; $i < count($stateNumberArr); $i++) {
                                 echo "<option value='" . $stateNumberArr[$i] . "'>";
@@ -215,12 +215,12 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                           </div>
                           <div class="col-12 col-sm-10 col-md-10 col-lg-5 col-xl-5">
                             <select name="township" id="township" class="form-input nrc">
-                              <option value="" selected disabled>町</option>
+                              <option value="" selected disabled>Township</option>
                             </select>
                           </div>
                           <div class="col-12 col-sm-10 col-md-10 col-lg-3 col-xl-3">
                             <select name="type" id="type" class="form-input nrc">
-                              <option value="" selected disabled>タイプ</option>
+                              <option value="" selected disabled>Type</option>
                               <option value="(C)">(C) - (နိုင်)</option>
                               <option value="(AC)">(AC) - (ဧည့်)</option>
                               <option value="(NC)">(NC) - (ပြု)</option>
@@ -259,7 +259,7 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                         <textarea name="edu" class="form-input" id="edu" placeholder="e.g. University"></textarea>
                       </div>
                     </div>
-                    <input type="button" name="next" id="userInfo" class="next action-button" value="Next" />
+                    <input type="button" name="next" id="userInfo" class="next action-button" value="次" />
                 </fieldset>
                 <!-- <fieldset id="classInformation">
                 <div class="form-card">
@@ -378,7 +378,7 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                     </div> <br><br>
                     <div class="row justify-content-center">
                       <div class="col-7 text-center">
-                        <h5 class="blue-text text-center">メールは営業時間内（9：00〜17：00）に送信されます。お支払い情報についてはメールを確認してください. </h5>
+                        <h5 class="blue-text text-center">メールは営業時間内（9：00〜17：00）に送信されます。お支払い情報についてはメールを確認してください。 </h5>
                       </div>
                     </div>
                     <div class="row justify-content-center mt-3">
@@ -446,7 +446,7 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                           <!-- <input type="text" class="form-input" name="nrc" id="nrc" placeholder="e.g. Please Enter NRC" required />  -->
                           <div class="col-12 col-sm-10 col-md-10 col-lg-2 col-xl-2">
                             <select name="nrcCode" id="nrcCode" class="form-input nrc">
-                              <option value="" selected disabled>州番号</option>
+                              <option value="" selected disabled>State</option>
                               <?php
                               for ($i = 0; $i < count($stateNumberArr); $i++) {
                                 echo "<option value='" . $stateNumberArr[$i] . "'>";
@@ -458,12 +458,12 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                           </div>
                           <div class="col-12 col-sm-10 col-md-10 col-lg-5 col-xl-5">
                             <select name="township" id="township" class="form-input nrc">
-                              <option value="" selected disabled>町</option>
+                              <option value="" selected disabled>Township</option>
                             </select>
                           </div>
                           <div class="col-12 col-sm-10 col-md-10 col-lg-3 col-xl-3">
                             <select name="type" id="type" class="form-input nrc">
-                              <option value="" selected disabled>タイプ</option>
+                              <option value="" selected disabled>Type</option>
                               <option value="(C)">(C) - (နိုင်)</option>
                               <option value="(AC)">(AC) - (ဧည့်)</option>
                               <option value="(NC)">(NC) - (ပြု)</option>
@@ -502,7 +502,7 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                         <textarea name="edu" class="form-input" id="edu" placeholder="e.g. University"></textarea>
                       </div>
                     </div>
-                    <input type="button" name="next" id="userInfo" class="next action-button" value="Next" />
+                    <input type="button" name="next" id="userInfo" class="next action-button" value="次" />
                 </fieldset>
                 <fieldset id="paymentMethod">
                   <div class="form-card">
@@ -555,20 +555,20 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                       <span id="radioMsg"></span>
                     </div>
                   </div>
-                  <input type="button" name="next" class="next action-button" value="Next" />
+                  <input type="button" name="next" class="next action-button" value="次" />
                   <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
                 </fieldset>
                 <fieldset id="success">
                   <div class="form-card">
                     <div class="row">
                       <div class="col-7">
-                        <h2 class="enrollForm-title">Finish:</h2>
+                        <h2 class="enrollForm-title">終了:</h2>
                       </div>
                       <div class="col-5">
                         <h2 class="steps">ステップ 3 - 3</h2>
                       </div>
                     </div> <br><br>
-                    <h2 class="blue-text text-center"><strong>Successfully Submitted!</strong></h2> <br>
+                    <h2 class="blue-text text-center"><strong>正常に送信されました!</strong></h2> <br>
                     <div class="row justify-content-center">
                       <div class="col-3">
                         <img src="../assets/images/blue-tick.png" class="fit-image">
@@ -576,11 +576,11 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                     </div> <br><br>
                     <div class="row justify-content-center">
                       <div class="col-7 text-center">
-                        <h5 class="blue-text text-center">We will send email during business hours (9:00~17:00). Please check your email for payment information. </h5>
+                        <h5 class="blue-text text-center">メールは営業時間内（9：00〜17：00）に送信されます。お支払い情報についてはメールを確認してください。</h5>
                       </div>
                     </div>
                     <div class="row justify-content-center mt-3">
-                      <a href="classEnroll.php" class="back-to-courses">Browse Courses</a>
+                      <a href="classEnroll.php" class="back-to-courses">コースを閲覧する</a>
                     </div>
                   </div>
                 </fieldset>
@@ -605,7 +605,7 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
 
         <!-- Modal Header -->
         <div class="modal-header">
-          <h4 class="modal-title">Registration confirmation</h4>
+          <h4 class="modal-title">登録確認</h4>
           <button class="btn-close" data-dismiss="modal">
             <i class='fas fa-times' style='font-size:24px; color: grey'></i>
           </button>
@@ -613,13 +613,13 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
 
         <!-- Modal body -->
         <div class="modal-body confirm-modal-body">
-          Are you sure, you want to <span style="color: #001c69">submit your enrollment for this course</span>?
+          <span style="color: #001c69">このコース の 登録 を 送信しても </span>よろしいですか?
         </div>
 
         <!-- Modal footer -->
         <div class="modal-footer">
-          <button type="button" class="btn-cancel" data-dismiss="modal">Cancel</button>
-          <button type="button" class="btn-submit" id="submitConfirm" data-dismiss="modal">Submit</button>
+          <button type="button" class="btn-cancel" data-dismiss="modal">キャンセル</button>
+          <button type="button" class="btn-submit" id="submitConfirm" data-dismiss="modal">送信</button>
         </div>
 
       </div>
@@ -641,45 +641,45 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
     <div class="right">
       <div class="footer-flex">
         <div>
-          <header>Join us for your business</header>
-          <p>We're here to give you a hand whenever you need</p>
+          <header>ご連絡ください。</header>
+          <p>私たちはあなたと一緒に働く準備ができています。</p>
         </div>
-        <a href="./contact.html"><button id="btn-contact" class="primary-btn">CONTACT US</button></a>
+        <a href="./contact.html"><button id="btn-contact" class="primary-btn">お問い合わせ</button></a>
       </div>
       <div class="footer-flex-nav">
         <div class="nav">
-          <header>Services</header>
+          <header>サービス</header>
           <ul class="footer-list" id="first">
             <li>
-              <span><a href="./overseas.html">Oversea Employment Services (only Japan)</a></span>
+              <span><a href="./overseas.html">海外雇用サービス（日本のみ）</a></span>
             </li>
             <li>
-              <span><a href="./business.html">Business Consultant Service</a></span>
+              <span><a href="./business.html">ビジネスコンサルタント</a></span>
             </li>
             <li>
-              <span><a href="./announcement.html">IT Services</a></span>
+              <span><a href="./announcement.html">ITサービス</a></span>
             </li>
             <li>
-              <span><a href="./announcement.html">Travel and Tours</a></span>
+              <span><a href="./announcement.html">旅行サービス</a></span>
             </li>
           </ul>
         </div>
         <div class="nav">
-          <header>Training</header>
+          <header>トレーニング</header>
           <ul class="footer-list" id="second">
             <li>
-              <span><a href="./jp-school.php">Japanese Language School</a></span>
+              <span><a href="./jp-school.php">日本語学校</a></span>
             </li>
             <li>
-              <span><a href="./announcement.html">Vocational Training</a></span>
+              <span><a href="./announcement.html">職業訓練</a></span>
             </li>
             <li>
-              <span><a href="./announcement.html">HR Training</a></span>
+              <span><a href="./announcement.html">人材トレーニング</a></span>
             </li>
           </ul>
         </div>
         <div class="nav">
-          <header>Contact</header>
+          <header>お問い合わせ</header>
           <ul class="footer-list" id="last">
             <li>
               <i class="fa fa-phone"></i><a href="tel:+959269564339">+959 269 564 339</a>

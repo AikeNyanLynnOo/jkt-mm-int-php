@@ -38,88 +38,208 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
 </head>
 
 <body>
-  <nav class="navbar navbar-light navbar-expand-lg gray-dark float-panel" data-top="0" data-scroll="300">
-    <div class="container-fluid mynav">
-      <a href="index.html" class="navbar-brand">
-        <img src="../assets/images/logo.jpg" alt="" height="50px" width="50px" />
-        <span style="font-weight: bolder; font-size: larger; color: #029eff">JKT</span>
-        Myanmar International
-      </a>
-      <a href="index.html" class="small-brand">
-        <img src="../assets/images/logo.jpg" alt="" height="50px" width="50px" />
-        <span style="font-weight: bolder; font-size: larger; color: #029eff">JKT</span>
-        Myanmar International
-      </a>
-      <a href="index.html" class="icon-brand">
-        <img src="../assets/images/logo.jpg" alt="" height="50px" width="50px" />
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse">
-        <span class="navbar-toggler-icon toggler-icon-color"></span>
-      </button>
-      <div id="navbarCollapse" class="collapse navbar-collapse">
-        <ul class="navbar-nav ms-auto text-sm-start">
-          <li class="nav-item">
-            <a href="index.html" class="nav-link active"> HOME </a>
-          </li>
-          <li class="nav-item">
-            <a href="./about.html" class="nav-link active"> ABOUT </a>
-          </li>
-          <li class="nav-item">
-            <a href="./activities.html" class="nav-link active">
-              ACTIVITIES
-            </a>
-          </li>
-          <li class="nav-item dropdown">
-            <a href="./services.html" class="nav-link active" id="serviceNavbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
-              SERVICES <i class="fas fa-angle-down"></i>
-            </a>
-            <div class="dropdown-menu" aria-labelledby="serviceNavbarDropdown">
-              <a class="dropdown-item" href="./overseas.html">OVERSEAS EMPLOYMENT</a>
-              <a class="dropdown-item" href="./business.html">BUSINESS CONSULTANT</a>
-              <a class="dropdown-item" href="./announcement.html">IT SERVICES</a>
-              <a class="dropdown-item" href="./announcement.html">TRAVEL AND TOULS</a>
-            </div>
-          </li>
-          <li class="nav-item dropdown">
-            <a href="./trainings.html" class="nav-link" id="trainingNavbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
-              TRAININGS <i class="fas fa-angle-down"></i>
-            </a>
-            <div class="dropdown-menu" aria-labelledby="trainingNavbarDropdown">
-              <a class="dropdown-item" href="./jp-school.php">JAPANESE LANGUAGE SCHOOL</a>
-              <a class="dropdown-item" href="./announcement.html">VOCATIONAL TRAINING</a>
-              <a class="dropdown-item" href="./announcement.html">HR TRAINING</a>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a href="./contact.html" class="nav-link active"> CONTACT </a>
-          </li>
-          <li class="lang">
-            <div class="btn-group" role="group" aria-label="First group">
-              <a href="../classEnroll.php"><button type="button" class="btn btn1">
-                  <img src="../assets/images/icon/ukFlag.png" height="20px" width="25px" /></button></a>
-              <a href="./classEnroll.php"><button type="button" class="btn btn2" style="background-color: rgba(91, 175, 231, 0.5)">
-                  <img src="../assets/images/icon/mmFlag.svg" height="20px" width="25px" /></button></a>
-              <a href="../jp/classEnroll.php"><button type="button" class="btn btn3">
-                  <img src="../assets/images/icon/japanFlag.jpg" height="20px" width="25px" /></button></a>
-            </div>
-          </li>
-        </ul>
+    <nav
+      class="navbar navbar-light navbar-expand-lg gray-dark float-panel"
+      data-top="0"
+      data-scroll="300"
+    >
+      <div class="container-fluid mynav">
+        <a href="./index.html" class="navbar-brand mm-nav-brand">
+          <img
+            src="../assets/images/logo.jpg"
+            alt=""
+            height="50px"
+            width="50px"
+          />
+          <span style="font-weight: bolder; font-size: larger; color: #029eff"
+            >JKT</span
+          >
+          Myanmar International
+        </a>
+        <a href="./index.html" class="small-brand">
+          <img
+            src="../assets/images/logo.jpg"
+            alt=""
+            height="50px"
+            width="50px"
+          />
+          <span style="font-weight: bolder; font-size: larger; color: #029eff"
+            >JKT</span
+          >
+          Myanmar International
+        </a>
+        <a href="./index.html" class="icon-brand">
+          <img
+            src="../assets/images/logo.jpg"
+            alt=""
+            height="50px"
+            width="50px"
+          />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarCollapse"
+        >
+          <span class="navbar-toggler-icon toggler-icon-color"></span>
+        </button>
+        <div id="navbarCollapse" class="collapse navbar-collapse">
+          <ul class="navbar-nav ms-auto text-sm-start">
+            <li class="nav-item mm-nav">
+              <a href="./index.html" class="nav-link active"> ပင်မစာမျက်နှာ </a>
+            </li>
+            <li class="nav-item mm-nav">
+              <a href="./about.html" class="nav-link active">
+                ကျွန်ုပ်တို့‌အကြောင်း
+              </a>
+            </li>
+            <li class="nav-item mm-nav">
+              <a href="./activities.html" class="nav-link active">
+                လှုပ်ရှားမှုများ
+              </a>
+            </li>
+            <li class="nav-item dropdown mm-nav">
+              <a
+                href="./services.html"
+                class="nav-link active"
+                id="serviceNavbarDropdown"
+                role="button"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                ၀န်ဆောင်မှုများ <i class="fas fa-angle-down"></i>
+              </a>
+              <div
+                class="dropdown-menu"
+                aria-labelledby="serviceNavbarDropdown"
+              >
+                <a class="dropdown-item" href="./overseas.html"
+                  >နိုင်ငံခြား အလုပ်အကိုင် ရှာဖွေရေး ဝန်ဆောင်မှု</a
+                >
+                <a class="dropdown-item" href="./business.html"
+                  >စစီးပွားရေးဆိုင်ရာ အကြံပေးခြင်း ၀န်ဆောင်မှု</a
+                >
+                <a class="dropdown-item" href="./announcement.html"
+                  >အိုင်တီနည်းပညာ ဆိုင်ရာ ၀န်ဆောင်မှု</a
+                >
+                <a class="dropdown-item" href="./announcement.html"
+                  >ခရီးသွား ၀န်ဆောင်မှု</a
+                >
+              </div>
+            </li>
+            <li class="nav-item dropdown mm-nav">
+              <a
+                href="./trainings.html"
+                class="nav-link"
+                id="trainingNavbarDropdown"
+                role="button"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                လေ့ကျင့်သင်ကြားမှုများ <i class="fas fa-angle-down"></i>
+              </a>
+              <div
+                class="dropdown-menu"
+                aria-labelledby="trainingNavbarDropdown"
+              >
+                <a class="dropdown-item" href="./jp-school.php"
+                  >ဂျပန်ဘာသာစကား သင်တန်း</a
+                >
+                <a class="dropdown-item" href="./announcement.html"
+                  >အသက်‌မွေး၀မ်းကျောင်း သင်တန်း</a
+                >
+                <a class="dropdown-item" href="./announcement.html"
+                  >လူ့စွမ်းအားအရင်းအမြစ် စီမံခန့်ခွဲမှု သင်တန်း</a
+                >
+              </div>
+            </li>
+            <li class="nav-item mm-nav">
+              <a href="./contact.html" class="nav-link active"> ဆက်သွယ်ရန် </a>
+            </li>
+            <li class="lang">
+              <div class="btn-group" role="group" aria-label="First group">
+                <a href="../jp-school.php"
+                  ><button
+                    type="button"
+                    class="btn btn1"
+                  >
+                    <img
+                      src="../assets/images/icon/ukFlag.png"
+                      height="20px"
+                      width="25px"
+                    /></button
+                ></a>
+                <a href="./jp-school.php"
+                  ><button
+                    type="button"
+                    class="btn btn2"
+                    style="background-color: rgba(91, 175, 231, 0.5)"
+                  >
+                    <img
+                      src="../assets/images/icon/mmFlag.svg"
+                      height="20px"
+                      width="25px"
+                    /></button
+                ></a>
+                <a href="./jp/jp-school.php"
+                  ><button
+                    type="button"
+                    class="btn btn3"
+                  >
+                    <img
+                      src="../assets/images/icon/japanFlag.jpg"
+                      height="20px"
+                      width="25px"
+                    /></button
+                ></a>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="btn-group lang-xl" role="group" aria-label="First group">
+          <a href="../jp-school.php"
+            ><button
+              type="button"
+              class="btn btn1"
+            >
+              <img
+                src="../assets/images/icon/ukFlag.png"
+                height="20px"
+                width="25px"
+              /></button
+          ></a>
+          <a href="./jp-school.php"
+            ><button
+              type="button"
+              class="btn btn2"
+              style="background-color: rgba(91, 175, 231, 0.5)"
+            >
+              <img
+                src="../assets/images/icon/mmFlag.svg"
+                height="20px"
+                width="25px"
+              /></button
+          ></a>
+          <a href="../jp/jp-school.php"
+            ><button
+              type="button"
+              class="btn btn3"
+            >
+              <img
+                src="../assets/images/icon/japanFlag.jpg"
+                height="20px"
+                width="25px"
+              /></button
+          ></a>
+        </div>
       </div>
-      <div class="btn-group lang-xl" role="group" aria-label="First group">
-        <a href="../classEnroll.php"><button type="button" class="btn btn1">
-            <img src="../assets/images/icon/ukFlag.png" height="20px" width="25px" /></button></a>
-        <a href="./classEnroll.php"><button type="button" class="btn btn2" style="background-color: rgba(91, 175, 231, 0.5)">
-            <img src="../assets/images/icon/mmFlag.svg" height="20px" width="25px" /></button></a>
-        <a href="../jp/classEnroll.php"><button type="button" class="btn btn3">
-            <img src="../assets/images/icon/japanFlag.jpg" height="20px" width="25px" /></button></a>
-      </div>
-    </div>
-  </nav>
+    </nav>
 
   <!-- JP School header start -->
   <section>
     <div class="header">
-      <h3>Japanese Language School - Enrollment Form</h3>
+      <h3>ဂျပန်ဘာသာစကား သင်တန်း - စာရင်းပေးသွင်းရန်ပုံစံ</h3>
       <div class="bg-cover"></div>
       <img src="../assets/images/cover/cover.jpg" alt="jpschool-cover" />
     </div>
@@ -128,10 +248,10 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
 
   <nav aria-label="breadcrumb" class="breadcrumb-nav">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="./index.html">Home</a></li>
-      <li class="breadcrumb-item"><a href="./trainings.html">Trainings</a></li>
-      <li class="breadcrumb-item"><a href="./jp-school.php">Japanese Language School</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Enrollment Form</li>
+      <li class="breadcrumb-item"><a href="./index.html">ပင်မစာမျက်နှာ</a></li>
+      <li class="breadcrumb-item"><a href="./trainings.html">လေ့ကျင့်သင်ကြားမှုများ</a></li>
+      <li class="breadcrumb-item"><a href="./jp-school.php">ဂျပန်ဘာသာစကား သင်တန်း</a></li>
+      <li class="breadcrumb-item active" aria-current="page">စာရင်းပေးသွင်းရန်ပုံစံ</li>
     </ol>
   </nav>
 
@@ -142,7 +262,7 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
         <div class="col-11 col-sm-10 col-md-10 col-lg-8 col-xl-6 text-center p-0 mt-3 mb-2">
           <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
             <!-- <h2 id="heading">Sign Up Your User Account</h2> -->
-            <p class="enroll-description">Fill all form field to go to next step</p>
+            <p class="enroll-description">နောက်တစ်ဆင့်သို့သွားရန် ဖောင်အကွက်အားလုံးကို ဖြည့်ပါ</p>
             <?php
             if (!empty($response)) {
             ?>
@@ -160,10 +280,10 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                   <div class="form-card">
                     <div class="row">
                       <div class="col-7">
-                        <h2 class="enrollForm-title">User Information:</h2>
+                        <h2 class="enrollForm-title">အသုံးပြုသူအချက်အလက်:</h2>
                       </div>
                       <div class="col-5">
-                        <h2 class="steps">Step 1 - 3</h2>
+                        <h2 class="steps">အဆင့် 1 - 3</h2>
                       </div>
                     </div>
                     <div class="row mb-3">
@@ -171,7 +291,7 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                         <img id="image-preview" src="../assets/images/default-profile-icon.jpg" alt="user image" />
                       </div>
                       <div class="col-13 col-sm-12 col-md-6 col-lg-7 col-xl-8 file-input">
-                        <label class="fieldlabels">Upload Your Photo: <span class="required-tag">required &nbsp; *</span></label>
+                        <label class="fieldlabels">သင့်ဓာတ်ပုံကို တင်ရန်: <span class="required-tag">required &nbsp; *</span></label>
                         <input type="file" name="photo" class="form-input" id="file-input" />
                       </div>
                       <p class="alert col-12 pb-0"><?php if($response["type"] === "error") echo $response["message"]; ?></p>
@@ -179,25 +299,25 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                     <input type="hidden" name="courseId" value="<?php if (isset($_SESSION['courseId'])) echo $_SESSION['courseId'] ?>" />
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-12">
-                        <label class="fieldlabels">Full Name: <span class="required-tag">required &nbsp; *</span></label>
+                        <label class="fieldlabels">အမည်အပြည့်အစုံ: <span class="required-tag">required &nbsp; *</span></label>
                         <input type="text" class="form-input" name="uname" id="uname" value="<?php echo $response["data"]["uname"] ?>" />
                       </div>
                     </div>
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-12">
-                        <label class="fieldlabels">Date of Birth: <span class="required-tag">required &nbsp; *</span></label>
+                        <label class="fieldlabels">မွေးသက္ကရာဇ်: <span class="required-tag">required &nbsp; *</span></label>
                         <input type="date" class="form-input" name="dob" id="dob" required />
                       </div>
                     </div>
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-12">
-                        <label class="fieldlabels">Father Name: <span class="required-tag">required &nbsp; *</span></label>
+                        <label class="fieldlabels">အဖအမည်: <span class="required-tag">required &nbsp; *</span></label>
                         <input type="text" class="form-input" name="fname" id="fname" placeholder="e.g. U Aye" />
                       </div>
                     </div>
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-12">
-                        <label class="fieldlabels">NRC: <span class="required-tag">required &nbsp; *</span></label>
+                        <label class="fieldlabels">မှတ်ပုံတင်: <span class="required-tag">required &nbsp; *</span></label>
                         <div class="row">
                           <?php $stateNumberArr = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"] ?>
                           <!-- <input type="text" class="form-input" name="nrc" id="nrc" placeholder="e.g. Please Enter NRC" required />  -->
@@ -237,29 +357,29 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                     </div>
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-12">
-                        <label class="fieldlabels">Email:</label>
+                        <label class="fieldlabels">အီးမေးလ်:</label>
                         <input type="email" class="form-input" name="email" id="email" placeholder="abc@gmail.com" />
                       </div>
                     </div>
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-12">
-                        <label class="fieldlabels">Phone Number: <span class="required-tag">required &nbsp; *</span></label>
+                        <label class="fieldlabels">ဖုန်းနံပါတ်: <span class="required-tag">required &nbsp; *</span></label>
                         <input type="text" class="form-input" name="phone" id="phone" placeholder="09..." />
                       </div>
                     </div>
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-12">
-                        <label class="fieldlabels">Address: <span class="required-tag">required &nbsp; *</span></label>
+                        <label class="fieldlabels">နေရပ်လိပ်စာ: <span class="required-tag">required &nbsp; *</span></label>
                         <textarea name="address" class="form-input" id="address" placeholder="e.g. No.(), (...) Road, (...) City."></textarea>
                       </div>
                     </div>
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-12">
-                        <label class="fieldlabels">Education: <span class="required-tag">required &nbsp; *</span></label>
+                        <label class="fieldlabels">ပညာရေး: <span class="required-tag">required &nbsp; *</span></label>
                         <textarea name="edu" class="form-input" id="edu" placeholder="e.g. University"></textarea>
                       </div>
                     </div>
-                    <input type="button" name="next" id="userInfo" class="next action-button" value="Next" />
+                    <input type="button" name="next" id="userInfo" class="next action-button" value="ရှေ့ဆက်ရန်" />
                 </fieldset>
                 <!-- <fieldset id="classInformation">
                 <div class="form-card">
@@ -310,15 +430,15 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                   <div class="form-card">
                     <div class="row">
                       <div class="col-7">
-                        <h2 class="enrollForm-title">Payment:</h2>
+                        <h2 class="enrollForm-title">ငွေပေးချေမှု:</h2>
                       </div>
                       <div class="col-5">
-                        <h2 class="steps">Step 2 - 3</h2>
+                        <h2 class="steps">အဆင့် 2 - 3</h2>
                       </div>
                     </div>
                     <div class="row mt-4">
                       <div class="col-12">
-                        <label class="fieldlabels">Select One of the Payment Method: <span class="required-tag">required &nbsp; *</span></label>
+                        <label class="fieldlabels">ငွေပေးချေမှုပုံစံ တစ်ခုကို ရွေးပါ: <span class="required-tag">required &nbsp; *</span></label>
                       </div>
                     </div>
                     <div class="row bank-container">
@@ -357,20 +477,20 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                       <span id="radioMsg"></span>
                     </div>
                   </div>
-                  <input type="button" name="next" class="next action-button" value="Next" />
-                  <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                  <input type="button" name="next" class="next action-button" value="ရှေ့ဆက်ရန်" />
+                  <input type="button" name="previous" class="previous action-button-previous" value="နောက်သို့" />
                 </fieldset>
                 <fieldset id="success">
                   <div class="form-card">
                     <div class="row">
                       <div class="col-7">
-                        <h2 class="enrollForm-title">Finish:</h2>
+                        <h2 class="enrollForm-title">ပြီးဆုံးမှု:</h2>
                       </div>
                       <div class="col-5">
-                        <h2 class="steps">Step 3 - 3</h2>
+                        <h2 class="steps">အဆင့် 3 - 3</h2>
                       </div>
                     </div> <br><br>
-                    <h2 class="blue-text text-center"><strong>Successfully Submitted!</strong></h2> <br>
+                    <h2 class="blue-text text-center"><strong>အောင်မြင်စွာ စာရင်းပေးသွင်းပြီးပါပြီ!</strong></h2> <br>
                     <div class="row justify-content-center">
                       <div class="col-3">
                         <img src="../assets/images/blue-tick.png" class="fit-image">
@@ -378,11 +498,11 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                     </div> <br><br>
                     <div class="row justify-content-center">
                       <div class="col-7 text-center">
-                        <h5 class="blue-text text-center">We will send email during business hours (9:00~17:00). Please check your email for payment information. </h5>
+                        <h5 class="blue-text text-center">အလုပ်ချိန် (9:00 ~ 17:00) အတွင်း အီးမေးလ်ပို့ပေးပါမည်။ ငွေပေးချေမှုအချက်အလက်အတွက် လူကြီးမင်း၏အီးမေးလ်ကို စစ်ဆေးပေးပါ။ </h5>
                       </div>
                     </div>
                     <div class="row justify-content-center mt-3">
-                      <a href="classEnroll.php" class="back-to-courses">Browse Courses</a>
+                      <a href="classEnroll.php" class="back-to-courses">သင်တန်းများကို ပြန်လည်ကြည့်ရှုရန်</a>
                     </div>
                   </div>
                 </fieldset>
@@ -403,10 +523,10 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                   <div class="form-card">
                     <div class="row">
                       <div class="col-7">
-                        <h2 class="enrollForm-title">User Information:</h2>
+                        <h2 class="enrollForm-title">အသုံးပြုသူအချက်အလက်:</h2>
                       </div>
                       <div class="col-5">
-                        <h2 class="steps">Step 1 - 3</h2>
+                        <h2 class="steps">အဆင့် 1 - 3</h2>
                       </div>
                     </div>
                     <div class="row mb-3">
@@ -414,7 +534,7 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                         <img id="image-preview" src="../assets/images/default-profile-icon.jpg" alt="user image" />
                       </div>
                       <div class="col-13 col-sm-12 col-md-6 col-lg-7 col-xl-8 file-input">
-                        <label class="fieldlabels">Upload Your Photo: <span class="required-tag">required &nbsp; *</span></label>
+                        <label class="fieldlabels">သင့်ဓာတ်ပုံကို တင်ရန်: <span class="required-tag">required &nbsp; *</span></label>
                         <input type="file" name="photo" class="form-input" id="file-input" />
                       </div>
                       
@@ -422,25 +542,25 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                     <input type="hidden" name="courseId" value="<?php if (isset($_SESSION['courseId'])) echo $_SESSION['courseId'] ?>" />
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-12">
-                        <label class="fieldlabels">Full Name: <span class="required-tag">required &nbsp; *</span></label>
+                        <label class="fieldlabels">အမည်အပြည့်အစုံ: <span class="required-tag">required &nbsp; *</span></label>
                         <input type="text" class="form-input" name="uname" id="uname" placeholder="eg. Win Win" />
                       </div>
                     </div>
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-12">
-                        <label class="fieldlabels">Date of Birth: <span class="required-tag">required &nbsp; *</span></label>
+                        <label class="fieldlabels">မွေးသက္ကရာဇ်: <span class="required-tag">required &nbsp; *</span></label>
                         <input type="date" class="form-input" name="dob" id="dob" required />
                       </div>
                     </div>
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-12">
-                        <label class="fieldlabels">Father Name: <span class="required-tag">required &nbsp; *</span></label>
+                        <label class="fieldlabels">အဖအမည်: <span class="required-tag">required &nbsp; *</span></label>
                         <input type="text" class="form-input" name="fname" id="fname" placeholder="e.g. U Aye" />
                       </div>
                     </div>
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-12">
-                        <label class="fieldlabels">NRC: <span class="required-tag">required &nbsp; *</span></label>
+                        <label class="fieldlabels">မှတ်ပုံတင်: <span class="required-tag">required &nbsp; *</span></label>
                         <div class="row">
                           <?php $stateNumberArr = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"] ?>
                           <!-- <input type="text" class="form-input" name="nrc" id="nrc" placeholder="e.g. Please Enter NRC" required />  -->
@@ -480,43 +600,43 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                     </div>
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-12">
-                        <label class="fieldlabels">Email:</label>
+                        <label class="fieldlabels">အီးမေးလ်:</label>
                         <input type="email" class="form-input" name="email" id="email" placeholder="abc@gmail.com" />
                       </div>
                     </div>
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-12">
-                        <label class="fieldlabels">Phone Number: <span class="required-tag">required &nbsp; *</span></label>
+                        <label class="fieldlabels">ဖုန်းနံပါတ်: <span class="required-tag">required &nbsp; *</span></label>
                         <input type="text" class="form-input" name="phone" id="phone" placeholder="09..." />
                       </div>
                     </div>
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-12">
-                        <label class="fieldlabels">Address: <span class="required-tag">required &nbsp; *</span></label>
+                        <label class="fieldlabels">နေရပ်လိပ်စာ: <span class="required-tag">required &nbsp; *</span></label>
                         <textarea name="address" class="form-input" id="address" placeholder="e.g. No.(), (...) Road, (...) City."></textarea>
                       </div>
                     </div>
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-12">
-                        <label class="fieldlabels">Education: <span class="required-tag">required &nbsp; *</span></label>
+                        <label class="fieldlabels">ပညာရေး: <span class="required-tag">required &nbsp; *</span></label>
                         <textarea name="edu" class="form-input" id="edu" placeholder="e.g. University"></textarea>
                       </div>
                     </div>
-                    <input type="button" name="next" id="userInfo" class="next action-button" value="Next" />
+                    <input type="button" name="next" id="userInfo" class="next action-button" value="ရှေ့ဆက်ရန်" />
                 </fieldset>
                 <fieldset id="paymentMethod">
                   <div class="form-card">
                     <div class="row">
                       <div class="col-7">
-                        <h2 class="enrollForm-title">Payment:</h2>
+                        <h2 class="enrollForm-title">ငွေပေးချေမှု:</h2>
                       </div>
                       <div class="col-5">
-                        <h2 class="steps">Step 2 - 3</h2>
+                        <h2 class="steps">အဆင့် 2 - 3</h2>
                       </div>
                     </div>
                     <div class="row mt-4">
                       <div class="col-12">
-                        <label class="fieldlabels">Select One of the Payment Method: <span class="required-tag">required &nbsp; *</span></label>
+                        <label class="fieldlabels">ငွေပေးချေမှုပုံစံ တစ်ခုကို ရွေးပါ: <span class="required-tag">required &nbsp; *</span></label>
                       </div>
                     </div>
                     <div class="row bank-container">
@@ -555,20 +675,20 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                       <span id="radioMsg"></span>
                     </div>
                   </div>
-                  <input type="button" name="next" class="next action-button" value="Next" />
-                  <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                  <input type="button" name="next" class="next action-button" value="ရှေ့ဆက်ရန်" />
+                  <input type="button" name="previous" class="previous action-button-previous" value="နောက်သို့" />
                 </fieldset>
                 <fieldset id="success">
                   <div class="form-card">
                     <div class="row">
                       <div class="col-7">
-                        <h2 class="enrollForm-title">Finish:</h2>
+                        <h2 class="enrollForm-title">ပြီးဆုံးမှု:</h2>
                       </div>
                       <div class="col-5">
-                        <h2 class="steps">Step 3 - 3</h2>
+                        <h2 class="steps">အဆင့် 3 - 3</h2>
                       </div>
                     </div> <br><br>
-                    <h2 class="blue-text text-center"><strong>Successfully Submitted!</strong></h2> <br>
+                    <h2 class="blue-text text-center"><strong>အောင်မြင်စွာ စာရင်းပေးသွင်းပြီးပါပြီ!</strong></h2> <br>
                     <div class="row justify-content-center">
                       <div class="col-3">
                         <img src="../assets/images/blue-tick.png" class="fit-image">
@@ -576,11 +696,11 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                     </div> <br><br>
                     <div class="row justify-content-center">
                       <div class="col-7 text-center">
-                        <h5 class="blue-text text-center">We will send email during business hours (9:00~17:00). Please check your email for payment information. </h5>
+                        <h5 class="blue-text text-center">အလုပ်ချိန် (9:00 ~ 17:00) အတွင်း အီးမေးလ်ပို့ပေးပါမည်။ ငွေပေးချေမှုအချက်အလက်အတွက် လူကြီးမင်း၏အီးမေးလ်ကို စစ်ဆေးပေးပါ။ </h5>
                       </div>
                     </div>
                     <div class="row justify-content-center mt-3">
-                      <a href="classEnroll.php" class="back-to-courses">Browse Courses</a>
+                      <a href="classEnroll.php" class="back-to-courses">သင်တန်းများကို ပြန်လည်ကြည့်ရှုရန်</a>
                     </div>
                   </div>
                 </fieldset>
@@ -605,7 +725,7 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
 
         <!-- Modal Header -->
         <div class="modal-header">
-          <h4 class="modal-title">Registration confirmation</h4>
+          <h4 class="modal-title">စာရင်းပေးသွင်းရန် အတည်ပြုချက်</h4>
           <button class="btn-close" data-dismiss="modal">
             <i class='fas fa-times' style='font-size:24px; color: grey'></i>
           </button>
@@ -613,7 +733,7 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
 
         <!-- Modal body -->
         <div class="modal-body confirm-modal-body">
-          Are you sure, you want to <span style="color: #001c69">submit your enrollment for this course</span>?
+          လူကြီးမင်းသည် <span style="color: #001c69">ဤသင်တန်းအတွက် စာရင်းပေးသွင်းလိုသည်မှာ</span> သေချာပါသလား?
         </div>
 
         <!-- Modal footer -->
@@ -628,78 +748,113 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
 
   <!-- footer start -->
   <footer class="footer">
-    <div class="left">
-      <a href="index.html"><span>JKT</span> Myanmar International </a>
-      <div>
-        <a href="https://www.facebook.com/JKT-Myanmar-International-CoLtd-2508681849366709">
-          <i class="fab fa-facebook-f"></i>
-        </a>
-        <i class="fab fa-twitter"></i>
-        <i class="fab fa-instagram"></i>
-      </div>
-    </div>
-    <div class="right">
-      <div class="footer-flex">
+      <div class="left">
+        <a href="./index.html"><span>JKT</span> Myanmar International </a>
         <div>
-          <header>Join us for your business</header>
-          <p>We're here to give you a hand whenever you need</p>
-        </div>
-        <a href="./contact.html"><button id="btn-contact" class="primary-btn">CONTACT US</button></a>
-      </div>
-      <div class="footer-flex-nav">
-        <div class="nav">
-          <header>Services</header>
-          <ul class="footer-list" id="first">
-            <li>
-              <span><a href="./overseas.html">Oversea Employment Services (only Japan)</a></span>
-            </li>
-            <li>
-              <span><a href="./business.html">Business Consultant Service</a></span>
-            </li>
-            <li>
-              <span><a href="./announcement.html">IT Services</a></span>
-            </li>
-            <li>
-              <span><a href="./announcement.html">Travel and Tours</a></span>
-            </li>
-          </ul>
-        </div>
-        <div class="nav">
-          <header>Training</header>
-          <ul class="footer-list" id="second">
-            <li>
-              <span><a href="./jp-school.php">Japanese Language School</a></span>
-            </li>
-            <li>
-              <span><a href="./announcement.html">Vocational Training</a></span>
-            </li>
-            <li>
-              <span><a href="./announcement.html">HR Training</a></span>
-            </li>
-          </ul>
-        </div>
-        <div class="nav">
-          <header>Contact</header>
-          <ul class="footer-list" id="last">
-            <li>
-              <i class="fa fa-phone"></i><a href="tel:+959269564339">+959 269 564 339</a>
-            </li>
-            <li>
-              <i class="fa fa-phone"></i><a href="tel:+959770411708">+959 770 411 708</a>
-            </li>
-            <li>
-              <i class="fas fa-map-marker-alt"></i>No.86, 3A, Shinsawpu Road,
-              Near Myaynigone Citymart, Sanchaung Township, Yangon, Myanmar
-            </li>
-            <li>
-              <i class="fa fa-envelope"></i>
-              <a href="mailto:jkt.mm.int@gmail.com">jkt.mm.int@gmail.com</a>
-            </li>
-          </ul>
+          <a
+            href="https://www.facebook.com/JKT-Myanmar-International-CoLtd-2508681849366709"
+          >
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <i class="fab fa-twitter"></i>
+          <i class="fab fa-instagram"></i>
         </div>
       </div>
-    </div>
-  </footer>
+      <div class="right">
+        <div class="footer-flex">
+          <div>
+            <header>လာရောက်ပူးပေါင်းဆောင်ရွက်ရန်ဖိတ်ခေါ်အပ်ပါသည်။</header>
+            <p>
+              လူကြီးမင်းတို့ နှင့် လုပ်ငန်းများ လက်တွဲလုပ်ဆောင်ဖို့
+              အဆင်သင့်ရှိပါသည်။
+            </p>
+          </div>
+          <a href="./contact.html"
+            ><button id="btn-contact" class="primary-btn">ဆက်သွယ်ရန်</button></a
+          >
+        </div>
+        <div class="footer-flex-nav">
+          <div class="nav">
+            <header>၀န်ဆောင်မှုများ</header>
+            <ul class="footer-list" id="first">
+              <li>
+                <span
+                  ><a href="./overseas.html"
+                    >နိုင်ငံခြား အလုပ်အကိုင် ရှာဖွေရေး ဝန်ဆောင်မှု
+                    (ဂျပန်နိုင်ငံတွင်သာ)</a
+                  ></span
+                >
+              </li>
+              <li>
+                <span
+                  ><a href="./business.html"
+                    >စီးပွားရေးဆိုင်ရာ အကြံပေးခြင်း ၀န်ဆောင်မှု</a
+                  ></span
+                >
+              </li>
+              <li>
+                <span
+                  ><a href="./announcement.html"
+                    >အိုင်တီနည်းပညာဆိုင်ရာ ၀န်ဆောင်မှု</a
+                  ></span
+                >
+              </li>
+              <li>
+                <span
+                  ><a href="./announcement.html">ခရီးသွား ၀န်ဆောင်မှု </a></span
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="nav">
+            <header>သင်တန်းများ</header>
+            <ul class="footer-list" id="second">
+              <li>
+                <span
+                  ><a href="./jp-school.php">ဂျပန်ဘာသာစကား သင်တန်း</a></span
+                >
+              </li>
+              <li>
+                <span
+                  ><a href="./announcement.html"
+                    >အသက်‌မွေး၀မ်းကျောင်း သင်တန်း</a
+                  ></span
+                >
+              </li>
+              <li>
+                <span
+                  ><a href="./announcement.html"
+                    >လူ့စွမ်းအားအရင်းအမြစ် စီမံခန့်ခွဲမှု သင်တန်း</a
+                  ></span
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="nav">
+            <header>ဆက်သွယ်ရန်</header>
+            <ul class="footer-list" id="last">
+              <li>
+                <i class="fa fa-phone"></i
+                ><a href="tel:+959269564339">၀၉ ၂၆၉ ၅၆၄ ၃၃၉</a>
+              </li>
+              <li>
+                <i class="fa fa-phone"></i
+                ><a href="tel:+959770411708">၀၉ ၇၇၀ ၄၁၁ ၇၀၈</a>
+              </li>
+              <li>
+                <i class="fas fa-map-marker-alt"></i>နံပါတ် - ၈၆၊ ၃က၊
+                ရှင်စောပုလမ်း၊ ‌မြေနီကုန်း City Mart အနီး၊ စမ်းချောင်းမြို့နယ်၊
+                ရန်ကုန်မြို့။
+              </li>
+              <li>
+                <i class="fa fa-envelope"></i>
+                <a href="mailto:jkt.mm.int@gmail.com">jkt.mm.int@gmail.com</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
 
   <!-- script -->
   <script src="../assets/js/jquery-3.6.0.js"></script>

@@ -62,7 +62,7 @@ $(document).ready(function () {
     function (value, element) {
       return this.optional(element) || /^([a-zA-Z]{1,}[ ]{0,1})*$/i.test(value);
     },
-    "Username must contain only letters"
+    "Username must contain only letters (Please Spell in English)"
   );
 
   $.validator.addMethod(
