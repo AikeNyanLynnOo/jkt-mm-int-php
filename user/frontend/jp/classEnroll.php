@@ -95,9 +95,9 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
           </li>
           <li class="lang">
             <div class="btn-group" role="group" aria-label="First group">
-              <a href="../classEnroll.php"><button type="button" class="btn btn1" style="background-color: rgba(91, 175, 231, 0.5)">
+              <a href="../classEnroll.php"><button type="button" class="btn btn1">
                   <img src="../assets/images/icon/ukFlag.png" height="20px" width="25px" /></button></a>
-              <a href="./classEnroll.php"><button type="button" class="btn btn2">
+              <a href="./classEnroll.php"><button type="button" class="btn btn2" style="background-color: rgba(91, 175, 231, 0.5)">
                   <img src="../assets/images/icon/mmFlag.svg" height="20px" width="25px" /></button></a>
               <a href="../jp/classEnroll.php"><button type="button" class="btn btn3">
                   <img src="../assets/images/icon/japanFlag.jpg" height="20px" width="25px" /></button></a>
@@ -106,9 +106,9 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
         </ul>
       </div>
       <div class="btn-group lang-xl" role="group" aria-label="First group">
-        <a href="../classEnroll.php"><button type="button" class="btn btn1" style="background-color: rgba(91, 175, 231, 0.5)">
+        <a href="../classEnroll.php"><button type="button" class="btn btn1">
             <img src="../assets/images/icon/ukFlag.png" height="20px" width="25px" /></button></a>
-        <a href="./classEnroll.php"><button type="button" class="btn btn2">
+        <a href="./classEnroll.php"><button type="button" class="btn btn2" style="background-color: rgba(91, 175, 231, 0.5)">
             <img src="../assets/images/icon/mmFlag.svg" height="20px" width="25px" /></button></a>
         <a href="../jp/classEnroll.php"><button type="button" class="btn btn3">
             <img src="../assets/images/icon/japanFlag.jpg" height="20px" width="25px" /></button></a>
