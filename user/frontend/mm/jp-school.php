@@ -149,7 +149,7 @@
                 class="dropdown-menu"
                 aria-labelledby="trainingNavbarDropdown"
               >
-                <a class="dropdown-item" href="./jp-school.html"
+                <a class="dropdown-item" href="./jp-school.php"
                   >ဂျပန်ဘာသာစကား သင်တန်း</a
                 >
                 <a class="dropdown-item" href="./announcement.html"
@@ -165,7 +165,7 @@
             </li>
             <li class="lang">
               <div class="btn-group" role="group" aria-label="First group">
-                <a href="../jp-school.html"
+                <a href="../jp-school.php"
                   ><button
                     type="button"
                     class="btn btn1"
@@ -176,7 +176,7 @@
                       width="25px"
                     /></button
                 ></a>
-                <a href="./jp-school.html"
+                <a href="./jp-school.php"
                   ><button
                     type="button"
                     class="btn btn2"
@@ -188,7 +188,7 @@
                       width="25px"
                     /></button
                 ></a>
-                <a href="../jp/jp-school.html"
+                <a href="./jp/jp-school.php"
                   ><button
                     type="button"
                     class="btn btn3"
@@ -204,7 +204,7 @@
           </ul>
         </div>
         <div class="btn-group lang-xl" role="group" aria-label="First group">
-          <a href="../jp-school.html"
+          <a href="../jp-school.php"
             ><button
               type="button"
               class="btn btn1"
@@ -215,7 +215,7 @@
                 width="25px"
               /></button
           ></a>
-          <a href="./jp-school.html"
+          <a href="./jp-school.php"
             ><button
               type="button"
               class="btn btn2"
@@ -227,7 +227,7 @@
                 width="25px"
               /></button
           ></a>
-          <a href="../jp/jp-school.html"
+          <a href="../jp/jp-school.php"
             ><button
               type="button"
               class="btn btn3"
@@ -252,6 +252,14 @@
       </div>
     </section>
     <!-- JP School header end -->
+
+    <nav aria-label="breadcrumb" class="breadcrumb-nav">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="./index.html">ပင်မစာမျက်နှာ</a></li>
+        <li class="breadcrumb-item"><a href="./trainings.html">လေ့ကျင့်သင်ကြားမှုများ</a></li>
+        <li class="breadcrumb-item active" aria-current="page">ဂျပန်ဘာသာစကား သင်တန်း</li>
+      </ol>
+    </nav>
 
     <!-- Training School Detail Information Blog start -->
     <section>
@@ -300,145 +308,83 @@
       <div class="container schedule-blog">
         <h1 class="text-center pb-3">အပ်နိုင်သည့်အတန်းအချိန်ဇယား</h1>
         <div class="row">
-          <div class="col-lg-11 schedule-blog-info">
-            <div class="table-responsive schedule-table">
-
-              <table class="table">
+          <div class="col-12 col-lg-12 schedule-blog-info">
+            <div class="schedule-table-block">
+              <table class="schedule-table">
+                <thead>
+                  <tr>
+                    <th scope="col">အတန်း</th>
+                    <th scope="col">တက်‌ရောက်ရမည့်အချိန် နှင့် ရက်</th>
+                    <th scope="col">သင်တန်းကြေး (ကျပ်)</th>
+                    <th scope="col">သင်တန်းကာလ</th>
+                    <th scope="col">သင်တန်းစတင်မည့်ရက်</th>
+                    <th scope="col">အသေးစိတ် သိရှိရန်</th>
+                    <th scope="col">စာရင်းပေးသွင်းရန်</th>
+                  </tr>
+                </thead>
                 <tbody>
-                  <tr>
-                    <th>အတန်း</th>
-                    <th>တက်‌ရောက်ရမည့်ရက်</th>
-                    <th>တက်‌ရောက်ရမည့်အချိန်</th>
-                    <th>သင်တန်းကြေး (မြန်မာကျပ်)</th>
-                    <th>သင်ကြားမည့်ဆရာ</th>
-                    <th style="width : 7em">သင်တန်းကာလ</th>
-                    <th>သင်တန်းစတင်မည့်ရက်</th>
-                    <th>လျှော့စျေးပေးမည့်အစီစဉ်</th>
-                  </tr>
-                  <tr>
-                    <td>N5 သင်တန်း</td>
-                    <td>စနေ၊ တနင်္ဂနွေ</td>
-                    <td>မနက် ၉:၀၀ နာရီမှာ မနက် ၁၁:၀၀ နာရီ အထိ</td>
-                    <td>၇၅၀,၀၀၀ + ဖတ်စာအုပ် (၁၀,၀၀၀)</td>
-                    <td>
-                      <ul>
-                        <li>မြန်မာဆရာ</li>
-                      </ul>
-                    </td>
-                    <td>၃လ</td>
-                    <td>၄၊ ၉၊ ၂၀၂၁</td>
-                    <td>-</td>
-                  </tr>
-                  <tr>
-                    <td>N5 အထူးသင်တန်း</td>
-                    <td>
-                      <ul>
-                        <li>တနင်္လာ၊ အင်္ဂါ၊ ဗုဒ္ဓဟူး</li>
-                      </ul>
-                    </td>
-                    <td>
-                      <ul>
-                        <li>မနက် ၉:၀၀ နာရီမှာ မနက် ၁၁:၀၀ နာရီ အထိ</li>
-                      </ul>
-                    </td>
-                    <td>၁၈၀,၀၀၀</td>
-                    <td>
-                      <ul>
-                        <li>မြန်မာဆရာ</li>
-                      </ul>
-                    </td>
-                    <td>၃လ</td>
-                    <td>၂၃၊ ၈၊ ၂၀၂၁</td>
-                    <td>-</td>
-                  </tr>
-                  <tr>
-                    <td>N4 သင်တန်း</td>
-                    <td>
-                      <ul>
-                        <li>တနင်္လာ၊ ဗုဒ္ဓဟူး</li>
-                      </ul>
-                    </td>
-                    <td>
-                      <ul>
-                        <li>ညနေ ၅:၀၀ နာရီမှ ည ၇:၀၀ နာရီ အထိ</li>
-                      </ul>
-                    </td>
-                    <td>၇၅၀,၀၀၀ + ဖတ်စာအုပ် (၁၀,၀၀၀)</td>
-                    <td>
-                      <ul>
-                        <li>မြန်မာဆရာ</li>
-                      </ul>
-                    </td>
-                    <td>၃လ</td>
-                    <td>၁၊ ၉၊ ၂၀၂၁</td>
-                    <td>-</td>
-                  </tr>
-                  <tr>
-                    <td>N4 JLPT အထူးသင်တန်း</td>
-                    <td>
-                      <ul>
-                        <li>အင်္ဂါ၊ ကြာသပတေး</li>
-                      </ul>
-                    </td>
-                    <td>
-                      <ul>
-                        <li>မနက် ၉:၀၀ နာရီမှာ နေ့လည် ၁၂:၀၀ နာရီ အထိ</li>
-                      </ul>
-                    </td>
-                    <td>၁၈၀,၀၀၀</td>
-                    <td>
-                      <ul>
-                        <li>မြန်မာဆရာ</li>
-                      </ul>
-                    </td>
-                    <td>၃လ</td>
-                    <td>၂၊ ၉၊ ၂၀၂၁</td>
-                    <td>-</td>
-                  </tr>
-                  <tr>
-                    <td>N3 JLPT အထူးသင်တန်း</td>
-                    <td>
-                      <ul>
-                        <li>တနင်္လာ၊ ဗုဒ္ဓဟူး၊ သောကြာ</li>
-                      </ul>
-                    </td>
-                    <td>
-                      <ul>
-                        <li>နေ့လည် ၁:၀၀ နာရီမှ ညနေ ၄:၀၀ နာရီအထိ</li>
-                      </ul>
-                    </td>
-                    <td>၂၀၀,၀၀၀</td>
-                    <td>
-                      <ul>
-                        <li>မြန်မာဆရာ</li>
-                      </ul>
-                    </td>
-                    <td>၃လ</td>
-                    <td>၁၊ ၉၊ ၂၀၂၁</td>
-                    <td>-</td>
-                  </tr>
-                  <tr>
-                    <td>စကားပြောသင်တန်း (အခြေခံအဆင့်၊ အလယ်အလတ်အဆင့်)</td>
-                    <td>
-                      <ul>
-                        <li>အင်္ဂါ၊ ကြာသပတေး</li>
-                      </ul>
-                    </td>
-                    <td>
-                      <ul>
-                        <li>နေ့လည် ၁:၀၀ နာရီမှ ညနေ ၃:၀၀ နာရီအထိ</li>
-                      </ul>
-                    </td>
-                    <td>၁၈၀,၀၀၀</td>
-                    <td>
-                      <ul>
-                        <li>မြန်မာဆရာ</li>
-                      </ul>
-                    </td>
-                    <td>၃လ</td>
-                    <td>၂၊ ၉၊ ၂၀၂၁</td>
-                    <td>-</td>
-                  </tr>
+                  <?php 
+                    include_once("../../../admin/confs/config.php"); 
+                    $schedule = "SELECT course_id, c.title AS course_title, cty.title AS category_title, 
+                                 t.title AS type_title, c.level AS course_level, price, instructor, 
+                                 services, discount_percent, start_date, duration, sections
+                                 FROM courses c, categories cty, types t WHERE c.category_id = cty.category_id 
+                                 AND c.type_id = t.type_id";
+                    $schedule_result = mysqli_query($conn, $schedule);
+                    while($row = mysqli_fetch_array($schedule_result)) {
+                  ?>
+                    <tr id="<?php echo $row["course_id"]; ?>">
+                      <td style="display: none">
+                        <span id="category_title" class="row-data"><?php echo $row["category_title"] ?></span>
+                        <span id="type_title" class="row-data"><?php echo $row["type_title"] ?></span>
+                        <span id="course_level" class="row-data"><?php echo $row["course_level"] ?></span>
+                        <span id="instructor" class="row-data"><?php echo $row["instructor"] ?></span>
+                        <span id="services" class="row-data"><?php echo $row["services"] ?></span>
+                        <span id="discount_percent" class="row-data"><?php echo $row["discount_percent"] ?></span>
+                      </td>
+                      <td data-label="အတန်း" scope="row">
+
+                        <span id="course_title" class="row-data"><?php echo $row["course_title"]; ?></span>
+                      </td>
+                      <td data-label="တက်‌ရောက်ရမည့်အချိန် နှင့် ရက်">
+                        <span class="section-hour schedule-badges row-data" id="section_hour">
+                          <?php 
+                            $section_time = json_decode($row["sections"], true);
+                            echo $section_time["sectionHour"];
+                          ?>
+                        </span><br><br>
+                        <?php for($i = 0; $i < count($section_time["days"]); $i++) { ?>
+                          <span id="days" class="days schedule-badges <?php
+                            switch($section_time["days"][$i]) {
+                              case "Sat":
+                              case "Sun":
+                                echo "weekend";
+                                break;
+                              default:
+                                echo "weekday";
+                                break;                           
+                            }  
+                          ?>"><?php echo $section_time["days"][$i];
+                          echo "</span>";
+                        } ?>
+                      </td>
+                      <td data-label="သင်တန်းကြေး (ကျပ်)">
+                        <span id="price" class="row-data"><?php echo $row["price"] ?></span>
+                      </td>
+                      <td data-label="သင်တန်းကာလ">
+                        <span id="duration" class="row-data"><?php echo $row["duration"] ?></span>
+                      </td>
+                      <td data-label="သင်တန်းစတင်မည့်ရက်">
+                        <span id="start_date" class="row-data"><?php echo $row["start_date"] ?></span>
+                      </td>
+                      <td data-label="အသေးစိတ် သိရှိရန်">
+                        <button class="detail" data-toggle="modal" data-target="#detailModal">Detail</button>
+                      </td>
+                      <td data-label="စာရင်းပေးသွင်းရန်">
+                        <a href="./classEnroll.php?courseID=<?php echo $row['course_id']; ?>"><button class="enroll">ENROLL</button></a>
+                      </td>
+                    </tr>
+                  <?php } ?>
                 </tbody>
               </table>
             </div>
@@ -448,6 +394,96 @@
       </div>
     </section>
     <!-- School Schedule Blog end -->
+
+    <!-- The Detail Modal -->
+    <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detailModalLongTitle" aria-hidden="true">
+      <div class="modal-dialog detail-modal" role="document">
+        <div class="modal-content detail-modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title detail-modal-title">အတန်း၏ အသေးစိတ်အချက်အလက်</h4>
+            <button class="btn-close" data-dismiss="modal">
+              <i class='fas fa-times' style='font-size:24px; color: grey'></i>
+            </button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            <table class="detail-schedule">
+              <tr>
+                <td class="schedule-modal-label">အတန်း :</td>
+                <td>
+                  <span id="modal_course_title"></span><br>
+                  <span id="modal_category_title"></span>
+                  <span id="modal_level"></span>
+                </td>
+              </tr>
+              <tr>
+                <td class="schedule-modal-label">အတန်း အမျိုးအစား :</td>
+                <td>
+                  <span id="modal_type_title"></span>
+                </td>
+              </tr>
+              <tr>
+                <td class="schedule-modal-label">တက်‌ရောက်ရမည့်ရက် :</td>
+                <td id="modal_days">
+                </td>
+              </tr>
+              <tr>
+                <td class="schedule-modal-label">တက်‌ရောက်ရမည့်အချိန် :</td>
+                <td>
+                  <span id="modal_time"></span>
+                </td>
+              </tr>
+              <tr>
+                <td class="schedule-modal-label">သင်တန်းကြေး (ကျပ်) :</td>
+                <td>
+                  <span id="modal_fees"></span>
+                </td>
+              </tr>
+              <tr>
+                <td class="schedule-modal-label">သင်တန်းကာလ :</td>
+                <td>
+                  <span id="modal_duration"></span>
+                </td>
+              </tr>
+              <tr>
+                <td class="schedule-modal-label">သင်တန်းစတင်မည့်ရက် :</td>
+                <td>
+                  <span id="modal_start_date"></span>
+                </td>
+              </tr>
+              <tr>
+                <td class="schedule-modal-label">သင်ကြားမည့်ဆရာ :</td>
+                <td>
+                  <span id="modal_instructor"></span>
+                </td>
+              </tr>
+              <tr>
+                <td class="schedule-modal-label">ဝန်ဆောင်မှု :</td>
+                <td>
+                  <span id="modal_services"></span>
+                </td>
+              </tr>
+              <tr>
+                <td class="schedule-modal-label">လျှော့စျေးပေးမည့်အစီစဉ် :</td>
+                <td>
+                  <span id="modal_discount_percent"></span>
+                </td>
+              </tr>
+            </table>
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn-cancel" data-dismiss="modal">Cancel</button>
+            <a href="./classEnroll.php"><button type="button" class="btn-submit" id="enroll_class" data-dismiss="modal">Enroll</button></a>
+          </div>
+
+        </div>
+      </div>
+    </div>
 
     <!-- Detail images area start -->
     <section>
@@ -677,7 +713,7 @@
             <ul class="footer-list" id="second">
               <li>
                 <span
-                  ><a href="./jp-school.html">ဂျပန်ဘာသာစကား သင်တန်း</a></span
+                  ><a href="./jp-school.php">ဂျပန်ဘာသာစကား သင်တန်း</a></span
                 >
               </li>
               <li>
@@ -732,5 +768,6 @@
     <script src="../assets/js/float-panel.js"></script>
     <script src="../assets/js/comment.js"></script>
     <script src="../assets/js/style.js"></script>
+    <script src="../assets/js/jp-class-schedule.js"></script>
   </body>
 </html>

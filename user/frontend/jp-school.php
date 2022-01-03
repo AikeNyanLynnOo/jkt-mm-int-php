@@ -252,8 +252,8 @@
 
     <nav aria-label="breadcrumb" class="breadcrumb-nav">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">Home</a></li>
-        <li class="breadcrumb-item"><a href="#">Trainings</a></li>
+        <li class="breadcrumb-item"><a href="./index.html">Home</a></li>
+        <li class="breadcrumb-item"><a href="./trainings.html">Trainings</a></li>
         <li class="breadcrumb-item active" aria-current="page">Japanese Language School</li>
       </ol>
     </nav>
@@ -379,73 +379,6 @@
                       </td>
                     </tr>
                   <?php } ?>
-                  <!-- <tr>
-                    <td>N5 Special Class</td>
-                    <td>
-                      <span class="morning schedule-badges">9:00 ~ 11:00</span><br><br>
-                      <span class="weekday schedule-badges">Mon</span>
-                      <span class="weekday schedule-badges">Wed</span>
-                      <span class="weekday schedule-badges">Fri</span>
-                    </td>
-                    <td>180,000</td>
-                    <td>3 months</td>
-                    <td>23.8.2021</td>
-                    <td><button class="detail" data-toggle="modal" data-target="#detailModal">Detail</button></td>
-                    <td><a href="./classEnroll.php"><button class="enroll">ENROLL</button></a></td>
-                  </tr>
-                  <tr>
-                    <td>N4 Oridinary Class</td>
-                    <td>
-                      <span class="evening schedule-badges">17:00 ~ 19:00</span><br><br>
-                      <span class="weekday schedule-badges">Mon</span>
-                      <span class="weekday schedule-badges">Wed</span>
-                    </td>
-                    <td>750,000 + text book (10,000)</td>
-                    <td>3 months</td>
-                    <td>1.9.2021</td>
-                    <td><button class="detail" data-toggle="modal" data-target="#detailModal">Detail</button></td>
-                    <td><a href="./classEnroll.php"><button class="enroll">ENROLL</button></a></td>
-                  </tr>
-                  <tr>
-                    <td>N4 JLPT Special Class</td>
-                    <td>
-                      <span class="morning schedule-badges">9:00 ~ 12:00</span><br><br>
-                      <span class="weekday schedule-badges">Tue</span>
-                      <span class="weekday schedule-badges">Thurs</span>
-                    </td>
-                    <td>180,000</td>
-                    <td>3 months</td>
-                    <td>2.9.2021</td>
-                    <td><button class="detail" data-toggle="modal" data-target="#detailModal">Detail</button></td>
-                    <td><a href="./classEnroll.php"><button class="enroll">ENROLL</button></a></td>
-                  </tr>
-                  <tr>
-                    <td>N3 JLPT Special Class</td>
-                    <td>
-                      <span class="evening schedule-badges">13:00 ~ 16:00</span><br><br>
-                      <span class="weekday schedule-badges">Mon</span>
-                      <span class="weekday schedule-badges">Wed</span>
-                      <span class="weekday schedule-badges">Fri</span>
-                    </td>
-                    <td>200,000</td>
-                    <td>3 months</td>
-                    <td>1.9.2021</td>
-                    <td><button class="detail" data-toggle="modal" data-target="#detailModal">Detail</button></td>
-                    <td><a href="./classEnroll.php"><button class="enroll">ENROLL</button></a></td>
-                  </tr>
-                  <tr>
-                    <td>Conversation Class (Elementary, Intermediate)</td>
-                    <td>
-                      <span class="evening schedule-badges">13:00 ~ 15:00</span><br><br>
-                      <span class="weekday schedule-badges">Tue</span>
-                      <span class="weekday schedule-badges">Thurs</span>
-                    </td>
-                    <td>100,000</td>
-                    <td>3 months</td>
-                    <td>2.9.2021</td>
-                    <td><button class="detail" data-toggle="modal" data-target="#detailModal">Detail</button></td>
-                    <td><a href="./classEnroll.php"><button class="enroll">ENROLL</button></a></td>
-                  </tr> -->
                 </tbody>
               </table>
             </div>

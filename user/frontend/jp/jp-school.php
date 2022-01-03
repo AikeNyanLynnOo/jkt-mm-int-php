@@ -147,7 +147,7 @@
                 class="dropdown-menu"
                 aria-labelledby="trainingNavbarDropdown"
               >
-                <a class="dropdown-item" href="./jp-school.html"
+                <a class="dropdown-item" href="./jp-school.php"
                   >日本語学校</a
                 >
                 <a class="dropdown-item" href="./announcement.html"
@@ -163,7 +163,7 @@
             </li>
             <li class="lang">
               <div class="btn-group" role="group" aria-label="First group">
-                <a href="../jp-school.html"><button
+                <a href="../jp-school.php"><button
                   type="button"
                   class="btn btn1"
                 >
@@ -173,7 +173,7 @@
                     width="25px"
                   />
                 </button></a>
-                <a href=../mm/jp-school.html><button
+                <a href=../mm/jp-school.php><button
                   type="button"
                   class="btn btn2"
                 >
@@ -183,7 +183,7 @@
                     width="25px"
                   />
                 </button></a>
-                <a href=./jp-school.html><button
+                <a href=./jp-school.php><button
                   type="button"
                   class="btn btn3"
                   style="background-color: rgba(91, 175, 231, 0.5)"
@@ -199,7 +199,7 @@
           </ul>
         </div>
         <div class="btn-group lang-xl" role="group" aria-label="First group">
-          <a href="../jp-school.html"><button
+          <a href="../jp-school.php"><button
             type="button"
             class="btn btn1"
           >
@@ -209,7 +209,7 @@
               width="25px"
             />
           </button></a>
-          <a href=../mm/jp-school.html><button
+          <a href=../mm/jp-school.php><button
             type="button"
             class="btn btn2"
           >
@@ -219,7 +219,7 @@
               width="25px"
             />
           </button></a>
-          <a href=./jp-school.html><button
+          <a href=./jp-school.php><button
             type="button"
             class="btn btn3"
             style="background-color: rgba(91, 175, 231, 0.5)"
@@ -244,6 +244,14 @@
       </div>
     </section>
     <!-- JP School header end -->
+
+    <nav aria-label="breadcrumb" class="breadcrumb-nav">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="./index.html">ホーム</a></li>
+        <li class="breadcrumb-item"><a href="./trainings.html">トレーニング</a></li>
+        <li class="breadcrumb-item active" aria-current="page">日本語学校</li>
+      </ol>
+    </nav>
 
     <!-- Training School Detail Information Blog start -->
     <section>
@@ -282,144 +290,83 @@
       <div class="container schedule-blog">
         <h1 class="text-center pb-3">クラスのスケジュール</h1>
         <div class="row">
-          <div class="col-lg-11 schedule-blog-info">
-            <div class="table-responsive schedule-table">
-              <table class="table">
+          <div class="col-12 col-lg-12 schedule-blog-info">
+            <div class="schedule-table-block">
+              <table class="schedule-table">
+                <thead>
+                  <tr>
+                    <th scope="col">クラス</th>
+                    <th scope="col">授業の日 と 時間</th>
+                    <th scope="col">授業料 <br>「チャット」</th>
+                    <th scope="col">授業期間</th>
+                    <th scope="col">開始日</th>
+                    <th scope="col">詳細を見る</th>
+                    <th scope="col">登録</th>
+                  </tr>
+                </thead>
                 <tbody>
-                  <tr>
-                    <th>クラス</th>
-                    <th>授業の日</th>
-                    <th>授業の時間</th>
-                    <th>授業料  (チャット) </th>
-                    <th>教師</th>
-                    <th style="width : 7em">授業期間</th>
-                    <th>開始日</th>
-                    <th>割引プログラム</th>
-                  </tr>
-                  <tr>
-                    <td>N5 普通のクラス</td>
-                    <td>土曜日、日曜日</td>
-                    <td>9:00am から 11:00am まで</td>
-                    <td>750,000 + 教科書代 (10,000)</td>
-                    <td>
-                      <ul>
-                        <li>ミャンマー人教師</li>
-                      </ul>
-                    </td>
-                    <td>3ヶ月</td>
-                    <td>4.9.2021</td>
-                    <td>-</td>
-                  </tr>
-                  <tr>
-                    <td>N5 特別クラス</td>
-                    <td>
-                      <ul>
-                        <li>月曜日、水曜日、金曜日</li>
-                      </ul>
-                    </td>
-                    <td>
-                      <ul>
-                        <li>9:00am から 11:00am まで</li>
-                      </ul>
-                    </td>
-                    <td>180,000</td>
-                    <td>
-                      <ul>
-                        <li>ミャンマー人教師</li>
-                      </ul>
-                    </td>
-                    <td>3ヶ月</td>
-                    <td>23.8.2021</td>
-                    <td>-</td>
-                  </tr>
-                  <tr>
-                    <td>N4 普通のクラス</td>
-                    <td>
-                      <ul>
-                        <li>月曜日、水曜日</li>
-                      </ul>
-                    </td>
-                    <td>
-                      <ul>
-                        <li>5:00pm から 7:00pm まで</li>
-                      </ul>
-                    </td>
-                    <td>750,000 + 教科書代 (10,000)</td>
-                    <td>
-                      <ul>
-                        <li>ミャンマー人教師</li>
-                      </ul>
-                    </td>
-                    <td>3ヶ月</td>
-                    <td>1.9.2021</td>
-                    <td>-</td>
-                  </tr>
-                  <tr>
-                    <td>N4 JLPT 特別クラス</td>
-                    <td>
-                      <ul>
-                        <li>火曜日、木曜日</li>
-                      </ul>
-                    </td>
-                    <td>
-                      <ul>
-                        <li>9:00am から 12:00am まで</li>
-                      </ul>
-                    </td>
-                    <td>180,000</td>
-                    <td>
-                      <ul>
-                        <li>ミャンマー人教師</li>
-                      </ul>
-                    </td>
-                    <td>3ヶ月</td>
-                    <td>2.9.2021</td>
-                    <td>-</td>
-                  </tr>
-                  <tr>
-                    <td>N3 JLPT 特別クラス</td>
-                    <td>
-                      <ul>
-                        <li>月曜日、水曜日、金曜日</li>
-                      </ul>
-                    </td>
-                    <td>
-                      <ul>
-                        <li>1:00pm から 4:00pm まで</li>
-                      </ul>
-                    </td>
-                    <td>200,000</td>
-                    <td>
-                      <ul>
-                        <li>ミャンマー人教師</li>
-                      </ul>
-                    </td>
-                    <td>3ヶ月</td>
-                    <td>1.9.2021</td>
-                    <td>-</td>
-                  </tr>
-                  <tr>
-                    <td>会話クラス（初級、中級）</td>
-                    <td>
-                      <ul>
-                        <li>火曜日、木曜日</li>
-                      </ul>
-                    </td>
-                    <td>
-                      <ul>
-                        <li>1:00pm から 3:00pm まで</li>
-                      </ul>
-                    </td>
-                    <td>100,000</td>
-                    <td>
-                      <ul>
-                        <li>ミャンマー人教師</li>
-                      </ul>
-                    </td>
-                    <td>3ヶ月</td>
-                    <td>2.9.2021</td>
-                    <td>-</td>
-                  </tr>
+                  <?php 
+                    include_once("../../../admin/confs/config.php"); 
+                    $schedule = "SELECT course_id, c.title AS course_title, cty.title AS category_title, 
+                                 t.title AS type_title, c.level AS course_level, price, instructor, 
+                                 services, discount_percent, start_date, duration, sections
+                                 FROM courses c, categories cty, types t WHERE c.category_id = cty.category_id 
+                                 AND c.type_id = t.type_id";
+                    $schedule_result = mysqli_query($conn, $schedule);
+                    while($row = mysqli_fetch_array($schedule_result)) {
+                  ?>
+                    <tr id="<?php echo $row["course_id"]; ?>">
+                      <td style="display: none">
+                        <span id="category_title" class="row-data"><?php echo $row["category_title"] ?></span>
+                        <span id="type_title" class="row-data"><?php echo $row["type_title"] ?></span>
+                        <span id="course_level" class="row-data"><?php echo $row["course_level"] ?></span>
+                        <span id="instructor" class="row-data"><?php echo $row["instructor"] ?></span>
+                        <span id="services" class="row-data"><?php echo $row["services"] ?></span>
+                        <span id="discount_percent" class="row-data"><?php echo $row["discount_percent"] ?></span>
+                      </td>
+                      <td data-label="クラス" scope="row">
+
+                        <span id="course_title" class="row-data"><?php echo $row["course_title"]; ?></span>
+                      </td>
+                      <td data-label="授業の日 と 時間">
+                        <span class="section-hour schedule-badges row-data" id="section_hour">
+                          <?php 
+                            $section_time = json_decode($row["sections"], true);
+                            echo $section_time["sectionHour"];
+                          ?>
+                        </span><br><br>
+                        <?php for($i = 0; $i < count($section_time["days"]); $i++) { ?>
+                          <span id="days" class="days schedule-badges <?php
+                            switch($section_time["days"][$i]) {
+                              case "Sat":
+                              case "Sun":
+                                echo "weekend";
+                                break;
+                              default:
+                                echo "weekday";
+                                break;                           
+                            }  
+                          ?>"><?php echo $section_time["days"][$i];
+                          echo "</span>";
+                        } ?>
+                      </td>
+                      <td data-label="授業料「チャット」">
+                        <span id="price" class="row-data"><?php echo $row["price"] ?></span>
+                      </td>
+                      <td data-label="授業期間">
+                        <span id="duration" class="row-data"><?php echo $row["duration"] ?></span>
+                      </td>
+                      <td data-label="開始日">
+                        <span id="start_date" class="row-data"><?php echo $row["start_date"] ?></span>
+                      </td>
+                      <td data-label="詳細を見る">
+                        <button class="detail" data-toggle="modal" data-target="#detailModal">Detail</button>
+                      </td>
+                      <td data-label="登録">
+                        <a href="./classEnroll.php?courseID=<?php echo $row['course_id']; ?>"><button class="enroll">ENROLL</button></a>
+                      </td>
+                    </tr>
+                  <?php } ?>
                 </tbody>
               </table>
             </div>
@@ -429,6 +376,96 @@
       </div>
     </section>
     <!-- School Schedule Blog end -->
+
+    <!-- The Detail Modal -->
+    <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detailModalLongTitle" aria-hidden="true">
+      <div class="modal-dialog detail-modal" role="document">
+        <div class="modal-content detail-modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title detail-modal-title">クラスの詳細情報</h4>
+            <button class="btn-close" data-dismiss="modal">
+              <i class='fas fa-times' style='font-size:24px; color: grey'></i>
+            </button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            <table class="detail-schedule">
+              <tr>
+                <td class="schedule-modal-label">クラス :</td>
+                <td>
+                  <span id="modal_course_title"></span><br>
+                  <span id="modal_category_title"></span>
+                  <span id="modal_level"></span>
+                </td>
+              </tr>
+              <tr>
+                <td class="schedule-modal-label">クラスタイプ :</td>
+                <td>
+                  <span id="modal_type_title"></span>
+                </td>
+              </tr>
+              <tr>
+                <td class="schedule-modal-label">授業の日 :</td>
+                <td id="modal_days">
+                </td>
+              </tr>
+              <tr>
+                <td class="schedule-modal-label">授業の時間 :</td>
+                <td>
+                  <span id="modal_time"></span>
+                </td>
+              </tr>
+              <tr>
+                <td class="schedule-modal-label">授業料「チャット」 :</td>
+                <td>
+                  <span id="modal_fees"></span>
+                </td>
+              </tr>
+              <tr>
+                <td class="schedule-modal-label">授業期間 :</td>
+                <td>
+                  <span id="modal_duration"></span>
+                </td>
+              </tr>
+              <tr>
+                <td class="schedule-modal-label">開始日 :</td>
+                <td>
+                  <span id="modal_start_date"></span>
+                </td>
+              </tr>
+              <tr>
+                <td class="schedule-modal-label">教師 :</td>
+                <td>
+                  <span id="modal_instructor"></span>
+                </td>
+              </tr>
+              <tr>
+                <td class="schedule-modal-label">サービス :</td>
+                <td>
+                  <span id="modal_services"></span>
+                </td>
+              </tr>
+              <tr>
+                <td class="schedule-modal-label">割引プログラム :</td>
+                <td>
+                  <span id="modal_discount_percent"></span>
+                </td>
+              </tr>
+            </table>
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn-cancel" data-dismiss="modal">キャンセル</button>
+            <a href="./classEnroll.php"><button type="button" class="btn-submit" id="enroll_class" data-dismiss="modal">登録</button></a>
+          </div>
+
+        </div>
+      </div>
+    </div>
 
     <!-- Detail images area start -->
     <section>
@@ -647,7 +684,7 @@
             <ul class="footer-list" id="second">
               <li>
                 <span
-                  ><a href="./jp-school.html">日本語学校</a></span
+                  ><a href="./jp-school.php">日本語学校</a></span
                 >
               </li>
               <li>
@@ -692,5 +729,6 @@
     <script src="../assets/js/float-panel.js"></script>
     <script src="../assets/js/comment.js"></script>
     <script src="../assets/js/style.js"></script>
+    <script src="../assets/js/jp-class-schedule.js"></script>
   </body>
 </html>

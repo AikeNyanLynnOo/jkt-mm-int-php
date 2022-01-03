@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="shortcut icon" href="./assets/images/logo.jpg" />
+  <link rel="shortcut icon" href="../assets/images/logo.jpg" />
   <title>JKT Myanmar International - JAPANESE SCHOOL</title>
   <meta name="description" content="We offer entry-level to business-level Japanese and we also offer conversation courses for those who wish to go to Japan for study or work purposes, or to work in a local Japanese company." />
   <meta name="keywords" content="jkt myanmar, jkt, JKT mm, JKT mm international, Business Counseling, IT, training, language school, Overseas Employment, JKT Myanmar International Co., Ltd., JKT Myanmar International" />
@@ -26,26 +26,26 @@
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css'>
 
   <!-- css -->
-  <link rel="stylesheet" href="./assets/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="./assets/css/owl.carousel.css" />
-  <link rel="stylesheet" href="./assets/css/main.css" />
+  <link rel="stylesheet" href="../assets/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../assets/css/owl.carousel.css" />
+  <link rel="stylesheet" href="../assets/css/main.css" />
 </head>
 
 <body>
   <nav class="navbar navbar-light navbar-expand-lg gray-dark float-panel" data-top="0" data-scroll="300">
     <div class="container-fluid mynav">
       <a href="index.html" class="navbar-brand">
-        <img src="./assets/images/logo.jpg" alt="" height="50px" width="50px" />
+        <img src="../assets/images/logo.jpg" alt="" height="50px" width="50px" />
         <span style="font-weight: bolder; font-size: larger; color: #029eff">JKT</span>
         Myanmar International
       </a>
       <a href="index.html" class="small-brand">
-        <img src="./assets/images/logo.jpg" alt="" height="50px" width="50px" />
+        <img src="../assets/images/logo.jpg" alt="" height="50px" width="50px" />
         <span style="font-weight: bolder; font-size: larger; color: #029eff">JKT</span>
         Myanmar International
       </a>
       <a href="index.html" class="icon-brand">
-        <img src="./assets/images/logo.jpg" alt="" height="50px" width="50px" />
+        <img src="../assets/images/logo.jpg" alt="" height="50px" width="50px" />
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse">
         <span class="navbar-toggler-icon toggler-icon-color"></span>
@@ -89,23 +89,23 @@
           </li>
           <li class="lang">
             <div class="btn-group" role="group" aria-label="First group">
-              <a href="./jp-school.php"><button type="button" class="btn btn1" style="background-color: rgba(91, 175, 231, 0.5)">
-                  <img src="./assets/images/icon/ukFlag.png" height="20px" width="25px" /></button></a>
-              <a href="./mm/jp-school.php"><button type="button" class="btn btn2">
-                  <img src="./assets/images/icon/mmFlag.svg" height="20px" width="25px" /></button></a>
-              <a href="./jp/jp-school.php"><button type="button" class="btn btn3">
-                  <img src="./assets/images/icon/japanFlag.jpg" height="20px" width="25px" /></button></a>
+              <a href="../enrollSuccess.php"><button type="button" class="btn btn1" style="background-color: rgba(91, 175, 231, 0.5)">
+                  <img src="../assets/images/icon/ukFlag.png" height="20px" width="25px" /></button></a>
+              <a href="../mm/enrollSuccess.php"><button type="button" class="btn btn2">
+                  <img src="../assets/images/icon/mmFlag.svg" height="20px" width="25px" /></button></a>
+              <a href="../jp/enrollSuccess.php"><button type="button" class="btn btn3">
+                  <img src="../assets/images/icon/japanFlag.jpg" height="20px" width="25px" /></button></a>
             </div>
           </li>
         </ul>
       </div>
       <div class="btn-group lang-xl" role="group" aria-label="First group">
-        <a href="./jp-school.php"><button type="button" class="btn btn1" style="background-color: rgba(91, 175, 231, 0.5)">
-            <img src="./assets/images/icon/ukFlag.png" height="20px" width="25px" /></button></a>
-        <a href="./mm/jp-school.php"><button type="button" class="btn btn2">
-            <img src="./assets/images/icon/mmFlag.svg" height="20px" width="25px" /></button></a>
-        <a href="./jp/jp-school.php"><button type="button" class="btn btn3">
-            <img src="./assets/images/icon/japanFlag.jpg" height="20px" width="25px" /></button></a>
+        <a href="../enrollSuccess.php"><button type="button" class="btn btn1" style="background-color: rgba(91, 175, 231, 0.5)">
+            <img src="../assets/images/icon/ukFlag.png" height="20px" width="25px" /></button></a>
+        <a href="./enrollSuccess.php"><button type="button" class="btn btn2">
+            <img src="../assets/images/icon/mmFlag.svg" height="20px" width="25px" /></button></a>
+        <a href="../jp/enrollSuccess.php"><button type="button" class="btn btn3">
+            <img src="../assets/images/icon/japanFlag.jpg" height="20px" width="25px" /></button></a>
       </div>
     </div>
   </nav>
@@ -115,7 +115,7 @@
     <div class="header">
       <h3>Japanese Language School - Enrollment Form</h3>
       <div class="bg-cover"></div>
-      <img src="./assets/images/cover/cover.jpg" alt="jpschool-cover" />
+      <img src="../assets/images/cover/cover.jpg" alt="jpschool-cover" />
     </div>
   </section>
   <!-- JP School header end -->
@@ -159,7 +159,7 @@
                   <h2 class="blue-text text-center"><strong>Successfully Submitted!</strong></h2> <br>
                   <div class="row justify-content-center">
                     <div class="col-3">
-                      <img src="./assets/images/blue-tick.png" class="fit-image">
+                      <img src="../assets/images/blue-tick.png" class="fit-image">
                     </div>
                   </div> <br><br>
                   <div class="row justify-content-center">
@@ -255,13 +255,13 @@
   </footer>
 
   <!-- script -->
-  <script src="./assets/js/jquery-3.6.0.js"></script>
-  <script src="./assets/js/validation.js"></script>
-  <script src="./assets/js/additional-methods"></script>
-  <script src="./assets/js/popper.min.js"></script>
-  <script src="./assets/js/bootstrap.min.js"></script>
-  <script src="./assets/js/float-panel.js"></script>
-  <script src="./assets/js/multistepForm.js"></script>
-  <script src="./assets/js/userImgPreview.js"></script>
+  <script src="../assets/js/jquery-3.6.0.js"></script>
+  <script src="../assets/js/validation.js"></script>
+  <script src="../assets/js/additional-methods"></script>
+  <script src="../assets/js/popper.min.js"></script>
+  <script src="../assets/js/bootstrap.min.js"></script>
+  <script src="../assets/js/float-panel.js"></script>
+  <script src="../assets/js/multistepForm.js"></script>
+  <script src="../assets/js/userImgPreview.js"></script>
 </body>
 <html>
