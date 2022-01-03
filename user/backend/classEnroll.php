@@ -29,6 +29,7 @@ include("../../admin/confs/config.php");
 include("../../admin/mail/sendMail.php");
 
 // STEP 1 
+$src = $_POST["src"];
 $photo = $_FILES['photo'];
 $uname = $_POST['uname'];
 $dob = $_POST['dob'];
@@ -43,7 +44,7 @@ $address = $_POST['address'];
 $phone = $_POST['phone'];
 $education = $_POST['edu'];
 
-$classId = $_POST['courseId'];
+$classId = intval($_POST['courseId']);
 // $classTime = $_POST['classTime'];
 
 // STEP 3
@@ -77,7 +78,6 @@ $allowed_image_extension = array(
     "jpeg"
 );
 
-
 // Get image file extension
 $file_extension = pathinfo($_FILES["photo"]["name"], PATHINFO_EXTENSION);
 session_start();
@@ -102,34 +102,62 @@ else if ($width > "300" || $height > "300") {
         "data" => $_POST,
     );
 } else {
-    $target = "uploads/" . basename($_FILES["photo"]["name"]);
-    echo "location is $target";
+    if(file_exists("uploads/$nrcNumber.$file_extension")) unlink("uploads/$nrcNumber.$file_extension");
+    $target = "uploads/" . "$nrcNumber.$file_extension";
     if (move_uploaded_file($_FILES["photo"]["tmp_name"], $target)) {
-
         // continue to insert to db cuz image upload succeed.
-        // $insert_into_enrollments = "INSERT INTO enrollments (class_id,uname, dob, fname, nrc, email, education, address, phone, payment_method,paid_percent,created_at,
-        // updated_at,is_pending) VALUES ($classId,'$uname','$dob','$fname','$nrc','$email','$education','$address','$phone','$payment_method',$paid_percent , now(), now(),1)";
-        // mysqli_query($conn, $insert_into_enrollments);
+        $insert_into_enrollments = "INSERT INTO enrollments (
+            class_id,
+            uname, 
+            dob, 
+            fname, 
+            nrc, 
+            email, 
+            education, 
+            address, 
+            phone, 
+            payment_method,
+            paid_percent,
+            photo,
+            created_at,
+            updated_at,
+            is_pending) 
+            VALUES (
+            $classId,
+            '$uname',
+            '$dob',
+            '$fname',
+            '$nrc',
+            '$email',
+            '$education',
+            '$address',
+            '$phone',
+            '$payment_method',
+            $paid_percent , 
+            '$target',
+            now(), 
+            now(),
+            1)";
+        mysqli_query($conn, $insert_into_enrollments);
 
-        // $select_from_courses = "SELECT * FROM courses WHERE course_id = $classId";
-        // $course_result = mysqli_query($conn, $select_from_courses);
+        $select_from_courses = "SELECT * FROM courses WHERE course_id = $classId";
+        $course_result = mysqli_query($conn, $select_from_courses);
 
-        // $row = mysqli_fetch_assoc($course_result);
-        // if ($row) {
-        //     if ($payment_method === "Cash") {
-        //         $afterTryingToSend = sendMail($email, $uname, $row, TRUE);
-        //     } else {
-        //         $afterTryingToSend = sendMail($email, $uname, $row, FALSE);
-        //     }
-        // }
-        // if ($afterTryingToSend[0]) {
-        //     header("location: ../frontend/enrollSuccess.php");
-        // } else {
-        //     echo "fail to send mail";
-        // }
-
-        // header("location: ../frontend/index.html");
-        echo "move success";
+        $row = mysqli_fetch_assoc($course_result);
+        if ($row) {
+            if ($payment_method === "Cash") {
+                $afterTryingToSend = sendMail($email, $uname, $row, TRUE);
+            } else {
+                $afterTryingToSend = sendMail($email, $uname, $row, FALSE);
+            }
+        }
+        if ($afterTryingToSend[0]) {
+            unset($_SESSION['response']); 
+            header("location: ../frontend/enrollSuccess.php");
+            exit();
+        } else {
+            echo "fail to send mail";
+        }
     } else {
         $response = array(
             "type" => "error",
@@ -138,7 +166,7 @@ else if ($width > "300" || $height > "300") {
         );
     }
 }
-// $_SESSION['response'] = $response;
-// header("location: ../frontend/classEnroll.php");
+$_SESSION['response'] = $response;
+header("location: ../frontend/classEnroll.php");
 
 mysqli_close($conn);
