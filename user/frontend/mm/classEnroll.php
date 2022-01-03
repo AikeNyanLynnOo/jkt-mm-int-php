@@ -266,7 +266,7 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
             <?php
             if (!empty($response)) {
             ?>
-              <form id="enrollmentForm" action="../backend/classEnroll.php" method="POST" enctype="multipart/form-data">
+              <form id="enrollmentForm" action="../../backend/classEnroll.php" method="POST" enctype="multipart/form-data">
                 <!-- progressbar -->
                 <ul id="progressbar">
                   <li class="active" id="personal"></li>
