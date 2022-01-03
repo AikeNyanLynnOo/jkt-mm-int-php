@@ -144,7 +144,6 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
             <!-- <h2 id="heading">Sign Up Your User Account</h2> -->
             <p class="enroll-description">Fill all form field to go to next step</p>
             <?php
-
             if (!empty($response)) {
             ?>
               <form id="enrollmentForm" action="../backend/classEnroll.php" method="POST" enctype="multipart/form-data">
@@ -178,7 +177,7 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                       </div>
                       <p class="alert col-12 pb-0 help-block"><?php if ($response["type"] === "error") echo $response["message"]; ?></p>
                     </div>
-                    <input type="hidden" name="courseId" value="<?php if (isset($_GET["courseID"])) echo $_GET["courseID"] ?>" />
+                    <input type="hidden" name="courseId" value="<?php if (isset($_SESSION['courseId'])) echo $_SESSION['courseId']  ?>"/>
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-12">
                         <label class="fieldlabels">Full Name: <span class="required-tag">required &nbsp; *</span></label>
@@ -434,7 +433,7 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                       </div>
 
                     </div>
-                    <input type="hidden" name="courseId" value="<?php if (isset($_GET["courseID"])) echo $_GET["courseID"] ?>" />
+                    <input type="hidden" name="courseId" value="<?php if (isset($_SESSION['courseId'])) echo $_SESSION['courseId']  ?>" />
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-12">
                         <label class="fieldlabels">Full Name: <span class="required-tag">required &nbsp; *</span></label>

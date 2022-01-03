@@ -59,47 +59,47 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
       <div id="navbarCollapse" class="collapse navbar-collapse">
         <ul class="navbar-nav ms-auto text-sm-start">
           <li class="nav-item">
-            <a href="index.html" class="nav-link active"> HOME </a>
+            <a href="index.html" class="nav-link active"> ホーム </a>
           </li>
           <li class="nav-item">
-            <a href="./about.html" class="nav-link active"> ABOUT </a>
+            <a href="./about.html" class="nav-link active"> 会社情報 </a>
           </li>
           <li class="nav-item">
             <a href="./activities.html" class="nav-link active">
-              ACTIVITIES
+              活動
             </a>
           </li>
           <li class="nav-item dropdown">
             <a href="./services.html" class="nav-link active" id="serviceNavbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
-              SERVICES <i class="fas fa-angle-down"></i>
+              サービス <i class="fas fa-angle-down"></i>
             </a>
             <div class="dropdown-menu" aria-labelledby="serviceNavbarDropdown">
-              <a class="dropdown-item" href="./overseas.html">OVERSEAS EMPLOYMENT</a>
-              <a class="dropdown-item" href="./business.html">BUSINESS CONSULTANT</a>
-              <a class="dropdown-item" href="./announcement.html">IT SERVICES</a>
-              <a class="dropdown-item" href="./announcement.html">TRAVEL AND TOULS</a>
+              <a class="dropdown-item" href="./overseas.html">海外での雇用</a>
+              <a class="dropdown-item" href="./business.html">ビジネスコンサルタント</a>
+              <a class="dropdown-item" href="./announcement.html">ITサービス</a>
+              <a class="dropdown-item" href="./announcement.html">旅行サービス</a>
             </div>
           </li>
           <li class="nav-item dropdown">
             <a href="./trainings.html" class="nav-link" id="trainingNavbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
-              TRAININGS <i class="fas fa-angle-down"></i>
+              トレーニング <i class="fas fa-angle-down"></i>
             </a>
             <div class="dropdown-menu" aria-labelledby="trainingNavbarDropdown">
-              <a class="dropdown-item" href="./jp-school.php">JAPANESE LANGUAGE SCHOOL</a>
-              <a class="dropdown-item" href="./announcement.html">VOCATIONAL TRAINING</a>
-              <a class="dropdown-item" href="./announcement.html">HR TRAINING</a>
+              <a class="dropdown-item" href="./jp-school.php">日本語学校</a>
+              <a class="dropdown-item" href="./announcement.html">職業訓練</a>
+              <a class="dropdown-item" href="./announcement.html">人材トレーニング</a>
             </div>
           </li>
           <li class="nav-item">
-            <a href="./contact.html" class="nav-link active"> CONTACT </a>
+            <a href="./contact.html" class="nav-link active"> お問い合わせ </a>
           </li>
           <li class="lang">
             <div class="btn-group" role="group" aria-label="First group">
               <a href="../classEnroll.php"><button type="button" class="btn btn1">
                   <img src="../assets/images/icon/ukFlag.png" height="20px" width="25px" /></button></a>
-              <a href="./classEnroll.php"><button type="button" class="btn btn2" style="background-color: rgba(91, 175, 231, 0.5)">
+              <a href="../mm/classEnroll.php"><button type="button" class="btn btn2">
                   <img src="../assets/images/icon/mmFlag.svg" height="20px" width="25px" /></button></a>
-              <a href="../jp/classEnroll.php"><button type="button" class="btn btn3">
+              <a href="./classEnroll.php"><button type="button" class="btn btn3" style="background-color: rgba(91, 175, 231, 0.5)">
                   <img src="../assets/images/icon/japanFlag.jpg" height="20px" width="25px" /></button></a>
             </div>
           </li>
@@ -108,9 +108,9 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
       <div class="btn-group lang-xl" role="group" aria-label="First group">
         <a href="../classEnroll.php"><button type="button" class="btn btn1">
             <img src="../assets/images/icon/ukFlag.png" height="20px" width="25px" /></button></a>
-        <a href="./classEnroll.php"><button type="button" class="btn btn2" style="background-color: rgba(91, 175, 231, 0.5)">
+        <a href="../mm/classEnroll.php"><button type="button" class="btn btn2">
             <img src="../assets/images/icon/mmFlag.svg" height="20px" width="25px" /></button></a>
-        <a href="../jp/classEnroll.php"><button type="button" class="btn btn3">
+        <a href="./classEnroll.php"><button type="button" class="btn btn3" style="background-color: rgba(91, 175, 231, 0.5)">
             <img src="../assets/images/icon/japanFlag.jpg" height="20px" width="25px" /></button></a>
       </div>
     </div>
@@ -119,7 +119,7 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
   <!-- JP School header start -->
   <section>
     <div class="header">
-      <h3>Japanese Language School - Enrollment Form</h3>
+      <h3>日本語学校 - 登録フォーム</h3>
       <div class="bg-cover"></div>
       <img src="../assets/images/cover/cover.jpg" alt="jpschool-cover" />
     </div>
@@ -128,10 +128,10 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
 
   <nav aria-label="breadcrumb" class="breadcrumb-nav">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="./index.html">Home</a></li>
-      <li class="breadcrumb-item"><a href="./trainings.html">Trainings</a></li>
-      <li class="breadcrumb-item"><a href="./jp-school.php">Japanese Language School</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Enrollment Form</li>
+      <li class="breadcrumb-item"><a href="./index.html">ホーム</a></li>
+      <li class="breadcrumb-item"><a href="./trainings.html">トレーニング</a></li>
+      <li class="breadcrumb-item"><a href="./jp-school.php">日本語学校</a></li>
+      <li class="breadcrumb-item active" aria-current="page">登録フォーム</li>
     </ol>
   </nav>
 
@@ -142,9 +142,8 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
         <div class="col-11 col-sm-10 col-md-10 col-lg-8 col-xl-6 text-center p-0 mt-3 mb-2">
           <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
             <!-- <h2 id="heading">Sign Up Your User Account</h2> -->
-            <p class="enroll-description">Fill all form field to go to next step</p>
+            <p class="enroll-description">すべてのフォームフィールドに入力して、次の手順に進みます</p>
             <?php
-
             if (!empty($response)) {
             ?>
               <form id="enrollmentForm" action="../backend/classEnroll.php" method="POST" enctype="multipart/form-data">
@@ -161,10 +160,10 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                   <div class="form-card">
                     <div class="row">
                       <div class="col-7">
-                        <h2 class="enrollForm-title">User Information:</h2>
+                        <h2 class="enrollForm-title">ユーザー情報:</h2>
                       </div>
                       <div class="col-5">
-                        <h2 class="steps">Step 1 - 3</h2>
+                        <h2 class="steps">ステップ 1 - 3</h2>
                       </div>
                     </div>
                     <div class="row mb-3">
@@ -172,39 +171,39 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                         <img id="image-preview" src="../assets/images/default-profile-icon.jpg" alt="user image" />
                       </div>
                       <div class="col-13 col-sm-12 col-md-6 col-lg-7 col-xl-8 file-input">
-                        <label class="fieldlabels">Upload Your Photo: <span class="required-tag">required &nbsp; *</span></label>
+                        <label class="fieldlabels">写真をアップロードする: <span class="required-tag">必要 &nbsp; *</span></label>
                         <input type="file" name="photo" class="form-input" id="file-input" />
                       </div>
                       <p class="alert col-12 pb-0"><?php if($response["type"] === "error") echo $response["message"]; ?></p>
                     </div>
-                    <input type="hidden" name="courseId" value="<?php if (isset($_GET["courseID"])) echo $_GET["courseID"] ?>" />
+                    <input type="hidden" name="courseId" value="<?php if (isset($_SESSION['courseId'])) echo $_SESSION['courseId'] ?>" />
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-12">
-                        <label class="fieldlabels">Full Name: <span class="required-tag">required &nbsp; *</span></label>
+                        <label class="fieldlabels">名前: <span class="required-tag">必要 &nbsp; *</span></label>
                         <input type="text" class="form-input" name="uname" id="uname" value="<?php echo $response["data"]["uname"] ?>" />
                       </div>
                     </div>
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-12">
-                        <label class="fieldlabels">Date of Birth: <span class="required-tag">required &nbsp; *</span></label>
+                        <label class="fieldlabels">生年月日: <span class="required-tag">必要 &nbsp; *</span></label>
                         <input type="date" class="form-input" name="dob" id="dob" required />
                       </div>
                     </div>
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-12">
-                        <label class="fieldlabels">Father Name: <span class="required-tag">required &nbsp; *</span></label>
+                        <label class="fieldlabels">父の名前: <span class="required-tag">必要 &nbsp; *</span></label>
                         <input type="text" class="form-input" name="fname" id="fname" placeholder="e.g. U Aye" />
                       </div>
                     </div>
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-12">
-                        <label class="fieldlabels">NRC: <span class="required-tag">required &nbsp; *</span></label>
+                        <label class="fieldlabels">全国登録カード: <span class="required-tag">必要 &nbsp; *</span></label>
                         <div class="row">
                           <?php $stateNumberArr = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"] ?>
                           <!-- <input type="text" class="form-input" name="nrc" id="nrc" placeholder="e.g. Please Enter NRC" required />  -->
                           <div class="col-12 col-sm-10 col-md-10 col-lg-2 col-xl-2">
                             <select name="nrcCode" id="nrcCode" class="form-input nrc">
-                              <option value="" selected disabled>State</option>
+                              <option value="" selected disabled>州番号</option>
                               <?php
                               for ($i = 0; $i < count($stateNumberArr); $i++) {
                                 echo "<option value='" . $stateNumberArr[$i] . "'>";
@@ -216,12 +215,12 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                           </div>
                           <div class="col-12 col-sm-10 col-md-10 col-lg-5 col-xl-5">
                             <select name="township" id="township" class="form-input nrc">
-                              <option value="" selected disabled>Township</option>
+                              <option value="" selected disabled>町</option>
                             </select>
                           </div>
                           <div class="col-12 col-sm-10 col-md-10 col-lg-3 col-xl-3">
                             <select name="type" id="type" class="form-input nrc">
-                              <option value="" selected disabled>Type</option>
+                              <option value="" selected disabled>タイプ</option>
                               <option value="(C)">(C) - (နိုင်)</option>
                               <option value="(AC)">(AC) - (ဧည့်)</option>
                               <option value="(NC)">(NC) - (ပြု)</option>
@@ -238,25 +237,25 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                     </div>
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-12">
-                        <label class="fieldlabels">Email:</label>
+                        <label class="fieldlabels">メール:</label>
                         <input type="email" class="form-input" name="email" id="email" placeholder="abc@gmail.com" />
                       </div>
                     </div>
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-12">
-                        <label class="fieldlabels">Phone Number: <span class="required-tag">required &nbsp; *</span></label>
+                        <label class="fieldlabels">電話番号: <span class="required-tag">必要 &nbsp; *</span></label>
                         <input type="text" class="form-input" name="phone" id="phone" placeholder="09..." />
                       </div>
                     </div>
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-12">
-                        <label class="fieldlabels">Address: <span class="required-tag">required &nbsp; *</span></label>
+                        <label class="fieldlabels">住所: <span class="required-tag">必要 &nbsp; *</span></label>
                         <textarea name="address" class="form-input" id="address" placeholder="e.g. No.(), (...) Road, (...) City."></textarea>
                       </div>
                     </div>
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-12">
-                        <label class="fieldlabels">Education: <span class="required-tag">required &nbsp; *</span></label>
+                        <label class="fieldlabels">教育: <span class="required-tag">必要 &nbsp; *</span></label>
                         <textarea name="edu" class="form-input" id="edu" placeholder="e.g. University"></textarea>
                       </div>
                     </div>
@@ -311,15 +310,15 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                   <div class="form-card">
                     <div class="row">
                       <div class="col-7">
-                        <h2 class="enrollForm-title">Payment:</h2>
+                        <h2 class="enrollForm-title">支払い:</h2>
                       </div>
                       <div class="col-5">
-                        <h2 class="steps">Step 2 - 3</h2>
+                        <h2 class="steps">ステップ 2 - 3</h2>
                       </div>
                     </div>
                     <div class="row mt-4">
                       <div class="col-12">
-                        <label class="fieldlabels">Select One of the Payment Method: <span class="required-tag">required &nbsp; *</span></label>
+                        <label class="fieldlabels">お支払い方法を1つ選択してください: <span class="required-tag">必要 &nbsp; *</span></label>
                       </div>
                     </div>
                     <div class="row bank-container">
@@ -365,13 +364,13 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                   <div class="form-card">
                     <div class="row">
                       <div class="col-7">
-                        <h2 class="enrollForm-title">Finish:</h2>
+                        <h2 class="enrollForm-title">終了:</h2>
                       </div>
                       <div class="col-5">
-                        <h2 class="steps">Step 3 - 3</h2>
+                        <h2 class="steps">ステップ 3 - 3</h2>
                       </div>
                     </div> <br><br>
-                    <h2 class="blue-text text-center"><strong>Successfully Submitted!</strong></h2> <br>
+                    <h2 class="blue-text text-center"><strong>正常に送信されました!</strong></h2> <br>
                     <div class="row justify-content-center">
                       <div class="col-3">
                         <img src="../assets/images/blue-tick.png" class="fit-image">
@@ -379,11 +378,11 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                     </div> <br><br>
                     <div class="row justify-content-center">
                       <div class="col-7 text-center">
-                        <h5 class="blue-text text-center">We will send email during business hours (9:00~17:00). Please check your email for payment information. </h5>
+                        <h5 class="blue-text text-center">メールは営業時間内（9：00〜17：00）に送信されます。お支払い情報についてはメールを確認してください. </h5>
                       </div>
                     </div>
                     <div class="row justify-content-center mt-3">
-                      <a href="classEnroll.php" class="back-to-courses">Browse Courses</a>
+                      <a href="classEnroll.php" class="back-to-courses">コースを閲覧する</a>
                     </div>
                   </div>
                 </fieldset>
@@ -404,10 +403,10 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                   <div class="form-card">
                     <div class="row">
                       <div class="col-7">
-                        <h2 class="enrollForm-title">User Information:</h2>
+                        <h2 class="enrollForm-title">ユーザー情報:</h2>
                       </div>
                       <div class="col-5">
-                        <h2 class="steps">Step 1 - 3</h2>
+                        <h2 class="steps">ステップ 1 - 3</h2>
                       </div>
                     </div>
                     <div class="row mb-3">
@@ -415,39 +414,39 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                         <img id="image-preview" src="../assets/images/default-profile-icon.jpg" alt="user image" />
                       </div>
                       <div class="col-13 col-sm-12 col-md-6 col-lg-7 col-xl-8 file-input">
-                        <label class="fieldlabels">Upload Your Photo: <span class="required-tag">required &nbsp; *</span></label>
+                        <label class="fieldlabels">写真をアップロードする: <span class="required-tag">必要 &nbsp; *</span></label>
                         <input type="file" name="photo" class="form-input" id="file-input" />
                       </div>
                       
                     </div>
-                    <input type="hidden" name="courseId" value="<?php if (isset($_GET["courseID"])) echo $_GET["courseID"] ?>" />
+                    <input type="hidden" name="courseId" value="<?php if (isset($_SESSION['courseId'])) echo $_SESSION['courseId'] ?>" />
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-12">
-                        <label class="fieldlabels">Full Name: <span class="required-tag">required &nbsp; *</span></label>
+                        <label class="fieldlabels">名前: <span class="required-tag">必要 &nbsp; *</span></label>
                         <input type="text" class="form-input" name="uname" id="uname" placeholder="eg. Win Win" />
                       </div>
                     </div>
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-12">
-                        <label class="fieldlabels">Date of Birth: <span class="required-tag">required &nbsp; *</span></label>
+                        <label class="fieldlabels">生年月日: <span class="required-tag">必要 &nbsp; *</span></label>
                         <input type="date" class="form-input" name="dob" id="dob" required />
                       </div>
                     </div>
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-12">
-                        <label class="fieldlabels">Father Name: <span class="required-tag">required &nbsp; *</span></label>
+                        <label class="fieldlabels">父の名前: <span class="required-tag">必要 &nbsp; *</span></label>
                         <input type="text" class="form-input" name="fname" id="fname" placeholder="e.g. U Aye" />
                       </div>
                     </div>
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-12">
-                        <label class="fieldlabels">NRC: <span class="required-tag">required &nbsp; *</span></label>
+                        <label class="fieldlabels">全国登録カード: <span class="required-tag">必要 &nbsp; *</span></label>
                         <div class="row">
                           <?php $stateNumberArr = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"] ?>
                           <!-- <input type="text" class="form-input" name="nrc" id="nrc" placeholder="e.g. Please Enter NRC" required />  -->
                           <div class="col-12 col-sm-10 col-md-10 col-lg-2 col-xl-2">
                             <select name="nrcCode" id="nrcCode" class="form-input nrc">
-                              <option value="" selected disabled>State</option>
+                              <option value="" selected disabled>州番号</option>
                               <?php
                               for ($i = 0; $i < count($stateNumberArr); $i++) {
                                 echo "<option value='" . $stateNumberArr[$i] . "'>";
@@ -459,12 +458,12 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                           </div>
                           <div class="col-12 col-sm-10 col-md-10 col-lg-5 col-xl-5">
                             <select name="township" id="township" class="form-input nrc">
-                              <option value="" selected disabled>Township</option>
+                              <option value="" selected disabled>町</option>
                             </select>
                           </div>
                           <div class="col-12 col-sm-10 col-md-10 col-lg-3 col-xl-3">
                             <select name="type" id="type" class="form-input nrc">
-                              <option value="" selected disabled>Type</option>
+                              <option value="" selected disabled>タイプ</option>
                               <option value="(C)">(C) - (နိုင်)</option>
                               <option value="(AC)">(AC) - (ဧည့်)</option>
                               <option value="(NC)">(NC) - (ပြု)</option>
@@ -481,25 +480,25 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                     </div>
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-12">
-                        <label class="fieldlabels">Email:</label>
+                        <label class="fieldlabels">メール:</label>
                         <input type="email" class="form-input" name="email" id="email" placeholder="abc@gmail.com" />
                       </div>
                     </div>
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-12">
-                        <label class="fieldlabels">Phone Number: <span class="required-tag">required &nbsp; *</span></label>
+                        <label class="fieldlabels">電話番号: <span class="required-tag">必要 &nbsp; *</span></label>
                         <input type="text" class="form-input" name="phone" id="phone" placeholder="09..." />
                       </div>
                     </div>
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-12">
-                        <label class="fieldlabels">Address: <span class="required-tag">required &nbsp; *</span></label>
+                        <label class="fieldlabels">住所: <span class="required-tag">必要 &nbsp; *</span></label>
                         <textarea name="address" class="form-input" id="address" placeholder="e.g. No.(), (...) Road, (...) City."></textarea>
                       </div>
                     </div>
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-12">
-                        <label class="fieldlabels">Education: <span class="required-tag">required &nbsp; *</span></label>
+                        <label class="fieldlabels">教育: <span class="required-tag">必要 &nbsp; *</span></label>
                         <textarea name="edu" class="form-input" id="edu" placeholder="e.g. University"></textarea>
                       </div>
                     </div>
@@ -509,15 +508,15 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                   <div class="form-card">
                     <div class="row">
                       <div class="col-7">
-                        <h2 class="enrollForm-title">Payment:</h2>
+                        <h2 class="enrollForm-title">支払い:</h2>
                       </div>
                       <div class="col-5">
-                        <h2 class="steps">Step 2 - 3</h2>
+                        <h2 class="steps">ステップ 2 - 3</h2>
                       </div>
                     </div>
                     <div class="row mt-4">
                       <div class="col-12">
-                        <label class="fieldlabels">Select One of the Payment Method: <span class="required-tag">required &nbsp; *</span></label>
+                        <label class="fieldlabels">お支払い方法を1つ選択してください: <span class="required-tag">必要 &nbsp; *</span></label>
                       </div>
                     </div>
                     <div class="row bank-container">
@@ -566,7 +565,7 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                         <h2 class="enrollForm-title">Finish:</h2>
                       </div>
                       <div class="col-5">
-                        <h2 class="steps">Step 3 - 3</h2>
+                        <h2 class="steps">ステップ 3 - 3</h2>
                       </div>
                     </div> <br><br>
                     <h2 class="blue-text text-center"><strong>Successfully Submitted!</strong></h2> <br>

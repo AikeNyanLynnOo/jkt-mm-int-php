@@ -1,3 +1,4 @@
+<?php  session_start(); ?> 
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -318,6 +319,9 @@
                 </thead>
                 <tbody>
                   <?php 
+                    if(isset($_SESSION['courseId'])) {
+                      unset($_SESSION['courseId']);
+                    }
                     include_once("../../admin/confs/config.php"); 
                     $schedule = "SELECT course_id, c.title AS course_title, cty.title AS category_title, 
                                  t.title AS type_title, c.level AS course_level, price, instructor, 
@@ -326,6 +330,7 @@
                                  AND c.type_id = t.type_id";
                     $schedule_result = mysqli_query($conn, $schedule);
                     while($row = mysqli_fetch_array($schedule_result)) {
+                      $_SESSION['courseId'] = $row['course_id'];
                   ?>
                     <tr id="<?php echo $row["course_id"]; ?>">
                       <td style="display: none">
@@ -375,7 +380,7 @@
                         <button class="detail" data-toggle="modal" data-target="#detailModal">Detail</button>
                       </td>
                       <td data-label="Enrollment">
-                        <a href="./classEnroll.php?courseID=<?php echo $row['course_id']; ?>"><button class="enroll">ENROLL</button></a>
+                        <a href="./classEnroll.php"><button class="enroll">ENROLL</button></a>
                       </td>
                     </tr>
                   <?php } ?>
