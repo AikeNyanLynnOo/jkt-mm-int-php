@@ -2660,6 +2660,9 @@ figure img {
   .small-brand {
     font-size: 24px;
   }
+  .modal-box {
+    width: 100%;
+  }
 }
 
 @media only screen and (max-width: 1160px) {

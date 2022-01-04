@@ -83,13 +83,38 @@ $(document).ready(function () {
     "NRC number must contain only numbers"
   );
 
+  $.validator.addMethod(
+    "extension", 
+    function(value, element, param) {
+      console.log(value);
+      console.log(element);
+      console.log(param);
+      param = typeof param === "string" ? param.replace(/,/g, '|') : "png|jpe?g|gif";
+      return this.optional(element) || value.match(new RegExp(".(" + param + ")$", "i"));
+    }, 
+    "Please enter a value Like (jpg, jpeg, png) a valid extension."
+  );
+
+  $.validator.addMethod(
+    'maxfilesize', 
+    function(value, element, param) {
+      var fileSize = 0;
+      fileSize = element.files[0].size; // get file size
+      fileSize = fileSize / 1024; //file size in Kb
+      fileSize = fileSize / 1024; //file size in Mb
+      console.log(fileSize)
+      return this.optional( element ) || fileSize <= param;
+    }, 
+    "File size must not be more than 2 MB."
+  );
+
   $(".next").click(function () {
     // current_fs = $(this).parent();
     // next_fs = $(this).parent().next();
 
     var form = $("#enrollmentForm");
 
-    form.validate({
+    var form_validator = form.validate({
       errorElement: "p",
       errorClass: "help-block",
       highlight: function (element, errorClass, validClass) {
@@ -101,6 +126,8 @@ $(document).ready(function () {
       rules: {
         photo: {
           required: true,
+          maxfilesize : 2,
+				  extension: "jpg|jpeg|png",
         },
         uname: {
           required: true,
@@ -216,6 +243,7 @@ $(document).ready(function () {
         }
       },
     });
+    console.log(form.valid())
     if (form.valid() === true) {
       let progressbar = document.getElementById("progressbar");
       if ($("#userInformation").is(":visible")) {
@@ -282,6 +310,8 @@ $(document).ready(function () {
           duration: 500,
         }
       );
+    } else {
+      form_validator.focusInvalid();
     }
   });
 
