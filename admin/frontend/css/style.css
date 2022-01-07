@@ -1,0 +1,28 @@
+.nav-title {
+  height: 35px;
+  line-height: 35px;
+}
+
+.input-left,
+.input-right {
+  width: 49%;
+}
+
+.days-checkbox{
+    display: flex ; 
+    padding : 0 !important;
+    flex-direction: column ;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.days-checkbox label {
+  line-height: 24px;
+}
+
+@media only screen and (max-width: 767px) {
+  .input-left,
+  .input-right {
+    width: 100%;
+  }
+}
