@@ -16,7 +16,7 @@
 // edu
 
 // STEP 2
-// classId
+// courseId
 // classTime
 
 // STEP 3
@@ -44,14 +44,14 @@ $address = $_POST['address'];
 $phone = $_POST['phone'];
 $education = $_POST['edu'];
 
-$classId = intval($_POST['courseId']);
+$courseId = intval($_POST['courseId']);
 // $classTime = $_POST['classTime'];
 
 // STEP 3
 $payment_method = $_POST['payment_method'];
 $paid_percent = 0;
 
-// echo ($classId .",".
+// echo ($courseId .",".
 //     $uname .",".
 //     $dob .",".  
 //     $fname .",".
@@ -199,7 +199,7 @@ if ($org_width > "300" || $org_height > "300") {
             updated_at,
             is_pending) 
             VALUES (
-            $classId,
+            $courseId,
             '$uname',
             '$dob',
             '$fname',
@@ -216,7 +216,7 @@ if ($org_width > "300" || $org_height > "300") {
             1)";
     mysqli_query($conn, $insert_into_enrollments);
 
-    $select_from_courses = "SELECT * FROM courses WHERE course_id = $classId";
+    $select_from_courses = "SELECT * FROM courses WHERE course_id = $courseId";
     $course_result = mysqli_query($conn, $select_from_courses);
 
     $row = mysqli_fetch_assoc($course_result);
@@ -269,7 +269,7 @@ if ($org_width > "300" || $org_height > "300") {
             updated_at,
             is_pending) 
             VALUES (
-            $classId,
+            $courseId,
             '$uname',
             '$dob',
             '$fname',
@@ -286,7 +286,7 @@ if ($org_width > "300" || $org_height > "300") {
             1)";
         mysqli_query($conn, $insert_into_enrollments);
 
-        $select_from_courses = "SELECT * FROM courses WHERE course_id = $classId";
+        $select_from_courses = "SELECT * FROM courses WHERE course_id = $courseId";
         $course_result = mysqli_query($conn, $select_from_courses);
 
         $row = mysqli_fetch_assoc($course_result);

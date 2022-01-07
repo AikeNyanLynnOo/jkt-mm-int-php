@@ -3,17 +3,29 @@
   line-height: 35px;
 }
 
+.input-25 {
+  width: 24%;
+}
+
 .input-left,
 .input-right {
   width: 49%;
 }
 
-.days-checkbox{
-    display: flex ; 
-    padding : 0 !important;
-    flex-direction: column ;
-    align-items: center;
-    justify-content: space-between;
+.preview-img {
+  display: inline-block;
+  width: 20%;
+}
+.preview-input {
+  width: 40%;
+}
+
+.days-checkbox {
+  display: flex;
+  padding: 0 !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .days-checkbox label {
@@ -22,7 +34,16 @@
 
 @media only screen and (max-width: 767px) {
   .input-left,
-  .input-right {
+  .input-right,
+  .input-25 {
     width: 100%;
+    margin-bottom: 10px;
+  }
+}
+@media only screen and (max-width: 575px) {
+  .preview-img,
+  .preview-input {
+    width: 100%;
+    margin-bottom: 10px;
   }
 }
