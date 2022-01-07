@@ -150,13 +150,13 @@
                 <div class="form-card">
                   <div class="row">
                     <div class="col-7">
-                      <h2 class="enrollForm-title">終了:</h2>
+                      <h2 class="enrollForm-title">登録完了:</h2>
                     </div>
                     <div class="col-5">
                       <h2 class="steps">ステップ 3 - 3</h2>
                     </div>
                   </div> <br><br>
-                  <h2 class="blue-text text-center"><strong>正常に送信されました!</strong></h2> <br>
+                  <h2 class="blue-text text-center"><strong>正常に登録されました!</strong></h2> <br>
                   <div class="row justify-content-center">
                     <div class="col-3">
                       <img src="../assets/images/blue-tick.png" class="fit-image">
@@ -164,11 +164,11 @@
                   </div> <br><br>
                   <div class="row justify-content-center">
                     <div class="col-7 text-center">
-                      <h5 class="blue-text text-center">メールは営業時間内（9：00〜17：00）に送信されます。お支払い情報についてはメールを確認してください。 </h5>
+                      <h5 class="blue-text text-center">営業時間内（9時〜17時）にメールを送信します。お支払い情報についてはメールを確認してください。 </h5>
                     </div>
                   </div>
                   <div class="row justify-content-center mt-3">
-                    <a href="classEnroll.php" class="back-to-courses">コースを閲覧する</a>
+                    <a href="./jp-school.php" class="back-to-courses">クラスのスケジュールへ</a>
                   </div>
                 </div>
               </fieldset>

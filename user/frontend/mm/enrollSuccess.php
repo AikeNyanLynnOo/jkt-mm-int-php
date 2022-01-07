@@ -288,7 +288,7 @@
                     </div>
                   </div>
                   <div class="row justify-content-center mt-3">
-                    <a href="classEnroll.php" class="back-to-courses">သင်တန်းများကို ပြန်လည်ကြည့်ရှုရန်</a>
+                    <a href="./jp-school.php" class="back-to-courses">သင်တန်းများကို ပြန်လည်ကြည့်ရှုရန်</a>
                   </div>
                 </div>
               </fieldset>

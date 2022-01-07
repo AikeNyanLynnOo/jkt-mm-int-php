@@ -309,12 +309,12 @@
                 <thead>
                   <tr>
                     <th scope="col">Class</th>
-                    <th scope="col">Days & Time</th>
+                    <th scope="col" style="width: 15em">Days & Time</th>
                     <th scope="col">Fees (Kyats)</th>
-                    <th scope="col">Duration</th>
-                    <th scope="col">Start Date</th>
-                    <th scope="col">Detail</th>
-                    <th scope="col">Enrollment</th>
+                    <th scope="col">Start Date & <br> Duration</th>
+                    <!-- <th scope="col"></th> -->
+                    <th scope="col" style="width: 6em">Detail</th>
+                    <th scope="col" style="width: 6em">Enroll</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -324,8 +324,8 @@
                     }
                     include_once("../../admin/confs/config.php"); 
                     $schedule = "SELECT course_id, c.title AS course_title, cty.title AS category_title, 
-                                 t.title AS type_title, c.level AS course_level, price, instructor, 
-                                 services, discount_percent, start_date, duration, sections
+                                 t.title AS type_title, c.level AS course_level, fee, instructor, 
+                                 services, discount_percent, start_date, duration, sections, note
                                  FROM courses c, categories cty, types t WHERE c.category_id = cty.category_id 
                                  AND c.type_id = t.type_id";
                     $schedule_result = mysqli_query($conn, $schedule);
@@ -340,23 +340,19 @@
                         <span id="instructor" class="row-data"><?php echo $row["instructor"] ?></span>
                         <span id="services" class="row-data"><?php echo $row["services"] ?></span>
                         <span id="discount_percent" class="row-data"><?php echo $row["discount_percent"] ?></span>
+                        <span id="price" class="row-data"><?php echo $row["fee"]; ?></span>
+                        <span id="note" class="row-data"><?php echo $row["note"]; ?></span>
                       </td>
                       <td data-label="Class" scope="row">
-
                         <span id="course_title" class="row-data"><?php echo $row["course_title"]; ?></span>
                       </td>
                       <td data-label="Days & Time">
-                        <span class="section-hour schedule-badges row-data" id="section_hour">
-                          <?php 
-                            $section_time = json_decode($row["sections"], true);
-                            echo $section_time["sectionHour"];
-                          ?>
-                        </span><br><br>
+                        <?php $section_time = json_decode($row["sections"], true); ?>
                         <?php for($i = 0; $i < count($section_time["days"]); $i++) { ?>
-                          <span id="days" class="days schedule-badges <?php
+                          <span id="days" class="days schedule-days-badges <?php
                             switch($section_time["days"][$i]) {
-                              case "Sat":
-                              case "Sun":
+                              case "Sa":
+                              case "Su":
                                 echo "weekend";
                                 break;
                               default:
@@ -365,22 +361,33 @@
                             }  
                           ?>"><?php echo $section_time["days"][$i];
                           echo "</span>";
-                        } ?>
+                        } ?><br><br>
+                        <span class="section-hour schedule-time-badges row-data" id="section_hour">
+                          <?php 
+                            echo $section_time["sectionHour"];
+                          ?>
+                        </span>
                       </td>
                       <td data-label="Fees (Kyats)">
-                        <span id="price" class="row-data"><?php echo $row["price"] ?></span>
+                        <span id="price"><?php echo number_format($row["fee"]) ?></span>
                       </td>
-                      <td data-label="Duration">
-                        <span id="duration" class="row-data"><?php echo $row["duration"] ?></span>
-                      </td>
-                      <td data-label="Start Date">
-                        <span id="start_date" class="row-data"><?php echo $row["start_date"] ?></span>
+                      <td data-label="Start Date & Duration">
+                        <span id="start_date" class="row-data">
+                          <?php echo $row["start_date"] ?>
+                        </span><br><br>
+                        <span id="duration" class="row-data">
+                          <?php echo $row["duration"] ?>
+                        </span>
                       </td>
                       <td data-label="Detail">
-                        <button class="detail" data-toggle="modal" data-target="#detailModal">Detail</button>
+                        <button class="detail" data-toggle="modal" data-target="#detailModal">
+                          <i class="fas fa-eye"></i>
+                        </button>
                       </td>
-                      <td data-label="Enrollment">
-                        <a href="./classEnroll.php"><button class="enroll">ENROLL</button></a>
+                      <td data-label="Enroll">
+                        <a href="./classEnroll.php"><button class="enroll">
+                          <img src="./assets/images/icon/contract.png" alt="" width="20" height="20" />
+                        </button></a>
                       </td>
                     </tr>
                   <?php } ?>
@@ -466,9 +473,9 @@
                 </td>
               </tr>
               <tr>
-                <td class="schedule-modal-label">Discount Percent :</td>
+                <td class="schedule-modal-label">Description :</td>
                 <td>
-                  <span id="modal_discount_percent"></span>
+                  <span id="modal_description"></span>
                 </td>
               </tr>
             </table>

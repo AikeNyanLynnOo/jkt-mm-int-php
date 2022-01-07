@@ -137,9 +137,82 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
 
   <!-- Enrollment Form start -->
   <section>
-    <div class="container-fluid">
+    <div class="container">
       <div class="row justify-content-center">
-        <div class="col-11 col-sm-10 col-md-10 col-lg-8 col-xl-6 text-center p-0 mt-3 mb-2">
+        <div class="col-12 col-sm-11 d-block d-lg-none text-center mt-4">
+          <?php 
+            $courseId = isset($_SESSION['courseId']) ? $_SESSION['courseId'] : null;
+            include_once("../../../admin/confs/config.php"); 
+            $get_course = "SELECT course_id, c.title AS course_title, cty.title AS category_title, 
+                          t.title AS type_title, c.level AS course_level, fee, instructor, 
+                          services, discount_percent, start_date, duration, sections, note
+                          FROM courses c, categories cty, types t WHERE course_id = $courseId AND
+                          c.category_id = cty.category_id AND c.type_id = t.type_id";
+          ?>
+            <div class="tabs">
+              <div class="tab">
+                <?php 
+                  $result = mysqli_query($conn, $get_course);
+                  $row = mysqli_fetch_assoc($result);
+                  $origin_fee = $row['fee'];
+                  $section_time = json_decode($row["sections"], true);
+                ?>
+                  <input type="checkbox" id="chck2" class="accordion">
+                  <label class="tab-label" for="chck2"><?php echo $row['course_title']; ?></label>
+                  <div class="tab-content">
+                    <p class="class-detail">
+                      <?php echo $row['course_level'] . " (" . $row['type_title'] . ")"; ?>
+                    </p>
+                    <p class="class-detail">
+                      <?php echo $origin_fee; ?>
+                    </p>
+                    <p class="class-detail">
+                      <?php echo $row['instructor']; ?>
+                    </p>
+                    <p class="class-detail">
+                      <?php echo $row['duration']; ?>
+                    </p>
+                    <p class="class-detail">
+                      <?php echo $row['start_date']; ?>
+                    </p>
+                    <p class="class-detail">
+                      <?php 
+                        $sale_price = $origin_fee - ($origin_fee * $row['discount_percent']/100);
+                        echo $sale_price; 
+                      ?>
+                    </p>
+                    <p class="class-detail">
+                      <?php for($i = 0; $i < count($section_time["days"]); $i++) { ?>
+                      <span id="days" class="days schedule-days-badges <?php
+                        switch($section_time["days"][$i]) {
+                                case "Sa":
+                                case "Su":
+                                  echo "weekend";
+                                  break;
+                                default:
+                                  echo "weekday";
+                                  break;                           
+                              }  
+                      ?>">
+                        <?php echo $section_time["days"][$i];
+                            echo "</span>";
+                      } ?>
+                    </p>
+                    <p class="class-detail">
+                      <span class="section-hour schedule-time-badges"><?php echo $section_time['sectionHour']; ?></span>
+                    </p>
+                    <p class="class-detail">
+                      <?php echo $row['services']; ?>
+                    </p>
+                    <p class="class-detail">
+                      <?php $note = $row['note'] === '' ? '-' : $row['note']; 
+                        echo $note; ?>
+                    </p>
+                  </div>
+              </div>
+            </div>
+        </div>
+        <div class="col-11 col-lg-7 text-center p-0 mt-3 mb-2">
           <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
             <!-- <h2 id="heading">Sign Up Your User Account</h2> -->
             <p class="enroll-description">すべてのフォームフィールドに入力して、次の手順に進みます</p>
@@ -171,7 +244,7 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                         <img id="image-preview" src="../assets/images/default-profile-icon.jpg" alt="user image" />
                       </div>
                       <div class="col-13 col-sm-12 col-md-6 col-lg-7 col-xl-8 file-input">
-                        <label class="fieldlabels">写真をアップロードする: <span class="required-tag">必要 &nbsp; *</span></label>
+                        <label class="fieldlabels">写真をアップロードする: <span class="required-tag">必須 &nbsp; *</span></label>
                         <input type="file" name="photo" class="form-input" id="file-input" />
                       </div>
                       <p class="alert col-12 pb-0"><?php if($response["type"] === "error") echo $response["message"]; ?></p>
@@ -179,29 +252,29 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                     <input type="hidden" name="courseId" value="<?php if (isset($_SESSION['courseId'])) echo $_SESSION['courseId'] ?>" />
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-12">
-                        <label class="fieldlabels">名前: <span class="required-tag">必要 &nbsp; *</span></label>
+                        <label class="fieldlabels">名前: <span class="required-tag">必須 &nbsp; *</span></label>
                         <input type="text" class="form-input" name="uname" id="uname" value="<?php echo $response["data"]["uname"] ?>" />
                       </div>
                     </div>
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-12">
-                        <label class="fieldlabels">生年月日: <span class="required-tag">必要 &nbsp; *</span></label>
+                        <label class="fieldlabels">生年月日: <span class="required-tag">必須 &nbsp; *</span></label>
                         <input type="date" class="form-input" name="dob" id="dob" required />
                       </div>
                     </div>
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-12">
-                        <label class="fieldlabels">父の名前: <span class="required-tag">必要 &nbsp; *</span></label>
+                        <label class="fieldlabels">父親の名前: <span class="required-tag">必須 &nbsp; *</span></label>
                         <input type="text" class="form-input" name="fname" id="fname" placeholder="e.g. U Aye" />
                       </div>
                     </div>
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-12">
-                        <label class="fieldlabels">全国登録カード: <span class="required-tag">必要 &nbsp; *</span></label>
+                        <label class="fieldlabels">身分証: <span class="required-tag">必須 &nbsp; *</span></label>
                         <div class="row">
                           <?php $stateNumberArr = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"] ?>
                           <!-- <input type="text" class="form-input" name="nrc" id="nrc" placeholder="e.g. Please Enter NRC" required />  -->
-                          <div class="col-12 col-sm-10 col-md-10 col-lg-2 col-xl-2">
+                          <div class="col-12 col-lg-2 col-xl-2">
                             <select name="nrcCode" id="nrcCode" class="form-input nrc">
                               <option value="" selected disabled>State</option>
                               <?php
@@ -213,12 +286,12 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                               ?>
                             </select>
                           </div>
-                          <div class="col-12 col-sm-10 col-md-10 col-lg-5 col-xl-5">
+                          <div class="col-12 col-lg-5 col-xl-5">
                             <select name="township" id="township" class="form-input nrc">
                               <option value="" selected disabled>Township</option>
                             </select>
                           </div>
-                          <div class="col-12 col-sm-10 col-md-10 col-lg-3 col-xl-3">
+                          <div class="col-12 col-lg-3 col-xl-3">
                             <select name="type" id="type" class="form-input nrc">
                               <option value="" selected disabled>Type</option>
                               <option value="(C)">(C) - (နိုင်)</option>
@@ -243,23 +316,23 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                     </div>
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-12">
-                        <label class="fieldlabels">電話番号: <span class="required-tag">必要 &nbsp; *</span></label>
+                        <label class="fieldlabels">電話番号: <span class="required-tag">必須 &nbsp; *</span></label>
                         <input type="text" class="form-input" name="phone" id="phone" placeholder="09..." />
                       </div>
                     </div>
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-12">
-                        <label class="fieldlabels">住所: <span class="required-tag">必要 &nbsp; *</span></label>
+                        <label class="fieldlabels">住所: <span class="required-tag">必須 &nbsp; *</span></label>
                         <textarea name="address" class="form-input" id="address" placeholder="e.g. No.(), (...) Road, (...) City."></textarea>
                       </div>
                     </div>
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-12">
-                        <label class="fieldlabels">教育: <span class="required-tag">必要 &nbsp; *</span></label>
-                        <textarea name="edu" class="form-input" id="edu" placeholder="e.g. University"></textarea>
+                        <label class="fieldlabels">学歴: <span class="required-tag">必須 &nbsp; *</span></label>
+                        <textarea name="edu" class="form-input" id="edu" placeholder="e.g. University or High School"></textarea>
                       </div>
                     </div>
-                    <input type="button" name="next" id="userInfo" class="next action-button" value="次" />
+                    <input type="button" name="next" id="userInfo" class="next action-button" value="次へ" />
                 </fieldset>
                 <!-- <fieldset id="classInformation">
                 <div class="form-card">
@@ -310,7 +383,7 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                   <div class="form-card">
                     <div class="row">
                       <div class="col-7">
-                        <h2 class="enrollForm-title">支払い:</h2>
+                        <h2 class="enrollForm-title">支払い方法:</h2>
                       </div>
                       <div class="col-5">
                         <h2 class="steps">ステップ 2 - 3</h2>
@@ -318,7 +391,7 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                     </div>
                     <div class="row mt-4">
                       <div class="col-12">
-                        <label class="fieldlabels">お支払い方法を1つ選択してください: <span class="required-tag">必要 &nbsp; *</span></label>
+                        <label class="fieldlabels">支払い方法を一つ選んで下さい: <span class="required-tag">必須 &nbsp; *</span></label>
                       </div>
                     </div>
                     <div class="row bank-container">
@@ -357,7 +430,7 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                       <span id="radioMsg"></span>
                     </div>
                   </div>
-                  <input type="button" name="next" class="next action-button" value="次" />
+                  <input type="button" name="next" class="next action-button" value="次へ" />
                   <input type="button" name="previous" class="previous action-button-previous" value="戻る" />
                 </fieldset>
                 <fieldset id="success">
@@ -414,7 +487,7 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                         <img id="image-preview" src="../assets/images/default-profile-icon.jpg" alt="user image" />
                       </div>
                       <div class="col-13 col-sm-12 col-md-6 col-lg-7 col-xl-8 file-input">
-                        <label class="fieldlabels">写真をアップロードする: <span class="required-tag">必要 &nbsp; *</span></label>
+                        <label class="fieldlabels">写真をアップロードする: <span class="required-tag">必須 &nbsp; *</span></label>
                         <input type="file" name="photo" class="form-input" id="file-input" />
                       </div>
                       
@@ -422,29 +495,29 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                     <input type="hidden" name="courseId" value="<?php if (isset($_SESSION['courseId'])) echo $_SESSION['courseId'] ?>" />
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-12">
-                        <label class="fieldlabels">名前: <span class="required-tag">必要 &nbsp; *</span></label>
+                        <label class="fieldlabels">名前: <span class="required-tag">必須 &nbsp; *</span></label>
                         <input type="text" class="form-input" name="uname" id="uname" placeholder="eg. Win Win" />
                       </div>
                     </div>
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-12">
-                        <label class="fieldlabels">生年月日: <span class="required-tag">必要 &nbsp; *</span></label>
+                        <label class="fieldlabels">生年月日: <span class="required-tag">必須 &nbsp; *</span></label>
                         <input type="date" class="form-input" name="dob" id="dob" required />
                       </div>
                     </div>
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-12">
-                        <label class="fieldlabels">父の名前: <span class="required-tag">必要 &nbsp; *</span></label>
+                        <label class="fieldlabels">父親の名前: <span class="required-tag">必須 &nbsp; *</span></label>
                         <input type="text" class="form-input" name="fname" id="fname" placeholder="e.g. U Aye" />
                       </div>
                     </div>
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-12">
-                        <label class="fieldlabels">全国登録カード: <span class="required-tag">必要 &nbsp; *</span></label>
+                        <label class="fieldlabels">身分証: <span class="required-tag">必須 &nbsp; *</span></label>
                         <div class="row">
                           <?php $stateNumberArr = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"] ?>
                           <!-- <input type="text" class="form-input" name="nrc" id="nrc" placeholder="e.g. Please Enter NRC" required />  -->
-                          <div class="col-12 col-sm-10 col-md-10 col-lg-2 col-xl-2">
+                          <div class="col-12 col-lg-2 col-xl-2">
                             <select name="nrcCode" id="nrcCode" class="form-input nrc">
                               <option value="" selected disabled>State</option>
                               <?php
@@ -456,12 +529,12 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                               ?>
                             </select>
                           </div>
-                          <div class="col-12 col-sm-10 col-md-10 col-lg-5 col-xl-5">
+                          <div class="col-12 col-lg-5 col-xl-5">
                             <select name="township" id="township" class="form-input nrc">
                               <option value="" selected disabled>Township</option>
                             </select>
                           </div>
-                          <div class="col-12 col-sm-10 col-md-10 col-lg-3 col-xl-3">
+                          <div class="col-12 col-lg-3 col-xl-3">
                             <select name="type" id="type" class="form-input nrc">
                               <option value="" selected disabled>Type</option>
                               <option value="(C)">(C) - (နိုင်)</option>
@@ -472,7 +545,7 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                               <option value="(N)">(N) - (သီ)</option>
                             </select>
                           </div>
-                          <div class="col-12 col-sm-10 col-md-10 col-lg-2 col-xl-2">
+                          <div class="col-12 col-lg-2 col-xl-2">
                             <input type="text" class="form-input nrc" name="nrcNumber" id="nrcNumber" placeholder="123456" />
                           </div>
                         </div>
@@ -486,29 +559,29 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                     </div>
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-12">
-                        <label class="fieldlabels">電話番号: <span class="required-tag">必要 &nbsp; *</span></label>
+                        <label class="fieldlabels">電話番号: <span class="required-tag">必須 &nbsp; *</span></label>
                         <input type="text" class="form-input" name="phone" id="phone" placeholder="09..." />
                       </div>
                     </div>
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-12">
-                        <label class="fieldlabels">住所: <span class="required-tag">必要 &nbsp; *</span></label>
+                        <label class="fieldlabels">住所: <span class="required-tag">必須 &nbsp; *</span></label>
                         <textarea name="address" class="form-input" id="address" placeholder="e.g. No.(), (...) Road, (...) City."></textarea>
                       </div>
                     </div>
                     <div class="row mb-3">
                       <div class="col-12 col-sm-12 col-md-12">
-                        <label class="fieldlabels">教育: <span class="required-tag">必要 &nbsp; *</span></label>
-                        <textarea name="edu" class="form-input" id="edu" placeholder="e.g. University"></textarea>
+                        <label class="fieldlabels">学歴: <span class="required-tag">必須 &nbsp; *</span></label>
+                        <textarea name="edu" class="form-input" id="edu" placeholder="e.g. University or High School"></textarea>
                       </div>
                     </div>
-                    <input type="button" name="next" id="userInfo" class="next action-button" value="次" />
+                    <input type="button" name="next" id="userInfo" class="next action-button" value="次へ" />
                 </fieldset>
                 <fieldset id="paymentMethod">
                   <div class="form-card">
                     <div class="row">
                       <div class="col-7">
-                        <h2 class="enrollForm-title">支払い:</h2>
+                        <h2 class="enrollForm-title">支払い方法:</h2>
                       </div>
                       <div class="col-5">
                         <h2 class="steps">ステップ 2 - 3</h2>
@@ -516,7 +589,7 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                     </div>
                     <div class="row mt-4">
                       <div class="col-12">
-                        <label class="fieldlabels">お支払い方法を1つ選択してください: <span class="required-tag">必要 &nbsp; *</span></label>
+                        <label class="fieldlabels">支払い方法を一つ選んで下さい: <span class="required-tag">必須 &nbsp; *</span></label>
                       </div>
                     </div>
                     <div class="row bank-container">
@@ -555,7 +628,7 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                       <span id="radioMsg"></span>
                     </div>
                   </div>
-                  <input type="button" name="next" class="next action-button" value="次" />
+                  <input type="button" name="next" class="next action-button" value="次へ" />
                   <input type="button" name="previous" class="previous action-button-previous" value="戻る" />
                 </fieldset>
                 <fieldset id="success">
@@ -585,10 +658,66 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                   </div>
                 </fieldset>
               </form>
-
-
             <?php } ?>
           </div>
+        </div>
+        <div class="col-12 col-lg-4 offset-lg-1 d-none d-lg-block text-center mb-5 mt-5 pt-3">
+            <div class="tabs">
+              <div class="tab">
+                  <input type="checkbox" id="chck1" class="accordion">
+                  <label class="tab-label ml-4" for="chck1"><?php echo $row['course_title']; ?></label>
+                  <div class="tab-content">
+                    <p class="class-detail">
+                      <?php echo $row['course_level'] . " (" . $row['type_title'] . ")" ;?>
+                    </p>
+                    <p class="class-detail">
+                      <?php 
+                        $sale_price = $origin_fee - ($origin_fee * $row['discount_percent']/100);
+                        echo "<span class='sale-price'>" . number_format($origin_fee) . "</span>&nbsp;";
+                        echo number_format($sale_price) . " MMK";
+                      ?>
+                    </p>
+                    <p class="class-detail">
+                      <span class="schedule-time-badges instructor">
+                        <?php echo $row['instructor']; ?>
+                      </span>
+                    </p>
+                    <p class="class-detail">
+                      <?php echo $row['duration']; ?>
+                    </p>
+                    <p class="class-detail">
+                      <?php echo $row['start_date']; ?>
+                    </p>
+                    <p class="class-detail">
+                      <?php for($i = 0; $i < count($section_time["days"]); $i++) { ?>
+                      <span id="days" class="days schedule-days-badges <?php
+                        switch($section_time["days"][$i]) {
+                                case "Sa":
+                                case "Su":
+                                  echo "weekend";
+                                  break;
+                                default:
+                                  echo "weekday";
+                                  break;                           
+                              }  
+                      ?>">
+                        <?php echo $section_time["days"][$i];
+                            echo "</span>";
+                      } ?>
+                    </p>
+                    <p class="class-detail">
+                      <span class="section-hour schedule-time-badges"><?php echo $section_time['sectionHour']; ?></span>
+                    </p>
+                    <p class="class-detail">
+                      <?php echo $row['services']; ?>
+                    </p>
+                    <p class="class-detail">
+                      <?php $note = $row['note'] === '' ? '-' : $row['note']; 
+                        echo $note; ?>
+                    </p>
+                  </div>
+              </div>
+            </div>
         </div>
       </div>
     </div>
@@ -613,7 +742,7 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
 
         <!-- Modal body -->
         <div class="modal-body confirm-modal-body">
-          <span style="color: #001c69">このコース の 登録 を 送信しても </span>よろしいですか?
+          <span style="color: #001c69">このコース を 登録しても </span>よろしいですか?
         </div>
 
         <!-- Modal footer -->

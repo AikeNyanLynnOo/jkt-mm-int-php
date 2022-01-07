@@ -1289,6 +1289,7 @@ figure img {
   font-weight: normal;
 }
 
+/* Class Enroll */
 .enroll-description {
   color: grey;
 }
@@ -1581,6 +1582,8 @@ figure img {
   border-radius: 5px;
 }
 
+/* Class Enroll */
+
 /* Confirm payment preview design */
 .box {
   position: relative;
@@ -1653,12 +1656,28 @@ figure img {
   margin-bottom: 0;
 }
 
-.schedule-badges {
-  padding: 3px 5px;
+.schedule-time-badges {
+  padding: 0 8px;
+  display: inline-block;
   font-size: 14px;
   border-radius: 5px;
   color: whitesmoke;
   margin: 5px;
+  text-align: center;
+  height: 20px;
+  line-height: 17px;
+}
+
+.schedule-days-badges {
+  display: inline-block;
+  text-align: center;
+  line-height: 25px;
+  width: 25px;
+  height: 25px;
+  font-size: 14px;
+  border-radius: 50%;
+  color: whitesmoke;
+  margin: 3px;
 }
 
 .weekday {
@@ -1678,9 +1697,22 @@ figure img {
   background-color: rgb(201, 126, 142);
 }
 
-.modal-badges {
+.modal-time-badges {
   padding: 3px 5px;
   border-radius: 5px;
+  color: whitesmoke;
+  margin: 5px;
+  font-size: 15px;
+}
+
+.modal-days-badges {
+  display: inline-block;
+  text-align: center;
+  line-height: 20px;
+  width: 25px;
+  height: 25px;
+  padding: 3px 5px;
+  border-radius: 50%;
   color: whitesmoke;
   margin: 5px;
   font-size: 15px;
@@ -1693,7 +1725,7 @@ figure img {
 }
 
 .enroll {
-  padding: 10px 25px;
+  padding: 10px 15px;
   border: 1px solid #c6c6c6;
   background-color: white;
   color: #131313;
@@ -1731,6 +1763,13 @@ figure img {
 .detail:focus {
   outline: none;
 }
+
+.sale-price {
+  text-decoration: line-through;
+  text-decoration-color: rgb(236, 0, 0);
+  color:rgb(100, 98, 98);
+}
+
 /* JP school schedule table */
 
 /* Confirm payment preview design */
@@ -1793,6 +1832,11 @@ figure img {
   border: none;
 }
 
+#modal_days {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .detail-schedule {
   background-color: #ffffe0;
   border-collapse: collapse;
@@ -1822,6 +1866,76 @@ figure img {
 .table tr td {
   vertical-align: middle;
 }
+
+/* Accordion */
+.tab {
+  width: 100%;
+  color: white;
+  overflow: hidden;
+}
+
+.tab input {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+
+.tabs {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.5);
+  border: 1px dotted grey;
+}
+
+.tab-label {
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
+  color: #11100f;
+  background: #ffffff;
+  font-weight: bold;
+  cursor: pointer;
+  /* Icon */
+}
+/* .tab-label:hover {
+  background: #e8f4ff;
+} */
+.tab-label::after {
+  content: "❯";
+  width: 1em;
+  height: 1em;
+  text-align: center;
+  transition: all 0.35s;
+}
+.tab-content {
+  max-height: 0;
+  padding: 0 1em;
+  color: #11100f;
+  background: white;
+  transition: all 0.35s;
+  text-align: left;
+}
+.tab input:checked + .tab-label {
+  background: #ffffff;
+  color: #11100f;
+}
+.tab input:checked + .tab-label::after {
+  transform: rotate(90deg);
+  margin-top: 7px;
+}
+.tab input:checked ~ .tab-content {
+  max-height: 100vh;
+  padding: 1em;
+}
+.class-detail {
+  padding: 0 30px 15px;
+  border-bottom: 1px dotted rgb(128, 125, 125);
+}
+.tab-content .class-detail:last-of-type{
+  border-bottom: none;
+  padding-bottom: 0;
+}
+/* Accordion */
 
 /* Detail Information Page End */
 
@@ -2489,7 +2603,7 @@ figure img {
     font-weight: bold;
     text-align: left;
     text-transform: uppercase;
-    width: 150px;
+    width: 120px;
   }
   
   .schedule-table td:last-child {
@@ -2603,7 +2717,10 @@ figure img {
   .detail-schedule {
     font-size: 13px;
   }
-  .modal-badges {
+  .modal-time-badges {
+    font-size: 13px;
+  }
+  .modal-days-badges {
     font-size: 13px;
   }
   .detail-modal {
@@ -2640,13 +2757,27 @@ figure img {
   .detail-schedule {
     font-size: 10px;
   }
-  .modal-badges {
+  .modal-time-badges {
     font-size: 10px;
+  }
+  .modal-days-badges {
+    font-size: 10px;
+  }
+  .schedule-time-badges {
+    font-size: 12px;
+    margin: 2px;
+  }
+  .schedule-days-badges {
+    font-size: 12px;
+    margin: 2px;
   }
   .instructor {
     font-size: 10px;
     padding: 3px;
     margin: 0;
+  }
+  .schedule-mm {
+    font-size: 14px;
   }
 }
 
@@ -2805,6 +2936,20 @@ figure img {
   .header h3 {
     font-size: 20px;
   }
+  .modal-time-badges {
+    font-size: 8px;
+    padding: 3px 2px;
+  }
+  .modal-days-badges {
+    font-size: 8px;
+  }
+  .schedule-table td {
+    font-size: 13px;
+    padding: .8em .625em;
+  }
+  /* .schedule-days-badges{
+    margin-bottom: 100px;
+  } */
 }
 
 @media only screen and (max-width: 310px) {
@@ -2827,18 +2972,19 @@ figure img {
     font-size: 43px;
     letter-spacing: 5px;
   }
-  .modal-badges {
-    font-size: 8px;
-  }
-  .schedule-table td {
-    font-size: 10px;
-    padding: .8em .625em;
-  }
-  .schedule-badges {
+  .schedule-time-badges {
     font-size: 7px;
+    height: 12px;
+    line-height: 10px;
+  }
+  .schedule-days-badges {
+    font-size: 7px;
+    width: 15px;
+    height: 15px;
+    line-height: 15px;
   }
   .schedule-table td::before {
-    width: 100px;
+    width: 120px;
   }
   .enroll {
     padding: 5px 12px;

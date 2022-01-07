@@ -296,13 +296,12 @@
               <table class="schedule-table">
                 <thead>
                   <tr>
-                    <th scope="col">クラス</th>
-                    <th scope="col">授業の日 と 時間</th>
-                    <th scope="col">授業料 <br>「チャット」</th>
-                    <th scope="col">授業期間</th>
-                    <th scope="col">開始日</th>
-                    <th scope="col">詳細を見る</th>
-                    <th scope="col">登録</th>
+                    <th scope="col">名称</th>
+                    <th scope="col" style="width: 15em">日程</th>
+                    <th scope="col">学費 <br>「チャット」</th>
+                    <th scope="col">開始日 と <br> 期間</th>
+                    <th scope="col" style="width: 6em">詳細</th>
+                    <th scope="col" style="width: 6em">登録</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -312,7 +311,7 @@
                     }
                     include_once("../../../admin/confs/config.php"); 
                     $schedule = "SELECT course_id, c.title AS course_title, cty.title AS category_title, 
-                                 t.title AS type_title, c.level AS course_level, price, instructor, 
+                                 t.title AS type_title, c.level AS course_level, fee, instructor, 
                                  services, discount_percent, start_date, duration, sections
                                  FROM courses c, categories cty, types t WHERE c.category_id = cty.category_id 
                                  AND c.type_id = t.type_id";
@@ -328,23 +327,20 @@
                         <span id="instructor" class="row-data"><?php echo $row["instructor"] ?></span>
                         <span id="services" class="row-data"><?php echo $row["services"] ?></span>
                         <span id="discount_percent" class="row-data"><?php echo $row["discount_percent"] ?></span>
+                        <span id="price" class="row-data"><?php echo $row["fee"]; ?></span>
+                        <span id="note" class="row-data"><?php echo $row["note"]; ?></span>
                       </td>
-                      <td data-label="クラス" scope="row">
+                      <td data-label="名称" scope="row">
 
                         <span id="course_title" class="row-data"><?php echo $row["course_title"]; ?></span>
                       </td>
-                      <td data-label="授業の日 と 時間">
-                        <span class="section-hour schedule-badges row-data" id="section_hour">
-                          <?php 
-                            $section_time = json_decode($row["sections"], true);
-                            echo $section_time["sectionHour"];
-                          ?>
-                        </span><br><br>
+                      <td data-label="日程">
+                        <?php $section_time = json_decode($row["sections"], true); ?>
                         <?php for($i = 0; $i < count($section_time["days"]); $i++) { ?>
-                          <span id="days" class="days schedule-badges <?php
+                          <span id="days" class="days schedule-days-badges <?php
                             switch($section_time["days"][$i]) {
-                              case "Sat":
-                              case "Sun":
+                              case "Sa":
+                              case "Su":
                                 echo "weekend";
                                 break;
                               default:
@@ -353,22 +349,29 @@
                             }  
                           ?>"><?php echo $section_time["days"][$i];
                           echo "</span>";
-                        } ?>
+                        } ?><br><br>
+                        <span class="section-hour schedule-time-badges row-data" id="section_hour">
+                          <?php 
+                            echo $section_time["sectionHour"];
+                          ?>
+                        </span>
                       </td>
-                      <td data-label="授業料「チャット」">
-                        <span id="price" class="row-data"><?php echo $row["price"] ?></span>
+                      <td data-label="学費「チャット」">
+                        <span id="price"><?php echo $row["fee"] ?></span>
                       </td>
-                      <td data-label="授業期間">
+                      <td data-label="開始日 と 期間">
+                        <span id="start_date" class="row-data"><?php echo $row["start_date"] ?></span><br><br>
                         <span id="duration" class="row-data"><?php echo $row["duration"] ?></span>
                       </td>
-                      <td data-label="開始日">
-                        <span id="start_date" class="row-data"><?php echo $row["start_date"] ?></span>
-                      </td>
-                      <td data-label="詳細を見る">
-                        <button class="detail" data-toggle="modal" data-target="#detailModal">Detail</button>
+                      <td data-label="詳細">
+                        <button class="detail" data-toggle="modal" data-target="#detailModal">
+                          <i class="fas fa-eye"></i>
+                        </button>
                       </td>
                       <td data-label="登録">
-                        <a href="./classEnroll.php"><button class="enroll">ENROLL</button></a>
+                        <a href="./classEnroll.php"><button class="enroll">
+                          <img src="../assets/images/icon/contract.png" alt="" width="20" height="20" />
+                        </button></a>
                       </td>
                     </tr>
                   <?php } ?>
@@ -389,7 +392,7 @@
 
           <!-- Modal Header -->
           <div class="modal-header">
-            <h4 class="modal-title detail-modal-title">クラスの詳細情報</h4>
+            <h4 class="modal-title detail-modal-title">詳細情報</h4>
             <button class="btn-close" data-dismiss="modal">
               <i class='fas fa-times' style='font-size:24px; color: grey'></i>
             </button>
@@ -399,7 +402,7 @@
           <div class="modal-body">
             <table class="detail-schedule">
               <tr>
-                <td class="schedule-modal-label">クラス :</td>
+                <td class="schedule-modal-label">名称 :</td>
                 <td>
                   <span id="modal_course_title"></span><br>
                   <span id="modal_category_title"></span>
@@ -407,30 +410,30 @@
                 </td>
               </tr>
               <tr>
-                <td class="schedule-modal-label">クラスタイプ :</td>
+                <td class="schedule-modal-label">タイプ :</td>
                 <td>
                   <span id="modal_type_title"></span>
                 </td>
               </tr>
               <tr>
-                <td class="schedule-modal-label">授業の日 :</td>
+                <td class="schedule-modal-label">日付 :</td>
                 <td id="modal_days">
                 </td>
               </tr>
               <tr>
-                <td class="schedule-modal-label">授業の時間 :</td>
+                <td class="schedule-modal-label">時間 :</td>
                 <td>
                   <span id="modal_time"></span>
                 </td>
               </tr>
               <tr>
-                <td class="schedule-modal-label">授業料「チャット」 :</td>
+                <td class="schedule-modal-label">学費「チャット」 :</td>
                 <td>
                   <span id="modal_fees"></span>
                 </td>
               </tr>
               <tr>
-                <td class="schedule-modal-label">授業期間 :</td>
+                <td class="schedule-modal-label">期間 :</td>
                 <td>
                   <span id="modal_duration"></span>
                 </td>
@@ -454,9 +457,9 @@
                 </td>
               </tr>
               <tr>
-                <td class="schedule-modal-label">割引プログラム :</td>
+                <td class="schedule-modal-label">追加の説明 :</td>
                 <td>
-                  <span id="modal_discount_percent"></span>
+                  <span id="modal_description"></span>
                 </td>
               </tr>
             </table>

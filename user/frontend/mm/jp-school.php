@@ -189,7 +189,7 @@
                       width="25px"
                     /></button
                 ></a>
-                <a href="./jp/jp-school.php"
+                <a href="../jp/jp-school.php"
                   ><button
                     type="button"
                     class="btn btn3"
@@ -311,16 +311,16 @@
         <div class="row">
           <div class="col-12 col-lg-12 schedule-blog-info">
             <div class="schedule-table-block">
-              <table class="schedule-table">
+              <table class="schedule-table schedule-mm">
                 <thead>
                   <tr>
                     <th scope="col">အတန်း</th>
-                    <th scope="col">တက်‌ရောက်ရမည့်အချိန် နှင့် ရက်</th>
+                    <th scope="col" style="width: 15em">တက်‌ရောက်ရမည့်အချိန် <br> နှင့် ရက်</th>
                     <th scope="col">သင်တန်းကြေး (ကျပ်)</th>
-                    <th scope="col">သင်တန်းကာလ</th>
-                    <th scope="col">သင်တန်းစတင်မည့်ရက်</th>
-                    <th scope="col">အသေးစိတ် သိရှိရန်</th>
-                    <th scope="col">စာရင်းပေးသွင်းရန်</th>
+                    <th scope="col">သင်တန်းစတင်မည့်ရက် <br> နှင့် သင်တန်းကာလ</th>
+                    <!-- <th scope="col">သင်တန်းစတင်မည့်ရက်</th> -->
+                    <th scope="col" style="width: 6em">အသေးစိတ် သိရှိရန်</th>
+                    <th scope="col" style="width: 6em">စာရင်းပေးသွင်းရန်</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -330,7 +330,7 @@
                     }
                     include_once("../../../admin/confs/config.php"); 
                     $schedule = "SELECT course_id, c.title AS course_title, cty.title AS category_title, 
-                                 t.title AS type_title, c.level AS course_level, price, instructor, 
+                                 t.title AS type_title, c.level AS course_level, fee, instructor, 
                                  services, discount_percent, start_date, duration, sections
                                  FROM courses c, categories cty, types t WHERE c.category_id = cty.category_id 
                                  AND c.type_id = t.type_id";
@@ -346,23 +346,20 @@
                         <span id="instructor" class="row-data"><?php echo $row["instructor"] ?></span>
                         <span id="services" class="row-data"><?php echo $row["services"] ?></span>
                         <span id="discount_percent" class="row-data"><?php echo $row["discount_percent"] ?></span>
+                        <span id="price" class="row-data"><?php echo $row["fee"]; ?></span>
+                        <span id="note" class="row-data"><?php echo $row["note"]; ?></span>
                       </td>
                       <td data-label="အတန်း" scope="row">
 
                         <span id="course_title" class="row-data"><?php echo $row["course_title"]; ?></span>
                       </td>
                       <td data-label="တက်‌ရောက်ရမည့်အချိန် နှင့် ရက်">
-                        <span class="section-hour schedule-badges row-data" id="section_hour">
-                          <?php 
-                            $section_time = json_decode($row["sections"], true);
-                            echo $section_time["sectionHour"];
-                          ?>
-                        </span><br><br>
+                        <?php $section_time = json_decode($row["sections"], true); ?>
                         <?php for($i = 0; $i < count($section_time["days"]); $i++) { ?>
-                          <span id="days" class="days schedule-badges <?php
+                          <span id="days" class="days schedule-days-badges <?php
                             switch($section_time["days"][$i]) {
-                              case "Sat":
-                              case "Sun":
+                              case "Sa":
+                              case "Su":
                                 echo "weekend";
                                 break;
                               default:
@@ -371,22 +368,29 @@
                             }  
                           ?>"><?php echo $section_time["days"][$i];
                           echo "</span>";
-                        } ?>
+                        } ?><br><br>
+                        <span class="section-hour schedule-time-badges row-data" id="section_hour">
+                          <?php 
+                            echo $section_time["sectionHour"];
+                          ?>
+                        </span>
                       </td>
                       <td data-label="သင်တန်းကြေး (ကျပ်)">
-                        <span id="price" class="row-data"><?php echo $row["price"] ?></span>
+                        <span id="price"><?php echo number_format($row["fee"]) ?></span>
                       </td>
-                      <td data-label="သင်တန်းကာလ">
+                      <td data-label="သင်တန်းစတင်မည့်ရက် နှင့် သင်တန်းကာလ">
+                        <span id="start_date" class="row-data"><?php echo $row["start_date"] ?></span><br><br>
                         <span id="duration" class="row-data"><?php echo $row["duration"] ?></span>
                       </td>
-                      <td data-label="သင်တန်းစတင်မည့်ရက်">
-                        <span id="start_date" class="row-data"><?php echo $row["start_date"] ?></span>
-                      </td>
                       <td data-label="အသေးစိတ် သိရှိရန်">
-                        <button class="detail" data-toggle="modal" data-target="#detailModal">Detail</button>
+                        <button class="detail" data-toggle="modal" data-target="#detailModal">
+                          <i class="fas fa-eye"></i>
+                        </button>
                       </td>
                       <td data-label="စာရင်းပေးသွင်းရန်">
-                        <a href="./classEnroll.php"><button class="enroll">ENROLL</button></a>
+                        <a href="./classEnroll.php"><button class="enroll">
+                          <img src="../assets/images/icon/contract.png" alt="" width="20" height="20" />
+                        </button></a>
                       </td>
                     </tr>
                   <?php } ?>
@@ -472,9 +476,9 @@
                 </td>
               </tr>
               <tr>
-                <td class="schedule-modal-label">လျှော့စျေးပေးမည့်အစီစဉ် :</td>
+                <td class="schedule-modal-label">အခြားဖော်ပြချက် :</td>
                 <td>
-                  <span id="modal_discount_percent"></span>
+                  <span id="modal_description"></span>
                 </td>
               </tr>
             </table>

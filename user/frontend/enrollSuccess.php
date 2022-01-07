@@ -168,7 +168,7 @@
                     </div>
                   </div>
                   <div class="row justify-content-center mt-3">
-                    <a href="classEnroll.php" class="back-to-courses">Browse Courses</a>
+                    <a href="./jp-school.php" class="back-to-courses">Browse Courses</a>
                   </div>
                 </div>
               </fieldset>
