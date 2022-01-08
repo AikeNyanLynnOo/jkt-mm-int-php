@@ -1,6 +1,5 @@
 <?php
 // check user
-// db include
 include("../confs/config.php");
 ?>
 <html lang="en">
@@ -13,7 +12,7 @@ include("../confs/config.php");
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Admin - New Course</title>
+    <title>Admin - New Enrollment</title>
 
     <!-- Custom fonts for this template-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -21,6 +20,7 @@ include("../confs/config.php");
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
     <link href="css/style.css" rel="stylesheet">
 </head>
 
@@ -143,7 +143,7 @@ include("../confs/config.php");
                     </button>
 
                     <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search nav-title">
-                        <h3>New Course</h3>
+                        <h3>New Enrollment</h3>
                     </div>
 
                     <!-- Topbar Navbar -->
@@ -295,96 +295,117 @@ include("../confs/config.php");
                 <!-- Begin Page Content -->
                 <div class="container">
                     <div class="row">
-                        <form class="col-12 col-md-11 col-lg-8 mx-auto" action="../backend/newCourse.php" method="POST">
-                            <div class="form-group mb-4">
-                                <label for="title">Enter Title</label>
-                                <input type="text" class="form-control form-control-user" id="title" name="title" aria-describedby="tileField" placeholder="Course Title" required />
+                        <form class="col-12 col-md-11 col-lg-8 mx-auto">
+                            <div class="form-group mb-4 row align-items-center justify-content-between px-3">
+                                <img src="../../user/frontend/assets/images/logo.jpg" alt="image-preview" class="preview-img"/>
+                                <input type="file" name="photo" id="photo" class="form-control preview-input"/>
                             </div>
                             <div class="form-group mb-4">
-                                <label for="categoryId">Choose Category</label>
-                                <select name="categoryId" id="categoryId" name="categoryId" class="form-control form-control-user" required>
-                                    <option selected disabled>Category</option>
+                                <label for="categoryId">Choose Course</label>
+                                <select id="classId" name="classId" class="form-control form-control-user" required>
+                                    <option value="" selected disabled>Course</option>
                                     <?php
-                                    $result = mysqli_query($conn, "SELECT * FROM categories");
+                                    $result = mysqli_query($conn, "SELECT * FROM courses");
                                     while ($row = mysqli_fetch_assoc($result)) {
                                     ?>
-                                        <option value='<?= $row["category_id"] ?>'><?= $row["title"] ?></option>
+                                        <option value='<?php echo $row["course_id"] ?>'><?php echo $row["title"] ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
                             <div class="form-group mb-4">
-                                <label for="typeId">Choose Type</label>
-                                <select name="typeId" id="typeId" class="form-control">
-                                    <option selected disabled>Type</option>
-                                    <?php
-                                    $result = mysqli_query($conn, "SELECT * FROM types");
-                                    while ($row = mysqli_fetch_assoc($result)) {
-                                    ?>
-                                        <option value='<?= $row["type_id"] ?>'><?= $row["title"] ?></option>
-                                    <?php } ?>
-                                </select>
-                            </div>
-                            <div class="form-gorup mb-4">
-                                <label for="levelorsub">Enter level/subjects</label>
-                                <input type="text" name="levelorsub" id="levelorsub" class="form-control" placeholder="eg. N5 or physic/chemistry/Biology..." required />
+                                <label for="uname">Enter Full Name</label>
+                                <input type="text" name="uname" id="uname" class="form-control" placeholder="eg. Aung Aung" required />
                             </div>
                             <div class="mb-4 mx-auto row justify-content-between">
-                                <div class=" input-left mb-3 mb-md-0">
-                                    <label for="fee">Enter Fees</label>
-                                    <input type="number" class="form-control" id="fee" name="fee" aria-describedby="feeField" placeholder="eg. 250,000" required />
-                                </div>
                                 <div class="input-right">
-                                    <label for="discountPercent">Enter Discount (%)</label>
-                                    <input type="number" class="form-control" id="discountPercent" name="discountPercent" aria-describedby="discountField" placeholder="eg. 5" required />
+                                    <label for="dob">Choose Birthday</label>
+                                    <input type="date" name="dob" id="dob" class="form-control" required />
+                                </div>
+                                <div class=" input-left mb-3 mb-md-0">
+                                    <label for="fname">Enter Father Name</label>
+                                    <input type="text" name="fname" id="fname" class="form-control" placeholder="eg. U Kyaw" required />
                                 </div>
                             </div>
                             <div class="mb-4 mx-auto row justify-content-between">
-                                <div class=" input-left mb-3 mb-md-0">
-                                    <label for="startDate">Choose Start Date</label>
-                                    <input type="date" class="form-control" id="startDate" name="startDate" aria-describedby="dateField" required required />
+                                <div class="input-25">
+                                    <label for="dob">Choose State</label>
+                                    <select id="classId" name="classId" class="form-control form-control-user" required>
+                                        <option value="" selected disabled>State</option>
+                                        <?php
+                                        foreach ([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14] as $state) {
+                                        ?>
+                                            <option value='<?= $state ?>'><?= $state ?></option>
+                                        <?php } ?>
+                                    </select>
                                 </div>
-                                <div class="input-right">
-                                    <label for="duration">Duration (Months)</label>
-                                    <input type="number" class="form-control" id="duration" name="duration" aria-describedby="monthsField" placeholder="Duration In Months" required />
+                                <div class="input-25">
+                                    <label for="township">Choose Township</label>
+                                    <select id="township" name="township" class="form-control form-control-user" required>
+                                        <option value="" selected disabled>State</option>
+                                    </select>
                                 </div>
-                            </div>
-                            <div class="mb-4 mx-auto row justify-content-between">
-                                <div class=" input-left mb-3 mb-md-0">
-                                    <label for="startTime">Class Starts At:</label>
-                                    <input type="time" class="form-control" id="startTime" name="startTime" aria-describedby="startTimeField" required />
+                                <div class="input-25">
+                                    <label for="type">Choose Type</label>
+                                    <select id="type" name="type" class="form-control form-control-user" required>
+                                        <option value="" selected disabled>Type</option>
+                                        <option value="" selected disabled>Type</option>
+                                        <option value="(C)">(C) - (နိုင်)</option>
+                                        <option value="(AC)">(AC) - (ဧည့်)</option>
+                                        <option value="(NC)">(NC) - (ပြု)</option>
+                                        <option value="(V)">(V) - (စ)</option>
+                                        <option value="(M)">(M) - (သ)</option>
+                                        <option value="(N)">(N) - (သီ)</option>
+                                    </select>
                                 </div>
-                                <div class="input-right">
-                                    <label for="endTime">Class Ends At:</label>
-                                    <input type="time" class="form-control" id="endTime" name="endTime" aria-describedby="endTimeField" required />
+                                <div class="input-25">
+                                    <label for="nrcNumber">Enter nrcNumber</label>
+                                    <input type="number" class="form-control" name="nrcNumber" id="nrcNumber" placeholder="123456" required />
                                 </div>
                             </div>
                             <div class="form-group mb-4">
-                                <label class="mb-2">Choose Days</label>
-                                <div class="row justify-content-between px-3">
-                                    <?php foreach ([["st" => "M", "lg" => "MON"], ["st" => "Tu", "lg" => "TUE"], ["st" => "W", "lg" => "WED"], ["st" => "Th", "lg" => "THU"], ["st" => "F", "lg" => "FRI"], ["st" => "Sa", "lg" => "SAT"], ["st" => "Su", "lg" => "SUN"]] as $day) { ?>
-                                        <div class="custom-control custom-checkbox small days-checkbox">
-                                            <input type="checkbox" id="<?= $day["st"] ?>" value="<?= $day["st"] ?>" name="days[]">
-                                            <label class="mb-0 mt-1" for="<?= $day["st"] ?>"><?= $day["lg"] ?></label>
-                                        </div>
-                                    <?php } ?>
-                                </div>
+                                <label for="email">Enter Email</label>
+                                <input type="email" name="email" id="email" class="form-control" placeholder="eg. student@gmail.com" required />
                             </div>
 
                             <div class="form-group mb-4">
-                                <label for="instructor">Enter Instructor Name</label>
-                                <input type="text" class="form-control" name="instructor" id="instructor" placeholder="Mr./Mrs. ..." required />
+                                <label for="education">Enter Education</label>
+                                <input type="text" name="education" id="education" class="form-control" placeholder="University or High School" required />
                             </div>
                             <div class="form-group mb-4">
-                                <label for="services">Enter Services</label>
-                                <textarea class="form-control" name="services" id="services" rows="5" placeholder="eg. Text Book" required></textarea>
+                                <label for="address">Enter Address</label>
+                                <textarea name="address" id="address" cols="30" rows="5" class="form-control" placeholder="eg. No - , Yangon" required></textarea>
+                            </div>
+
+                            <div class="form-group mb-4">
+                                <label for="phone">Enter Phone</label>
+                                <input type="number" name="phone" id="phone" class="form-control" placeholder="eg. 09-------" required />
+                            </div>
+
+                            <div class="form-group mb-4">
+                                <label for="paymentMethod">Choose Payment Method</label>
+                                <select id="paymentMethod" name="paymentMethod" class="form-control" required>
+                                    <option value="" selected disabled>Payment Method</option>
+                                    <option value="CB Banking">CB Banking</option>
+                                    <option value="KBZ Banking">KBZ Banking</option>
+                                    <option value="AYA Banking">AYA Banking</option>
+                                    <option value="Kpay">Kpay</option>
+                                    <option value="Cash">Cash</option>
+                                </select>
                             </div>
                             <div class="form-group mb-4">
-                                <label for="note">Enter Additional Note</label>
-                                <textarea class="form-control" name="note" id="note" rows="5" placeholder="Any Additional Note" required></textarea>
+                                <label for="paidPercent">Paid Percentage</label>
+                                <input type="number" name="paidPercent" id="paidPercent" class="form-control" value="0" required />
+                            </div>
+
+                            <div class="form-group mb-4">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="isPending" name="isPending">
+                                    <label class="form-check-label" for="isPending">Is Pending</label>
+                                </div>
                             </div>
                             <hr>
                             <button type="submit" class="btn btn-facebook btn-user btn-block">
-                                <i class="fa fa-paper-plane fa-fw"></i> Create
+                                <i class="fa fa-user-plus fa-fw"></i> Add Enrollment
                             </button>
                         </form>
                     </div>

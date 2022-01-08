@@ -15,7 +15,7 @@ function sendMail($email, $uname, $classInfo, $isInCash)
 	//Set mailer to use smtp
 	$mail->isSMTP();
 	//Define smtp host
-	$mail->Host = "smtp.gmail.com";
+	$mail->Host = "jktmyanmarint.com";
 	//Enable smtp authentication
 	$mail->SMTPAuth = true;
 	//Set smtp encryption type (ssl/tls)
@@ -23,17 +23,17 @@ function sendMail($email, $uname, $classInfo, $isInCash)
 	//Port to connect smtp
 	$mail->Port = "587";
 	//Set gmail username
-	$mail->Username = "omoomocool789@gmail.com";
+	$mail->Username = "noreply.payment@jktmyanmarint.com";
 	//Set gmail password
-	$mail->Password = "iscommonacc_omoomocool";
+	$mail->Password = "noreplyjkt%";
 	//Email subject
 	$mail->Subject = "Thank you for joining the course - " . $classInfo["title"] . " - Here is payment information";
 	//Set sender email
-	$mail->setFrom('omoomocool789@gmail.com');
+	$mail->setFrom('noreply.payment@jktmyanmarint.com');
 	//Enable HTML
 	$mail->isHTML(true);
 	//Attachment
-	$mail->addAttachment("../mail/img/doraemon.png");
+	// $mail->addAttachment("../mail/img/doraemon.png");
 	//Email body
 
 	// $mail->Body = "<div style='font-family: Helvetica, sans-serif;'>";
@@ -46,12 +46,12 @@ function sendMail($email, $uname, $classInfo, $isInCash)
 	
 	if ($isInCash) {
 		$mail->Body .= "<p>The course will start on " . $classInfo["start_date"]  . "</p>";
-		$mail->Body .= "<p>You can pay on the first day of the course. If you pay fully at once, 5% discount on your course. If you want to pay installment, we accepted 3 times installment before the course completes.</p>";
+		$mail->Body .= "<p>You can pay on the first day of the course. If you pay fully at once, 5% discount on your course.If you want to pay installment, we accepted 3 times installment before the course completes.</p>";
 	} else {
 		$mail->Body .= "<h4>" . "Banking system" . "</h4>";
 		$mail->Body .= "<p>Please fill out the form below to confirm your payment.";
-		$mail->Body .= " Please be sure to submit payment 2 days from now.";
-		$mail->Body .= " If we don't receive any payment, your course enrollment will be cancelled.</p></br>";
+		$mail->Body .= "Please be sure to submit payment 2 days from now.";
+		$mail->Body .= "If we don't receive any payment, your course enrollment will be cancelled.</p></br>";
 		$mail->Body .= "<a style='
 		text-decoration:none;
 		color:#fff;

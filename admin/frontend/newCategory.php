@@ -1,7 +1,5 @@
 <?php
 // check user
-// db include
-include("../confs/config.php");
 ?>
 <html lang="en">
 
@@ -86,14 +84,17 @@ include("../confs/config.php");
                             <span>New Course</span>
                         </a>
                         <a class="collapse-item" href="courses.php">
+
                             <i class="fas fa-fw fa-folder-open"></i>
                             <span>All Courses</span>
                         </a>
                         <a class="collapse-item" href="categories.php">
                             <i class="fas fa-fw fa-clipboard-list"></i>
                             <span>Categories</span>
+
                         </a>
                         <a class="collapse-item" href="types.php">
+
                             <i class="fas fa-fw fa-thumbtack"></i>
                             <span>Course types</span>
                         </a>
@@ -143,8 +144,9 @@ include("../confs/config.php");
                     </button>
 
                     <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search nav-title">
-                        <h3>New Course</h3>
+                        <h3>New Course Category</h3>
                     </div>
+
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -295,97 +297,14 @@ include("../confs/config.php");
                 <!-- Begin Page Content -->
                 <div class="container">
                     <div class="row">
-                        <form class="col-12 col-md-11 col-lg-8 mx-auto" action="../backend/newCourse.php" method="POST">
-                            <div class="form-group mb-4">
-                                <label for="title">Enter Title</label>
-                                <input type="text" class="form-control form-control-user" id="title" name="title" aria-describedby="tileField" placeholder="Course Title" required />
-                            </div>
-                            <div class="form-group mb-4">
-                                <label for="categoryId">Choose Category</label>
-                                <select name="categoryId" id="categoryId" name="categoryId" class="form-control form-control-user" required>
-                                    <option selected disabled>Category</option>
-                                    <?php
-                                    $result = mysqli_query($conn, "SELECT * FROM categories");
-                                    while ($row = mysqli_fetch_assoc($result)) {
-                                    ?>
-                                        <option value='<?= $row["category_id"] ?>'><?= $row["title"] ?></option>
-                                    <?php } ?>
-                                </select>
-                            </div>
-                            <div class="form-group mb-4">
-                                <label for="typeId">Choose Type</label>
-                                <select name="typeId" id="typeId" class="form-control">
-                                    <option selected disabled>Type</option>
-                                    <?php
-                                    $result = mysqli_query($conn, "SELECT * FROM types");
-                                    while ($row = mysqli_fetch_assoc($result)) {
-                                    ?>
-                                        <option value='<?= $row["type_id"] ?>'><?= $row["title"] ?></option>
-                                    <?php } ?>
-                                </select>
-                            </div>
-                            <div class="form-gorup mb-4">
-                                <label for="levelorsub">Enter level/subjects</label>
-                                <input type="text" name="levelorsub" id="levelorsub" class="form-control" placeholder="eg. N5 or physic/chemistry/Biology..." required />
-                            </div>
-                            <div class="mb-4 mx-auto row justify-content-between">
-                                <div class=" input-left mb-3 mb-md-0">
-                                    <label for="fee">Enter Fees</label>
-                                    <input type="number" class="form-control" id="fee" name="fee" aria-describedby="feeField" placeholder="eg. 250,000" required />
-                                </div>
-                                <div class="input-right">
-                                    <label for="discountPercent">Enter Discount (%)</label>
-                                    <input type="number" class="form-control" id="discountPercent" name="discountPercent" aria-describedby="discountField" placeholder="eg. 5" required />
-                                </div>
-                            </div>
-                            <div class="mb-4 mx-auto row justify-content-between">
-                                <div class=" input-left mb-3 mb-md-0">
-                                    <label for="startDate">Choose Start Date</label>
-                                    <input type="date" class="form-control" id="startDate" name="startDate" aria-describedby="dateField" required required />
-                                </div>
-                                <div class="input-right">
-                                    <label for="duration">Duration (Months)</label>
-                                    <input type="number" class="form-control" id="duration" name="duration" aria-describedby="monthsField" placeholder="Duration In Months" required />
-                                </div>
-                            </div>
-                            <div class="mb-4 mx-auto row justify-content-between">
-                                <div class=" input-left mb-3 mb-md-0">
-                                    <label for="startTime">Class Starts At:</label>
-                                    <input type="time" class="form-control" id="startTime" name="startTime" aria-describedby="startTimeField" required />
-                                </div>
-                                <div class="input-right">
-                                    <label for="endTime">Class Ends At:</label>
-                                    <input type="time" class="form-control" id="endTime" name="endTime" aria-describedby="endTimeField" required />
-                                </div>
-                            </div>
-                            <div class="form-group mb-4">
-                                <label class="mb-2">Choose Days</label>
-                                <div class="row justify-content-between px-3">
-                                    <?php foreach ([["st" => "M", "lg" => "MON"], ["st" => "Tu", "lg" => "TUE"], ["st" => "W", "lg" => "WED"], ["st" => "Th", "lg" => "THU"], ["st" => "F", "lg" => "FRI"], ["st" => "Sa", "lg" => "SAT"], ["st" => "Su", "lg" => "SUN"]] as $day) { ?>
-                                        <div class="custom-control custom-checkbox small days-checkbox">
-                                            <input type="checkbox" id="<?= $day["st"] ?>" value="<?= $day["st"] ?>" name="days[]">
-                                            <label class="mb-0 mt-1" for="<?= $day["st"] ?>"><?= $day["lg"] ?></label>
-                                        </div>
-                                    <?php } ?>
-                                </div>
-                            </div>
-
-                            <div class="form-group mb-4">
-                                <label for="instructor">Enter Instructor Name</label>
-                                <input type="text" class="form-control" name="instructor" id="instructor" placeholder="Mr./Mrs. ..." required />
-                            </div>
-                            <div class="form-group mb-4">
-                                <label for="services">Enter Services</label>
-                                <textarea class="form-control" name="services" id="services" rows="5" placeholder="eg. Text Book" required></textarea>
-                            </div>
-                            <div class="form-group mb-4">
-                                <label for="note">Enter Additional Note</label>
-                                <textarea class="form-control" name="note" id="note" rows="5" placeholder="Any Additional Note" required></textarea>
+                        <form class="col-12 col-sm-9 col-md-8 mx-auto" action="../backend/newType.php" method="POST">
+                            <div class="form-group">
+                                <input type="text" name="title" id="title" class="form-control form-control-user" aria-describedby="emailHelp" placeholder="Enter Title eg. Special">
                             </div>
                             <hr>
-                            <button type="submit" class="btn btn-facebook btn-user btn-block">
-                                <i class="fa fa-paper-plane fa-fw"></i> Create
-                            </button>
+                            <button type="submit" class="btn btn-google btn-user btn-block">
+                                <i class="fab fa-plus fa-fw"></i> Add
+                                </a>
                         </form>
                     </div>
                 </div>

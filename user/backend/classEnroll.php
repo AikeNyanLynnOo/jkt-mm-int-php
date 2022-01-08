@@ -16,7 +16,7 @@
 // edu
 
 // STEP 2
-// classId
+// courseId
 // classTime
 
 // STEP 3
@@ -44,14 +44,14 @@ $address = $_POST['address'];
 $phone = $_POST['phone'];
 $education = $_POST['edu'];
 
-$classId = intval($_POST['courseId']);
+$courseId = intval($_POST['courseId']);
 // $classTime = $_POST['classTime'];
 
 // STEP 3
 $payment_method = $_POST['payment_method'];
 $paid_percent = 0;
 
-// echo ($classId .",".
+// echo ($courseId .",".
 //     $uname .",".
 //     $dob .",".  
 //     $fname .",".
@@ -66,40 +66,187 @@ $paid_percent = 0;
 //     $payment_method
 // );
 
+function resize_image($file, $ext, $mHW)
+{
+    if (file_exists($file)) {
+        switch ($ext) {
+            case "jpeg":
+                $original_image = imagecreatefromjpeg($file);
+                break;
+            case "JPEG":
+                $original_image = imagecreatefromjpeg($file);
+                break;
+            case "jpg":
+                $original_image = imagecreatefromjpeg($file);
+                break;
+            case "JPG":
+                $original_image = imagecreatefromjpeg($file);
+                break;
+            case "png":
+                $original_image = imagecreatefrompng($file);
+                break;
+            case "PNG":
+                $original_image = imagecreatefrompng($file);
+        }
+
+        // resolution
+        $original_width = imagesx($original_image);
+        $original_height = imagesx($original_image);
+
+        // try width first
+        $ratio = $mHW / $original_width;
+        $new_width = $mHW;
+        $new_height = $original_height * $ratio;
+
+        // if that doesn't work
+        if ($new_height > $mHW) {
+            $ratio = $mHW / $original_height;
+            $new_height = $mHW;
+            $new_width = $original_width * $ratio;
+        }
+        if ($original_image) {
+            $new_image = imagecreatetruecolor($new_width, $new_height);
+            imagecopyresampled($new_image, $original_image, 0, 0, 0, 0, $new_width, $new_height, $original_width, $original_height);
+
+            switch ($ext) {
+                case "jpeg":
+                    imagejpeg($new_image, $file, 90);
+                    return TRUE;
+                    break;
+                case "JPEG":
+                    imagejpeg($new_image, $file, 90);
+                    return TRUE;
+                    break;
+                case "jpg":
+                    imagejpeg($new_image, $file, 90);
+                    return TRUE;
+                    break;
+                case "JPG":
+                    imagejpeg($new_image, $file, 90);
+                    return TRUE;
+                    break;
+                case "png":
+                    imagepng($new_image, $file, 9);
+                    return TRUE;
+                    break;
+                case "PNG":
+                    imagepng($new_image, $file, 9);
+                    return TRUE;
+                    break;
+            }
+        }
+    }
+}
+
 // Get Image Dimension
 $fileinfo = @getimagesize($_FILES["photo"]["tmp_name"]);
-$width = $fileinfo[0];
-$height = $fileinfo[1];
+$org_width = $fileinfo[0];
+$org_height = $fileinfo[1];
 
 $allowed_image_extension = array(
     "png",
+    "PNG",
     "jpg",
-    "jpeg"
+    "JPG",
+    "jpeg",
+    "JPEG"
 );
 
-// Get image file extension
-$file_extension = pathinfo($_FILES["photo"]["name"], PATHINFO_EXTENSION);
 session_start();
-if (!in_array($file_extension, $allowed_image_extension)) {
-    $response = array(
-        "type" => "error",
-        "message" => "Upload valiid images. Only JPG, PNG and JPEG are allowed.",
-        "data" => $_POST,
-    );
-}    // Validate image file size
-else if (($_FILES["photo"]["size"] > 2000000)) {
-    $response = array(
-        "type" => "error",
-        "message" => "Image size exceeds 2MB",
-        "data" => $_POST,
-    );
-}    // Validate image file dimension
-else if ($width > "300" || $height > "300") {
-    $response = array(
-        "type" => "error",
-        "message" => "Image dimension should be within 300X300",
-        "data" => $_POST,
-    );
+// if (!in_array($file_extension, $allowed_image_extension)) {
+//     $response = array(
+//         "type" => "error",
+//         "message" => "Upload valiid images. Only JPG, PNG and JPEG are allowed.",
+//         "data" => $_POST,
+//     );
+// }    // Validate image file size
+// else if (($_FILES["photo"]["size"] > 2000000)) {
+//     $response = array(
+//         "type" => "error",
+//         "message" => "Image size exceeds 2MB",
+//         "data" => $_POST,
+//     );
+// }    // Validate image file dimension
+// else 
+
+if ($org_width > "300" || $org_height > "300") {
+    // $image_name =  pathinfo($_FILES["photo"]["name"], PATHINFO_DIRNAME) . "/" . pathinfo($_FILES["photo"]["name"], PATHINFO_BASENAME);
+
+    $file_extension = pathinfo($_FILES["photo"]["name"], PATHINFO_EXTENSION);;
+    $file = $_FILES['photo']['name'];
+
+
+    if (file_exists("uploads/$nrcNumber.$file_extension")) unlink("uploads/$nrcNumber.$file_extension");
+    $target = "uploads/" . "$nrcNumber.$file_extension";
+    move_uploaded_file($_FILES['photo']['tmp_name'], $target);
+    
+    if (resize_image($target, $file_extension, 300)) {
+    // continue to insert to db cuz image upload succeed.
+    $insert_into_enrollments = "INSERT INTO enrollments (
+            class_id,
+            uname, 
+            dob, 
+            fname, 
+            nrc, 
+            email, 
+            education, 
+            address, 
+            phone, 
+            payment_method,
+            paid_percent,
+            photo,
+            created_at,
+            updated_at,
+            is_pending) 
+            VALUES (
+            $courseId,
+            '$uname',
+            '$dob',
+            '$fname',
+            '$nrc',
+            '$email',
+            '$education',
+            '$address',
+            '$phone',
+            '$payment_method',
+            $paid_percent , 
+            '$target',
+            now(), 
+            now(),
+            1)";
+    mysqli_query($conn, $insert_into_enrollments);
+
+    $select_from_courses = "SELECT * FROM courses WHERE course_id = $courseId";
+    $course_result = mysqli_query($conn, $select_from_courses);
+
+    $row = mysqli_fetch_assoc($course_result);
+    if ($email == "") {
+        unset($_SESSION['response']);
+        header("location: ../frontend/enrollSuccess.php");
+        exit();
+    } else {
+        if ($row) {
+            if ($payment_method === "Cash") {
+                $afterTryingToSend = sendMail($email, $uname, $row, TRUE);
+            } else {
+                $afterTryingToSend = sendMail($email, $uname, $row, FALSE);
+            }
+        }
+    }
+    if ($afterTryingToSend[0]) {
+        unset($_SESSION['response']);
+        header("location: ../frontend/enrollSuccess.php");
+        exit();
+    } else {
+        echo "fail to send mail";
+    }
+    } else {
+        $response = array(
+            "type" => "error",
+            "message" => "Problem in uploading image files.",
+            "data" => $_POST,
+        );
+    }
 } else {
     if (file_exists("uploads/$nrcNumber.$file_extension")) unlink("uploads/$nrcNumber.$file_extension");
     $target = "uploads/" . "$nrcNumber.$file_extension";
@@ -122,7 +269,7 @@ else if ($width > "300" || $height > "300") {
             updated_at,
             is_pending) 
             VALUES (
-            $classId,
+            $courseId,
             '$uname',
             '$dob',
             '$fname',
@@ -139,7 +286,7 @@ else if ($width > "300" || $height > "300") {
             1)";
         mysqli_query($conn, $insert_into_enrollments);
 
-        $select_from_courses = "SELECT * FROM courses WHERE course_id = $classId";
+        $select_from_courses = "SELECT * FROM courses WHERE course_id = $courseId";
         $course_result = mysqli_query($conn, $select_from_courses);
 
         $row = mysqli_fetch_assoc($course_result);

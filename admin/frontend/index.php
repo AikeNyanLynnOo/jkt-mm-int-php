@@ -1,7 +1,5 @@
 <?php
 // check user
-// db include
-include("../confs/config.php");
 ?>
 <html lang="en">
 
@@ -13,7 +11,7 @@ include("../confs/config.php");
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Admin - New Course</title>
+    <title>Admin</title>
 
     <!-- Custom fonts for this template-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -22,6 +20,7 @@ include("../confs/config.php");
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+
 </head>
 
 <body id="page-top">
@@ -86,14 +85,17 @@ include("../confs/config.php");
                             <span>New Course</span>
                         </a>
                         <a class="collapse-item" href="courses.php">
+
                             <i class="fas fa-fw fa-folder-open"></i>
                             <span>All Courses</span>
                         </a>
                         <a class="collapse-item" href="categories.php">
                             <i class="fas fa-fw fa-clipboard-list"></i>
                             <span>Categories</span>
+
                         </a>
                         <a class="collapse-item" href="types.php">
+
                             <i class="fas fa-fw fa-thumbtack"></i>
                             <span>Course types</span>
                         </a>
@@ -143,11 +145,13 @@ include("../confs/config.php");
                     </button>
 
                     <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search nav-title">
-                        <h3>New Course</h3>
+                        <h3>Dashboard</h3>
                     </div>
+
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
+
                         <!-- Nav Item - Alerts -->
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -293,101 +297,98 @@ include("../confs/config.php");
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <div class="container">
-                    <div class="row">
-                        <form class="col-12 col-md-11 col-lg-8 mx-auto" action="../backend/newCourse.php" method="POST">
-                            <div class="form-group mb-4">
-                                <label for="title">Enter Title</label>
-                                <input type="text" class="form-control form-control-user" id="title" name="title" aria-describedby="tileField" placeholder="Course Title" required />
-                            </div>
-                            <div class="form-group mb-4">
-                                <label for="categoryId">Choose Category</label>
-                                <select name="categoryId" id="categoryId" name="categoryId" class="form-control form-control-user" required>
-                                    <option selected disabled>Category</option>
-                                    <?php
-                                    $result = mysqli_query($conn, "SELECT * FROM categories");
-                                    while ($row = mysqli_fetch_assoc($result)) {
-                                    ?>
-                                        <option value='<?= $row["category_id"] ?>'><?= $row["title"] ?></option>
-                                    <?php } ?>
-                                </select>
-                            </div>
-                            <div class="form-group mb-4">
-                                <label for="typeId">Choose Type</label>
-                                <select name="typeId" id="typeId" class="form-control">
-                                    <option selected disabled>Type</option>
-                                    <?php
-                                    $result = mysqli_query($conn, "SELECT * FROM types");
-                                    while ($row = mysqli_fetch_assoc($result)) {
-                                    ?>
-                                        <option value='<?= $row["type_id"] ?>'><?= $row["title"] ?></option>
-                                    <?php } ?>
-                                </select>
-                            </div>
-                            <div class="form-gorup mb-4">
-                                <label for="levelorsub">Enter level/subjects</label>
-                                <input type="text" name="levelorsub" id="levelorsub" class="form-control" placeholder="eg. N5 or physic/chemistry/Biology..." required />
-                            </div>
-                            <div class="mb-4 mx-auto row justify-content-between">
-                                <div class=" input-left mb-3 mb-md-0">
-                                    <label for="fee">Enter Fees</label>
-                                    <input type="number" class="form-control" id="fee" name="fee" aria-describedby="feeField" placeholder="eg. 250,000" required />
-                                </div>
-                                <div class="input-right">
-                                    <label for="discountPercent">Enter Discount (%)</label>
-                                    <input type="number" class="form-control" id="discountPercent" name="discountPercent" aria-describedby="discountField" placeholder="eg. 5" required />
-                                </div>
-                            </div>
-                            <div class="mb-4 mx-auto row justify-content-between">
-                                <div class=" input-left mb-3 mb-md-0">
-                                    <label for="startDate">Choose Start Date</label>
-                                    <input type="date" class="form-control" id="startDate" name="startDate" aria-describedby="dateField" required required />
-                                </div>
-                                <div class="input-right">
-                                    <label for="duration">Duration (Months)</label>
-                                    <input type="number" class="form-control" id="duration" name="duration" aria-describedby="monthsField" placeholder="Duration In Months" required />
-                                </div>
-                            </div>
-                            <div class="mb-4 mx-auto row justify-content-between">
-                                <div class=" input-left mb-3 mb-md-0">
-                                    <label for="startTime">Class Starts At:</label>
-                                    <input type="time" class="form-control" id="startTime" name="startTime" aria-describedby="startTimeField" required />
-                                </div>
-                                <div class="input-right">
-                                    <label for="endTime">Class Ends At:</label>
-                                    <input type="time" class="form-control" id="endTime" name="endTime" aria-describedby="endTimeField" required />
-                                </div>
-                            </div>
-                            <div class="form-group mb-4">
-                                <label class="mb-2">Choose Days</label>
-                                <div class="row justify-content-between px-3">
-                                    <?php foreach ([["st" => "M", "lg" => "MON"], ["st" => "Tu", "lg" => "TUE"], ["st" => "W", "lg" => "WED"], ["st" => "Th", "lg" => "THU"], ["st" => "F", "lg" => "FRI"], ["st" => "Sa", "lg" => "SAT"], ["st" => "Su", "lg" => "SUN"]] as $day) { ?>
-                                        <div class="custom-control custom-checkbox small days-checkbox">
-                                            <input type="checkbox" id="<?= $day["st"] ?>" value="<?= $day["st"] ?>" name="days[]">
-                                            <label class="mb-0 mt-1" for="<?= $day["st"] ?>"><?= $day["lg"] ?></label>
-                                        </div>
-                                    <?php } ?>
-                                </div>
-                            </div>
+                <div class="container-fluid">
 
-                            <div class="form-group mb-4">
-                                <label for="instructor">Enter Instructor Name</label>
-                                <input type="text" class="form-control" name="instructor" id="instructor" placeholder="Mr./Mrs. ..." required />
-                            </div>
-                            <div class="form-group mb-4">
-                                <label for="services">Enter Services</label>
-                                <textarea class="form-control" name="services" id="services" rows="5" placeholder="eg. Text Book" required></textarea>
-                            </div>
-                            <div class="form-group mb-4">
-                                <label for="note">Enter Additional Note</label>
-                                <textarea class="form-control" name="note" id="note" rows="5" placeholder="Any Additional Note" required></textarea>
-                            </div>
-                            <hr>
-                            <button type="submit" class="btn btn-facebook btn-user btn-block">
-                                <i class="fa fa-paper-plane fa-fw"></i> Create
-                            </button>
-                        </form>
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-end mb-4">
+                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>
+
+                    <!-- Content Row -->
+                    <div class="row">
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Earnings (Monthly)</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Earnings (Annual)</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-info shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
+                                            </div>
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col-auto">
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="progress progress-sm mr-2">
+                                                        <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pending Requests Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                Pending Requests</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
                 <!-- /.container-fluid -->
 
