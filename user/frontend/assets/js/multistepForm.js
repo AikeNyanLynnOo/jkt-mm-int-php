@@ -86,9 +86,6 @@ $(document).ready(function () {
   $.validator.addMethod(
     "extension", 
     function(value, element, param) {
-      console.log(value);
-      console.log(element);
-      console.log(param);
       param = typeof param === "string" ? param.replace(/,/g, '|') : "png|jpe?g|gif";
       return this.optional(element) || value.match(new RegExp(".(" + param + ")$", "i"));
     }, 
@@ -102,10 +99,9 @@ $(document).ready(function () {
       fileSize = element.files[0].size; // get file size
       fileSize = fileSize / 1024; //file size in Kb
       fileSize = fileSize / 1024; //file size in Mb
-      console.log(fileSize)
       return this.optional( element ) || fileSize <= param;
     }, 
-    "File size must not be more than 2 MB."
+    "File size must not be more than 5 MB."
   );
 
   $(".next").click(function () {
@@ -126,7 +122,7 @@ $(document).ready(function () {
       rules: {
         photo: {
           required: true,
-          maxfilesize : 2,
+          maxfilesize : 5,
 				  extension: "jpg|jpeg|png",
         },
         uname: {

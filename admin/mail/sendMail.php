@@ -63,7 +63,7 @@ function sendMail($email, $uname, $classInfo, $isInCash)
 		-moz-border-radius: 5px;
 		-ms-border-radius: 5px;
 		-o-border-radius: 5px;' 
-		href='https://stu-regist.000webhostapp.com/user/frontend/paymentDetail.php'>Go to Payment Confirm</a>";
+		href='https://stu-regist.000webhostapp.com/user/frontend/paymentDetail.php?enroll_id=" . $classInfo["enrollment_id"] . "'>Go to Payment Confirm</a>";
 	}
 
 	$mail->Body .= "<p>For more detailed payment and courses information, you can contact us directly during business hours (9:00 ~ 17:00) </p>";
