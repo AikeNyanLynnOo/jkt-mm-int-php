@@ -295,7 +295,7 @@ include("../confs/config.php");
                 <!-- Begin Page Content -->
                 <div class="container">
                     <div class="row">
-                        <form class="col-12 col-md-11 col-lg-8 mx-auto">
+                        <form class="col-12 col-md-11 col-lg-8 mx-auto" id="studentEnrollment">
                             <div class="form-group mb-4 row align-items-center justify-content-between px-3">
                                 <img src="../../user/frontend/assets/images/logo.jpg" alt="image-preview" class="preview-img"/>
                                 <input type="file" name="photo" id="photo" class="form-control preview-input"/>
@@ -328,8 +328,8 @@ include("../confs/config.php");
                             </div>
                             <div class="mb-4 mx-auto row justify-content-between">
                                 <div class="input-25">
-                                    <label for="dob">Choose State</label>
-                                    <select id="classId" name="classId" class="form-control form-control-user" required>
+                                    <label for="nrcCode">Choose State</label>
+                                    <select id="nrcCode" name="nrcCode" class="form-control form-control-user" required>
                                         <option value="" selected disabled>State</option>
                                         <?php
                                         foreach ([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14] as $state) {
@@ -362,15 +362,22 @@ include("../confs/config.php");
                                     <input type="number" class="form-control" name="nrcNumber" id="nrcNumber" placeholder="123456" required />
                                 </div>
                             </div>
+
                             <div class="form-group mb-4">
                                 <label for="email">Enter Email</label>
                                 <input type="email" name="email" id="email" class="form-control" placeholder="eg. student@gmail.com" required />
                             </div>
 
                             <div class="form-group mb-4">
+                                <label for="phone">Enter Education</label>
+                                <input type="text" name="phone" id="phone" class="form-control" placeholder="09..." required />
+                            </div>
+
+                            <div class="form-group mb-4">
                                 <label for="education">Enter Education</label>
                                 <input type="text" name="education" id="education" class="form-control" placeholder="University or High School" required />
                             </div>
+
                             <div class="form-group mb-4">
                                 <label for="address">Enter Address</label>
                                 <textarea name="address" id="address" cols="30" rows="5" class="form-control" placeholder="eg. No - , Yangon" required></textarea>
@@ -404,7 +411,7 @@ include("../confs/config.php");
                                 </div>
                             </div>
                             <hr>
-                            <button type="submit" class="btn btn-facebook btn-user btn-block">
+                            <button type="submit" class="btn btn-facebook btn-user btn-block" id="enroll">
                                 <i class="fa fa-user-plus fa-fw"></i> Add Enrollment
                             </button>
                         </form>
@@ -456,14 +463,24 @@ include("../confs/config.php");
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/jquery/jquery.min.js"></script>  
+    <!-- <script src="vendor/jquery/jquery.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>  
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/additional-methods.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
+    
+    <!-- <script src="vendor/jquery/jquery-3.6.0.js"></script> -->
+    <!-- <script src="vendor/jquery/validation.js"></script>
+    <script src="vendor/jquery/additional-methods"></script> -->
     <script src="js/sb-admin-2.min.js"></script>
+    <script src="js/new-enrollment.js"></script>
+    <script src="js/nrc.js"></script>
 </body>
 
 </html>

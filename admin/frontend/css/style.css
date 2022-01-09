@@ -32,6 +32,13 @@
   line-height: 24px;
 }
 
+.help-block {
+  font-size: 14px;
+  font-style: italic;
+  color: red;
+  margin-bottom: 5px;
+}
+
 @media only screen and (max-width: 767px) {
   .input-left,
   .input-right,

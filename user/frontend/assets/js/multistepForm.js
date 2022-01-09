@@ -171,12 +171,6 @@ $(document).ready(function () {
           required: true,
           minlength: 8,
         },
-        classId: {
-          required: true,
-        },
-        classTime: {
-          required: true,
-        },
         payment_method: {
           required: true,
         },
@@ -214,12 +208,6 @@ $(document).ready(function () {
         },
         edu: {
           required: "Education required",
-        },
-        classId: {
-          required: "Select the class category",
-        },
-        classTime: {
-          required: "Select the class time",
         },
         payment_method: {
           required: "Select the banking system",
