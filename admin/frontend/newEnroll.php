@@ -297,7 +297,7 @@ include("../confs/config.php");
                     <div class="row">
                         <form class="col-12 col-md-11 col-lg-8 mx-auto" id="studentEnrollment">
                             <div class="form-group mb-4 row align-items-center justify-content-between px-3">
-                                <img src="../../user/frontend/assets/images/logo.jpg" alt="image-preview" class="preview-img"/>
+                                <img src="../../user/frontend/assets/images/logo.jpg" id="image-preview" name="image-preview" alt="image-preview" class="preview-img"/>
                                 <input type="file" name="photo" id="photo" class="form-control preview-input"/>
                             </div>
                             <div class="form-group mb-4">
@@ -328,7 +328,7 @@ include("../confs/config.php");
                             </div>
                             <div class="mb-4 mx-auto row justify-content-between">
                                 <div class="input-25">
-                                    <label for="nrcCode">Choose State</label>
+                                    <label for="nrcCode">State</label>
                                     <select id="nrcCode" name="nrcCode" class="form-control form-control-user" required>
                                         <option value="" selected disabled>State</option>
                                         <?php
@@ -338,14 +338,14 @@ include("../confs/config.php");
                                         <?php } ?>
                                     </select>
                                 </div>
-                                <div class="input-25">
-                                    <label for="township">Choose Township</label>
+                                <div class="input-30">
+                                    <label for="township">Township</label>
                                     <select id="township" name="township" class="form-control form-control-user" required>
                                         <option value="" selected disabled>State</option>
                                     </select>
                                 </div>
                                 <div class="input-25">
-                                    <label for="type">Choose Type</label>
+                                    <label for="type">Type</label>
                                     <select id="type" name="type" class="form-control form-control-user" required>
                                         <option value="" selected disabled>Type</option>
                                         <option value="" selected disabled>Type</option>
@@ -357,8 +357,8 @@ include("../confs/config.php");
                                         <option value="(N)">(N) - (သီ)</option>
                                     </select>
                                 </div>
-                                <div class="input-25">
-                                    <label for="nrcNumber">Enter nrcNumber</label>
+                                <div class="input-20">
+                                    <label for="nrcNumber">Nrc Number</label>
                                     <input type="number" class="form-control" name="nrcNumber" id="nrcNumber" placeholder="123456" required />
                                 </div>
                             </div>
@@ -369,7 +369,7 @@ include("../confs/config.php");
                             </div>
 
                             <div class="form-group mb-4">
-                                <label for="phone">Enter Education</label>
+                                <label for="phone">Enter Phone</label>
                                 <input type="text" name="phone" id="phone" class="form-control" placeholder="09..." required />
                             </div>
 
@@ -381,11 +381,6 @@ include("../confs/config.php");
                             <div class="form-group mb-4">
                                 <label for="address">Enter Address</label>
                                 <textarea name="address" id="address" cols="30" rows="5" class="form-control" placeholder="eg. No - , Yangon" required></textarea>
-                            </div>
-
-                            <div class="form-group mb-4">
-                                <label for="phone">Enter Phone</label>
-                                <input type="number" name="phone" id="phone" class="form-control" placeholder="eg. 09-------" required />
                             </div>
 
                             <div class="form-group mb-4">
@@ -465,9 +460,9 @@ include("../confs/config.php");
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>  
     <!-- <script src="vendor/jquery/jquery.js"></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>  
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>  
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/additional-methods.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/additional-methods.min.js"></script> -->
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
@@ -475,7 +470,7 @@ include("../confs/config.php");
 
     <!-- Custom scripts for all pages-->
     
-    <!-- <script src="vendor/jquery/jquery-3.6.0.js"></script> -->
+    <script src="vendor/jquery/jquery-3.6.0.js"></script>
     <!-- <script src="vendor/jquery/validation.js"></script>
     <script src="vendor/jquery/additional-methods"></script> -->
     <script src="js/sb-admin-2.min.js"></script>
