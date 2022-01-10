@@ -7,10 +7,10 @@
   width: auto;
 }
 .input-30 {
-  width : 30%;
+  width: 30%;
 }
-.input-20{
-  width : 20%; 
+.input-20 {
+  width: 20%;
 }
 
 .input-left,
@@ -45,10 +45,42 @@
   margin-bottom: 5px;
 }
 
+/* data table scroll */
+/* width */
+/* table.dataTable {
+  background-color: royalblue;
+  overflow: scroll;
+} */
+
+#dataTable::-webkit-scrollbar {
+  width : 2px;
+}
+
+/* Track */
+#dataTable::-webkit-scrollbar-track {
+  background: grey;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+}
+
+/* Handle */
+#dataTable::-webkit-scrollbar-thumb {
+  background: #ddd;
+}
+
+#dataTable::-webkit-scrollbar-thumb:hover {
+  background: #f2f2f2;
+}
+
 @media only screen and (max-width: 767px) {
   .input-left,
   .input-right,
-  .input-25,.input-20,.input-30 {
+  .input-25,
+  .input-20,
+  .input-30 {
     width: 100%;
     margin-bottom: 10px;
   }
