@@ -312,7 +312,7 @@
                     include_once("../../../admin/confs/config.php"); 
                     $schedule = "SELECT course_id, c.title AS course_title, cty.title AS category_title, 
                                  t.title AS type_title, c.level AS course_level, fee, instructor, 
-                                 services, discount_percent, start_date, duration, sections
+                                 services, discount_percent, start_date, duration, sections, note
                                  FROM courses c, categories cty, types t WHERE c.category_id = cty.category_id 
                                  AND c.type_id = t.type_id";
                     $schedule_result = mysqli_query($conn, $schedule);

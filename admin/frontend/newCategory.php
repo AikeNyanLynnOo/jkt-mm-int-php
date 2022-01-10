@@ -11,7 +11,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Admin - New Course</title>
+    <link rel="shortcut icon" href="img/logo.jpg" />
+    <title>JKT Admin - New Category</title>
 
     <!-- Custom fonts for this template-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -297,12 +298,12 @@
                 <!-- Begin Page Content -->
                 <div class="container">
                     <div class="row">
-                        <form class="col-12 col-sm-9 col-md-8 mx-auto" action="../backend/newType.php" method="POST">
+                        <form class="col-12 col-sm-9 col-md-8 mx-auto mt-5" action="../backend/newType.php" method="POST">
                             <div class="form-group">
                                 <input type="text" name="title" id="title" class="form-control form-control-user" aria-describedby="emailHelp" placeholder="Enter Title eg. Special">
                             </div>
                             <hr>
-                            <button type="submit" class="btn btn-google btn-user btn-block">
+                            <button type="submit" class="btn btn-facebook btn-user btn-block">
                                 <i class="fab fa-plus fa-fw"></i> Add
                                 </a>
                         </form>

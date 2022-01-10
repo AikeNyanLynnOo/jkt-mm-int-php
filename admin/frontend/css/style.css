@@ -145,6 +145,24 @@ input[type="checkbox"] {
   object-fit:cover;
 }
 
+.new {
+  padding: 8px 40px;
+  background-color: #3B5998;
+  color: white;
+  border-radius: 5px;
+}
+
+.new:hover {
+  text-decoration: none;
+  background-color: #043bb3c0;
+  color: white;
+}
+
+.table-lg {
+  margin: 15px auto;
+  width: 100%;
+}
+
 @media only screen and (max-width: 767px) {
   .input-left,
   .input-right,

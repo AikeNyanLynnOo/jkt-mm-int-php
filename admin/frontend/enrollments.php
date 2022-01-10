@@ -12,7 +12,8 @@ $result = mysqli_query($conn, "SELECT * from enrollments LEFT JOIN courses ON en
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Admin - New Course</title>
+    <link rel="shortcut icon" href="img/logo.jpg" />
+    <title>JKT Admin - Enrollments</title>
 
     <!-- Custom fonts for this template-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -322,8 +323,8 @@ $result = mysqli_query($conn, "SELECT * from enrollments LEFT JOIN courses ON en
                                                 <th>Payment</th>
                                                 <th>Paid Percent</th>
                                                 <th>Is Pending</th>
-                                                <th>created_at</th>
-                                                <th>updated_at</th>
+                                                <th>Created At</th>
+                                                <th>Updated At</th>
                                             </tr>
                                         </thead>
                                         <tfoot>
@@ -341,8 +342,8 @@ $result = mysqli_query($conn, "SELECT * from enrollments LEFT JOIN courses ON en
                                                 <th>Payment</th>
                                                 <th>Paid Percent</th>
                                                 <th>Is Pending</th>
-                                                <th>created_at</th>
-                                                <th>updated_at</th>
+                                                <th>Created At</th>
+                                                <th>Updated At</th>
                                             </tr>
                                         </tfoot>
                                         <tbody>
