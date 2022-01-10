@@ -21,9 +21,12 @@
 .preview-img {
   display: inline-block;
   width: 25%;
+  border: double grey;
 }
+
 .preview-input {
   width: 70%;
+  height: 43px;
 }
 
 .days-checkbox {
@@ -43,6 +46,94 @@
   font-style: italic;
   color: red;
   margin-bottom: 5px;
+}
+
+.preview-user-img {
+  border: 1px solid grey;
+  height: 200px;
+  width: 100%;
+  display: block;
+  margin: 5px auto 0;
+  padding: 5px;
+  object-fit: contain;
+}
+
+input[type="checkbox"] {
+  padding: 0;
+  height: initial;
+  width: initial;
+  margin-left: 0;
+  margin-bottom: 0;
+  display: none;
+  cursor: pointer;
+}
+
+.form-check label:before {
+  content:'';
+  -webkit-appearance: none;
+  background-color: transparent;
+  border: 2px solid #3B5998;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+  padding: 7px;
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  cursor: pointer;
+  margin-top: -3px;
+  margin-left: -15px;
+  margin-right: 5px;
+  border-radius: 5px;
+}
+
+.form-check input[type="checkbox"]:checked + label:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 4px;
+  left: 11px;
+  width: 6px;
+  height: 13px;
+  border: solid #3B5998;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.form-day-check input[type="checkbox"]:focus {
+  border: solid rgb(156, 64, 110);
+}
+
+.form-day-check label:before {
+  content:'';
+  -webkit-appearance: none;
+  background-color: transparent;
+  border: 2px solid #3B5998;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+  padding: 7px;
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  cursor: pointer;
+  margin-top: -3px;
+  margin-left: 0;
+  margin-right: 5px;
+  border-radius: 5px;
+}
+
+.form-day-check input[type="checkbox"]:checked + label:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 7px;
+  left: 6px;
+  width: 6px;
+  height: 13px;
+  border: solid #3B5998;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.fa-angle-up {
+  padding-top: 30%;
 }
 
 @media only screen and (max-width: 767px) {

@@ -297,8 +297,9 @@ include("../confs/config.php");
                     <div class="row">
                         <form class="col-12 col-md-11 col-lg-8 mx-auto" id="studentEnrollment">
                             <div class="form-group mb-4 row align-items-center justify-content-between px-3">
-                                <img src="../../user/frontend/assets/images/logo.jpg" id="image-preview" name="image-preview" alt="image-preview" class="preview-img"/>
-                                <input type="file" name="photo" id="photo" class="form-control preview-input"/>
+                                <img src="../../user/frontend/assets/images/default-profile-icon.jpg" id="image-preview" name="image-preview" alt="User Image Preview" class="preview-img"/>
+                                <input type="file" name="photo" id="userImg" class="form-control preview-input" required/>
+                                <span class="help-block" id="userImgErr"></span>
                             </div>
                             <div class="form-group mb-4">
                                 <label for="categoryId">Choose Course</label>
@@ -402,7 +403,7 @@ include("../confs/config.php");
                             <div class="form-group mb-4">
                                 <div class="form-check form-switch">
                                     <input class="form-check-input" type="checkbox" id="isPending" name="isPending">
-                                    <label class="form-check-label" for="isPending">Is Pending</label>
+                                    <label class="form-check-label" for="isPending">Is Pending?</label>
                                 </div>
                             </div>
                             <hr>

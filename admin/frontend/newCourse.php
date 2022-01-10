@@ -295,7 +295,7 @@ include("../confs/config.php");
                 <!-- Begin Page Content -->
                 <div class="container">
                     <div class="row">
-                        <form class="col-12 col-md-11 col-lg-8 mx-auto" action="../backend/newCourse.php" method="POST">
+                        <form id="courseForm" class="col-12 col-md-11 col-lg-8 mx-auto" action="../backend/newCourse.php" method="POST">
                             <div class="form-group mb-4">
                                 <label for="title">Enter Title</label>
                                 <input type="text" class="form-control form-control-user" id="title" name="title" aria-describedby="tileField" placeholder="Course Title" required />
@@ -303,7 +303,7 @@ include("../confs/config.php");
                             <div class="form-group mb-4">
                                 <label for="categoryId">Choose Category</label>
                                 <select name="categoryId" id="categoryId" name="categoryId" class="form-control form-control-user" required>
-                                    <option selected disabled>Category</option>
+                                    <option value="" selected disabled>Category</option>
                                     <?php
                                     $result = mysqli_query($conn, "SELECT * FROM categories");
                                     while ($row = mysqli_fetch_assoc($result)) {
@@ -314,8 +314,8 @@ include("../confs/config.php");
                             </div>
                             <div class="form-group mb-4">
                                 <label for="typeId">Choose Type</label>
-                                <select name="typeId" id="typeId" class="form-control">
-                                    <option selected disabled>Type</option>
+                                <select name="typeId" id="typeId" class="form-control" required>
+                                    <option value="" selected disabled>Type</option>
                                     <?php
                                     $result = mysqli_query($conn, "SELECT * FROM types");
                                     while ($row = mysqli_fetch_assoc($result)) {
@@ -341,7 +341,7 @@ include("../confs/config.php");
                             <div class="mb-4 mx-auto row justify-content-between">
                                 <div class=" input-left mb-3 mb-md-0">
                                     <label for="startDate">Choose Start Date</label>
-                                    <input type="date" class="form-control" id="startDate" name="startDate" aria-describedby="dateField" required required />
+                                    <input type="date" class="form-control" id="startDate" name="startDate" aria-describedby="dateField" required />
                                 </div>
                                 <div class="input-right">
                                     <label for="duration">Duration (Months)</label>
@@ -359,11 +359,11 @@ include("../confs/config.php");
                                 </div>
                             </div>
                             <div class="form-group mb-4">
-                                <label class="mb-2">Choose Days</label>
+                                <label class="mb-2">Choose Days &nbsp; <span class="help-block" id="dayCheckErr"></span></label>
                                 <div class="row justify-content-between px-3">
                                     <?php foreach ([["st" => "M", "lg" => "MON"], ["st" => "Tu", "lg" => "TUE"], ["st" => "W", "lg" => "WED"], ["st" => "Th", "lg" => "THU"], ["st" => "F", "lg" => "FRI"], ["st" => "Sa", "lg" => "SAT"], ["st" => "Su", "lg" => "SUN"]] as $day) { ?>
-                                        <div class="custom-control custom-checkbox small days-checkbox">
-                                            <input type="checkbox" id="<?= $day["st"] ?>" value="<?= $day["st"] ?>" name="days[]">
+                                        <div class="custom-control custom-checkbox small days-checkbox form-day-check">
+                                            <input type="checkbox" id="<?= $day["st"] ?>" value="<?= $day["st"] ?>" name="days[]" class="day-chck">
                                             <label class="mb-0 mt-1" for="<?= $day["st"] ?>"><?= $day["lg"] ?></label>
                                         </div>
                                     <?php } ?>
@@ -376,14 +376,14 @@ include("../confs/config.php");
                             </div>
                             <div class="form-group mb-4">
                                 <label for="services">Enter Services</label>
-                                <textarea class="form-control" name="services" id="services" rows="5" placeholder="eg. Text Book" required></textarea>
+                                <textarea class="form-control" name="services" id="services" rows="5" placeholder="eg. Text Book"></textarea>
                             </div>
                             <div class="form-group mb-4">
                                 <label for="note">Enter Additional Note</label>
-                                <textarea class="form-control" name="note" id="note" rows="5" placeholder="Any Additional Note" required></textarea>
+                                <textarea class="form-control" name="note" id="note" rows="5" placeholder="Any Additional Note"></textarea>
                             </div>
                             <hr>
-                            <button type="submit" class="btn btn-facebook btn-user btn-block">
+                            <button type="submit" class="btn btn-facebook btn-user btn-block" id="course_submit">
                                 <i class="fa fa-paper-plane fa-fw"></i> Create
                             </button>
                         </form>
@@ -443,6 +443,7 @@ include("../confs/config.php");
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+    <script src="js/checkboxValidate.js"></script>
 </body>
 
 </html>
