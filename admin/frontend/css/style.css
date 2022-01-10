@@ -98,10 +98,6 @@ input[type="checkbox"] {
   transform: rotate(45deg);
 }
 
-.form-day-check input[type="checkbox"]:focus {
-  border: solid rgb(156, 64, 110);
-}
-
 .form-day-check label:before {
   content:'';
   -webkit-appearance: none;
@@ -130,6 +126,10 @@ input[type="checkbox"] {
   border: solid #3B5998;
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
+}
+
+.form-day-check input[type="checkbox"]:focus {
+  border: solid rgb(156, 64, 110);
 }
 
 .fa-angle-up {
