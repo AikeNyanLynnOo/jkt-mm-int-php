@@ -45,34 +45,13 @@
   margin-bottom: 5px;
 }
 
-/* data table scroll */
-/* width */
-/* table.dataTable {
-  background-color: royalblue;
-  overflow: scroll;
-} */
-
-#dataTable::-webkit-scrollbar {
-  width : 2px;
-}
-
-/* Track */
-#dataTable::-webkit-scrollbar-track {
-  background: grey;
-  border-radius: 3px;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  -ms-border-radius: 3px;
-  -o-border-radius: 3px;
-}
-
-/* Handle */
-#dataTable::-webkit-scrollbar-thumb {
-  background: #ddd;
-}
-
-#dataTable::-webkit-scrollbar-thumb:hover {
-  background: #f2f2f2;
+.stu-img-table{
+  display: block;
+  height: 60px;
+  width : 60px;
+  margin : 0 auto;
+  text-align: center;
+  object-fit:cover;
 }
 
 @media only screen and (max-width: 767px) {

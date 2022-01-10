@@ -348,7 +348,7 @@ $result = mysqli_query($conn, "SELECT * from enrollments LEFT JOIN courses ON en
                                         <tbody>
                                             <?php while ($row = mysqli_fetch_assoc($result)) : ?>
                                                 <tr>
-                                                    <td><?= $row['photo'] ?></td>
+                                                    <td><img class="stu-img-table" src="<?= '../../user/backend/'.$row['photo'] ?>" alt="<?= $row['photo'] ?>"></td>
                                                     <td><?= $row['title'] ?></td>
                                                     <td><?= $row['uname'] ?></td>
                                                     <td><?= $row['dob'] ?></td>

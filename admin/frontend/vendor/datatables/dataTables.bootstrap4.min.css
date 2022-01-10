@@ -22,7 +22,7 @@ table.dataTable.nowrap td {
 }
 
 div.dataTables_wrapper {
-  width: 250%;
+  width: 100%;
   overflow-y: hidden;
 }
 
@@ -37,6 +37,8 @@ div.dataTables_wrapper div.dataTables_length select {
 }
 div.dataTables_wrapper div.dataTables_filter {
   text-align: right;
+  position: absolute;
+  right: 0;
 }
 div.dataTables_wrapper div.dataTables_filter label {
   font-weight: normal;
