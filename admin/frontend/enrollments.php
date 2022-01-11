@@ -2,6 +2,20 @@
 // include('checkUser.php');
 include("../confs/config.php");
 $result = mysqli_query($conn, "SELECT * from enrollments LEFT JOIN courses ON enrollments.course_id = courses.course_id;");
+// $currentEditingID = "";
+// $currentDeletingID = "";
+
+// function setCurrentEditing($id)
+// {
+//     global $currentEditingID;
+//     $currentEditingID = $id;
+// }
+// function setCurrentDeleting($id)
+// {
+//     global $currentDeletingID;
+//     $currentDeletingID = $id;
+// }
+
 ?>
 <html lang="en">
 
@@ -13,7 +27,7 @@ $result = mysqli_query($conn, "SELECT * from enrollments LEFT JOIN courses ON en
     <meta name="author" content="">
 
     <link rel="shortcut icon" href="img/logo.jpg" />
-    <title>JKT Admin - Enrollments</title>
+    <title>JKT Admin - All Enrollments</title>
 
     <!-- Custom fonts for this template-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -323,11 +337,13 @@ $result = mysqli_query($conn, "SELECT * from enrollments LEFT JOIN courses ON en
                                                 <th>Payment</th>
                                                 <th>Paid Percent</th>
                                                 <th>Is Pending</th>
-                                                <th>Created At</th>
-                                                <th>Updated At</th>
+                                                <th>created_at</th>
+                                                <th>updated_at</th>
+                                                <th>Edit</th>
+                                                <th>Delete</th>
                                             </tr>
                                         </thead>
-                                        <tfoot>
+                                        <!-- <tfoot>
                                             <tr>
                                                 <th>Photo</th>
                                                 <th>Course</th>
@@ -342,14 +358,16 @@ $result = mysqli_query($conn, "SELECT * from enrollments LEFT JOIN courses ON en
                                                 <th>Payment</th>
                                                 <th>Paid Percent</th>
                                                 <th>Is Pending</th>
-                                                <th>Created At</th>
-                                                <th>Updated At</th>
+                                                <th>created_at</th>
+                                                <th>updated_at</th>
+                                                <th>Edit</th>
+                                                <th>Delete</th>
                                             </tr>
-                                        </tfoot>
+                                        </tfoot> -->
                                         <tbody>
                                             <?php while ($row = mysqli_fetch_assoc($result)) : ?>
                                                 <tr>
-                                                    <td><img class="stu-img-table" src="<?= '../../user/backend/'.$row['photo'] ?>" alt="<?= $row['photo'] ?>"></td>
+                                                    <td><img class="stu-img-table" src="<?= '../../user/backend/' . $row['photo'] ?>" alt="<?= $row['photo'] ?>"></td>
                                                     <td><?= $row['title'] ?></td>
                                                     <td><?= $row['uname'] ?></td>
                                                     <td><?= $row['dob'] ?></td>
@@ -364,6 +382,8 @@ $result = mysqli_query($conn, "SELECT * from enrollments LEFT JOIN courses ON en
                                                     <td><?= $row['is_pending'] ?></td>
                                                     <td><?= $row['created_at'] ?></td>
                                                     <td><?= $row['updated_at'] ?></td>
+                                                    <td><button class="tb-btn" onclick="setCurrentEditing(this,<?php echo $row['enrollment_id'] ?>,<?php echo $row['course_id'] ?>)" data-toggle="modal" data-target="#editingModal"><i class="fa fa-pencil"></i></button></td>
+                                                    <td><button class="tb-btn" onclick="setCurrentDeleting(<?php echo $row['enrollment_id'] ?>)" data-toggle="modal" data-target="#deletingModal"><i class="fa fa-trash"></button></i></td>
                                                 </tr>
                                             <?php endwhile; ?>
                                         </tbody>
@@ -419,6 +439,165 @@ $result = mysqli_query($conn, "SELECT * from enrollments LEFT JOIN courses ON en
         </div>
     </div>
 
+    <!-- editing modal -->
+    <div class="modal fade" id="editingModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editingModalTitle">Editing</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="col-12" id="editingModal" action="../backend/editEnrollment.php">
+                        <input type="hidden" name="enrollmentId" id="enrollmentId" />
+                        <div class="form-group mb-4 row align-items-center justify-content-between px-3">
+                            <img src="" id="imagePreview" name="image-preview" alt="User Image Preview" class="preview-img" />
+                            <input type="file" name="photo" id="userImg" class="preview-input" required />
+                            <label for="userImg" class="upload-label">Re upload image</label>
+                            <span class="help-block" id="userImgErr"></span>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label for="categoryId">Choose Course</label>
+                            <select id="classId" name="classId" class="form-control form-control-user" required>
+                                <option value="" selected disabled>Course</option>
+                                <?php
+                                $result = mysqli_query($conn, "SELECT * FROM courses");
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                ?>
+                                    <option value='<?php echo $row["course_id"] ?>'><?php echo $row["title"] ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label for="uname">Enter Full Name</label>
+                            <input type="text" name="uname" id="uname" class="form-control" placeholder="eg. Aung Aung" required />
+                        </div>
+                        <div class="mb-4 mx-auto row justify-content-between">
+                            <div class="input-right">
+                                <label for="dob">Choose Birthday</label>
+                                <input type="date" name="dob" id="dob" class="form-control" required />
+                            </div>
+                            <div class=" input-left mb-3 mb-md-0">
+                                <label for="fname">Enter Father Name</label>
+                                <input type="text" name="fname" id="fname" class="form-control" placeholder="eg. U Kyaw" required />
+                            </div>
+                        </div>
+                        <div class="mb-4 mx-auto row justify-content-between">
+                            <div class="input-25">
+                                <label for="nrcCode">State</label>
+                                <select id="nrcCode" name="nrcCode" class="form-control form-control-user" required>
+                                    <option value="" selected disabled>State</option>
+                                    <?php
+                                    foreach ([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14] as $state) {
+                                    ?>
+                                        <option value='<?= $state ?>'><?= $state ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                            <div class="input-30">
+                                <label for="township">Township</label>
+                                <select id="township" name="township" class="form-control form-control-user" required>
+                                    <option value="" selected disabled>State</option>
+                                </select>
+                            </div>
+                            <div class="input-25">
+                                <label for="type">Type</label>
+                                <select id="type" name="type" class="form-control form-control-user" required>
+                                    <option value="" selected disabled>Type</option>
+                                    <option value="(C)">(C) - (နိုင်)</option>
+                                    <option value="(AC)">(AC) - (ဧည့်)</option>
+                                    <option value="(NC)">(NC) - (ပြု)</option>
+                                    <option value="(V)">(V) - (စ)</option>
+                                    <option value="(M)">(M) - (သ)</option>
+                                    <option value="(N)">(N) - (သီ)</option>
+                                </select>
+                            </div>
+                            <div class="input-20">
+                                <label for="nrcNumber">Nrc Number</label>
+                                <input type="number" class="form-control" name="nrcNumber" id="nrcNumber" placeholder="123456" required />
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label for="email">Enter Email</label>
+                            <input type="email" name="email" id="email" class="form-control" placeholder="eg. student@gmail.com" required />
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label for="phone">Enter Phone</label>
+                            <input type="text" name="phone" id="phone" class="form-control" placeholder="09..." required />
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label for="education">Enter Education</label>
+                            <input type="text" name="education" id="education" class="form-control" placeholder="University or High School" required />
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label for="address">Enter Address</label>
+                            <textarea name="address" id="address" cols="30" rows="5" class="form-control" placeholder="eg. No - , Yangon" required></textarea>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label for="paymentMethod">Choose Payment Method</label>
+                            <select id="paymentMethod" name="paymentMethod" class="form-control" required>
+                                <option value="" selected disabled>Payment Method</option>
+                                <option value="CB Banking">CB Banking</option>
+                                <option value="KBZ Banking">KBZ Banking</option>
+                                <option value="AYA Banking">AYA Banking</option>
+                                <option value="Kpay">Kpay</option>
+                                <option value="Cash">Cash</option>
+                            </select>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label for="paidPercent">Paid Percentage</label>
+                            <input type="number" name="paidPercent" id="paidPercent" class="form-control" value="0" required />
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="isPending" name="isPending">
+                                <label class="form-check-label" for="isPending">Is Pending?</label>
+                            </div>
+                        </div>
+                        <hr>
+                        <button type="submit" class="btn btn-facebook btn-user btn-block" id="enroll">
+                            <i class="fa fa-upload fa-fw"></i> Update Details
+                        </button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-primary" type="submit" form="editForm">Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="deletingModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editingModalTitle">Deleting</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="../backend/deleteEnrollment.php" id="deleteForm">
+                        <?php echo $currentDeletingID ?>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-primary" form="deleteForm" type="submit">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -434,23 +613,7 @@ $result = mysqli_query($conn, "SELECT * from enrollments LEFT JOIN courses ON en
 
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
+    <script src="js/style.js"></script>
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a href="newEnroll.php" class="new">Insert New enrollment</a>
