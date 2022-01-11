@@ -371,7 +371,7 @@ AND c.type_id = t.type_id");
                                                     <td>
                                                         <?php
                                                          for($i=0; $i<count($section_time['days']); $i++) {
-                                                            echo $section_time['days'][$i] . " ";
+                                                            echo "<span class='days-badges'>" . $section_time['days'][$i] . "</span>";
                                                          } 
                                                         ?>
                                                     </td>

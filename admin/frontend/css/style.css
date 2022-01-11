@@ -163,6 +163,19 @@ input[type="checkbox"] {
   width: 100%;
 }
 
+.days-badges {
+  display: inline-block;
+  text-align: center;
+  line-height: 27px;
+  width: 25px;
+  height: 25px;
+  font-size: 14px;
+  border-radius: 50%;
+  color: whitesmoke;
+  background-color: #3b589870;
+  margin: 1px;
+}
+
 @media only screen and (max-width: 767px) {
   .input-left,
   .input-right,
