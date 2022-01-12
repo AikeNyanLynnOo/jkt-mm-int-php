@@ -1,7 +1,6 @@
 <?php
     session_start();
-    if(isset($_COOKIE['adminName'])) $name = $_COOKIE['adminName'];
-    if(isset($_SESSION['name'])) $name = $_SESSION['name'];
+    include_once '../auth/authenticate.php';
 ?>
 <html lang="en">
 

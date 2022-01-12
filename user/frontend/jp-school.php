@@ -396,9 +396,18 @@
             </div>
           </div>
         </div>
-        <div class="container text-center mt-4 mb-5">
-            <a href="./school-detail.php" class="view-detail">View More <i class="far fa-hand-point-right"></i></a>
-        </div>
+        <?php
+          $query = "select * from courses";
+          $result = mysqli_query($conn, $query);
+          $rowcount=mysqli_num_rows($result);
+          if($rowcount > 4) {
+        ?>
+          <div class="container text-center mt-4 mb-5">
+              <a href="./school-detail.php" class="view-detail">View More <i class="far fa-hand-point-right"></i></a>
+          </div>
+        <?php } else { ?>
+          <div></div>
+        <?php } ?>
         <hr class="hr" />
       </div>
     </section>
