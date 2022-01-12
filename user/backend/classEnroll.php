@@ -29,7 +29,6 @@ include("../../admin/confs/config.php");
 include("../../admin/mail/sendMail.php");
 
 // STEP 1 
-$src = $_POST["src"];
 $photo = $_FILES['photo'];
 $uname = $_POST['uname'];
 $dob = $_POST['dob'];
@@ -49,7 +48,6 @@ $courseId = intval($_POST['courseId']);
 
 // STEP 3
 $payment_method = $_POST['payment_method'];
-$paid_percent = 0;
 
 // echo ($courseId .",".
 //     $uname .",".
@@ -60,6 +58,7 @@ $paid_percent = 0;
 //     $type .",".
 //     $nrcNumber .",".
 //     $email .",".
+//     $address . ",". 
 //     $phone .",".
 //     $education .",".
 //     $classTime .",".
@@ -143,6 +142,9 @@ $fileinfo = @getimagesize($_FILES["photo"]["tmp_name"]);
 $org_width = $fileinfo[0];
 $org_height = $fileinfo[1];
 
+$file_extension = pathinfo($_FILES["photo"]["name"], PATHINFO_EXTENSION);
+$file = $_FILES['photo']['name'];
+
 $allowed_image_extension = array(
     "png",
     "PNG",
@@ -172,18 +174,14 @@ session_start();
 if ($org_width > "300" || $org_height > "300") {
     // $image_name =  pathinfo($_FILES["photo"]["name"], PATHINFO_DIRNAME) . "/" . pathinfo($_FILES["photo"]["name"], PATHINFO_BASENAME);
 
-    $file_extension = pathinfo($_FILES["photo"]["name"], PATHINFO_EXTENSION);;
-    $file = $_FILES['photo']['name'];
-
-
     if (file_exists("uploads/$nrcNumber.$file_extension")) unlink("uploads/$nrcNumber.$file_extension");
     $target = "uploads/" . "$nrcNumber.$file_extension";
     move_uploaded_file($_FILES['photo']['tmp_name'], $target);
-    
+
     if (resize_image($target, $file_extension, 300)) {
-    // continue to insert to db cuz image upload succeed.
-    $insert_into_enrollments = "INSERT INTO enrollments (
-            class_id,
+        // continue to insert to db cuz image upload succeed.
+        $insert_into_enrollments = "INSERT INTO enrollments (
+            course_id,
             uname, 
             dob, 
             fname, 
@@ -209,37 +207,39 @@ if ($org_width > "300" || $org_height > "300") {
             '$address',
             '$phone',
             '$payment_method',
-            $paid_percent , 
+             0 , 
             '$target',
             now(), 
             now(),
             1)";
-    mysqli_query($conn, $insert_into_enrollments);
+        mysqli_query($conn, $insert_into_enrollments);
 
-    $select_from_courses = "SELECT * FROM courses WHERE course_id = $courseId";
-    $course_result = mysqli_query($conn, $select_from_courses);
+        $lastInserted = $conn->insert_id;
 
-    $row = mysqli_fetch_assoc($course_result);
-    if ($email == "") {
-        unset($_SESSION['response']);
-        header("location: ../frontend/enrollSuccess.php");
-        exit();
-    } else {
-        if ($row) {
-            if ($payment_method === "Cash") {
-                $afterTryingToSend = sendMail($email, $uname, $row, TRUE);
-            } else {
-                $afterTryingToSend = sendMail($email, $uname, $row, FALSE);
+        $select_from_courses = "SELECT * FROM courses WHERE course_id = $courseId";
+        $course_result = mysqli_query($conn, $select_from_courses);
+
+        $row = mysqli_fetch_assoc($course_result);
+        if ($email == "") {
+            unset($_SESSION['response']);
+            header("location: ../frontend/enrollSuccess.php");
+            exit();
+        } else {
+            if ($row) {
+                if ($payment_method === "Cash") {
+                    $afterTryingToSend = sendMail($email, $uname, $row, $lastInserted, TRUE);
+                } else {
+                    $afterTryingToSend = sendMail($email, $uname, $row, $lastInserted, FALSE);
+                }
             }
         }
-    }
-    if ($afterTryingToSend[0]) {
-        unset($_SESSION['response']);
-        header("location: ../frontend/enrollSuccess.php");
-        exit();
-    } else {
-        echo "fail to send mail";
-    }
+        if ($afterTryingToSend[0]) {
+            unset($_SESSION['response']);
+            header("location: ../frontend/enrollSuccess.php");
+            exit();
+        } else {
+            echo "fail to send mail";
+        }
     } else {
         $response = array(
             "type" => "error",
@@ -253,7 +253,7 @@ if ($org_width > "300" || $org_height > "300") {
     if (move_uploaded_file($_FILES["photo"]["tmp_name"], $target)) {
         // continue to insert to db cuz image upload succeed.
         $insert_into_enrollments = "INSERT INTO enrollments (
-            class_id,
+            course_id,
             uname, 
             dob, 
             fname, 
@@ -279,12 +279,13 @@ if ($org_width > "300" || $org_height > "300") {
             '$address',
             '$phone',
             '$payment_method',
-            $paid_percent , 
+             0 , 
             '$target',
             now(), 
             now(),
             1)";
         mysqli_query($conn, $insert_into_enrollments);
+        $lastInserted = $conn->insert_id;
 
         $select_from_courses = "SELECT * FROM courses WHERE course_id = $courseId";
         $course_result = mysqli_query($conn, $select_from_courses);
@@ -297,9 +298,9 @@ if ($org_width > "300" || $org_height > "300") {
         } else {
             if ($row) {
                 if ($payment_method === "Cash") {
-                    $afterTryingToSend = sendMail($email, $uname, $row, TRUE);
+                    $afterTryingToSend = sendMail($email, $uname, $row, $lastInserted, TRUE);
                 } else {
-                    $afterTryingToSend = sendMail($email, $uname, $row, FALSE);
+                    $afterTryingToSend = sendMail($email, $uname, $row, $lastInserted, FALSE);
                 }
             }
         }
@@ -318,7 +319,5 @@ if ($org_width > "300" || $org_height > "300") {
         );
     }
 }
-$_SESSION['response'] = $response;
-header("location: ../frontend/classEnroll.php");
 
 mysqli_close($conn);

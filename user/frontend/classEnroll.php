@@ -1,7 +1,6 @@
 <?php
 session_start();
 $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
-
 ?>
 
 <!DOCTYPE html>
