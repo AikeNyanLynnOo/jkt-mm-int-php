@@ -1720,8 +1720,42 @@ figure img {
 
 /* JP school schedule table */
 
-.days-time {
-  /* width: 11em !important; */
+.class-filter {
+  padding: 10px 40px;
+  margin-right: 20px;
+}
+
+.class-filter:focus {
+  outline: none;
+}
+
+.filter-button {
+  padding: 8px 15px;
+  border-radius: 5px;
+  background-color: #5bafe7;
+  border: 2px solid #4099d4;
+  color: whitesmoke
+}
+
+.filter-button:focus {
+  outline: none;
+}
+
+.view-detail {
+  margin: 15px auto;
+  padding: 15px 55px;
+  border: 1px solid #c6c6c6;
+  background-color: white;
+  color: #131313;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+.view-detail:hover {
+  background: rgba(167, 205, 238, 0.342);
+  border: 1px solid rgb(0, 0, 0, 0.1);
+  text-decoration: none;
 }
 
 .enroll {

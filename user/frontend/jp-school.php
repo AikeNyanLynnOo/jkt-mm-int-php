@@ -324,10 +324,10 @@
                     }
                     include_once("../../admin/confs/config.php"); 
                     $schedule = "SELECT course_id, c.title AS course_title, cty.title AS category_title, 
-                                 t.title AS type_title, c.level AS course_level, fee, instructor, 
+                                 t.title AS type_title, level_or_sub, fee, instructor, 
                                  services, discount_percent, start_date, duration, sections, note
                                  FROM courses c, categories cty, types t WHERE c.category_id = cty.category_id 
-                                 AND c.type_id = t.type_id";
+                                 AND c.type_id = t.type_id ORDER BY start_date DESC LIMIT 4";
                     $schedule_result = mysqli_query($conn, $schedule);
                     while($row = mysqli_fetch_array($schedule_result)) {
                       $_SESSION['courseId'] = $row['course_id'];
@@ -336,7 +336,7 @@
                       <td style="display: none">
                         <span id="category_title" class="row-data"><?php echo $row["category_title"] ?></span>
                         <span id="type_title" class="row-data"><?php echo $row["type_title"] ?></span>
-                        <span id="course_level" class="row-data"><?php echo $row["course_level"] ?></span>
+                        <span id="course_level" class="row-data"><?php echo $row["level_or_sub"] ?></span>
                         <span id="instructor" class="row-data"><?php echo $row["instructor"] ?></span>
                         <span id="services" class="row-data"><?php echo $row["services"] ?></span>
                         <span id="discount_percent" class="row-data"><?php echo $row["discount_percent"] ?></span>
@@ -395,6 +395,9 @@
               </table>
             </div>
           </div>
+        </div>
+        <div class="container text-center mt-4 mb-5">
+            <a href="./school-detail.php" class="view-detail">View More <i class="far fa-hand-point-right"></i></a>
         </div>
         <hr class="hr" />
       </div>

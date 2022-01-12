@@ -144,7 +144,7 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
             $courseId = isset($_SESSION['courseId']) ? $_SESSION['courseId'] : null;
             include("../../admin/confs/config.php"); 
             $get_course = "SELECT course_id, c.title AS course_title, cty.title AS category_title, 
-                          t.title AS type_title, c.level AS course_level, fee, instructor, 
+                          t.title AS type_title, level_or_sub, fee, instructor, 
                           services, discount_percent, start_date, duration, sections, note
                           FROM courses c, categories cty, types t WHERE course_id = $courseId AND
                           c.category_id = cty.category_id AND c.type_id = t.type_id";
@@ -161,7 +161,7 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                   <label class="tab-label" for="chck2"><?php echo $row['course_title']; ?></label>
                   <div class="tab-content">
                     <p class="class-detail">
-                      <?php echo $row['course_level'] . " (" . $row['type_title'] . ")"; ?>
+                      <?php echo $row['level_or_sub'] . " (" . $row['type_title'] . ")"; ?>
                     </p>
                     <p class="class-detail">
                       <?php echo $origin_fee; ?>
@@ -358,7 +358,7 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                     <div class="col-12">
                       <?php
                       // include_once("../../admin/confs/config.php"); 
-                      // $course = "SELECT course_id, c.title AS course_title, c.level as course_level, t.title AS type_title, 
+                      // $course = "SELECT course_id, c.title AS course_title, c.level as level_or_sub, t.title AS type_title, 
                       //             ct.title AS category_title, sections FROM courses c, types t, categories ct 
                       //             WHERE c.type_id = t.type_id AND c.category_id = ct.category_id";
                       // $course_result = mysqli_query($conn, $course);
@@ -371,7 +371,7 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                         // while($row = mysqli_fetch_array($course_result)) { 
                         ?>
                           <option value="<?php // echo $row['course_id'] 
-                                          ?>"><?php // echo $row['course_title'] . ' ' . $row['course_level'] . ' (' . $row['type_title'] . ')' 
+                                          ?>"><?php // echo $row['course_title'] . ' ' . $row['level_or_sub'] . ' (' . $row['type_title'] . ')' 
                                               ?></option>
                         <?php //} 
                         ?>
@@ -682,7 +682,7 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                   <label class="tab-label ml-4" for="chck1"><?php echo $row['course_title']; ?></label>
                   <div class="tab-content">
                     <p class="class-detail">
-                      <?php echo $row['course_level'] . " (" . $row['type_title'] . ")" ;?>
+                      <?php echo $row['level_or_sub'] . " (" . $row['type_title'] . ")" ;?>
                     </p>
                     <p class="class-detail">
                       <?php 

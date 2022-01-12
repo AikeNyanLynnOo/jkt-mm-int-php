@@ -176,6 +176,10 @@ input[type="checkbox"] {
   margin: 1px;
 }
 
+.login-card {
+  margin-top: 20% !important;
+}
+
 @media only screen and (max-width: 767px) {
   .input-left,
   .input-right,
