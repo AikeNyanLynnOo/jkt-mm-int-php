@@ -8,7 +8,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-function sendMail($email, $uname, $classInfo, $isInCash)
+function sendMail($email, $uname, $classInfo,$insertedId, $isInCash)
 {
 	//Create instance of PHPMailer
 	$mail = new PHPMailer();
@@ -40,7 +40,7 @@ function sendMail($email, $uname, $classInfo, $isInCash)
 	$mail->Body = "<h1>Dear ";
 	$mail->Body .= $uname;
 	$mail->Body .= "</h1></br>";
-	$mail->Body .= "Welcome! - You tried to enroll our " . $classInfo["level"] . " level " . $classInfo["title"] . " course </br>";
+	$mail->Body .= "Welcome! - You tried to enroll our " . $classInfo["levelorsub"] . " level " . $classInfo["title"] . " course </br>";
 	
 	$mail->Body .= "<h3>Check the payment information!</h3>";
 	
@@ -63,7 +63,7 @@ function sendMail($email, $uname, $classInfo, $isInCash)
 		-moz-border-radius: 5px;
 		-ms-border-radius: 5px;
 		-o-border-radius: 5px;' 
-		href='https://stu-regist.000webhostapp.com/user/frontend/paymentDetail.php?enroll_id=" . $classInfo["enrollment_id"] . "'>Go to Payment Confirm</a>";
+		href='https://stu-regist.000webhostapp.com/user/frontend/paymentDetail.php?enroll_id=" . "$insertedId" . "'>Go to Payment Confirm</a>";
 	}
 
 	$mail->Body .= "<p>For more detailed payment and courses information, you can contact us directly during business hours (9:00 ~ 17:00) </p>";
