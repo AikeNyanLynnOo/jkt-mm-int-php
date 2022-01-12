@@ -513,25 +513,6 @@
         </div>
     </div>
 
-    <!-- Detail Comment area start -->
-    <section>
-        <div class="container comment-blog px-4 pb-5">
-            <h3>Leave a Reply</h3>
-            <div class="row py-3">
-                <div class="col-lg-12 comment-form">
-                    <form id="comment-form">
-                        <textarea name="comment" id="comment" placeholder="Write Comment"></textarea>
-                        <span class="warning-message"></span>
-                    </form>
-                    <button id="btn-comment" type="button" name="button" onclick="submitCommentForJPSchool(this)" class="about-boxed-btn">
-                        SEND MESSAGE
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Detail Comment area end -->
-
     <!-- to top button -->
     <button class="to-top-btn" id="toTop">
         <i class="fa fa-arrow-up"></i>
