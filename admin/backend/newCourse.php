@@ -9,7 +9,7 @@ foreach ($_POST as $field => $val) {
 $categoryId = $_POST["categoryId"];
 $typeId = intval($_POST["typeId"]);
 $title = $_POST["title"];
-$levelorsub = $_POST["levelorsub"];
+$level_or_sub = $_POST["level_or_sub"];
 $fee = intval($_POST["fee"]);
 $instructor = $_POST["instructor"];
 $services = $_POST["services"];
@@ -29,8 +29,8 @@ $arrObj = array("days" => $days, "sectionHour" => "$startTime ~ $endTime");
 $sections = json_encode($arrObj);
 
 $note = $_POST["note"];
-$sql = "INSERT INTO courses (category_id,type_id,title ,levelorsub,fee,instructor,services,discount_percent,start_date,duration,sections,note, created_at,
- updated_at) VALUES ($categoryId,$typeId,'$title','$levelorsub',$fee,'$instructor','$services',$discountPercent,$startDate,$duration,'$sections', '$note' ,now(), now())";
+$sql = "INSERT INTO courses (category_id,type_id,title ,level_or_sub,fee,instructor,services,discount_percent,start_date,duration,sections,note, created_at,
+ updated_at) VALUES ($categoryId,$typeId,'$title','$level_or_sub',$fee,'$instructor','$services',$discountPercent,$startDate,$duration,'$sections', '$note' ,now(), now())";
 // echo $sql;
 mysqli_query($conn, $sql);
 header("location: ../frontend/courses.php");

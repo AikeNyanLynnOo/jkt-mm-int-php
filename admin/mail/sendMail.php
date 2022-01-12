@@ -40,7 +40,7 @@ function sendMail($email, $uname, $classInfo,$insertedId, $isInCash)
 	$mail->Body = "<h1>Dear ";
 	$mail->Body .= $uname;
 	$mail->Body .= "</h1></br>";
-	$mail->Body .= "Welcome! - You tried to enroll our " . $classInfo["levelorsub"] . " level " . $classInfo["title"] . " course </br>";
+	$mail->Body .= "Welcome! - You tried to enroll our " . $classInfo["level_or_sub"] . " level " . $classInfo["title"] . " course </br>";
 	
 	$mail->Body .= "<h3>Check the payment information!</h3>";
 	

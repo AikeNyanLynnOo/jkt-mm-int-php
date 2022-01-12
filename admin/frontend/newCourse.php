@@ -326,8 +326,8 @@ include("../confs/config.php");
                                 </select>
                             </div>
                             <div class="form-gorup mb-4">
-                                <label for="levelorsub">Enter level/subjects</label>
-                                <input type="text" name="levelorsub" id="levelorsub" class="form-control" placeholder="eg. N5 or physic/chemistry/Biology..." required />
+                                <label for="level_or_sub">Enter level/subjects</label>
+                                <input type="text" name="level_or_sub" id="level_or_sub" class="form-control" placeholder="eg. N5 or physic/chemistry/Biology..." required />
                             </div>
                             <div class="mb-4 mx-auto row justify-content-between">
                                 <div class=" input-left mb-3 mb-md-0">
