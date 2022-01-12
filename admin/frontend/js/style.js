@@ -1,5 +1,7 @@
+// editing
 var enrollmentId = document.getElementById("enrollmentId");
 var imagePreview = document.getElementById("imagePreview");
+var notChangeImg = document.getElementById("notChangeImg");
 var userImg = document.getElementById("userImg");
 var classId = document.getElementById("classId");
 var uname = document.getElementById("uname");
@@ -16,6 +18,12 @@ var address = document.getElementById("address");
 var paymentMethod = document.getElementById("paymentMethod");
 var paidPercent = document.getElementById("paidPercent");
 var isPending = document.getElementById("isPending");
+var createdAt = document.getElementById("createdAt");
+
+// deleting
+var stuName = document.getElementById("stuName");
+var enrollmentDeletingId = document.getElementById("enrollmentDeletingId");
+
 let nrcArr = null;
 
 function setCurrentEditing(row, idx, classIdx) {
@@ -33,14 +41,13 @@ function setCurrentEditing(row, idx, classIdx) {
 
   enrollmentId.value = idx;
   imagePreview.src = "../../user/backend/" + rowArr[0];
-  //   userImg.value = rowArr[0];
+  notChangeImg.value = rowArr[0];
   classId.value = classIdx;
   uname.value = rowArr[2];
   dob.value = rowArr[3];
   fname.value = rowArr[4];
 
   nrcArr = rowArr[5].split("/");
-  console.log(nrcArr[1].slice(0, -9));
   nrcCode.value = nrcArr[0];
   getTownship(nrcArr[0]);
   township.value = nrcArr[1].slice(0, -9);
@@ -53,6 +60,7 @@ function setCurrentEditing(row, idx, classIdx) {
   paymentMethod.value = rowArr[10];
   paidPercent.value = rowArr[11];
   isPending.checked = (rowArr[12] == "1" && true) || false;
+  createdAt.value = rowArr[13];
 }
 
 function getTownship(state) {
@@ -88,3 +96,20 @@ userImg.addEventListener("change", function (e) {
     imagePreview.src = URL.createObjectURL(file);
   }
 });
+
+
+function setCurrentDeleting(row,idx){
+  var tr = row.closest("tr");
+  var tds = tr.children;
+  var rowArr = [];
+  for (var i = 0; i < tds.length; i++) {
+    if (i == 0) {
+      rowArr.push(tds[i].children[0].alt);
+    } else {
+      rowArr.push(tds[i].textContent);
+    }
+  }
+
+  stuName.innerText = rowArr[2];
+  enrollmentDeletingId.value = idx;
+}

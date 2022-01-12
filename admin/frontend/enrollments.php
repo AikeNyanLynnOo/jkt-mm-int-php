@@ -383,7 +383,7 @@ $result = mysqli_query($conn, "SELECT * from enrollments LEFT JOIN courses ON en
                                                     <td><?= $row['created_at'] ?></td>
                                                     <td><?= $row['updated_at'] ?></td>
                                                     <td><button class="tb-btn" onclick="setCurrentEditing(this,<?php echo $row['enrollment_id'] ?>,<?php echo $row['course_id'] ?>)" data-toggle="modal" data-target="#editingModal"><i class="fa fa-pencil"></i></button></td>
-                                                    <td><button class="tb-btn" onclick="setCurrentDeleting(<?php echo $row['enrollment_id'] ?>)" data-toggle="modal" data-target="#deletingModal"><i class="fa fa-trash"></button></i></td>
+                                                    <td><button class="tb-btn" onclick="setCurrentDeleting(this,<?php echo $row['enrollment_id']?>)" data-toggle="modal" data-target="#deletingModal"><i class="fa fa-trash"></button></i></td>
                                                 </tr>
                                             <?php endwhile; ?>
                                         </tbody>
@@ -450,11 +450,13 @@ $result = mysqli_query($conn, "SELECT * from enrollments LEFT JOIN courses ON en
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form class="col-12" id="editingModal" action="../backend/editEnrollment.php">
+                    <form class="col-12" id="editingModal" action="../backend/editEnrollment.php" method="POST" enctype="multipart/form-data">
                         <input type="hidden" name="enrollmentId" id="enrollmentId" />
+                        <input type="hidden" name="notChangeImg" id="notChangeImg" />
+                        <input type="hidden" name="createdAt" id="createdAt" />
                         <div class="form-group mb-4 row align-items-center justify-content-between px-3">
-                            <img src="" id="imagePreview" name="image-preview" alt="User Image Preview" class="preview-img" />
-                            <input type="file" name="photo" id="userImg" class="preview-input" required />
+                            <img src="" id="imagePreview" name="image-preview" alt="User Image Preview" class="preview-img-edit" />
+                            <input type="file" name="photo" id="userImg" class="preview-input-edit" />
                             <label for="userImg" class="upload-label">Re upload image</label>
                             <span class="help-block" id="userImgErr"></span>
                         </div>
@@ -562,15 +564,12 @@ $result = mysqli_query($conn, "SELECT * from enrollments LEFT JOIN courses ON en
                                 <label class="form-check-label" for="isPending">Is Pending?</label>
                             </div>
                         </div>
-                        <hr>
-                        <button type="submit" class="btn btn-facebook btn-user btn-block" id="enroll">
-                            <i class="fa fa-upload fa-fw"></i> Update Details
-                        </button>
+                        <hr />
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <input class="btn btn-primary" type="submit" value="Update">
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <button class="btn btn-primary" type="submit" form="editForm">Update</button>
                 </div>
             </div>
         </div>
@@ -586,14 +585,16 @@ $result = mysqli_query($conn, "SELECT * from enrollments LEFT JOIN courses ON en
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="../backend/deleteEnrollment.php" id="deleteForm">
-                        <?php echo $currentDeletingID ?>
+                    <p>You are going to delete <span id="stuName" class="font-weight-bold"></span>'s enrollment. This can't be undone. Are you sure to delete?</p>
+                    <form action="../backend/deleteEnrollment.php" id="deleteForm" method="POST">
+                        <input type="hidden" name="enrollmentDeletingId" id="enrollmentDeletingId" />
+                        <hr />
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <button class="btn btn-primary" type="submit">Delete</button>
                     </form>
+
                 </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <button class="btn btn-primary" form="deleteForm" type="submit">Delete</button>
-                </div>
+
             </div>
         </div>
     </div>

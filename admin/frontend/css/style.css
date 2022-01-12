@@ -18,13 +18,13 @@
   width: 49%;
 }
 
-.preview-img {
+.preview-img,.preview-img-edit {
   display: inline-block;
   width: 25%;
   border: double grey;
 }
 
-.preview-input {
+.preview-input,.preview-input-edit {
   width: 70%;
   height: 43px;
 }
@@ -190,7 +190,7 @@ input[type="checkbox"] {
   -o-border-radius: 2px;
 }
 
-.preview-input{
+.preview-input-edit{
   display: none;
 }
 .upload-label{
@@ -219,7 +219,7 @@ input[type="checkbox"] {
 }
 @media only screen and (max-width: 575px) {
   .preview-img,
-  .preview-input {
+  .preview-input ,.preview-input-edit{
     width: 100%;
     margin-bottom: 10px;
   }

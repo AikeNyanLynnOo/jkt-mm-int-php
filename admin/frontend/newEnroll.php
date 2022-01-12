@@ -296,7 +296,7 @@ include("../confs/config.php");
                 <!-- Begin Page Content -->
                 <div class="container">
                     <div class="row">
-                        <form class="col-12 col-md-11 col-lg-8 mx-auto" id="studentEnrollment">
+                        <form class="col-12 col-md-11 col-lg-8 mx-auto" id="studentEnrollment" action="../backend/newEnroll.php" method="POST" enctype="multipart/form-data">
                             <div class="form-group mb-4 row align-items-center justify-content-between px-3">
                                 <img src="../../user/frontend/assets/images/default-profile-icon.jpg" id="image-preview" name="image-preview" alt="User Image Preview" class="preview-img"/>
                                 <input type="file" name="photo" id="userImg" class="form-control preview-input" required/>
