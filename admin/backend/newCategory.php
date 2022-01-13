@@ -6,4 +6,4 @@ $title = $_POST['title'];
 $sql = "INSERT INTO categories (title, created_at,
  updated_at) VALUES ('$title', now(), now())";
 mysqli_query($conn, $sql);
-header("location: ../frontend/courseCategories.php");
+header("location: ../frontend/categories.php");
