@@ -3,7 +3,7 @@
 // db config
 include("../../admin/confs/config.php");
 
-$enrollmentDeletingId = $_POST["enrollmentDeletingId"];
+$enrollmentDeletingId = intval($_POST["enrollmentDeletingId"]);
 
 $delete_from_enrollments = "DELETE FROM enrollments WHERE enrollment_id=$enrollmentDeletingId";
 

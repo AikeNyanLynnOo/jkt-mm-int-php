@@ -344,7 +344,7 @@ AND c.type_id = t.type_id");
                                             while ($row = mysqli_fetch_assoc($result)) :
                                                 $section_time = json_decode($row["sections"], true);
                                             ?>
-                                                <tr>
+                                                <tr onclick="setCurrentCourseDetail(this)" data-toggle="modal" data-target="#detailModal" class="tb-row">
                                                     <td><?= $row['course_id'] ?></td>
                                                     <td><?= $row['course_title'] ?></td>
                                                     <td><?= $row['category_title'] ?></td>
@@ -352,8 +352,7 @@ AND c.type_id = t.type_id");
                                                     <td><?= $row['course_level'] ?></td>
                                                     <td><?= $row['fee'] ?></td>
                                                     <td><?= $row['instructor'] ?></td>
-                                                    <td>
-                                                        <?php
+                                                    <td><?php
                                                         for ($i = 0; $i < count($section_time['days']); $i++) {
                                                             echo "<span class='days-badges'>" . $section_time['days'][$i] . "</span>";
                                                         }
@@ -367,13 +366,8 @@ AND c.type_id = t.type_id");
                                                     <td><?php echo $row['note'] === "" ? "-" : $row['note'] ?></td>
                                                     <td><?= $row['created_at'] ?></td>
                                                     <td><?= $row['updated_at'] ?></td>
-                                                    <td><button class="tb-btn" onclick="<?php $current = $row;
-                                                                                        $days = $section_time['days'];
-                                                                                        $startTime = explode("~", $section_time['sectionHour'])[0];
-                                                                                        $endTime = explode("~", $section_time['sectionHour'])[1];
-                                                                                        $startDate = "2022-02-01";
-                                                                                        ?>" data-toggle="modal" data-target="#editingModal"><i class="fa fa-pencil"></i></button></td>
-                                                    <td><button class="tb-btn" onclick="<?php $idx = $row['course_id']; ?>" data-toggle="modal" data-target="#deletingModal"><i class="fa fa-trash"></button></i></td>
+                                                    <td><button class="tb-btn" onclick="setCurrentCourseEdit(event,this,<?php echo $row['category_id'] ?>,<?php echo $row['type_id'] ?>)" data-toggle="modal" data-target="#editingModal"><i class="fa fa-pencil"></i></button></td>
+                                                    <td><button class="tb-btn" onclick="setCurrentCourseDel(event,<?php echo $row['course_id'] ?>)" data-toggle="modal" data-target="#deletingModal"><i class="fa fa-trash"></button></i></td>
                                                 </tr>
                                             <?php endwhile; ?>
                                         </tbody>
@@ -389,6 +383,93 @@ AND c.type_id = t.type_id");
             </div>
             <!-- End of Main Content -->
 
+            <!-- detail modal -->
+
+            <div class="modal fade" id="detailModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header pl-5">
+                            <h5 class="modal-title ml-3">Courses Details</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="col-11 mx-auto mt-3">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Property</th>
+                                            <th scope="col">Value</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Category</td>
+                                            <td id="detailCourseCategory"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Type</td>
+                                            <td id="detailCourseType"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Title</td>
+                                            <td id="detailCourseTitle"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Level/Subjects</td>
+                                            <td id="detailCourseLvlorsub"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Fee</td>
+                                            <td id="detailCourseFee"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Instructor</td>
+                                            <td id="detailCourseInstructor"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Services</td>
+                                            <td id="detailCourseServices">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Discount Percent</td>
+                                            <td id="detailCourseDiscount">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Start Date</td>
+                                            <td id="detailCourseStartDate"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Duration</td>
+                                            <td id="detailCourseDuration"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Days</td>
+                                            <td id="detailCourseDays"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>From~To</td>
+                                            <td id="detailCourseFromTo"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Note</td>
+                                            <td id="detailCourseNote"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- editing modal -->
             <div class="modal fade" id="editingModal" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
@@ -400,11 +481,11 @@ AND c.type_id = t.type_id");
                         </div>
                         <div class="modal-body">
                             <form class="col-12" id="editingModal" action="../backend/editCourse.php" method="POST">
-                                <input type="hidden" name="courseIdEdit" id="courseIdEdit" value="<?php if (!empty($current)) echo $current['course_id']; ?>" />
+                                <input type="hidden" name="courseIdEdit" id="courseIdEdit" />
                                 <input type="hidden" name="courseCreatedAt" id="courseCreatedAt" />
                                 <div class="form-group mb-4">
                                     <label for="title">Enter Title</label>
-                                    <input type="text" class="form-control form-control-user" value="<?php if (!empty($current)) echo $current['course_title']; ?>" id="courseTitleEdit" name="courseTitleEdit" placeholder="Course Title" required />
+                                    <input type="text" class="form-control form-control-user" id="courseTitleEdit" name="courseTitleEdit" placeholder="Course Title" required />
                                 </div>
                                 <div class="form-group mb-4">
                                     <label for="categoryId">Choose Category</label>
@@ -414,54 +495,54 @@ AND c.type_id = t.type_id");
                                         $result = mysqli_query($conn, "SELECT * FROM categories");
                                         while ($row = mysqli_fetch_assoc($result)) {
                                         ?>
-                                            <option value='<?= $row["category_id"] ?>' <?php if (!empty($current) && $current['category_id'] == $row["category_id"]) echo "selected"; ?>><?= $row["title"] ?></option>
+                                            <option value='<?= $row["category_id"] ?>'><?= $row["title"] ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
                                 <div class="form-group mb-4">
                                     <label for="typeId">Choose Type</label>
-                                    <select value="<?php if (!empty($current)) echo $current['type_id']; ?>" name="courseTypeIdEdit" id="courseTypeIdEdit" class="form-control" required>
+                                    <select name="courseTypeIdEdit" id="courseTypeIdEdit" class="form-control" required>
                                         <option value="" selected disabled>Type</option>
                                         <?php
                                         $result = mysqli_query($conn, "SELECT * FROM types");
                                         while ($row = mysqli_fetch_assoc($result)) {
                                         ?>
-                                            <option value='<?= $row["type_id"] ?>' <?php if (!empty($current) && $current['type_id'] == $row["type_id"]) echo "selected"; ?>><?= $row["title"] ?></option>
+                                            <option value='<?= $row["type_id"] ?>'><?php echo $row["title"] ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
                                 <div class="form-gorup mb-4">
                                     <label for="level_or_sub">Enter level/subjects</label>
-                                    <input type="text" value="<?php if (!empty($current)) echo $current['course_level']; ?>" name="level_or_sub" id="level_or_sub" class="form-control" placeholder="eg. N5 or physic/chemistry/Biology..." required />
+                                    <input type="text" name="level_or_sub" id="level_or_sub" class="form-control" placeholder="eg. N5 or physic/chemistry/Biology..." required />
                                 </div>
                                 <div class="mb-4 mx-auto row justify-content-between">
                                     <div class=" input-left mb-3 mb-md-0">
                                         <label for="fee">Enter Fees</label>
-                                        <input type="number" class="form-control" value="<?php if (!empty($current)) echo $current['fee']; ?>" id="fee" name="fee" aria-describedby="feeField" placeholder="eg. 250,000" required />
+                                        <input type="number" class="form-control" id="fee" name="fee" aria-describedby="feeField" placeholder="eg. 250,000" required />
                                     </div>
                                     <div class="input-right">
                                         <label for="discountPercent">Enter Discount (%)</label>
-                                        <input type="number" class="form-control" value="<?php if (!empty($current)) echo $current['discount_percent']; ?>" id="discountPercent" name="discountPercent" aria-describedby="discountField" placeholder="eg. 5" required />
+                                        <input type="number" class="form-control" id="discountPercent" name="discountPercent" aria-describedby="discountField" placeholder="eg. 5" required />
                                     </div>
                                 </div>
                                 <div class="mb-4 mx-auto row justify-content-between">
                                     <div class=" input-left mb-3 mb-md-0">
                                         <label for="startDate">Choose Start Date</label>
-                                        <input type="date" class="form-control" value="<?php if (!empty($current)) echo $startDate ?>" id="startDate" name="startDate" aria-describedby="dateField" required />
+                                        <input type="date" class="form-control" id="startDate" name="startDate" aria-describedby="dateField" required />
                                     </div>
                                     <div class="input-right">
                                         <label for="duration">Duration (Months)</label>
-                                        <input type="number" class="form-control" value="<?php if (!empty($current)) echo $current['duration']; ?>" id="duration" name="duration" aria-describedby="monthsField" placeholder="Duration In Months" required />
+                                        <input type="number" class="form-control" id="duration" name="duration" aria-describedby="monthsField" placeholder="Duration In Months" required />
                                     </div>
                                 </div>
                                 <div class="mb-4 mx-auto row justify-content-between">
                                     <div class=" input-left mb-3 mb-md-0">
                                         <label for="startTime">Class Starts At:</label>
-                                        <input type="time" class="form-control" value="<?php if (!empty($startTime)) echo $startTime; ?>" id="startTime" name="startTime" aria-describedby="startTimeField" required />
+                                        <input type="time" class="form-control" id="startTime" name="startTime" aria-describedby="startTimeField" required />
                                     </div>
                                     <div class="input-right">
                                         <label for="endTime">Class Ends At:</label>
-                                        <input type="time" class="form-control" value="<?php if (!empty($endTime)) echo $endTime; ?>" id="endTime" name="endTime" aria-describedby="endTimeField" required />
+                                        <input type="time" class="form-control" id="endTime" name="endTime" aria-describedby="endTimeField" required />
                                     </div>
                                 </div>
                                 <div class="form-group mb-4">
@@ -469,7 +550,7 @@ AND c.type_id = t.type_id");
                                     <div class="row justify-content-between px-3">
                                         <?php foreach ([["st" => "M", "lg" => "MON"], ["st" => "Tu", "lg" => "TUE"], ["st" => "W", "lg" => "WED"], ["st" => "Th", "lg" => "THU"], ["st" => "F", "lg" => "FRI"], ["st" => "Sa", "lg" => "SAT"], ["st" => "Su", "lg" => "SUN"]] as $day) { ?>
                                             <div class="custom-control custom-checkbox small days-checkbox form-day-check">
-                                                <input type="checkbox" <?php if (in_array($day["st"], $days)) echo "checked" ?> id="<?= $day["st"] ?>" value="<?= $day["st"] ?>" name="days[]" class="day-chck">
+                                                <input type="checkbox" id="<?= $day["st"] ?>" value="<?= $day["st"] ?>" name="days[]" class="day-chck">
                                                 <label class="mb-0 mt-1" for="<?= $day["st"] ?>"><?= $day["lg"] ?></label>
                                             </div>
                                         <?php } ?>
@@ -478,15 +559,15 @@ AND c.type_id = t.type_id");
 
                                 <div class="form-group mb-4">
                                     <label for="instructor">Enter Instructor Name</label>
-                                    <input type="text" class="form-control" value="<?php if (!empty($current)) echo $current['instructor']; ?>" name="instructor" id="instructor" placeholder="Mr./Mrs. ..." required />
+                                    <input type="text" class="form-control" name="instructor" id="instructor" placeholder="Mr./Mrs. ..." required />
                                 </div>
                                 <div class="form-group mb-4">
                                     <label for="services">Enter Services</label>
-                                    <textarea class="form-control" value="<?php if (!empty($current)) echo $current['services']; ?>" name="services" id="services" rows="5" placeholder="eg. Text Book"></textarea>
+                                    <textarea class="form-control" name="services" id="services" rows="5" placeholder="eg. Text Book"></textarea>
                                 </div>
                                 <div class="form-group mb-4">
                                     <label for="note">Enter Additional Note</label>
-                                    <textarea class="form-control" name="note" id="note" rows="5" placeholder="Any Additional Note"><?php if (!empty($current)) echo $current['note']; ?></textarea>
+                                    <textarea class="form-control" name="note" id="note" rows="5" placeholder="Any Additional Note"></textarea>
                                 </div>
                                 <hr />
                                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
@@ -499,6 +580,30 @@ AND c.type_id = t.type_id");
                 </div>
             </div>
 
+            <!-- deleting modal -->
+            <div class="modal fade" id="deletingModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Deleting</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Are you sure to delete?</p>
+                            <form class="col-12" action="../backend/deleteCourse.php" method="POST">
+                                <input type="hidden" name="currentCourseIdDel" id="currentCourseIdDel">
+                                <hr />
+                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                <input class="btn btn-primary" type="submit" value="Delete">
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
@@ -555,6 +660,7 @@ AND c.type_id = t.type_id");
 
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
+    <script src="js/style.js"></script>
 </body>
 
 </html>

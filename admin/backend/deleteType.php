@@ -3,7 +3,7 @@
 // db config
 include("../../admin/confs/config.php");
 
-$typeIdDel = $_POST["typeIdDel"];
+$typeIdDel = intval($_POST["typeIdDel"]);
 
 $delete_from_types = "DELETE FROM types WHERE type_id=$typeIdDel";
 

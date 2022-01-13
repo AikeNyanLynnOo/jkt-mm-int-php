@@ -367,8 +367,8 @@ $result = mysqli_query($conn, "SELECT * from enrollments LEFT JOIN courses ON en
                                                     <td><?= $row['is_pending'] ?></td>
                                                     <td><?= $row['created_at'] ?></td>
                                                     <td><?= $row['updated_at'] ?></td>
-                                                    <td><button class="tb-btn" onclick="setCurrentEditing(this,<?php echo $row['enrollment_id'] ?>,<?php echo $row['course_id'] ?>)" data-toggle="modal" data-target="#editingModal"><i class="fa fa-pencil"></i></button></td>
-                                                    <td><button class="tb-btn" onclick="setCurrentDeleting(this,<?php echo $row['enrollment_id'] ?>)" data-toggle="modal" data-target="#deletingModal"><i class="fa fa-trash"></button></i></td>
+                                                    <td><button class="tb-btn" onclick="setCurrentEditing(event,this,<?php echo $row['enrollment_id'] ?>,<?php echo $row['course_id'] ?>)" data-toggle="modal" data-target="#editingModal"><i class="fa fa-pencil"></i></button></td>
+                                                    <td><button class="tb-btn" onclick="setCurrentDeleting(event,this,<?php echo $row['enrollment_id'] ?>)" data-toggle="modal" data-target="#deletingModal"><i class="fa fa-trash"></button></i></td>
                                                 </tr>
                                             <?php endwhile; ?>
                                         </tbody>
