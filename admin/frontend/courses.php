@@ -2,8 +2,8 @@
 session_start();
 include_once '../auth/authenticate.php';
 include("../confs/config.php");
-$result = mysqli_query($conn, "SELECT course_id, c.title AS course_title, cty.title AS category_title, 
-t.title AS type_title, c.level AS course_level, fee, instructor, services, discount_percent, 
+$result = mysqli_query($conn, "SELECT course_id, c.title AS course_title, cty.category_id AS category_id, cty.title AS category_title, 
+t.type_id AS type_id,t.title AS type_title, c.level_or_sub AS course_level, fee, instructor, services, discount_percent, 
 start_date, duration, sections, note, c.created_at AS created_at, c.updated_at AS updated_at 
 FROM courses c, categories cty, types t WHERE c.category_id = cty.category_id 
 AND c.type_id = t.type_id");
@@ -311,7 +311,7 @@ AND c.type_id = t.type_id");
                                 <!-- <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6> -->
                                 <a href="newCourse.php" class="new">
                                     <i class="fas fa-fw fa-folder-plus"></i>
-                                    Insert New Course
+                                    New Course
                                 </a>
                             </div>
                             <div class="card-body">
@@ -335,32 +335,14 @@ AND c.type_id = t.type_id");
                                                 <th>Note</th>
                                                 <th>Created At</th>
                                                 <th>Updated At</th>
+                                                <th>Edit</th>
+                                                <th>Delete</th>
                                             </tr>
                                         </thead>
-                                        <tfoot>
-                                            <tr>
-                                                <th>Course ID</th>
-                                                <th>Course Title</th>
-                                                <th>Category Title</th>
-                                                <th>Type Title</th>
-                                                <th>Level</th>
-                                                <th>Fee</th>
-                                                <th>Instructor</th>
-                                                <th>Days</th>
-                                                <th>Time</th>
-                                                <th>Start Date</th>
-                                                <th>Duration</th>
-                                                <th>Services</th>
-                                                <th>Discount Percent</th>
-                                                <th>Note</th>
-                                                <th>Created At</th>
-                                                <th>Updated At</th>
-                                            </tr>
-                                        </tfoot>
                                         <tbody>
-                                            <?php 
-                                                while ($row = mysqli_fetch_assoc($result)) : 
-                                                    $section_time = json_decode($row["sections"], true);
+                                            <?php
+                                            while ($row = mysqli_fetch_assoc($result)) :
+                                                $section_time = json_decode($row["sections"], true);
                                             ?>
                                                 <tr>
                                                     <td><?= $row['course_id'] ?></td>
@@ -372,9 +354,9 @@ AND c.type_id = t.type_id");
                                                     <td><?= $row['instructor'] ?></td>
                                                     <td>
                                                         <?php
-                                                         for($i=0; $i<count($section_time['days']); $i++) {
+                                                        for ($i = 0; $i < count($section_time['days']); $i++) {
                                                             echo "<span class='days-badges'>" . $section_time['days'][$i] . "</span>";
-                                                         } 
+                                                        }
                                                         ?>
                                                     </td>
                                                     <td><?= $section_time['sectionHour'] ?></td>
@@ -385,6 +367,13 @@ AND c.type_id = t.type_id");
                                                     <td><?php echo $row['note'] === "" ? "-" : $row['note'] ?></td>
                                                     <td><?= $row['created_at'] ?></td>
                                                     <td><?= $row['updated_at'] ?></td>
+                                                    <td><button class="tb-btn" onclick="<?php $current = $row;
+                                                                                        $days = $section_time['days'];
+                                                                                        $startTime = explode("~", $section_time['sectionHour'])[0];
+                                                                                        $endTime = explode("~", $section_time['sectionHour'])[1];
+                                                                                        $startDate = "2022-02-01";
+                                                                                        ?>" data-toggle="modal" data-target="#editingModal"><i class="fa fa-pencil"></i></button></td>
+                                                    <td><button class="tb-btn" onclick="<?php $idx = $row['course_id']; ?>" data-toggle="modal" data-target="#deletingModal"><i class="fa fa-trash"></button></i></td>
                                                 </tr>
                                             <?php endwhile; ?>
                                         </tbody>
@@ -399,6 +388,117 @@ AND c.type_id = t.type_id");
 
             </div>
             <!-- End of Main Content -->
+
+            <div class="modal fade" id="editingModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Editing</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="col-12" id="editingModal" action="../backend/editCourse.php" method="POST">
+                                <input type="hidden" name="courseIdEdit" id="courseIdEdit" value="<?php if (!empty($current)) echo $current['course_id']; ?>" />
+                                <input type="hidden" name="courseCreatedAt" id="courseCreatedAt" />
+                                <div class="form-group mb-4">
+                                    <label for="title">Enter Title</label>
+                                    <input type="text" class="form-control form-control-user" value="<?php if (!empty($current)) echo $current['course_title']; ?>" id="courseTitleEdit" name="courseTitleEdit" placeholder="Course Title" required />
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="categoryId">Choose Category</label>
+                                    <select value="" id="courseCategoryIdEdit" name="courseCategoryIdEdit" class="form-control form-control-user" required>
+                                        <option selected disabled>Category</option>
+                                        <?php
+                                        $result = mysqli_query($conn, "SELECT * FROM categories");
+                                        while ($row = mysqli_fetch_assoc($result)) {
+                                        ?>
+                                            <option value='<?= $row["category_id"] ?>' <?php if (!empty($current) && $current['category_id'] == $row["category_id"]) echo "selected"; ?>><?= $row["title"] ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="typeId">Choose Type</label>
+                                    <select value="<?php if (!empty($current)) echo $current['type_id']; ?>" name="courseTypeIdEdit" id="courseTypeIdEdit" class="form-control" required>
+                                        <option value="" selected disabled>Type</option>
+                                        <?php
+                                        $result = mysqli_query($conn, "SELECT * FROM types");
+                                        while ($row = mysqli_fetch_assoc($result)) {
+                                        ?>
+                                            <option value='<?= $row["type_id"] ?>' <?php if (!empty($current) && $current['type_id'] == $row["type_id"]) echo "selected"; ?>><?= $row["title"] ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                                <div class="form-gorup mb-4">
+                                    <label for="level_or_sub">Enter level/subjects</label>
+                                    <input type="text" value="<?php if (!empty($current)) echo $current['course_level']; ?>" name="level_or_sub" id="level_or_sub" class="form-control" placeholder="eg. N5 or physic/chemistry/Biology..." required />
+                                </div>
+                                <div class="mb-4 mx-auto row justify-content-between">
+                                    <div class=" input-left mb-3 mb-md-0">
+                                        <label for="fee">Enter Fees</label>
+                                        <input type="number" class="form-control" value="<?php if (!empty($current)) echo $current['fee']; ?>" id="fee" name="fee" aria-describedby="feeField" placeholder="eg. 250,000" required />
+                                    </div>
+                                    <div class="input-right">
+                                        <label for="discountPercent">Enter Discount (%)</label>
+                                        <input type="number" class="form-control" value="<?php if (!empty($current)) echo $current['discount_percent']; ?>" id="discountPercent" name="discountPercent" aria-describedby="discountField" placeholder="eg. 5" required />
+                                    </div>
+                                </div>
+                                <div class="mb-4 mx-auto row justify-content-between">
+                                    <div class=" input-left mb-3 mb-md-0">
+                                        <label for="startDate">Choose Start Date</label>
+                                        <input type="date" class="form-control" value="<?php if (!empty($current)) echo $startDate ?>" id="startDate" name="startDate" aria-describedby="dateField" required />
+                                    </div>
+                                    <div class="input-right">
+                                        <label for="duration">Duration (Months)</label>
+                                        <input type="number" class="form-control" value="<?php if (!empty($current)) echo $current['duration']; ?>" id="duration" name="duration" aria-describedby="monthsField" placeholder="Duration In Months" required />
+                                    </div>
+                                </div>
+                                <div class="mb-4 mx-auto row justify-content-between">
+                                    <div class=" input-left mb-3 mb-md-0">
+                                        <label for="startTime">Class Starts At:</label>
+                                        <input type="time" class="form-control" value="<?php if (!empty($startTime)) echo $startTime; ?>" id="startTime" name="startTime" aria-describedby="startTimeField" required />
+                                    </div>
+                                    <div class="input-right">
+                                        <label for="endTime">Class Ends At:</label>
+                                        <input type="time" class="form-control" value="<?php if (!empty($endTime)) echo $endTime; ?>" id="endTime" name="endTime" aria-describedby="endTimeField" required />
+                                    </div>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label class="mb-2">Choose Days &nbsp; <span class="help-block" id="dayCheckErr"></span></label>
+                                    <div class="row justify-content-between px-3">
+                                        <?php foreach ([["st" => "M", "lg" => "MON"], ["st" => "Tu", "lg" => "TUE"], ["st" => "W", "lg" => "WED"], ["st" => "Th", "lg" => "THU"], ["st" => "F", "lg" => "FRI"], ["st" => "Sa", "lg" => "SAT"], ["st" => "Su", "lg" => "SUN"]] as $day) { ?>
+                                            <div class="custom-control custom-checkbox small days-checkbox form-day-check">
+                                                <input type="checkbox" <?php if (in_array($day["st"], $days)) echo "checked" ?> id="<?= $day["st"] ?>" value="<?= $day["st"] ?>" name="days[]" class="day-chck">
+                                                <label class="mb-0 mt-1" for="<?= $day["st"] ?>"><?= $day["lg"] ?></label>
+                                            </div>
+                                        <?php } ?>
+                                    </div>
+                                </div>
+
+                                <div class="form-group mb-4">
+                                    <label for="instructor">Enter Instructor Name</label>
+                                    <input type="text" class="form-control" value="<?php if (!empty($current)) echo $current['instructor']; ?>" name="instructor" id="instructor" placeholder="Mr./Mrs. ..." required />
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="services">Enter Services</label>
+                                    <textarea class="form-control" value="<?php if (!empty($current)) echo $current['services']; ?>" name="services" id="services" rows="5" placeholder="eg. Text Book"></textarea>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="note">Enter Additional Note</label>
+                                    <textarea class="form-control" name="note" id="note" rows="5" placeholder="Any Additional Note"><?php if (!empty($current)) echo $current['note']; ?></textarea>
+                                </div>
+                                <hr />
+                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                <input class="btn btn-primary" type="submit" value="Update">
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
             <!-- Footer -->
             <footer class="sticky-footer bg-white">

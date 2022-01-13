@@ -25,7 +25,7 @@ $endTime = $_POST["endTime"];
 $duration = intval($_POST["duration"]);
 
 // section json obj change
-$arrObj = array("days" => $days, "sectionHour" => "$startTime ~ $endTime");
+$arrObj = array("days" => $days, "sectionHour" => "$startTime~$endTime");
 $sections = json_encode($arrObj);
 
 $note = $_POST["note"];

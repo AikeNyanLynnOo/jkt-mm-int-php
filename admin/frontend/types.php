@@ -319,16 +319,10 @@ $result = mysqli_query($conn, "SELECT * FROM types");
                                                 <th>Title</th>
                                                 <th>Created At</th>
                                                 <th>Updated At</th>
+                                                <th>Edit</th>
+                                                <th>Delete</th>
                                             </tr>
                                         </thead>
-                                        <tfoot>
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>Title</th>
-                                                <th>Created At</th>
-                                                <th>Updated At</th>
-                                            </tr>
-                                        </tfoot>
                                         <tbody>
                                             <?php while ($row = mysqli_fetch_assoc($result)) : ?>
                                                 <tr>
@@ -336,6 +330,8 @@ $result = mysqli_query($conn, "SELECT * FROM types");
                                                     <td><?= $row['title'] ?></td>
                                                     <td><?= $row['created_at'] ?></td>
                                                     <td><?= $row['updated_at'] ?></td>
+                                                    <td><button class="tb-btn" onclick="setCurrentTypeEdit(this)" data-toggle="modal" data-target="#editingModal"><i class="fa fa-pencil"></i></button></td>
+                                                    <td><button class="tb-btn" onclick="setCurrentTypeDel(<?php echo $row['type_id'] ?>)" data-toggle="modal" data-target="#deletingModal"><i class="fa fa-trash"></button></i></td>
                                                 </tr>
                                             <?php endwhile; ?>
                                         </tbody>
@@ -350,6 +346,57 @@ $result = mysqli_query($conn, "SELECT * FROM types");
 
             </div>
             <!-- End of Main Content -->
+
+            <!-- editing Modal -->
+            <div class="modal fade" id="editingModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Editing</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="col-12" id="editingModal" action="../backend/editType.php" method="POST" enctype="multipart/form-data">
+                                <input type="hidden" name="typeIdEdit" id="typeIdEdit">
+                                <input type="hidden" name="typeCreatedAt" id="typeCreatedAt">
+                                <input type="hidden" name="typeUpdatedAt" id="typeUpdatedAt">
+                                <input type="text" name="typeTitle" id="typeTitle" class="form-control" />
+                                <hr />
+                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                <input class="btn btn-primary" type="submit" value="Update">
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- delete modal -->
+            <div class="modal fade" id="deletingModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Deleting</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="col-12" action="../backend/deleteType.php" method="POST">
+                                <input type="hidden" name="typeIdDel" id="typeIdDel">
+                                <hr />
+                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                <input class="btn btn-primary" type="submit" value="Delete">
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
@@ -406,5 +453,7 @@ $result = mysqli_query($conn, "SELECT * FROM types");
 
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
+    <script src="js/style.js"></script>
 </body>
+
 </html>

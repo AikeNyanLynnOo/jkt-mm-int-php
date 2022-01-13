@@ -1,4 +1,4 @@
-// editing
+// enrollments editing
 var enrollmentId = document.getElementById("enrollmentId");
 var imagePreview = document.getElementById("imagePreview");
 var notChangeImg = document.getElementById("notChangeImg");
@@ -20,9 +20,41 @@ var paidPercent = document.getElementById("paidPercent");
 var isPending = document.getElementById("isPending");
 var createdAt = document.getElementById("createdAt");
 
+// enrollments detail
+var detailTitle = document.getElementById("detailTitle");
+var detailName = document.getElementById("detailName");
+var detailDob = document.getElementById("detailDob");
+var detailFname = document.getElementById("detailFname");
+var detailNrc = document.getElementById("detailNrc");
+var detailEmail = document.getElementById("detailEmail");
+var detailPhone = document.getElementById("detailPhone");
+var detailEducation = document.getElementById("detailEducation");
+var detailAddress = document.getElementById("detailAddress");
+var detailPaymentMethod = document.getElementById("detailPaymentMethod");
+var detailPaidPercent = document.getElementById("detailPaidPercent");
+var pendingBadge = document.getElementById("pendingBadge");
+
 // deleting
 var stuName = document.getElementById("stuName");
 var enrollmentDeletingId = document.getElementById("enrollmentDeletingId");
+
+// category edit and delete
+var catCreatedAt = document.getElementById("catCreatedAt");
+var catUpdatedAt = document.getElementById("catUpdatedAt");
+var catIdEdit = document.getElementById("catIdEdit");
+var catTitle = document.getElementById("catTitle");
+var catIdDel = document.getElementById("catIdDel");
+
+// type edit and delete
+var typeCreatedAt = document.getElementById("typeCreatedAt");
+var typeUpdatedAt = document.getElementById("typeUpdatedAt");
+var typeIdEdit = document.getElementById("typeIdEdit");
+var typeTitle = document.getElementById("typeTitle");
+var typeIdDel = document.getElementById("typeIdDel");
+
+// courses edit
+
+
 
 let nrcArr = null;
 
@@ -97,8 +129,7 @@ userImg.addEventListener("change", function (e) {
   }
 });
 
-
-function setCurrentDeleting(row,idx){
+function setCurrentDeleting(row, idx) {
   var tr = row.closest("tr");
   var tds = tr.children;
   var rowArr = [];
@@ -112,4 +143,68 @@ function setCurrentDeleting(row,idx){
 
   stuName.innerText = rowArr[2];
   enrollmentDeletingId.value = idx;
+}
+
+function setCurrentDetail(row) {
+  var tds = row.children;
+  var rowArr = [];
+  for (var i = 0; i < tds.length; i++) {
+    if (i == 0) {
+      rowArr.push(tds[i].children[0].alt);
+    } else {
+      rowArr.push(tds[i].textContent);
+    }
+  }
+
+  detailImage.src = "../../user/backend/" + rowArr[0];
+  detailTitle.innerText = rowArr[1];
+  detailName.innerText = rowArr[2];
+  detailDob.innerText = rowArr[3];
+  detailFname.innerText = rowArr[4];
+
+  detailNrc.innerText = rowArr[5];
+  detailEmail.innerText = rowArr[6];
+  detailEducation.innerText = rowArr[7];
+  detailAddress.innerText = rowArr[8];
+  detailPhone.innerText = rowArr[9];
+  detailPaymentMethod.innerText = rowArr[10];
+  detailPaidPercent.innerText = rowArr[11];
+  if (rowArr[12] == "1") {
+    pendingBadge.innerText = "Pending";
+    pendingBadge.style.backgroundColor = "#ff6347";
+  } else {
+    pendingBadge.innerText = "Studying";
+    pendingBadge.style.backgroundColor = "#3b5998";
+  }
+}
+
+function setCurrentCatEdit(row) {
+  var tr = row.closest("tr");
+  var tds = tr.children;
+  var rowArr = [];
+  for (var i = 0; i < tds.length; i++) {
+    rowArr.push(tds[i].textContent);
+  }
+  catIdEdit.value = rowArr[0];
+  catTitle.value = rowArr[1];
+  catCreatedAt.value = rowArr[2];
+  catUpdatedAt.value = rowArr[3];
+}
+function setCurrentCatDel(idx) {
+  catIdDel.value = idx;
+}
+function setCurrentTypeEdit(row) {
+  var tr = row.closest("tr");
+  var tds = tr.children;
+  var rowArr = [];
+  for (var i = 0; i < tds.length; i++) {
+    rowArr.push(tds[i].textContent);
+  }
+  typeIdEdit.value = rowArr[0];
+  typeTitle.value = rowArr[1];
+  typeCreatedAt.value = rowArr[2];
+  typeUpdatedAt.value = rowArr[3];
+}
+function setCurrentTypeDel(idx) {
+  typeIdDel.value = idx;
 }

@@ -320,10 +320,14 @@ $result = mysqli_query($conn, "SELECT * from enrollments LEFT JOIN courses ON en
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
                                 <!-- <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6> -->
+                                <a href="newEnroll.php" class="new">
+                                    <i class="fas fa-fw fa-user-plus"></i>
+                                    New Enrollment
+                                </a>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <table class="table table-bordered my-table" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
                                                 <th>Photo</th>
@@ -345,39 +349,18 @@ $result = mysqli_query($conn, "SELECT * from enrollments LEFT JOIN courses ON en
                                                 <th>Delete</th>
                                             </tr>
                                         </thead>
-                                        <!-- <tfoot>
-                                            <tr>
-                                                <th>Photo</th>
-                                                <th>Course</th>
-                                                <th>Name</th>
-                                                <th>Dob</th>
-                                                <th>Father name</th>
-                                                <th>Nrc</th>
-                                                <th>Email</th>
-                                                <th>Education</th>
-                                                <th>Address</th>
-                                                <th>Phone</th>
-                                                <th>Payment</th>
-                                                <th>Paid Percent</th>
-                                                <th>Is Pending</th>
-                                                <th>created_at</th>
-                                                <th>updated_at</th>
-                                                <th>Edit</th>
-                                                <th>Delete</th>
-                                            </tr>
-                                        </tfoot> -->
                                         <tbody>
                                             <?php while ($row = mysqli_fetch_assoc($result)) : ?>
-                                                <tr>
+                                                <tr onclick="setCurrentDetail(this)" data-toggle="modal" data-target="#detailModal" class="tb-row">
                                                     <td><img class="stu-img-table" src="<?= '../../user/backend/' . $row['photo'] ?>" alt="<?= $row['photo'] ?>"></td>
-                                                    <td><?= $row['title'] ?></td>
-                                                    <td><?= $row['uname'] ?></td>
+                                                    <td style="max-width : 100px;"><?= $row['title'] ?></td>
+                                                    <td style="max-width : 100px;"><?= $row['uname'] ?></td>
                                                     <td><?= $row['dob'] ?></td>
-                                                    <td><?= $row['fname'] ?></td>
-                                                    <td><?= $row['nrc'] ?></td>
-                                                    <td><?= $row['email'] ?></td>
-                                                    <td><?= $row['education'] ?></td>
-                                                    <td><?= $row['address'] ?></td>
+                                                    <td style="max-width : 100px;"><?= $row['fname'] ?></td>
+                                                    <td style="max-width : 100px;"><?= $row['nrc'] ?></td>
+                                                    <td style="max-width : 100px;"><?= $row['email'] ?></td>
+                                                    <td style="max-width : 100px;"><?= $row['education'] ?></td>
+                                                    <td style="max-width : 150px;"><?= $row['address'] ?></td>
                                                     <td><?= $row['phone'] ?></td>
                                                     <td><?= $row['payment_method'] ?></td>
                                                     <td><?= $row['paid_percent'] ?></td>
@@ -385,7 +368,7 @@ $result = mysqli_query($conn, "SELECT * from enrollments LEFT JOIN courses ON en
                                                     <td><?= $row['created_at'] ?></td>
                                                     <td><?= $row['updated_at'] ?></td>
                                                     <td><button class="tb-btn" onclick="setCurrentEditing(this,<?php echo $row['enrollment_id'] ?>,<?php echo $row['course_id'] ?>)" data-toggle="modal" data-target="#editingModal"><i class="fa fa-pencil"></i></button></td>
-                                                    <td><button class="tb-btn" onclick="setCurrentDeleting(this,<?php echo $row['enrollment_id']?>)" data-toggle="modal" data-target="#deletingModal"><i class="fa fa-trash"></button></i></td>
+                                                    <td><button class="tb-btn" onclick="setCurrentDeleting(this,<?php echo $row['enrollment_id'] ?>)" data-toggle="modal" data-target="#deletingModal"><i class="fa fa-trash"></button></i></td>
                                                 </tr>
                                             <?php endwhile; ?>
                                         </tbody>
@@ -441,12 +424,94 @@ $result = mysqli_query($conn, "SELECT * from enrollments LEFT JOIN courses ON en
         </div>
     </div>
 
+    <!-- detail modal -->
+
+    <div class="modal fade" id="detailModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header pl-5">
+                    <h5 class="modal-title ml-3">Enrollment Details</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-11 mx-auto">
+                        <div class="form-group mb-3 row align-items-center justify-content-between px-3">
+                            <img src="" id="detailImage" name="image-preview" alt="User Image Preview" class="preview-img-edit" />
+                            <span class="pending-badge" id="pendingBadge"></span>
+                        </div>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Property</th>
+                                    <th scope="col">Value</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Course Title</td>
+                                    <td id="detailTitle"></td>
+                                </tr>
+                                <tr>
+                                    <td>Student Name</td>
+                                    <td id="detailName"></td>
+                                </tr>
+                                <tr>
+                                    <td>Date of Birth</td>
+                                    <td id="detailDob"></td>
+                                </tr>
+                                <tr>
+                                    <td>Father Name</td>
+                                    <td id="detailFname"></td>
+                                </tr>
+                                <tr>
+                                    <td>Student NRC</td>
+                                    <td id="detailNrc"></td>
+                                </tr>
+                                <tr>
+                                    <td>Email</td>
+                                    <td id="detailEmail"></td>
+                                </tr>
+                                <tr>
+                                    <td>Phone</td>
+                                    <td id="detailPhone"></td>
+                                </tr>
+                                <tr>
+                                    <td>Education</td>
+                                    <td id="detailEducation">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Address</td>
+                                    <td id="detailAddress">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Payment Method</td>
+                                    <td id="detailPaymentMethod"></td>
+                                </tr>
+                                <tr>
+                                    <td>Paid Percentage</td>
+                                    <td id="detailPaidPercent"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- editing modal -->
     <div class="modal fade" id="editingModal" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editingModalTitle">Editing</h5>
+                    <h5 class="modal-title">Editing</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -577,11 +642,12 @@ $result = mysqli_query($conn, "SELECT * from enrollments LEFT JOIN courses ON en
         </div>
     </div>
 
+    <!-- deleting modal -->
     <div class="modal fade" id="deletingModal" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editingModalTitle">Deleting</h5>
+                    <h5 class="modal-title">Deleting</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
