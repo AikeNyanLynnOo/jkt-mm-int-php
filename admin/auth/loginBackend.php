@@ -12,6 +12,7 @@
         if($row['email'] === $email) {
             if($row['password'] === $password){
                 $_SESSION['name'] = $name;
+                $_SESSION['adminId'] = $row['admin_id'];
                 if( ($_POST['remember_me']==1) || ($_POST['remember_me']=='on')) {
                     $hour = time()+3600 *24 * 30;
                     setcookie('adminId', $row['admin_id'], $hour);

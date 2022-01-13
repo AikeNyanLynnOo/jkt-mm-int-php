@@ -331,9 +331,9 @@
                     include_once("../../../admin/confs/config.php"); 
                     $schedule = "SELECT course_id, c.title AS course_title, cty.title AS category_title, 
                                  t.title AS type_title, level_or_sub, fee, instructor, 
-                                 services, discount_percent, start_date, duration, sections
+                                 services, discount_percent, start_date, duration, sections, note
                                  FROM courses c, categories cty, types t WHERE c.category_id = cty.category_id 
-                                 AND c.type_id = t.type_id";
+                                 AND c.type_id = t.type_id ORDER BY start_date DESC LIMIT 4";
                     $schedule_result = mysqli_query($conn, $schedule);
                     while($row = mysqli_fetch_array($schedule_result)) {
                       $_SESSION['courseId'] = $row['course_id'];
@@ -350,8 +350,8 @@
                         <span id="note" class="row-data"><?php echo $row["note"]; ?></span>
                       </td>
                       <td data-label="အတန်း" scope="row">
-
                         <span id="course_title" class="row-data"><?php echo $row["course_title"]; ?></span>
+                        <span><?php echo empty($row["level_or_sub"]) ? '' : '- '.$row["level_or_sub"]; ?></span>
                       </td>
                       <td data-label="တက်‌ရောက်ရမည့်အချိန် နှင့် ရက်">
                         <?php $section_time = json_decode($row["sections"], true); ?>
@@ -399,6 +399,18 @@
             </div>
           </div>
         </div>
+        <?php
+          $query = "select * from courses";
+          $result = mysqli_query($conn, $query);
+          $rowcount=mysqli_num_rows($result);
+          if($rowcount > 4) {
+        ?>
+          <div class="container text-center mt-4 mb-5">
+              <a href="./school-detail.php" class="view-detail">ပိုမိုသိရှိရန် <i class="far fa-hand-point-right"></i></a>
+          </div>
+        <?php } else { ?>
+          <div></div>
+        <?php } ?>
         <hr class="hr" />
       </div>
     </section>
@@ -421,7 +433,7 @@
           <div class="modal-body">
             <table class="detail-schedule">
               <tr>
-                <td class="schedule-modal-label">အတန်း :</td>
+                <td class="schedule-modal-label">အတန်း</td>
                 <td>
                   <span id="modal_course_title"></span><br>
                   <span id="modal_category_title"></span>
@@ -429,54 +441,54 @@
                 </td>
               </tr>
               <tr>
-                <td class="schedule-modal-label">အတန်း အမျိုးအစား :</td>
+                <td class="schedule-modal-label">အတန်း အမျိုးအစား </td>
                 <td>
                   <span id="modal_type_title"></span>
                 </td>
               </tr>
               <tr>
-                <td class="schedule-modal-label">တက်‌ရောက်ရမည့်ရက် :</td>
+                <td class="schedule-modal-label">တက်‌ရောက်ရမည့်ရက်</td>
                 <td id="modal_days">
                 </td>
               </tr>
               <tr>
-                <td class="schedule-modal-label">တက်‌ရောက်ရမည့်အချိန် :</td>
+                <td class="schedule-modal-label">တက်‌ရောက်ရမည့်အချိန်</td>
                 <td>
                   <span id="modal_time"></span>
                 </td>
               </tr>
               <tr>
-                <td class="schedule-modal-label">သင်တန်းကြေး (ကျပ်) :</td>
+                <td class="schedule-modal-label">သင်တန်းကြေး (ကျပ်) </td>
                 <td>
                   <span id="modal_fees"></span>
                 </td>
               </tr>
               <tr>
-                <td class="schedule-modal-label">သင်တန်းကာလ :</td>
+                <td class="schedule-modal-label">သင်တန်းကာလ</td>
                 <td>
                   <span id="modal_duration"></span>
                 </td>
               </tr>
               <tr>
-                <td class="schedule-modal-label">သင်တန်းစတင်မည့်ရက် :</td>
+                <td class="schedule-modal-label">သင်တန်းစတင်မည့်ရက်</td>
                 <td>
                   <span id="modal_start_date"></span>
                 </td>
               </tr>
               <tr>
-                <td class="schedule-modal-label">သင်ကြားမည့်ဆရာ :</td>
+                <td class="schedule-modal-label">သင်ကြားမည့်ဆရာ</td>
                 <td>
                   <span id="modal_instructor"></span>
                 </td>
               </tr>
               <tr>
-                <td class="schedule-modal-label">ဝန်ဆောင်မှု :</td>
+                <td class="schedule-modal-label">ဝန်ဆောင်မှု </td>
                 <td>
                   <span id="modal_services"></span>
                 </td>
               </tr>
               <tr>
-                <td class="schedule-modal-label">အခြားဖော်ပြချက် :</td>
+                <td class="schedule-modal-label">အခြားဖော်ပြချက်</td>
                 <td>
                   <span id="modal_description"></span>
                 </td>

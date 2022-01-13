@@ -197,6 +197,7 @@ input[type="checkbox"] {
 .preview-input-edit{
   display: none;
 }
+
 .upload-label{
   display: block;
   background-color: #30497C;
@@ -210,6 +211,11 @@ input[type="checkbox"] {
   -moz-border-radius: 3px;
   -ms-border-radius: 3px;
   -o-border-radius: 3px;
+}
+
+.setting-title {
+  font-size: 28px;
+  color: #335baa;
 }
 
 @media only screen and (max-width: 767px) {

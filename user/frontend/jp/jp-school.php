@@ -314,7 +314,7 @@
                                  t.title AS type_title, level_or_sub, fee, instructor, 
                                  services, discount_percent, start_date, duration, sections, note
                                  FROM courses c, categories cty, types t WHERE c.category_id = cty.category_id 
-                                 AND c.type_id = t.type_id";
+                                 AND c.type_id = t.type_id ORDER BY start_date DESC LIMIT 4";
                     $schedule_result = mysqli_query($conn, $schedule);
                     while($row = mysqli_fetch_array($schedule_result)) {
                       $_SESSION['courseId'] = $row['course_id'];
@@ -331,8 +331,8 @@
                         <span id="note" class="row-data"><?php echo $row["note"]; ?></span>
                       </td>
                       <td data-label="名称" scope="row">
-
                         <span id="course_title" class="row-data"><?php echo $row["course_title"]; ?></span>
+                        <span><?php echo empty($row["level_or_sub"]) ? '' : '- '.$row["level_or_sub"]; ?></span>
                       </td>
                       <td data-label="日程">
                         <?php $section_time = json_decode($row["sections"], true); ?>
@@ -380,6 +380,18 @@
             </div>
           </div>
         </div>
+        <?php
+          $query = "select * from courses";
+          $result = mysqli_query($conn, $query);
+          $rowcount=mysqli_num_rows($result);
+          if($rowcount > 4) {
+        ?>
+          <div class="container text-center mt-4 mb-5">
+              <a href="./school-detail.php" class="view-detail">View More <i class="far fa-hand-point-right"></i></a>
+          </div>
+        <?php } else { ?>
+          <div></div>
+        <?php } ?>
         <hr class="hr" />
       </div>
     </section>

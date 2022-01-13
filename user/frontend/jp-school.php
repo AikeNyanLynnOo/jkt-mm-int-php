@@ -164,7 +164,7 @@
             </li>
             <li class="lang">
               <div class="btn-group" role="group" aria-label="First group">
-                <a href="./jp-school.php"
+                <a href="./school-detail.php"
                   ><button
                     type="button"
                     class="btn btn1"
@@ -176,7 +176,7 @@
                       width="25px"
                     /></button
                 ></a>
-                <a href="./mm/jp-school.php"
+                <a href="./mm/school-detail.php"
                   ><button
                     type="button"
                     class="btn btn2"
@@ -187,7 +187,7 @@
                       width="25px"
                     /></button
                 ></a>
-                <a href="./jp/jp-school.php"
+                <a href="./jp/school-detail.php"
                   ><button
                     type="button"
                     class="btn btn3"
@@ -203,7 +203,7 @@
           </ul>
         </div>
         <div class="btn-group lang-xl" role="group" aria-label="First group">
-          <a href="./jp-school.php"
+          <a href="./school-detail.php"
             ><button
               type="button"
               class="btn btn1"
@@ -215,7 +215,7 @@
                 width="25px"
               /></button
           ></a>
-          <a href="./mm/jp-school.php"
+          <a href="./mm/school-detail.php"
             ><button
               type="button"
               class="btn btn2"
@@ -226,7 +226,7 @@
                 width="25px"
               /></button
           ></a>
-          <a href="./jp/jp-school.php"
+          <a href="./jp/school-detail.php"
             ><button
               type="button"
               class="btn btn3"
@@ -345,6 +345,7 @@
                       </td>
                       <td data-label="Class" scope="row">
                         <span id="course_title" class="row-data"><?php echo $row["course_title"]; ?></span>
+                        <span><?php echo empty($row["level_or_sub"]) ? '' : '- '.$row["level_or_sub"]; ?></span>
                       </td>
                       <td data-label="Days & Time">
                         <?php $section_time = json_decode($row["sections"], true); ?>
