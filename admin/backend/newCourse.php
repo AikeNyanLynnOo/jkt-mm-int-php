@@ -17,7 +17,8 @@ $discountPercent = intval($_POST["discountPercent"]);
 
 // date format change
 $time = strtotime($_POST["startDate"]);
-$startDate = date('Y-m-d', $time);
+$startDate = date('Y-m-d H:i:s', $time);
+// $startDate = $_POST["startDate"];
 
 $days = $_POST["days"];
 $startTime = $_POST["startTime"];
@@ -29,8 +30,8 @@ $arrObj = array("days" => $days, "sectionHour" => "$startTime~$endTime");
 $sections = json_encode($arrObj);
 
 $note = $_POST["note"];
-$sql = "INSERT INTO courses (category_id,type_id,title ,level_or_sub,fee,instructor,services,discount_percent,start_date,duration,sections,note, created_at,
- updated_at) VALUES ($categoryId,$typeId,'$title','$level_or_sub',$fee,'$instructor','$services',$discountPercent,$startDate,$duration,'$sections', '$note' ,now(), now())";
+$sql = "INSERT INTO courses (category_id,type_id,title,level_or_sub,fee,instructor,services,discount_percent,start_date,duration,sections,note, created_at,
+ updated_at) VALUES ($categoryId,$typeId,'$title','$level_or_sub',$fee,'$instructor','$services',$discountPercent,'$startDate',$duration,'$sections', '$note' ,now(), now())";
 // echo $sql;
 mysqli_query($conn, $sql);
 header("location: ../frontend/courses.php");

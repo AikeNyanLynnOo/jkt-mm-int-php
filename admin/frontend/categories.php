@@ -347,7 +347,6 @@ $result = mysqli_query($conn, "SELECT * FROM categories");
             </div>
             <!-- End of Main Content -->
 
-
             <!-- editing Modal -->
             <div class="modal fade" id="editingModal" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-lg" role="document">
@@ -386,6 +385,7 @@ $result = mysqli_query($conn, "SELECT * FROM categories");
                             </button>
                         </div>
                         <div class="modal-body">
+                            <p>Are you sure to delete?</p>
                             <form class="col-12" action="../backend/deleteCategory.php" method="POST">
                                 <input type="hidden" name="catIdDel" id="catIdDel">
                                 <hr />

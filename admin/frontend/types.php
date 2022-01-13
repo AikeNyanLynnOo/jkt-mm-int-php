@@ -385,6 +385,7 @@ $result = mysqli_query($conn, "SELECT * FROM types");
                             </button>
                         </div>
                         <div class="modal-body">
+                            <p>Are you sure to delete?</p>
                             <form class="col-12" action="../backend/deleteType.php" method="POST">
                                 <input type="hidden" name="typeIdDel" id="typeIdDel">
                                 <hr />
