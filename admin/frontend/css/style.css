@@ -50,6 +50,14 @@
   margin-bottom: 5px;
 }
 
+.invalid-warning {
+  margin-left: 12px;
+  font-size: 14px;
+  font-style: italic;
+  color: red;
+  margin-bottom: 5px;
+}
+
 .preview-user-img {
   border: 1px solid grey;
   height: 200px;
@@ -245,6 +253,73 @@ input[type="checkbox"] {
 .setting-title {
   font-size: 28px;
   color: #335baa;
+}
+
+.transaction-label {
+  font-weight: 800;
+}
+
+.transaction-data {
+  text-align: right;
+  padding-right: 10px;
+}
+
+.card-block {
+  display: block;
+  height: 100%;
+}
+
+.show-bank-account {
+  color: #335baa;
+  font-style: italic;
+  font-weight: 600;
+}
+
+#deleteConfirmTitle {
+  font-size: 24px;
+  font-weight: 700;
+  color: rgb(209, 28, 28);
+}
+
+.delete-bank-form {
+  margin: 30px 20px ;
+}
+
+.delete-bank-form label {
+  font-weight: 700;
+  font-style: italic;
+}
+
+.delete-bank-form input {
+  margin-left: 5px;
+  padding: 5px 10px;
+  border-color: royalblue;
+}
+
+.delete-bank-form input:focus {
+  outline: none;
+}
+
+.show-password {
+  border: none;
+  max-width: fit-content;
+  margin: 5px 5px;
+  padding: 0 10px 10px;
+  color: #3b5998;
+}
+
+.show-password:focus {
+  outline: none;
+}
+
+.show-password:disabled {
+  background-color: white;
+}
+
+.pswd-hide, 
+.pswd-show {
+  margin-left: 20px;
+  color: #3b5998;
 }
 
 @media only screen and (max-width: 767px) {

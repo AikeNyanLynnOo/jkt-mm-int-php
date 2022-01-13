@@ -1,16 +1,28 @@
 <?php
-    session_start();
-    include_once '../auth/authenticate.php';
-    include('../auth/hashFunc.php');
-    include("../confs/config.php");
-    $admin_query = "SELECT * FROM admins WHERE admin_id = $adminId";
-    $admin_result = mysqli_query($conn, $admin_query);
-    $admin_row = mysqli_fetch_assoc($admin_result);
+session_start();
+include_once '../auth/authenticate.php';
+// include('checkUser.php');
+include("../confs/config.php");
+$query = "SELECT uname, dob, fname, e.nrc AS nrc, email, education, address, phone, photo FROM enrollments e INNER JOIN (SELECT nrc, MIN(enrollment_id) AS id FROM enrollments GROUP BY nrc) AS b ON e.nrc = b.nrc AND e.enrollment_id = b.id";
+$result = mysqli_query($conn, $query);
+// $currentEditingID = "";
+// $currentDeletingID = "";
+
+// function setCurrentEditing($id)
+// {
+//     global $currentEditingID;
+//     $currentEditingID = $id;
+// }
+// function setCurrentDeleting($id)
+// {
+//     global $currentDeletingID;
+//     $currentDeletingID = $id;
+// }
+
 ?>
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -18,7 +30,7 @@
     <meta name="author" content="">
 
     <link rel="shortcut icon" href="img/logo.jpg" />
-    <title>JKT Admin</title>
+    <title>JKT Admin - All Enrollments</title>
 
     <!-- Custom fonts for this template-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -26,8 +38,9 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <!-- Custom styles for this page -->
+    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-
 </head>
 
 <body id="page-top">
@@ -152,13 +165,12 @@
                     </button>
 
                     <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search nav-title">
-                        <h3>Setting</h3>
+                        <h3>Students</h3>
                     </div>
 
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
-
                         <!-- Nav Item - Alerts -->
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -297,202 +309,73 @@
                                 </a>
                             </div>
                         </li>
+
                     </ul>
+
                 </nav>
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <div class="container-fluid">
-                    <div class="row pt-3">
-                        <div class="col-12 col-sm-9 col-md-8 mx-auto mt-4 mb-3">
-                            <div class="row">
-                                <div class="col-7 pl-4">
-                                    <h4 class="setting-title">
-                                        <i class="fas fa-user"> &nbsp; </i><?php echo $admin_row['admin_name'] ?>
-                                    </h4>
-                                </div>
-                                <div class="col-5 text-right pr-5 pb-3">
-                                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#username_change" aria-expanded="false" aria-controls="username_change">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="collapse" id="username_change">
-                                <div class="card card-body">
-                                    <h4 class="pb-3 pt-2">Change Username : </h4>
-                                    <form action="../backend/changeUsername.php" method="POST">
-                                        <div class="form-group">
-                                            <input type="text" name="name" id="name" class="form-control form-control-user" placeholder="Enter Username" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="password" name="password" id="password" class="form-control form-control-user" placeholder="Enter Password" required>
-                                            <span id="pswErr" class="help-login"><?php echo isset($_SESSION['pswErr']) ? $_SESSION['pswErr'] : ''; unset($_SESSION['pswErr']); ?></span>
-                                        </div>
-                                        <button type="submit" name="changeSubmit1" class="btn btn-facebook btn-user btn-block">
-                                            <i class="fas fa-edit"></i> Change
-                                            </a>
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-                            <hr>
-                        </div>
-                    </div>
-
+                <div class="container">
                     <div class="row">
-                        <div class="col-12 col-sm-9 col-md-8 mx-auto mt-4 mb-3">
-                            <div class="row">
-                                <div class="col-7 pl-4">
-                                    <h4 class="setting-title">
-                                        <i class="fas fa-key"></i> &nbsp;Change Password :
-                                    </h4>
-                                </div>
-                                <div class="col-5 text-right pr-5 pb-3">
-                                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#password_change" aria-expanded="false" aria-controls="password_change">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
+                        <div class="card shadow mb-4">
+                            <!-- <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                                <a href="newEnroll.php" class="new">
+                                    <i class="fas fa-fw fa-user-plus"></i>
+                                    New Enrollment
+                                </a>
+                            </div> -->
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered my-table" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>Photo</th>
+                                                <!-- <th>Course</th> -->
+                                                <th>Name</th>
+                                                <th>Dob</th>
+                                                <th>Father name</th>
+                                                <th>Nrc</th>
+                                                <th>Email</th>
+                                                <th>Education</th>
+                                                <th>Address</th>
+                                                <th>Phone</th>
+                                                <!-- <th>Payment</th>
+                                                <th>Paid Percent</th>
+                                                <th>Is Pending</th>
+                                                <th>created_at</th>
+                                                <th>updated_at</th>
+                                                <th>Edit</th>
+                                                <th>Delete</th> -->
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php while ($row = mysqli_fetch_assoc($result)) : ?>
+                                                <tr onclick="setCurrentDetail(this)" data-toggle="modal" data-target="#detailModal" class="tb-row">
+                                                    <td><img class="stu-img-table" src="<?= '../../user/backend/' . $row['photo'] ?>" alt="<?= $row['photo'] ?>"></td>
+                                                    <td style="max-width : 100px;"><?= $row['uname'] ?></td>
+                                                    <td><?= $row['dob'] ?></td>
+                                                    <td style="max-width : 100px;"><?= $row['fname'] ?></td>
+                                                    <td style="max-width : 100px;"><?= $row['nrc'] ?></td>
+                                                    <td style="max-width : 100px;"><?= $row['email'] ?></td>
+                                                    <td style="max-width : 100px;"><?= $row['education'] ?></td>
+                                                    <td style="max-width : 150px;"><?= $row['address'] ?></td>
+                                                    <td><?= $row['phone'] ?></td>
+                                                </tr>
+                                            <?php endwhile; ?>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
-                            <div class="collapse" id="password_change">
-                                <div class="card card-body">
-                                    <h4>
-                                        <?php $getPsd = encrypt_decrypt("decrypt", $admin_row['password']); ?>
-                                        <i class="fas fa-eye-slash pswd-hide" id="hidePsd" onclick="showHide()"></i>
-                                        <i class="fas fa-eye pswd-show" id="showPsd" style="display: none;" onclick="showHide()"></i>
-                                        <input type="password" class="show-password" value="<?php echo $getPsd ?>" id="displayPassword" disabled />
-                                    </h4>
-                                    <form action="../backend/changePassword.php" method="POST" id="chgPswdForm">
-                                        <div class="form-group">
-                                            <input type="password" name="oldPassword" id="oldPassword" class="form-control form-control-user" placeholder="Enter Old Password" required>
-                                            <span id="pswErr" class="invalid-warning"><?php echo isset($_SESSION['chgPswErr']) ? $_SESSION['chgPswErr'] : ''; unset($_SESSION['chgPswErr']); ?></span>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="password" name="newPassword" id="newPassword" class="form-control form-control-user" placeholder="Enter New Password" required>
-                                            <span id="pswErr" class="invalid-warning"><?php echo isset($_SESSION['notEqual']) ? $_SESSION['notEqual'] : ''; unset($_SESSION['notEqual']); ?></span>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="password" name="confirmPassword" id="confirmPassword" class="form-control form-control-user" placeholder="Re-enter New Password" required>
-                                            <span id="pswErr" class="invalid-warning"><?php echo isset($_SESSION['notEqual']) ? $_SESSION['notEqual'] : ''; unset($_SESSION['notEqual']); ?></span>
-                                        </div>
-                                        <button type="submit" name="changePswdSubmit" class="btn btn-facebook btn-user btn-block">
-                                            <i class="fas fa-edit"></i> Change
-                                            </a>
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-                            <hr>
                         </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-12 col-sm-9 col-md-8 mx-auto mt-4">
-                            <div class="row">
-                                <div class="col-7 pl-4">
-                                    <h4 class="setting-title">
-                                        <i class='fas fa-landmark'></i> &nbsp;Banking Information :
-                                    </h4>
-                                </div>
-                                <div class="col-5 text-right pr-5 pb-3">
-                                    <button class="btn btn-primary mr-3" id="bank_info_show_btn">
-                                        <i class="fas fa-eye"></i>
-                                    </button>
-                                    <button class="btn btn-success" id="bank_info_add_btn">
-                                        <i class="fas fa-plus"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="mt-3" id="bank_info_show">
-                                <div class="card card-body">
-                                    <h4 class="pb-3 pt-2">Your Current Banking Information: </h4>
-                                        <div class="form-group">
-                                            <?php
-                                                $banking_query = "SELECT * FROM banking_info";
-                                                $banking_result = mysqli_query($conn, $banking_query);
-                                                while($row = mysqli_fetch_array($banking_result)) {
-                                            ?>
-                                                <label class="form-control form-control-user" style="height: 45px;">
-                                                    <span id="banking_id" style="display: none;"><?php echo $row['bank_id']; ?></span>
-                                                    <span style="line-height: 30px;" class="display_banking"><?php echo $row['bank_name'] . " : " . $row['account_number'] . " - " . $row['account_name']; ?></span>
-                                                    <button class="btn btn-danger showDelModal" style="float: right;" data-toggle="modal" data-target="#deleteConfirm" id="showDelModal">
-                                                        <i class="fas fa-trash-alt"></i>
-                                                    </button>
-                                                    <span style="display: none;" id="accNo"><?php echo $row['account_number'] ?></span>
-                                                </label>
-                                            <?php } ?>
-                                        </div>
-                                </div>
-                            </div>
-                            <div class="mt-3" id="bank_info_add">
-                                <div class="card card-body">
-                                    <h4 class="pb-3 pt-2">Add Banking Information: </h4>
-                                    <form action="../backend/addBankingInfo.php" method="POST">
-                                        <div class="form-group">
-                                            <select name="bankName" id="bankName" class="form-control form-control-user">
-                                                <option value="" selected disabled>Select Bank</option>
-                                                <option value="AYA">AYA</option>
-                                                <option value="KBZ">KBZ</option>
-                                                <option value="CB">CB</option>
-                                                <option value="UAB">UAB</option>
-                                                <option value="Shwe Bank">Shwe Bank</option>
-                                                <option value="A Bank">A Bank</option>
-                                                <option value="AYA Pay">AYA Pay</option>
-                                                <option value="KBZ Pay">KBZ Pay</option>
-                                                <option value="CB Pay">CB Pay</option>
-                                                <option value="Wave Money">Wave Money</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="text" name="newAccountNumber" id="newAccountNumber" class="form-control form-control-user" placeholder="Enter Bank Account Number">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="text" name="newAccountName" id="newAccountName" class="form-control form-control-user" placeholder="Enter Bank Account Name">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="password" name="confirmPassword" id="confirmPassword" class="form-control form-control-user" placeholder="Enter Password">
-                                        </div>
-                                        <button type="submit" name="add_banking" class="btn btn-facebook btn-user btn-block">
-                                            <i class="fas fa-plus"></i> Add
-                                            </a>
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-                            <hr>
-                        </div>
                     </div>
                 </div>
                 <!-- /.container-fluid -->
+
             </div>
             <!-- End of Main Content -->
-
-            <!-- Modal -->
-            <div class="modal fade" id="deleteConfirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="deleteConfirmTitle">Delete Confirmation</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <form action="../backend/delete_banking.php" method="POST" id="bankDelete">
-                        <div class="modal-body text-center mt-4">
-                            Are you sure you want to delete &nbsp; <span class="show-bank-account" id="showBankAcc"></span> ?
-                                <input type="hidden" id="accNumber" name="bankAccount" value="" />
-                                <div class="text-left delete-bank-form">
-                                    <label for="password">Please Enter Password: </label>
-                                    <input type="password" name="password" id="password" placeholder="Password" required />
-                                </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                            <button type="submit" name="deleteBankConfirm" id="deleteBankConfirm" class="btn btn-danger">Confirm</button>
-                        </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
 
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
@@ -503,6 +386,7 @@
                 </div>
             </footer>
             <!-- End of Footer -->
+
         </div>
         <!-- End of Content Wrapper -->
 
@@ -533,6 +417,80 @@
         </div>
     </div>
 
+    <!-- detail modal -->
+
+    <div class="modal fade" id="detailModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header pl-5">
+                    <h5 class="modal-title ml-3">Student Details</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-11 mx-auto">
+                        <div class="form-group mb-3 row align-items-center justify-content-between px-3">
+                            <img src="" id="detailImage" name="image-preview" alt="User Image Preview" class="preview-img-edit" />
+                            <span class="pending-badge" id="pendingBadge"></span>
+                        </div>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col" style="width: 12em;">Property</th>
+                                    <th scope="col">Value</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- <tr>
+                                    <td>Course Title</td>
+                                    <td id="detailTitle"></td>
+                                </tr> -->
+                                <tr>
+                                    <td>Student Name</td>
+                                    <td id="detailName"></td>
+                                </tr>
+                                <tr>
+                                    <td>Date of Birth</td>
+                                    <td id="detailDob"></td>
+                                </tr>
+                                <tr>
+                                    <td>Father Name</td>
+                                    <td id="detailFname"></td>
+                                </tr>
+                                <tr>
+                                    <td>Student NRC</td>
+                                    <td id="detailNrc"></td>
+                                </tr>
+                                <tr>
+                                    <td>Email</td>
+                                    <td id="detailEmail"></td>
+                                </tr>
+                                <tr>
+                                    <td>Phone</td>
+                                    <td id="detailPhone"></td>
+                                </tr>
+                                <tr>
+                                    <td>Education</td>
+                                    <td id="detailEducation">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Address</td>
+                                    <td id="detailAddress">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -542,7 +500,13 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
-    <script src="js/bank-info-toggle.js"></script>
-    <script src="js/setting.js"></script>
+    <!-- Page level plugins -->
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="js/demo/datatables-demo.js"></script>
+    <script src="js/students.js"></script>
 </body>
+
 </html>

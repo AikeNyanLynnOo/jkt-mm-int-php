@@ -7,14 +7,13 @@
     $admin_result = mysqli_query($conn, $admin_query);
     $admin_row = mysqli_fetch_assoc($admin_result);
 
-    if(isset($_POST['changeSubmit1'])) {
-        $newAdminName = $_POST['name'];
+    if(isset($_POST['deleteBankConfirm'])) {
+        $bankAccount = $_POST['bankAccount'];
         $password = $_POST['password'];
         $getPsd = encrypt_decrypt("decrypt", $admin_row['password']);
         if($password === $getPsd) {
-            $_SESSION['name'] = $newAdminName;
-            $update_query = "UPDATE admins SET admin_name = '$newAdminName' WHERE password = '$password'";
-            mysqli_query($conn, $update_query);
+            $del_query = "DELETE FROM banking_info WHERE account_number=$bankAccount";
+            mysqli_query($conn, $del_query);
             header("location: ../frontend/setting.php");
         }
     }
