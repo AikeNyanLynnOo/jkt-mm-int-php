@@ -15,6 +15,9 @@
             $del_query = "DELETE FROM banking_info WHERE account_number=$bankAccount";
             mysqli_query($conn, $del_query);
             header("location: ../frontend/setting.php");
+        } else {
+            $_SESSION['delBankErr'] = "Password Wrong! Please Try Again.";
+            header("location: ../frontend/setting.php");
         }
     }
 ?>

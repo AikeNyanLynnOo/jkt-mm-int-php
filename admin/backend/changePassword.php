@@ -11,26 +11,25 @@
         $oldPassword = $_POST['oldPassword'];
         $newPassword = $_POST['newPassword'];
         $confirmPassword = $_POST['confirmPassword'];
-
+        $getPsd = encrypt_decrypt("decrypt", $admin_row['password']);
         if($newPassword !== $confirmPassword) {
             $_SESSION['notEqual'] = "Two Passwords Are Not Equal! Please Try Again.";
             header("location: ../frontend/setting.php");
-        }
-
-        $getPsd = encrypt_decrypt("decrypt", $admin_row['password']);
-        $hashPswd = encrypt_decrypt("encrypt", $newPassword);
-        if($oldPassword === $getPsd) {
-            $update_query = "UPDATE admins SET password = '$hashPswd' WHERE admin_id = '$adminId'";
-            mysqli_query($conn, $update_query);
-            header("location: ../frontend/setting.php");
         } else {
-            $_SESSION['chgPswErr'] = "Invalid Password! Please Try Again.";
-            echo "<script>
-                window.onload = function() {
-                    document.getElementById('password_change').className = 'show';
-                };
-            </script>";
-            header("location: ../frontend/setting.php");
+            if($oldPassword === $getPsd) {
+                $hashPswd = encrypt_decrypt("encrypt", $newPassword);
+                $update_query = "UPDATE admins SET password = '$hashPswd' WHERE admin_id = '$adminId'";
+                mysqli_query($conn, $update_query);
+                header("location: ../frontend/setting.php");
+            } else {
+                $_SESSION['chgPswErr'] = "Invalid Password! Please Try Again.";
+                echo "<script>
+                    window.onload = function() {
+                        document.getElementById('password_change').className = 'show';
+                    };
+                </script>";
+                header("location: ../frontend/setting.php");
+            }
         }
     }
 ?>

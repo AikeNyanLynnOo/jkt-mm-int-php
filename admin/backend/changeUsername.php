@@ -16,6 +16,9 @@
             $update_query = "UPDATE admins SET admin_name = '$newAdminName' WHERE password = '$password'";
             mysqli_query($conn, $update_query);
             header("location: ../frontend/setting.php");
+        } else {
+            $_SESSION['chgNameErr'] = "Password Wrong! Please Try Again.";
+            header("location: ../frontend/setting.php");
         }
     }
 ?>

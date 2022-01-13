@@ -20,6 +20,9 @@
             // $lastInserted = $conn->insert_id;
             // echo $lastInserted;
             header("location: ../frontend/setting.php");
+        } else {
+            $_SESSION['addBankErr'] = "Password Wrong! Please Try Again.";
+            header("location: ../frontend/setting.php");
         }
     }
 ?>

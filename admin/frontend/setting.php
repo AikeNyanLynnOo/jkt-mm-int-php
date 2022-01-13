@@ -114,7 +114,7 @@
             <hr class="sidebar-divider">
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="./students.php">
                     <i class="fas fa-fw fa-users"></i>
                     <span>Students</span>
                 </a>
@@ -122,7 +122,7 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="./payment.php">
                     <i class="fas fa-fw fa-dollar-sign"></i>
                     <span>Payments</span></a>
             </li>
@@ -278,18 +278,18 @@
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                <!-- <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
-                                </a>
-                                <a class="dropdown-item" href="#">
+                                </a> -->
+                                <a class="dropdown-item" href="./setting.php">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Settings
                                 </a>
-                                <a class="dropdown-item" href="#">
+                                <!-- <a class="dropdown-item" href="#">
                                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Activity Log
-                                </a>
+                                </a> -->
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -326,7 +326,7 @@
                                         </div>
                                         <div class="form-group">
                                             <input type="password" name="password" id="password" class="form-control form-control-user" placeholder="Enter Password" required>
-                                            <span id="pswErr" class="help-login"><?php echo isset($_SESSION['pswErr']) ? $_SESSION['pswErr'] : ''; unset($_SESSION['pswErr']); ?></span>
+                                            <span id="pswErr" class="help-login"><?php echo isset($_SESSION['chgNameErr']) ? $_SESSION['chgNameErr'] : ''; unset($_SESSION['chgNameErr']); ?></span>
                                         </div>
                                         <button type="submit" name="changeSubmit1" class="btn btn-facebook btn-user btn-block">
                                             <i class="fas fa-edit"></i> Change
@@ -450,6 +450,7 @@
                                         </div>
                                         <div class="form-group">
                                             <input type="password" name="confirmPassword" id="confirmPassword" class="form-control form-control-user" placeholder="Enter Password">
+                                            <span id="pswErr" class="invalid-warning"><?php echo isset($_SESSION['addBankErr']) ? $_SESSION['addBankErr'] : ''; unset($_SESSION['addBankErr']); ?></span>
                                         </div>
                                         <button type="submit" name="add_banking" class="btn btn-facebook btn-user btn-block">
                                             <i class="fas fa-plus"></i> Add
@@ -483,6 +484,7 @@
                                 <div class="text-left delete-bank-form">
                                     <label for="password">Please Enter Password: </label>
                                     <input type="password" name="password" id="password" placeholder="Password" required />
+                                    <span id="pswErr" class="invalid-warning"><?php echo isset($_SESSION['delBankErr']) ? $_SESSION['delBankErr'] : ''; unset($_SESSION['delBankErr']); ?></span>
                                 </div>
                         </div>
                         <div class="modal-footer">
