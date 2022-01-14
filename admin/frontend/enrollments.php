@@ -333,7 +333,7 @@ $result = mysqli_query($conn, "SELECT * from enrollments LEFT JOIN courses ON en
                                                 <th>Photo</th>
                                                 <th>Course</th>
                                                 <th>Name</th>
-                                                <th>Dob</th>
+                                                <th>Date of Birth</th>
                                                 <th>Father name</th>
                                                 <th>Nrc</th>
                                                 <th>Email</th>
@@ -388,7 +388,7 @@ $result = mysqli_query($conn, "SELECT * from enrollments LEFT JOIN courses ON en
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
+                        <span>Copyright &copy; JKT Myanmar International 2021</span>
                     </div>
                 </div>
             </footer>

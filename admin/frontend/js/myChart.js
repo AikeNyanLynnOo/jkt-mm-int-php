@@ -1,10 +1,13 @@
+$(document).ready(function () {
+  showGraph();
+});
 function showGraph(e) {
   $("#graphCanvas").remove();
-  console.log(e.target.value);
+  //   console.log(e.target.value);
   $.post(
     "chartData.php",
     {
-      selectedId: e.target.value,
+      selectedId: (e && e.target.value) || 5,
     },
     function (data) {
       // console.log(data);

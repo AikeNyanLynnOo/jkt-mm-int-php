@@ -1,11 +1,11 @@
 <?php
-    session_start();
-    include_once '../auth/authenticate.php';
-    include('../auth/hashFunc.php');
-    include("../confs/config.php");
-    $admin_query = "SELECT * FROM admins WHERE admin_id = $adminId";
-    $admin_result = mysqli_query($conn, $admin_query);
-    $admin_row = mysqli_fetch_assoc($admin_result);
+session_start();
+include_once '../auth/authenticate.php';
+include('../auth/hashFunc.php');
+include("../confs/config.php");
+$admin_query = "SELECT * FROM admins WHERE admin_id = $adminId";
+$admin_result = mysqli_query($conn, $admin_query);
+$admin_row = mysqli_fetch_assoc($admin_result);
 ?>
 <html lang="en">
 
@@ -317,7 +317,8 @@
                                     </button>
                                 </div>
                             </div>
-                            <div class="collapse <?php echo isset($_SESSION['name_block_show']) ? $_SESSION['name_block_show'] : ''; unset($_SESSION['name_block_show']); ?>" id="username_change">
+                            <div class="collapse <?php echo isset($_SESSION['name_block_show']) ? $_SESSION['name_block_show'] : '';
+                                                    unset($_SESSION['name_block_show']); ?>" id="username_change">
                                 <div class="card card-body">
                                     <h4 class="pb-3 pt-2">Change Username : </h4>
                                     <form action="../backend/changeUsername.php" method="POST">
@@ -326,7 +327,8 @@
                                         </div>
                                         <div class="form-group">
                                             <input type="password" name="password" id="password" class="form-control form-control-user" placeholder="Enter Password" required>
-                                            <span id="pswErr" class="invalid-warning"><?php echo isset($_SESSION['chgNameErr']) ? $_SESSION['chgNameErr'] : ''; unset($_SESSION['chgNameErr']); ?></span>
+                                            <span id="pswErr" class="invalid-warning"><?php echo isset($_SESSION['chgNameErr']) ? $_SESSION['chgNameErr'] : '';
+                                                                                        unset($_SESSION['chgNameErr']); ?></span>
                                         </div>
                                         <button type="submit" name="changeSubmit1" class="btn btn-facebook btn-user btn-block">
                                             <i class="fas fa-edit"></i> Change
@@ -353,7 +355,8 @@
                                     </button>
                                 </div>
                             </div>
-                            <div class="collapse <?php echo isset($_SESSION['pswd_block_show']) ? $_SESSION['pswd_block_show'] : ''; unset($_SESSION['pswd_block_show']); ?>" id="password_change">
+                            <div class="collapse <?php echo isset($_SESSION['pswd_block_show']) ? $_SESSION['pswd_block_show'] : '';
+                                                    unset($_SESSION['pswd_block_show']); ?>" id="password_change">
                                 <div class="card card-body">
                                     <h4>
                                         <?php $getPsd = encrypt_decrypt("decrypt", $admin_row['password']); ?>
@@ -364,15 +367,18 @@
                                     <form action="../backend/changePassword.php" method="POST" id="chgPswdForm">
                                         <div class="form-group">
                                             <input type="password" name="oldPassword" id="oldPassword" class="form-control form-control-user" placeholder="Enter Old Password" required>
-                                            <span id="pswErr" class="invalid-warning"><?php echo isset($_SESSION['chgPswErr']) ? $_SESSION['chgPswErr'] : ''; unset($_SESSION['chgPswErr']); ?></span>
+                                            <span id="pswErr" class="invalid-warning"><?php echo isset($_SESSION['chgPswErr']) ? $_SESSION['chgPswErr'] : '';
+                                                                                        unset($_SESSION['chgPswErr']); ?></span>
                                         </div>
                                         <div class="form-group">
                                             <input type="password" name="newPassword" id="newPassword" class="form-control form-control-user" placeholder="Enter New Password" required>
-                                            <span id="pswErr" class="invalid-warning"><?php echo isset($_SESSION['notEqual']) ? $_SESSION['notEqual'] : ''; unset($_SESSION['notEqual']); ?></span>
+                                            <span id="pswErr" class="invalid-warning"><?php echo isset($_SESSION['notEqual']) ? $_SESSION['notEqual'] : '';
+                                                                                        unset($_SESSION['notEqual']); ?></span>
                                         </div>
                                         <div class="form-group">
                                             <input type="password" name="confirmPassword" id="confirmPassword" class="form-control form-control-user" placeholder="Re-enter New Password" required>
-                                            <span id="pswErr" class="invalid-warning"><?php echo isset($_SESSION['notEqual']) ? $_SESSION['notEqual'] : ''; unset($_SESSION['notEqual']); ?></span>
+                                            <span id="pswErr" class="invalid-warning"><?php echo isset($_SESSION['notEqual']) ? $_SESSION['notEqual'] : '';
+                                                                                        unset($_SESSION['notEqual']); ?></span>
                                         </div>
                                         <button type="submit" name="changePswdSubmit" class="btn btn-facebook btn-user btn-block">
                                             <i class="fas fa-edit"></i> Change
@@ -405,25 +411,26 @@
                             <div class="mt-3" id="bank_info_show">
                                 <div class="card card-body">
                                     <h4 class="pb-3 pt-2">Your Current Banking Information: </h4>
-                                        <div class="form-group">
-                                            <?php
-                                                $banking_query = "SELECT * FROM banking_info";
-                                                $banking_result = mysqli_query($conn, $banking_query);
-                                                while($row = mysqli_fetch_array($banking_result)) {
-                                            ?>
-                                                <label class="form-control form-control-user" style="height: 45px;">
-                                                    <span id="banking_id" style="display: none;"><?php echo $row['bank_id']; ?></span>
-                                                    <span style="line-height: 30px;" class="display_banking"><?php echo $row['bank_name'] . " : " . $row['account_number'] . " - " . $row['account_name']; ?></span>
-                                                    <button class="btn btn-danger showDelModal" style="float: right;" data-toggle="modal" data-target="#deleteConfirm" id="showDelModal">
-                                                        <i class="fas fa-trash-alt"></i>
-                                                    </button>
-                                                    <span style="display: none;" id="accNo"><?php echo $row['account_number'] ?></span>
-                                                </label>
-                                            <?php } ?>
-                                        </div>
+                                    <div class="form-group">
+                                        <?php
+                                        $banking_query = "SELECT * FROM banking_info";
+                                        $banking_result = mysqli_query($conn, $banking_query);
+                                        while ($row = mysqli_fetch_array($banking_result)) {
+                                        ?>
+                                            <label class="form-control form-control-user" style="height: 45px;">
+                                                <span id="banking_id" style="display: none;"><?php echo $row['bank_id']; ?></span>
+                                                <span style="line-height: 30px;" class="display_banking"><?php echo $row['bank_name'] . " : " . $row['account_number'] . " - " . $row['account_name']; ?></span>
+                                                <button class="btn btn-danger showDelModal" style="float: right;" data-toggle="modal" data-target="#deleteConfirm" id="showDelModal">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
+                                                <span style="display: none;" id="accNo"><?php echo $row['account_number'] ?></span>
+                                            </label>
+                                        <?php } ?>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="mt-3" id="bank_info_add" <?php echo isset($_SESSION['addBank_block_show']) ? $_SESSION['addBank_block_show'] : ''; unset($_SESSION['addBank_block_show']); ?>>
+                            <div class="mt-3" id="bank_info_add" <?php echo isset($_SESSION['addBank_block_show']) ? $_SESSION['addBank_block_show'] : '';
+                                                                    unset($_SESSION['addBank_block_show']); ?>>
                                 <div class="card card-body">
                                     <h4 class="pb-3 pt-2">Add Banking Information: </h4>
                                     <form action="../backend/addBankingInfo.php" method="POST">
@@ -450,7 +457,8 @@
                                         </div>
                                         <div class="form-group">
                                             <input type="password" name="confirmPassword" id="confirmPassword" class="form-control form-control-user" placeholder="Enter Password" required>
-                                            <span id="pswErr" class="invalid-warning"><?php echo isset($_SESSION['addBankErr']) ? $_SESSION['addBankErr'] : ''; unset($_SESSION['addBankErr']); ?></span>
+                                            <span id="pswErr" class="invalid-warning"><?php echo isset($_SESSION['addBankErr']) ? $_SESSION['addBankErr'] : '';
+                                                                                        unset($_SESSION['addBankErr']); ?></span>
                                         </div>
                                         <button type="submit" name="add_banking" class="btn btn-facebook btn-user btn-block">
                                             <i class="fas fa-plus"></i> Add
@@ -478,18 +486,18 @@
                             </button>
                         </div>
                         <form action="../backend/delete_banking.php" method="POST" id="bankDelete">
-                        <div class="modal-body text-center mt-4">
-                            Are you sure you want to delete &nbsp; <span class="show-bank-account" id="showBankAcc"></span> ?
+                            <div class="modal-body text-center mt-4">
+                                Are you sure you want to delete &nbsp; <span class="show-bank-account" id="showBankAcc"></span> ?
                                 <input type="hidden" id="accNumber" name="bankAccount" value="" />
                                 <div class="text-left delete-bank-form">
                                     <label for="password">Please Enter Password: </label>
                                     <input type="password" name="password" id="password" placeholder="Password" required />
                                 </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                            <button type="submit" name="deleteBankConfirm" id="deleteBankConfirm" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-target="#warning" id="showDelModal">Confirm</button>
-                        </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <button type="submit" name="deleteBankConfirm" id="deleteBankConfirm" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-target="#warning" id="showDelModal">Confirm</button>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -519,7 +527,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
+                        <span>Copyright &copy; JKT Myanmar International 2021</span>
                     </div>
                 </div>
             </footer>
@@ -566,4 +574,5 @@
     <script src="js/bank-info-toggle.js"></script>
     <script src="js/setting.js"></script>
 </body>
+
 </html>

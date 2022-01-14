@@ -1,7 +1,7 @@
 <?php
 header('Content-Type: application/json');
 
-$conn = mysqli_connect("127.0.0.1:3307", "root", "", "training");
+include("../confs/config.php");
 
 // $sqlQuery = "SELECT student_id,student_name,marks FROM tbl_marks ORDER BY student_id";
 

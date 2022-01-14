@@ -301,13 +301,13 @@ include("../confs/config.php");
                 <!-- Begin Page Content -->
                 <div class="container">
                     <div class="row">
-                        <?php 
-                            $query = "SELECT payment_id, uname, title, level_or_sub, bank_name, payment_amount, 
+                        <?php
+                        $query = "SELECT payment_id, uname, title, level_or_sub, bank_name, payment_amount, 
                                       p.created_at AS created_at FROM payments p, enrollments e, courses c, banking_info b 
                                       WHERE p.enrollment_id = e.enrollment_id AND p.course_id = c.course_id 
                                       AND p.bank_id = b.bank_id ORDER BY created_at DESC";
-                            $result = mysqli_query($conn, $query); 
-                            while ($row = mysqli_fetch_assoc($result)) :
+                        $result = mysqli_query($conn, $query);
+                        while ($row = mysqli_fetch_assoc($result)) :
                         ?>
                             <div class="col-12 col-lg-6 p-2">
                                 <div class="card card-block shadow mb-3 px-3 pt-3">
@@ -349,7 +349,7 @@ include("../confs/config.php");
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
+                        <span>Copyright &copy; JKT Myanmar International 2021</span>
                     </div>
                 </div>
             </footer>
