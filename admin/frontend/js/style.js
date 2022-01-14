@@ -200,6 +200,8 @@ function setCurrentDetail(row) {
     }
   }
 
+  // enrollment id 
+  // classId 
   detailImage.src = "../../user/backend/" + rowArr[0];
   detailTitle.innerText = rowArr[1];
   detailName.innerText = rowArr[2];

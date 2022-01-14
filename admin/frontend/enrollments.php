@@ -352,6 +352,8 @@ $result = mysqli_query($conn, "SELECT * from enrollments LEFT JOIN courses ON en
                                     <table class="table table-bordered my-table" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
+                                                <th style="display: none;">enrollmentId</th>
+                                                <th style="display: none;">courseId</th>
                                                 <th>Photo</th>
                                                 <th>Course</th>
                                                 <th>Name</th>
@@ -374,6 +376,8 @@ $result = mysqli_query($conn, "SELECT * from enrollments LEFT JOIN courses ON en
                                         <tbody>
                                             <?php while ($row = mysqli_fetch_assoc($result)) : ?>
                                                 <tr onclick="setCurrentDetail(this)" data-toggle="modal" data-target="#detailModal" class="tb-row">
+                                                    <td style="display: none;"><?= $row['enrollment_id'] ?></td>
+                                                    <td style="display: none;"><?= $row['course_id'] ?></td>
                                                     <td><img class="stu-img-table" src="<?= '../../user/backend/' . $row['photo'] ?>" alt="<?= $row['photo'] ?>"></td>
                                                     <td style="max-width : 100px;"><?= $row['title'] ?></td>
                                                     <td style="max-width : 100px;"><?= $row['uname'] ?></td>
