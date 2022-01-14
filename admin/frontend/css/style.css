@@ -326,6 +326,7 @@ input[type="checkbox"] {
   color: #3b5998;
 }
 
+
 @media only screen and (max-width: 767px) {
   .input-left,
   .input-right,
