@@ -385,7 +385,7 @@ $result = mysqli_query($conn, "SELECT * from enrollments LEFT JOIN courses ON en
                                                     <td style="max-width : 150px;"><?= $row['address'] ?></td>
                                                     <td><?= $row['phone'] ?></td>
                                                     <td><?= $row['payment_method'] ?></td>
-                                                    <td><?= $row['paid_percent'] ?></td>
+                                                    <td><?= $row['paid_percent']."%" ?></td>
                                                     <td><?= $row['is_pending'] ?></td>
                                                     <td><?= $row['created_at'] ?></td>
                                                     <td><?= $row['updated_at'] ?></td>

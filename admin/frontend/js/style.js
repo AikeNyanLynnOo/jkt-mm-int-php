@@ -131,7 +131,7 @@ function setCurrentEditing(event, row, idx, classIdx) {
   address.value = rowArr[8];
   phone.value = rowArr[9];
   paymentMethod.value = rowArr[10];
-  paidPercent.value = rowArr[11];
+  paidPercent.value = rowArr[11].substring(0, rowArr[11].length - 1);
   isPending.checked = (rowArr[12] == "1" && true) || false;
   createdAt.value = rowArr[13];
 }
