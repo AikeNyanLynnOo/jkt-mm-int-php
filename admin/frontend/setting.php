@@ -423,7 +423,7 @@
                                         </div>
                                 </div>
                             </div>
-                            <div class="mt-3" id="bank_info_add" <?php echo isset($_SESSION['addBank_block_show']) ? $_SESSION['addBank_block_show'] : ''; unset($_SESSION['addBank_block_show']); ?>>
+                            <div class="mt-3" id="bank_info_add">
                                 <div class="card card-body">
                                     <h4 class="pb-3 pt-2">Add Banking Information: </h4>
                                     <form action="../backend/addBankingInfo.php" method="POST">
