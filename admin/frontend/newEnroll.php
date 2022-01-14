@@ -299,8 +299,8 @@ include("../confs/config.php");
                     <div class="row">
                         <form class="col-12 col-md-11 col-lg-8 mx-auto" id="studentEnrollment" action="../backend/newEnroll.php" method="POST" enctype="multipart/form-data">
                             <div class="form-group mb-4 row align-items-center justify-content-between px-3">
-                                <img src="../../user/frontend/assets/images/default-profile-icon.jpg" id="image-preview" name="image-preview" alt="User Image Preview" class="preview-img"/>
-                                <input type="file" name="photo" id="userImg" class="form-control preview-input" required/>
+                                <img src="../../user/frontend/assets/images/default-profile-icon.jpg" id="image-preview" name="image-preview" alt="User Image Preview" class="preview-img" />
+                                <input type="file" name="photo" id="userImg" class="form-control preview-input" required />
                                 <span class="help-block" id="userImgErr"></span>
                             </div>
                             <div class="form-group mb-4">
@@ -424,7 +424,7 @@ include("../confs/config.php");
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
+                        <span>Copyright &copy; JKT Myanmar International 2021</span>
                     </div>
                 </div>
             </footer>
@@ -461,7 +461,7 @@ include("../confs/config.php");
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>  
+    <script src="vendor/jquery/jquery.min.js"></script>
     <!-- <script src="vendor/jquery/jquery.js"></script> -->
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>  
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
@@ -472,7 +472,7 @@ include("../confs/config.php");
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    
+
     <script src="vendor/jquery/jquery-3.6.0.js"></script>
     <!-- <script src="vendor/jquery/validation.js"></script>
     <script src="vendor/jquery/additional-methods"></script> -->
