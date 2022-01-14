@@ -366,8 +366,8 @@ AND c.type_id = t.type_id");
                                                     <td><?php echo $row['note'] === "" ? "-" : $row['note'] ?></td>
                                                     <td><?= $row['created_at'] ?></td>
                                                     <td><?= $row['updated_at'] ?></td>
-                                                    <td><button class="tb-btn" onclick="setCurrentCourseEdit(event,this,<?php echo $row['category_id'] ?>,<?php echo $row['type_id'] ?>)" data-toggle="modal" data-target="#editingModal"><i class="fa fa-pencil"></i></button></td>
-                                                    <td><button class="tb-btn" onclick="setCurrentCourseDel(event,<?php echo $row['course_id'] ?>)" data-toggle="modal" data-target="#deletingModal"><i class="fa fa-trash"></button></i></td>
+                                                    <td><button class="tb-btn tb-btn-edit" onclick="setCurrentCourseEdit(event,this,<?php echo $row['category_id'] ?>,<?php echo $row['type_id'] ?>)" data-toggle="modal" data-target="#editingModal"><i class="fa fa-pencil"></i></button></td>
+                                                    <td><button class="tb-btn tb-btn-delete" onclick="setCurrentCourseDel(event,<?php echo $row['course_id'] ?>)" data-toggle="modal" data-target="#deletingModal"><i class="fa fa-trash"></button></i></td>
                                                 </tr>
                                             <?php endwhile; ?>
                                         </tbody>
@@ -462,7 +462,11 @@ AND c.type_id = t.type_id");
                                 </table>
                             </div>
                         </div>
-                        <div class="modal-footer">
+                        <div class="modal-footer row justify-content-between px-5 mx-2">
+                            <div>
+                                <button class="tb-btn d-inline tb-btn-edit"><i class="fa fa-pencil mr-1"></i>Edit</button>
+                                <button class="tb-btn d-inline tb-btn-delete"><i class="fa fa-trash mr-1"></i>Delete</button>
+                            </div>
                             <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                         </div>
                     </div>

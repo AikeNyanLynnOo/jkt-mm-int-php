@@ -336,12 +336,12 @@ $result = mysqli_query($conn, "SELECT * from enrollments LEFT JOIN courses ON en
                                     <div class="col-12 col-lg-6 col-xl-4 mt-4">
                                         <select name="filterGph" id="filterGph" onchange="showGraph(event)" class="form-control col-11">
                                             <option value="" selected disabled>Filter By Level or Subject</option>
-                                            <?php 
-                                            
+                                            <?php
+
                                             ?>
-                                                <option value="1">Last 5 Months</option>
-                                            <?php 
-                                            
+                                            <option value="1">Last 5 Months</option>
+                                            <?php
+
                                             ?>
                                         </select>
                                     </div>
@@ -389,8 +389,8 @@ $result = mysqli_query($conn, "SELECT * from enrollments LEFT JOIN courses ON en
                                                     <td><?= $row['is_pending'] ?></td>
                                                     <td><?= $row['created_at'] ?></td>
                                                     <td><?= $row['updated_at'] ?></td>
-                                                    <td><button class="tb-btn" onclick="setCurrentEditing(event,this,<?php echo $row['enrollment_id'] ?>,<?php echo $row['course_id'] ?>)" data-toggle="modal" data-target="#editingModal"><i class="fa fa-pencil"></i></button></td>
-                                                    <td><button class="tb-btn" onclick="setCurrentDeleting(event,this,<?php echo $row['enrollment_id'] ?>)" data-toggle="modal" data-target="#deletingModal"><i class="fa fa-trash"></button></i></td>
+                                                    <td><button class="tb-btn tb-btn-edit" onclick="setCurrentEditing(event,this,<?php echo $row['enrollment_id'] ?>,<?php echo $row['course_id'] ?>)" data-toggle="modal" data-target="#editingModal"><i class="fa fa-pencil"></i></button></td>
+                                                    <td><button class="tb-btn tb-btn-delete" onclick="setCurrentDeleting(event,this,<?php echo $row['enrollment_id'] ?>)" data-toggle="modal" data-target="#deletingModal"><i class="fa fa-trash"></button></i></td>
                                                 </tr>
                                             <?php endwhile; ?>
                                         </tbody>
@@ -521,7 +521,11 @@ $result = mysqli_query($conn, "SELECT * from enrollments LEFT JOIN courses ON en
                         </table>
                     </div>
                 </div>
-                <div class="modal-footer">
+                <div class="modal-footer row justify-content-between px-5 mx-2">
+                    <div>
+                        <button class="tb-btn d-inline tb-btn-edit"><i class="fa fa-pencil mr-1"></i>Edit</button>
+                        <button class="tb-btn d-inline tb-btn-delete"><i class="fa fa-trash mr-1"></i>Delete</button>
+                    </div>
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                 </div>
             </div>

@@ -199,15 +199,22 @@ input[type="checkbox"] {
 }
 
 .tb-btn {
-  border: 1px solid #ddd;
+  border: none;
   padding: 5px 10px;
   display: block;
   margin: 0 auto;
-  border-radius: 2px;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  color: #ffffff;
+}
+.tb-btn-edit{
+  background-color: #335baa;
+}
+.tb-btn-delete{
+  background-color: tomato;
 }
 .tb-row {
   cursor: pointer;
