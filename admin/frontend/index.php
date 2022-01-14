@@ -1,6 +1,6 @@
 <?php
-    session_start();
-    include_once '../auth/authenticate.php';
+session_start();
+include_once '../auth/authenticate.php';
 ?>
 <html lang="en">
 
@@ -394,6 +394,18 @@
                 </div>
                 <!-- /.container-fluid -->
 
+
+                <div id="chart-container" style="width: 70%;height : 400px;margin: 20px auto;">
+                    <select name="filterGph" id="filterGph" onchange="showGraph(event)" class="form-control col-12 col-md-3">
+                        <option value="0">This Month</option>
+                        <option value="1">Last 5 Months</option>
+                        <option value="2">This Year</option>
+                    </select>
+                    <div id="canvasArea">
+                        <canvas id="graphCanvas"></canvas>
+                    </div>
+                </div>
+
             </div>
             <!-- End of Main Content -->
 
@@ -446,6 +458,9 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+    <!-- <script src="js/jquery.min.js"></script> -->
+    <script src="js/Chart.min.js"></script>
+    <script src="js/myChart.js"></script>
 </body>
 
 </html>
