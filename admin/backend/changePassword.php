@@ -14,6 +14,7 @@
         $getPsd = encrypt_decrypt("decrypt", $admin_row['password']);
         if($newPassword !== $confirmPassword) {
             $_SESSION['notEqual'] = "Two Passwords Are Not Equal! Please Try Again.";
+            $_SESSION['pswd_block_show'] = "show";
             header("location: ../frontend/setting.php");
         } else {
             if($oldPassword === $getPsd) {
@@ -23,11 +24,7 @@
                 header("location: ../frontend/setting.php");
             } else {
                 $_SESSION['chgPswErr'] = "Invalid Password! Please Try Again.";
-                echo "<script>
-                    window.onload = function() {
-                        document.getElementById('password_change').className = 'show';
-                    };
-                </script>";
+                $_SESSION['pswd_block_show'] = "show";
                 header("location: ../frontend/setting.php");
             }
         }

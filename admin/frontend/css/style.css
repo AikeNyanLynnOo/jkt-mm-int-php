@@ -316,6 +316,10 @@ input[type="checkbox"] {
   background-color: white;
 }
 
+.show-block {
+  display: block;
+}
+
 .pswd-hide, 
 .pswd-show {
   margin-left: 20px;

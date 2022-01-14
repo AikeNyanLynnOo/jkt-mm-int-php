@@ -7,7 +7,7 @@
         $paymentSS_name = "ss".$nrcNumber;
         $dst = "./paymentUploads/".$paymentSS_name.$ssExtension;
         if (move_uploaded_file($_FILES["paymentImg"]["temp"], $dst)) {
-            $insert_sql = "INSERT INTO payments"
+            $insert_sql = "INSERT INTO payments";
             mysqli_query($conn, $insert_into_enrollments);
         }
         header("location: ../frontend/index.html");

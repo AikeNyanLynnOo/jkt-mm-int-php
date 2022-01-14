@@ -17,7 +17,7 @@
             header("location: ../frontend/setting.php");
         } else {
             $_SESSION['delBankErr'] = "Password Wrong! Please Try Again.";
-            header("location: ../frontend/setting.php");
+            header("location: javascript:history.go(-1)");
         }
     }
 ?>

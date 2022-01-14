@@ -1,6 +1,7 @@
 <?php
     session_start();
     include_once("../confs/config.php");
+    include('../auth/hashFunc.php');
     // echo '<h1> User is authenticated </h1>';
     if(isset($_POST['login'])) {
         $email = $_POST['adminEmail'];
@@ -9,8 +10,9 @@
         $result = mysqli_query($conn, $sql);
         $row = mysqli_fetch_assoc($result);
         $name = $row['admin_name'];
+        $getPsd = encrypt_decrypt("decrypt", $row['password']);
         if($row['email'] === $email) {
-            if($row['password'] === $password){
+            if($getPsd === $password){
                 $_SESSION['name'] = $name;
                 $_SESSION['adminId'] = $row['admin_id'];
                 if( ($_POST['remember_me']==1) || ($_POST['remember_me']=='on')) {

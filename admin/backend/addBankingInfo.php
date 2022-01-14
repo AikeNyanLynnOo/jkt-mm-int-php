@@ -22,6 +22,7 @@
             header("location: ../frontend/setting.php");
         } else {
             $_SESSION['addBankErr'] = "Password Wrong! Please Try Again.";
+            $_SESSION['addBank_block_show'] = "style='display:block'";
             header("location: ../frontend/setting.php");
         }
     }

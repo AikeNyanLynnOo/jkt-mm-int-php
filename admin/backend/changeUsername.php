@@ -18,6 +18,7 @@
             header("location: ../frontend/setting.php");
         } else {
             $_SESSION['chgNameErr'] = "Password Wrong! Please Try Again.";
+            $_SESSION['name_block_show'] = "show";
             header("location: ../frontend/setting.php");
         }
     }

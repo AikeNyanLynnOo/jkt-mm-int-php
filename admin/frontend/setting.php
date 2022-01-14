@@ -317,7 +317,7 @@
                                     </button>
                                 </div>
                             </div>
-                            <div class="collapse" id="username_change">
+                            <div class="collapse <?php echo isset($_SESSION['name_block_show']) ? $_SESSION['name_block_show'] : ''; unset($_SESSION['name_block_show']); ?>" id="username_change">
                                 <div class="card card-body">
                                     <h4 class="pb-3 pt-2">Change Username : </h4>
                                     <form action="../backend/changeUsername.php" method="POST">
@@ -326,7 +326,7 @@
                                         </div>
                                         <div class="form-group">
                                             <input type="password" name="password" id="password" class="form-control form-control-user" placeholder="Enter Password" required>
-                                            <span id="pswErr" class="help-login"><?php echo isset($_SESSION['chgNameErr']) ? $_SESSION['chgNameErr'] : ''; unset($_SESSION['chgNameErr']); ?></span>
+                                            <span id="pswErr" class="invalid-warning"><?php echo isset($_SESSION['chgNameErr']) ? $_SESSION['chgNameErr'] : ''; unset($_SESSION['chgNameErr']); ?></span>
                                         </div>
                                         <button type="submit" name="changeSubmit1" class="btn btn-facebook btn-user btn-block">
                                             <i class="fas fa-edit"></i> Change
@@ -353,7 +353,7 @@
                                     </button>
                                 </div>
                             </div>
-                            <div class="collapse" id="password_change">
+                            <div class="collapse <?php echo isset($_SESSION['pswd_block_show']) ? $_SESSION['pswd_block_show'] : ''; unset($_SESSION['pswd_block_show']); ?>" id="password_change">
                                 <div class="card card-body">
                                     <h4>
                                         <?php $getPsd = encrypt_decrypt("decrypt", $admin_row['password']); ?>
@@ -423,12 +423,12 @@
                                         </div>
                                 </div>
                             </div>
-                            <div class="mt-3" id="bank_info_add">
+                            <div class="mt-3" id="bank_info_add" <?php echo isset($_SESSION['addBank_block_show']) ? $_SESSION['addBank_block_show'] : ''; unset($_SESSION['addBank_block_show']); ?>>
                                 <div class="card card-body">
                                     <h4 class="pb-3 pt-2">Add Banking Information: </h4>
                                     <form action="../backend/addBankingInfo.php" method="POST">
                                         <div class="form-group">
-                                            <select name="bankName" id="bankName" class="form-control form-control-user">
+                                            <select name="bankName" id="bankName" class="form-control form-control-user" required>
                                                 <option value="" selected disabled>Select Bank</option>
                                                 <option value="AYA">AYA</option>
                                                 <option value="KBZ">KBZ</option>
@@ -443,13 +443,13 @@
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" name="newAccountNumber" id="newAccountNumber" class="form-control form-control-user" placeholder="Enter Bank Account Number">
+                                            <input type="text" name="newAccountNumber" id="newAccountNumber" class="form-control form-control-user" placeholder="Enter Bank Account Number" required>
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" name="newAccountName" id="newAccountName" class="form-control form-control-user" placeholder="Enter Bank Account Name">
+                                            <input type="text" name="newAccountName" id="newAccountName" class="form-control form-control-user" placeholder="Enter Bank Account Name" required>
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" name="confirmPassword" id="confirmPassword" class="form-control form-control-user" placeholder="Enter Password">
+                                            <input type="password" name="confirmPassword" id="confirmPassword" class="form-control form-control-user" placeholder="Enter Password" required>
                                             <span id="pswErr" class="invalid-warning"><?php echo isset($_SESSION['addBankErr']) ? $_SESSION['addBankErr'] : ''; unset($_SESSION['addBankErr']); ?></span>
                                         </div>
                                         <button type="submit" name="add_banking" class="btn btn-facebook btn-user btn-block">
@@ -484,14 +484,33 @@
                                 <div class="text-left delete-bank-form">
                                     <label for="password">Please Enter Password: </label>
                                     <input type="password" name="password" id="password" placeholder="Password" required />
-                                    <span id="pswErr" class="invalid-warning"><?php echo isset($_SESSION['delBankErr']) ? $_SESSION['delBankErr'] : ''; unset($_SESSION['delBankErr']); ?></span>
                                 </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                            <button type="submit" name="deleteBankConfirm" id="deleteBankConfirm" class="btn btn-danger">Confirm</button>
+                            <button type="submit" name="deleteBankConfirm" id="deleteBankConfirm" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-target="#warning" id="showDelModal">Confirm</button>
                         </div>
                         </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="warning" tabindex="-1" role="dialog" aria-labelledby="warning" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteConfirmTitle">Incorrect Password</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body text-center my-4">
+                            Your password is incorrect! Please Try Again.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        </div>
                     </div>
                 </div>
             </div>
