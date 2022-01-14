@@ -382,10 +382,12 @@ $result = mysqli_query($conn, "SELECT * from enrollments LEFT JOIN courses ON en
                                                     <td style="max-width : 100px;"><?= $row['nrc'] ?></td>
                                                     <td style="max-width : 100px;"><?= $row['email'] ?></td>
                                                     <td style="max-width : 100px;"><?= $row['education'] ?></td>
-                                                    <td style="max-width : 150px;"><?= $row['address'] ?></td>
+                                                    <td style="max-width : 150px;">
+                                                        <p style="max-height: 120px;overflow-y:scroll;" class="hide-scroll"><?= $row['address'] ?></p>
+                                                    </td>
                                                     <td><?= $row['phone'] ?></td>
                                                     <td><?= $row['payment_method'] ?></td>
-                                                    <td><?= $row['paid_percent']."%" ?></td>
+                                                    <td><?= $row['paid_percent'] . "%" ?></td>
                                                     <td><?= $row['is_pending'] ?></td>
                                                     <td><?= $row['created_at'] ?></td>
                                                     <td><?= $row['updated_at'] ?></td>

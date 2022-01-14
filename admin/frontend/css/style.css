@@ -333,6 +333,15 @@ input[type="checkbox"] {
   color: #3b5998;
 }
 
+.hide-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.hide-scroll {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
 
 @media only screen and (max-width: 767px) {
   .input-left,
