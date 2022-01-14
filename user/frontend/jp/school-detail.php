@@ -115,7 +115,7 @@
     <!-- JP School header start -->
     <section>
         <div class="header">
-            <h3>Japanese Language School</h3>
+            <h3>日本語学校</h3>
             <div class="bg-cover"></div>
             <img src="../assets/images/cover/cover.jpg" alt="jpschool-cover" />
         </div>
@@ -148,7 +148,7 @@
 
                         ?>
                         <select name="categories" class="class-filter">
-                            <option value="" selected>カテゴリによるフィルタリング</option>
+                            <option value="" selected>カテゴリを選んで下さい</option>
                             <?php
                                 if(isset($_POST['filterSubmit'])){
                                     $selected_cat = $_POST['categories'];
@@ -166,7 +166,7 @@
                             <option name="categories" value="<?php echo $row2['category_id'] ?>"><?php echo $row2['title'] ?></option>
                             <?php }}?>
                         </select>
-                        <input type="submit" name="filterSubmit" value="Filter" class="filter-button"/>
+                        <input type="submit" name="filterSubmit" value="検索" class="filter-button"/>
                     </form>
                 </div>
             </div>

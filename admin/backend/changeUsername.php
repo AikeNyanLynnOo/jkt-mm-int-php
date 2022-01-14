@@ -11,9 +11,10 @@
         $newAdminName = $_POST['name'];
         $password = $_POST['password'];
         $getPsd = encrypt_decrypt("decrypt", $admin_row['password']);
+        $hashPswd = encrypt_decrypt("encrypt", $password);
         if($password === $getPsd) {
             $_SESSION['name'] = $newAdminName;
-            $update_query = "UPDATE admins SET admin_name = '$newAdminName' WHERE password = '$password'";
+            $update_query = "UPDATE admins SET admin_name = '$newAdminName' WHERE password = '$hashPswd'";
             mysqli_query($conn, $update_query);
             header("location: ../frontend/setting.php");
         } else {

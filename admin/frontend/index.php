@@ -393,8 +393,7 @@ include_once '../auth/authenticate.php';
 
                 </div>
                 <!-- /.container-fluid -->
-
-
+                
                 <div id="chart-container" style="width: 70%;height : 400px;margin: 20px auto;">
                     <select name="filterGph" id="filterGph" onchange="showGraph(event)" class="form-control col-12 col-md-3">
                         <option value="0">This Month</option>

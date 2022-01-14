@@ -167,7 +167,6 @@ $result = mysqli_query($conn, "SELECT * from enrollments LEFT JOIN courses ON en
                         <h3>Enrollments</h3>
                     </div>
 
-
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Nav Item - Alerts -->
@@ -324,6 +323,29 @@ $result = mysqli_query($conn, "SELECT * from enrollments LEFT JOIN courses ON en
                                     <i class="fas fa-fw fa-user-plus"></i>
                                     New Enrollment
                                 </a>
+                                <div class="row">
+                                    <div class="col-12 col-lg-6 col-xl-4 mt-4">
+                                        <select name="filterGph" id="filterGph" onchange="filterByDate(event)" class="form-control col-11">
+                                            <option value="" selected disabled>Filter By Date</option>
+                                            <option value="1">Last 7 days</option>
+                                            <option value="2">Last 30 days</option>
+                                            <option value="3">Last 3 months</option>
+                                            <option value="4">Last 6 months</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12 col-lg-6 col-xl-4 mt-4">
+                                        <select name="filterGph" id="filterGph" onchange="showGraph(event)" class="form-control col-11">
+                                            <option value="" selected disabled>Filter By Level or Subject</option>
+                                            <?php 
+                                            
+                                            ?>
+                                                <option value="1">Last 5 Months</option>
+                                            <?php 
+                                            
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -683,6 +705,7 @@ $result = mysqli_query($conn, "SELECT * from enrollments LEFT JOIN courses ON en
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
     <script src="js/style.js"></script>
+    <script src="js/filter.js"></script>
 </body>
 
 </html>

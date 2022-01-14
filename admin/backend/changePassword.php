@@ -21,7 +21,7 @@
                 $hashPswd = encrypt_decrypt("encrypt", $newPassword);
                 $update_query = "UPDATE admins SET password = '$hashPswd' WHERE admin_id = '$adminId'";
                 mysqli_query($conn, $update_query);
-                header("location: ../frontend/setting.php");
+                header("location: ../frontend/login.php");
             } else {
                 $_SESSION['chgPswErr'] = "Invalid Password! Please Try Again.";
                 $_SESSION['pswd_block_show'] = "show";
