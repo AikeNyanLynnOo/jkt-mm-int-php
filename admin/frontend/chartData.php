@@ -16,7 +16,7 @@ switch ($currentShowing) {
 				DATE_FORMAT(`created_at`, '%Y-%M') as `date`,
 				COUNT(*) as `count`
 				FROM `enrollments`
-				WHERE `created_at` < Now() and `created_at` > DATE_ADD(Now(), INTERVAL- 5 MONTH)
+				WHERE `created_at` < Now() and `created_at` > DATE_ADD(Now(), INTERVAL- 5 MONTH) 
 				GROUP BY MONTH(`created_at`)
 				ORDER BY `date` DESC
 				";
@@ -35,7 +35,7 @@ switch ($currentShowing) {
 				DATE_FORMAT(`created_at`, '%Y-%M') as `date`,
 				COUNT(*) as `count`
 				FROM `enrollments`
-				WHERE YEAR(created_at) = YEAR(CURDATE())
+				WHERE `created_at` < Now() AND YEAR(created_at) = YEAR(CURDATE())
 				GROUP BY MONTH(`created_at`)
 				ORDER BY `date` ASC
 				";
@@ -49,10 +49,10 @@ switch ($currentShowing) {
 					break;
 				default: {
 						$sqlQuery = "SELECT
-				DATE_FORMAT(`created_at`, '%M-%d') as `date`,
+				DATE_FORMAT(`created_at`, '%d-%m-%Y') as `date`,
 				COUNT(*) as `count`
 				FROM `enrollments`
-				WHERE MONTH(created_at) = MONTH(CURDATE())
+				WHERE `created_at` < Now() AND MONTH(created_at) = MONTH(CURDATE())
 				GROUP BY MONTH(`created_at`)
 				ORDER BY `date` ASC
 				";
@@ -75,8 +75,9 @@ switch ($currentShowing) {
 						categories cty, enrollments e 
 						WHERE c.category_id = cty.category_id 
 						AND e.course_id = c.course_id
-						GROUP BY category 
-						ORDER BY count ASC";
+						AND e.created_at < Now() 
+						AND e.created_at > DATE_ADD(Now(), INTERVAL- 5 MONTH)
+						GROUP BY category";
 
 						$result = mysqli_query($conn, $sqlQuery);
 						$data = array();
@@ -89,7 +90,14 @@ switch ($currentShowing) {
 					}
 					break;
 				case "2": {
-						$sqlQuery = "";
+						$sqlQuery = "SELECT cty.title AS category, 
+						COUNT(*) as count FROM courses c, 
+						categories cty, enrollments e 
+						WHERE c.category_id = cty.category_id 
+						AND e.course_id = c.course_id
+						AND e.created_at < Now() 
+						AND YEAR(e.created_at) = YEAR(CURDATE())
+						GROUP BY category";
 						$result = mysqli_query($conn, $sqlQuery);
 						$data = array();
 						foreach ($result as $row) {
@@ -99,7 +107,72 @@ switch ($currentShowing) {
 					}
 					break;
 				default: {
-						$sqlQuery = "";
+						$sqlQuery = "SELECT cty.title AS category, 
+						COUNT(*) as count FROM courses c, 
+						categories cty, enrollments e 
+						WHERE c.category_id = cty.category_id 
+						AND e.course_id = c.course_id
+						AND e.created_at < Now() 
+						AND MONTH(e.created_at) = MONTH(CURDATE())
+						GROUP BY category";
+
+						$result = mysqli_query($conn, $sqlQuery);
+						$data = array();
+						foreach ($result as $row) {
+							$data[] = $row;
+						}
+						echo json_encode($data);
+					}
+			}
+		}
+		break;
+	case "showPayments": {
+			switch ($selectedId) {
+				case "1": {
+						$sqlQuery = "SELECT
+						DATE_FORMAT(`created_at`, '%Y-%M-%d') as `date`,
+						SUM(payment_amount) as `sum`
+						FROM `payments`
+						WHERE `created_at` < Now() 
+						AND `created_at` > DATE_ADD(Now(), INTERVAL- 5 MONTH)
+						GROUP BY `date`
+						ORDER BY `created_at` ASC";
+
+						$result = mysqli_query($conn, $sqlQuery);
+						$data = array();
+						foreach ($result as $row) {
+							$data[] = $row;
+						}
+						echo json_encode($data);
+					}
+					break;
+				case "2": {
+						$sqlQuery = "SELECT
+						DATE_FORMAT(`created_at`, '%Y-%M-%d') as `date`,
+						SUM(payment_amount) as `sum`
+						FROM `payments`
+						WHERE `created_at` < Now() 
+						AND YEAR(`created_at`) = YEAR(CURDATE())
+						GROUP BY `date`
+						ORDER BY `created_at` DESC";
+						$result = mysqli_query($conn, $sqlQuery);
+						$data = array();
+						foreach ($result as $row) {
+							$data[] = $row;
+						}
+						echo json_encode($data);
+					}
+					break;
+				default: {
+						$sqlQuery = "SELECT
+						DATE_FORMAT(`created_at`, '%Y-%M-%d') as `date`,
+						SUM(payment_amount) as `sum`
+						FROM `payments`
+						WHERE `created_at` < Now() 
+						AND MONTH(`created_at`) = MONTH(CURDATE())
+						GROUP BY `date`
+						ORDER BY `created_at` DESC";
+
 						$result = mysqli_query($conn, $sqlQuery);
 						$data = array();
 						foreach ($result as $row) {
@@ -124,3 +197,10 @@ mysqli_close($conn);
 
 
 // SELECT cty.title AS category, COUNT(*) as count FROM courses c, categories cty, enrollments e WHERE c.category_id = cty.category_id AND e.course_id = c.course_id GROUP BY category ORDER BY count ASC;
+
+// SELECT
+// DATE_FORMAT(`created_at`, '%Y-%M-%d') as `date`,
+// SUM(payment_amount) as `sum`
+// FROM `payments`
+// GROUP BY `date`
+// ORDER BY `created_at` DESC;

@@ -338,7 +338,12 @@ input[type="checkbox"] {
   max-height: 300px;
   width: 45%;
 }
-canvas{
+.my-chart-full {
+  width: 90%;
+  margin: 0 auto;
+  margin-top : 50px;
+}
+canvas {
   margin-top: 20px;
 }
 
@@ -352,11 +357,17 @@ canvas{
   scrollbar-width: none; /* Firefox */
 }
 
-@media only screen and (max-width : 991px) {
+@media only screen and (max-width: 991px) {
   .mychart-left,
   .mychart-right {
     width: 90%;
-    margin: 20px auto;
+    margin: 0 auto;
+  }
+  .mychart-right {
+    margin-top: 50px;
+  }
+  .my-chart-full {
+    margin-top: 30px;
   }
 }
 

@@ -1,6 +1,7 @@
 $(document).ready(function () {
   showStuByMonths();
   showStuByCourses();
+  showPayments();
 });
 
 function showStuByMonths(e) {
@@ -62,11 +63,11 @@ function showStuByMonths(e) {
 }
 function showStuByCourses(e) {
   $("#stuByCourses").remove();
-  //   console.log(e.target.value);
+    // console.log(e.target.value);
   $.post(
     "chartData.php",
     {
-      selectedId: (e && e.target.value) || 5,
+      selectedId: (e && e.target.value) || "",
       currentShowing: "stuByCourses",
     },
     function (data) {
@@ -101,6 +102,61 @@ function showStuByCourses(e) {
       var graphTarget = $("#stuByCourses");
       var doughnut = new Chart(graphTarget, {
         type: "doughnut",
+        data: chartData,
+        options: {
+          maintainAspectRatio: false,
+          responsive: true,
+          scales: {
+            yAxes: [
+              {
+                ticks: {
+                  beginAtZero: true,
+                },
+              },
+            ],
+          },
+        },
+      });
+    }
+  );
+}
+
+function showPayments(e) {
+  $("#showPayments").remove();
+    // console.log(e.target.value);
+  $.post(
+    "chartData.php",
+    {
+      selectedId: (e && e.target.value) || "",
+      currentShowing: "showPayments",
+    },
+    function (data) {
+      // console.log(data);
+      let months = [];
+      let sum = [];
+
+      for (var i in data) {
+        months.push(data[i].date);
+        sum.push(data[i].sum);
+      }
+
+      let chartData = {
+        labels: months,
+        datasets: [{
+          label: 'Income Rate (MMKs)',
+          data: sum,
+          fill: false,
+          borderColor: 'rgb(62, 101, 211)',
+          tension: 0.1
+        }]
+      };
+      var newCanvas = $("<canvas/>", {
+        id: "showPayments",
+      });
+      $("#showPaymentsArea").append(newCanvas);
+      var graphTarget = $("#showPayments");
+      var doughnut = new Chart(graphTarget, {
+        type: 'line',
         data: chartData,
         options: {
           maintainAspectRatio: false,

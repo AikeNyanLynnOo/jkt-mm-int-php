@@ -396,7 +396,7 @@ include_once '../auth/authenticate.php';
 
                 <div class="row mt-3 mb-5 pt-2">
                     <div class="mychart-left ml-lg-5" id="stuByMonthsArea">
-                        <select name="fltStuByMonths" id="fltStuByMonths" onchange="showStuByMonths(event)" class="form-control col-12 col-md-3">
+                        <select onchange="showStuByMonths(event)" class="form-control col-12 col-md-3">
                             <option value="0">This Month</option>
                             <option value="1">Last 5 Months</option>
                             <option value="2">This Year</option>
@@ -404,12 +404,22 @@ include_once '../auth/authenticate.php';
                         <canvas id="stuByMonths">
                     </div>
                     <div class="mychart-right" id="stuByCoursesArea">
-                        <select name="fltStuByCourse" id="fltStuByCourse" onchange="showStuByCourses(event)" class="form-control col-12 col-md-3">
+                        <select onchange="showStuByCourses(event)" class="form-control col-12 col-md-3">
                             <option value="0">This Month</option>
                             <option value="1">Last 5 Months</option>
                             <option value="2">This Year</option>
                         </select>
                         <canvas id="stuByCourses">
+                    </div>
+                </div>
+                <div class="row mt-3 mb-5 pt-2">
+                    <div class="my-chart-full ml-lg-5" id="showPaymentsArea">
+                        <select onchange="showPayments(event)" class="form-control col-12 col-md-3">
+                            <option value="0">This Month</option>
+                            <option value="1">Last 5 Months</option>
+                            <option value="2">This Year</option>
+                        </select>
+                        <canvas id="showPayments">
                     </div>
                 </div>
 
