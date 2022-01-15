@@ -317,15 +317,15 @@ $result = mysqli_query($conn, "SELECT * from enrollments LEFT JOIN courses ON en
                 <div class="container">
                     <div class="row">
                         <div class="card shadow mb-4">
-                            <div class="card-header py-3">
+                            <div class="card-header pt-5 pb-4 px-5">
                                 <!-- <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6> -->
                                 <a href="newEnroll.php" class="new">
                                     <i class="fas fa-fw fa-user-plus"></i>
                                     New Enrollment
                                 </a>
                                 <div class="row">
-                                    <div class="col-12 col-lg-6 col-xl-4 mt-4">
-                                        <select name="filterGph" id="filterGph" onchange="filterByDate(event)" class="form-control col-11">
+                                    <div class="col-11 col-lg-6 col-xl-4 mt-4">
+                                        <select name="filterByDate" id="filterByDate" class="form-control col-11">
                                             <option value="" selected disabled>Filter By Date</option>
                                             <option value="1">Last 7 days</option>
                                             <option value="2">Last 30 days</option>
@@ -333,8 +333,8 @@ $result = mysqli_query($conn, "SELECT * from enrollments LEFT JOIN courses ON en
                                             <option value="4">Last 6 months</option>
                                         </select>
                                     </div>
-                                    <div class="col-12 col-lg-6 col-xl-4 mt-4">
-                                        <select name="filterGph" id="filterGph" onchange="showGraph(event)" class="form-control col-11">
+                                    <!-- <div class="col-12 col-lg-6 col-xl-4 mt-4">
+                                        <select name="levelOrSub" id="levelOrSub" onchange="levelOrSub(event)" class="form-control col-11">
                                             <option value="" selected disabled>Filter By Level or Subject</option>
                                             <?php 
                                             
@@ -344,10 +344,18 @@ $result = mysqli_query($conn, "SELECT * from enrollments LEFT JOIN courses ON en
                                             
                                             ?>
                                         </select>
-                                    </div>
+                                    </div> -->
+                                    <!-- <div class="col-12 col-lg-6 col-xl-4 mt-4">
+                                        <select name="isPending" id="isPending" onchange="isPending(event)" class="form-control col-11">
+                                            <option value="" selected disabled>Filter By Pending</option>
+                                            <option value="0">Not Pending</option>
+                                            <option value="1">Pending</option>
+                                            ?>
+                                        </select>
+                                    </div> -->
                                 </div>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body px-5">
                                 <div class="table-responsive">
                                     <table class="table table-bordered my-table" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
@@ -390,7 +398,7 @@ $result = mysqli_query($conn, "SELECT * from enrollments LEFT JOIN courses ON en
                                                     <td><?= $row['created_at'] ?></td>
                                                     <td><?= $row['updated_at'] ?></td>
                                                     <td><button class="tb-btn" onclick="setCurrentEditing(event,this,<?php echo $row['enrollment_id'] ?>,<?php echo $row['course_id'] ?>)" data-toggle="modal" data-target="#editingModal"><i class="fa fa-pencil"></i></button></td>
-                                                    <td><button class="tb-btn" onclick="setCurrentDeleting(event,this,<?php echo $row['enrollment_id'] ?>)" data-toggle="modal" data-target="#deletingModal"><i class="fa fa-trash"></button></i></td>
+                                                    <td><button class="tb-btn" onclick="setCurrentDeleting(event,this,<?php echo $row['enrollment_id'] ?>)" data-toggle="modal" data-target="#deletingModal"><i class="fa fa-trash"></i></button></td>
                                                 </tr>
                                             <?php endwhile; ?>
                                         </tbody>
