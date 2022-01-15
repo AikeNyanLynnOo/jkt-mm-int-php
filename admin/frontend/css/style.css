@@ -210,10 +210,10 @@ input[type="checkbox"] {
   -o-border-radius: 5px;
   color: #ffffff;
 }
-.tb-btn-edit{
+.tb-btn-edit {
   background-color: #335baa;
 }
-.tb-btn-delete{
+.tb-btn-delete {
   background-color: tomato;
 }
 .tb-row {
@@ -289,7 +289,7 @@ input[type="checkbox"] {
 }
 
 .delete-bank-form {
-  margin: 30px 20px ;
+  margin: 30px 20px;
 }
 
 .delete-bank-form label {
@@ -327,10 +327,19 @@ input[type="checkbox"] {
   display: block;
 }
 
-.pswd-hide, 
+.pswd-hide,
 .pswd-show {
   margin-left: 20px;
   color: #3b5998;
+}
+
+.mychart-left,
+.mychart-right {
+  max-height: 300px;
+  width: 45%;
+}
+canvas{
+  margin-top: 20px;
 }
 
 .hide-scroll::-webkit-scrollbar {
@@ -339,8 +348,16 @@ input[type="checkbox"] {
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .hide-scroll {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+@media only screen and (max-width : 991px) {
+  .mychart-left,
+  .mychart-right {
+    width: 90%;
+    margin: 20px auto;
+  }
 }
 
 @media only screen and (max-width: 767px) {
