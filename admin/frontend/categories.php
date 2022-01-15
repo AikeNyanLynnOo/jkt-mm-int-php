@@ -329,8 +329,8 @@ $result = mysqli_query($conn, "SELECT * FROM categories");
                                                     <td><?= $row['title'] ?></td>
                                                     <td><?= $row['created_at'] ?></td>
                                                     <td><?= $row['updated_at'] ?></td>
-                                                    <td><button class="tb-btn" onclick="setCurrentCatEdit(this)" data-toggle="modal" data-target="#editingModal"><i class="fa fa-pencil"></i></button></td>
-                                                    <td><button class="tb-btn" onclick="setCurrentCatDel(<?php echo $row['category_id'] ?>)" data-toggle="modal" data-target="#deletingModal"><i class="fa fa-trash"></button></i></td>
+                                                    <td><button class="tb-btn tb-btn-edit" onclick="setCurrentCatEdit(this)" data-toggle="modal" data-target="#editingModal"><i class="fa fa-pencil"></i></button></td>
+                                                    <td><button class="tb-btn tb-btn-delete" onclick="setCurrentCatDel(<?php echo $row['category_id'] ?>)" data-toggle="modal" data-target="#deletingModal"><i class="fa fa-trash"></button></i></td>
                                                 </tr>
                                             <?php endwhile; ?>
                                         </tbody>

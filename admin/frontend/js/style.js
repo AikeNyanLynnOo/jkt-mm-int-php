@@ -128,10 +128,10 @@ function setCurrentEditing(event, row, idx, classIdx) {
   nrcNumber.value = nrcArr[1].slice(-6);
   email.value = rowArr[6];
   education.value = rowArr[7];
-  address.value = rowArr[8];
+  address.value = rowArr[8].trim();
   phone.value = rowArr[9];
   paymentMethod.value = rowArr[10];
-  paidPercent.value = rowArr[11];
+  paidPercent.value = rowArr[11].substring(0, rowArr[11].length - 1);
   isPending.checked = (rowArr[12] == "1" && true) || false;
   createdAt.value = rowArr[13];
 }
@@ -200,6 +200,8 @@ function setCurrentDetail(row) {
     }
   }
 
+  // enrollment id 
+  // classId 
   detailImage.src = "../../user/backend/" + rowArr[0];
   detailTitle.innerText = rowArr[1];
   detailName.innerText = rowArr[2];
@@ -209,7 +211,7 @@ function setCurrentDetail(row) {
   detailNrc.innerText = rowArr[5];
   detailEmail.innerText = rowArr[6];
   detailEducation.innerText = rowArr[7];
-  detailAddress.innerText = rowArr[8];
+  detailAddress.innerText = rowArr[8].trim();
   detailPhone.innerText = rowArr[9];
   detailPaymentMethod.innerText = rowArr[10];
   detailPaidPercent.innerText = rowArr[11];

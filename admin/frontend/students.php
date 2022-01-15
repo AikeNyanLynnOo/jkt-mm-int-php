@@ -360,7 +360,7 @@ $result = mysqli_query($conn, $query);
                                                     <td style="max-width : 100px;"><?= $row['nrc'] ?></td>
                                                     <td style="max-width : 100px;"><?= $row['email'] ?></td>
                                                     <td style="max-width : 100px;"><?= $row['education'] ?></td>
-                                                    <td style="max-width : 150px;"><?= $row['address'] ?></td>
+                                                    <td style="max-width : 150px;"><p style="max-height: 120px;overflow-y:scroll;" class="hide-scroll"><?= $row['address'] ?></p></td>
                                                     <td><?= $row['phone'] ?></td>
                                                 </tr>
                                             <?php endwhile; ?>
