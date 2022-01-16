@@ -21,7 +21,6 @@
                             }
                             $firstEle = array_shift($data);
                             $data[] = $firstEle;
-                            // echo json_encode($data);
                 }
             break;
         case "2": {
@@ -37,7 +36,6 @@
                         }
                         $firstEle = array_shift($data);
                         $data[] = $firstEle;
-                        // echo json_encode($data);
             }
             break;
         case "3": {
@@ -53,10 +51,8 @@
                         }
                         $firstEle = array_shift($data);
                         $data[] = $firstEle;
-                        // echo json_encode($data);
             }
             break;
-
         case "4": {
                     $sqlQuery = "SELECT payment_id, uname, title, level_or_sub, bank_name, payment_amount, 
                                 p.created_at AS created_at FROM payments p, enrollments e, courses c, banking_info b 
@@ -70,7 +66,6 @@
                         }
                         $firstEle = array_shift($data);
                         $data[] = $firstEle;
-                        // echo json_encode($data);
             }
             break;
         default: {
@@ -86,7 +81,6 @@
                         }
                         $firstEle = array_shift($data);
                         $data[] = $firstEle;
-                        
             }
     }
     echo json_encode($data);

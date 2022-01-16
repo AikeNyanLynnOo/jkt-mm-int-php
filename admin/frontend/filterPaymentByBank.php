@@ -4,22 +4,14 @@
     include("../confs/config.php");
     
     // $sqlQuery = "SELECT student_id,student_name,marks FROM tbl_marks ORDER BY student_id";
-    
-    $selectedId = $_POST["selectedId"];
-    $currentShowing = $_POST["currentShowing"];
-    
-    switch ($currentShowing) {
-        case "stuByMonths": {
-                switch ($selectedId) {
-                    case "1": {
-                            $sqlQuery = "SELECT
-                    DATE_FORMAT(`created_at`, '%Y-%M') as `date`,
-                    COUNT(*) as `count`
-                    FROM `enrollments`
-                    WHERE `created_at` < Now() and `created_at` > DATE_ADD(Now(), INTERVAL- 5 MONTH) 
-                    GROUP BY MONTH(`created_at`)
-                    ORDER BY `date` DESC
-                    ";
+    $selectedValue = $_POST["selectedValue"];
+
+    switch ($selectedValue) {
+        case "AYA": {
+                    $sqlQuery = "SELECT payment_id, uname, title, level_or_sub, bank_name, payment_amount, p.created_at AS created_at 
+                    FROM payments p, enrollments e, courses c, banking_info b WHERE p.enrollment_id = e.enrollment_id 
+                    AND p.course_id = c.course_id AND p.bank_id = b.bank_id AND b.bank_name = 'AYA' ORDER BY p.created_at DESC;
+                            ";
                             $result = mysqli_query($conn, $sqlQuery);
                             $data = array();
                             foreach ($result as $row) {
@@ -27,164 +19,147 @@
                             }
                             $firstEle = array_shift($data);
                             $data[] = $firstEle;
-                            echo json_encode($data);
-                        }
-                        break;
-                    case "2": {
-                            $sqlQuery = "SELECT
-                    DATE_FORMAT(`created_at`, '%Y-%M') as `date`,
-                    COUNT(*) as `count`
-                    FROM `enrollments`
-                    WHERE `created_at` < Now() AND YEAR(created_at) = YEAR(CURDATE())
-                    GROUP BY MONTH(`created_at`)
-                    ORDER BY `date` ASC
-                    ";
-                            $result = mysqli_query($conn, $sqlQuery);
-                            $data = array();
-                            foreach ($result as $row) {
-                                $data[] = $row;
-                            }
-                            echo json_encode($data);
-                        }
-                        break;
-                    default: {
-                            $sqlQuery = "SELECT
-                    DATE_FORMAT(`created_at`, '%d-%m-%Y') as `date`,
-                    COUNT(*) as `count`
-                    FROM `enrollments`
-                    WHERE `created_at` < Now() AND MONTH(created_at) = MONTH(CURDATE())
-                    GROUP BY MONTH(`created_at`)
-                    ORDER BY `date` ASC
-                    ";
-    
-                            $result = mysqli_query($conn, $sqlQuery);
-                            $data = array();
-                            foreach ($result as $row) {
-                                $data[] = $row;
-                            }
-                            echo json_encode($data);
-                        }
                 }
-            }
             break;
-        case "stuByCourses": {
-                switch ($selectedId) {
-                    case "1": {
-                            $sqlQuery = "SELECT cty.title AS category, 
-                            COUNT(*) as count FROM courses c, 
-                            categories cty, enrollments e 
-                            WHERE c.category_id = cty.category_id 
-                            AND e.course_id = c.course_id
-                            AND e.created_at < Now() 
-                            AND e.created_at > DATE_ADD(Now(), INTERVAL- 5 MONTH)
-                            GROUP BY category";
-    
-                            $result = mysqli_query($conn, $sqlQuery);
-                            $data = array();
-                            foreach ($result as $row) {
-                                $data[] = $row;
-                            }
-                            $firstEle = array_shift($data);
-                            $data[] = $firstEle;
-                            echo json_encode($data);
+        case "KBZ": {
+                $sqlQuery = "SELECT payment_id, uname, title, level_or_sub, bank_name, payment_amount, p.created_at AS created_at 
+                FROM payments p, enrollments e, courses c, banking_info b WHERE p.enrollment_id = e.enrollment_id 
+                AND p.course_id = c.course_id AND p.bank_id = b.bank_id AND b.bank_name = 'KBZ' ORDER BY p.created_at DESC;
+                        ";
+                        $result = mysqli_query($conn, $sqlQuery);
+                        $data = array();
+                        foreach ($result as $row) {
+                            $data[] = $row;
                         }
-                        break;
-                    case "2": {
-                            $sqlQuery = "SELECT cty.title AS category, 
-                            COUNT(*) as count FROM courses c, 
-                            categories cty, enrollments e 
-                            WHERE c.category_id = cty.category_id 
-                            AND e.course_id = c.course_id
-                            AND e.created_at < Now() 
-                            AND YEAR(e.created_at) = YEAR(CURDATE())
-                            GROUP BY category";
-                            $result = mysqli_query($conn, $sqlQuery);
-                            $data = array();
-                            foreach ($result as $row) {
-                                $data[] = $row;
-                            }
-                            echo json_encode($data);
-                        }
-                        break;
-                    default: {
-                            $sqlQuery = "SELECT cty.title AS category, 
-                            COUNT(*) as count FROM courses c, 
-                            categories cty, enrollments e 
-                            WHERE c.category_id = cty.category_id 
-                            AND e.course_id = c.course_id
-                            AND e.created_at < Now() 
-                            AND MONTH(e.created_at) = MONTH(CURDATE())
-                            GROUP BY category";
-    
-                            $result = mysqli_query($conn, $sqlQuery);
-                            $data = array();
-                            foreach ($result as $row) {
-                                $data[] = $row;
-                            }
-                            echo json_encode($data);
-                        }
+                        $firstEle = array_shift($data);
+                        $data[] = $firstEle;
                 }
-            }
             break;
-        case "showPayments": {
-                switch ($selectedId) {
-                    case "1": {
-                            $sqlQuery = "SELECT
-                            DATE_FORMAT(`created_at`, '%Y-%M-%d') as `date`,
-                            SUM(payment_amount) as `sum`
-                            FROM `payments`
-                            WHERE `created_at` < Now() 
-                            AND `created_at` > DATE_ADD(Now(), INTERVAL- 5 MONTH)
-                            GROUP BY `date`
-                            ORDER BY `created_at` ASC";
-    
-                            $result = mysqli_query($conn, $sqlQuery);
-                            $data = array();
-                            foreach ($result as $row) {
-                                $data[] = $row;
-                            }
-                            echo json_encode($data);
+        case "CB": {
+                $sqlQuery = "SELECT payment_id, uname, title, level_or_sub, bank_name, payment_amount, p.created_at AS created_at 
+                FROM payments p, enrollments e, courses c, banking_info b WHERE p.enrollment_id = e.enrollment_id 
+                AND p.course_id = c.course_id AND p.bank_id = b.bank_id AND b.bank_name = 'CB' ORDER BY p.created_at DESC;
+                        ";
+                        $result = mysqli_query($conn, $sqlQuery);
+                        $data = array();
+                        foreach ($result as $row) {
+                            $data[] = $row;
                         }
-                        break;
-                    case "2": {
-                            $sqlQuery = "SELECT
-                            DATE_FORMAT(`created_at`, '%Y-%M-%d') as `date`,
-                            SUM(payment_amount) as `sum`
-                            FROM `payments`
-                            WHERE `created_at` < Now() 
-                            AND YEAR(`created_at`) = YEAR(CURDATE())
-                            GROUP BY `date`
-                            ORDER BY `created_at` DESC";
-                            $result = mysqli_query($conn, $sqlQuery);
-                            $data = array();
-                            foreach ($result as $row) {
-                                $data[] = $row;
-                            }
-                            echo json_encode($data);
-                        }
-                        break;
-                    default: {
-                            $sqlQuery = "SELECT
-                            DATE_FORMAT(`created_at`, '%Y-%M-%d') as `date`,
-                            SUM(payment_amount) as `sum`
-                            FROM `payments`
-                            WHERE `created_at` < Now() 
-                            AND MONTH(`created_at`) = MONTH(CURDATE())
-                            GROUP BY `date`
-                            ORDER BY `created_at` DESC";
-    
-                            $result = mysqli_query($conn, $sqlQuery);
-                            $data = array();
-                            foreach ($result as $row) {
-                                $data[] = $row;
-                            }
-                            echo json_encode($data);
-                        }
+                        $firstEle = array_shift($data);
+                        $data[] = $firstEle;
                 }
-            }
+            break;
+        case "UAB": {
+                $sqlQuery = "SELECT payment_id, uname, title, level_or_sub, bank_name, payment_amount, p.created_at AS created_at 
+                FROM payments p, enrollments e, courses c, banking_info b WHERE p.enrollment_id = e.enrollment_id 
+                AND p.course_id = c.course_id AND p.bank_id = b.bank_id AND b.bank_name = 'UAB' ORDER BY p.created_at DESC;
+                        ";
+                        $result = mysqli_query($conn, $sqlQuery);
+                        $data = array();
+                        foreach ($result as $row) {
+                            $data[] = $row;
+                        }
+                        $firstEle = array_shift($data);
+                        $data[] = $firstEle;
+                }
+            break;
+        case "Shwe Bank": {
+                $sqlQuery = "SELECT payment_id, uname, title, level_or_sub, bank_name, payment_amount, p.created_at AS created_at 
+                FROM payments p, enrollments e, courses c, banking_info b WHERE p.enrollment_id = e.enrollment_id 
+                AND p.course_id = c.course_id AND p.bank_id = b.bank_id AND b.bank_name = 'Shwe Bank' ORDER BY p.created_at DESC;
+                        ";
+                        $result = mysqli_query($conn, $sqlQuery);
+                        $data = array();
+                        foreach ($result as $row) {
+                            $data[] = $row;
+                        }
+                        $firstEle = array_shift($data);
+                        $data[] = $firstEle;
+                }
+            break;
+        case "A Bank": {
+                $sqlQuery = "SELECT payment_id, uname, title, level_or_sub, bank_name, payment_amount, p.created_at AS created_at 
+                FROM payments p, enrollments e, courses c, banking_info b WHERE p.enrollment_id = e.enrollment_id 
+                AND p.course_id = c.course_id AND p.bank_id = b.bank_id AND b.bank_name = 'A Bank' ORDER BY p.created_at DESC;
+                        ";
+                        $result = mysqli_query($conn, $sqlQuery);
+                        $data = array();
+                        foreach ($result as $row) {
+                            $data[] = $row;
+                        }
+                        $firstEle = array_shift($data);
+                        $data[] = $firstEle;
+                }
+            break;
+        case "AYA Pay": {
+                $sqlQuery = "SELECT payment_id, uname, title, level_or_sub, bank_name, payment_amount, p.created_at AS created_at 
+                FROM payments p, enrollments e, courses c, banking_info b WHERE p.enrollment_id = e.enrollment_id 
+                AND p.course_id = c.course_id AND p.bank_id = b.bank_id AND b.bank_name = 'AYA Pay' ORDER BY p.created_at DESC;
+                        ";
+                        $result = mysqli_query($conn, $sqlQuery);
+                        $data = array();
+                        foreach ($result as $row) {
+                            $data[] = $row;
+                        }
+                        $firstEle = array_shift($data);
+                        $data[] = $firstEle;
+                }
+            break;
+        case "KBZ Pay": {
+                $sqlQuery = "SELECT payment_id, uname, title, level_or_sub, bank_name, payment_amount, p.created_at AS created_at 
+                FROM payments p, enrollments e, courses c, banking_info b WHERE p.enrollment_id = e.enrollment_id 
+                AND p.course_id = c.course_id AND p.bank_id = b.bank_id AND b.bank_name = 'KBZ Pay' ORDER BY p.created_at DESC;
+                        ";
+                        $result = mysqli_query($conn, $sqlQuery);
+                        $data = array();
+                        foreach ($result as $row) {
+                            $data[] = $row;
+                        }
+                        $firstEle = array_shift($data);
+                        $data[] = $firstEle;
+                }
+            break;
+        case "CB Pay": {
+                $sqlQuery = "SELECT payment_id, uname, title, level_or_sub, bank_name, payment_amount, p.created_at AS created_at 
+                FROM payments p, enrollments e, courses c, banking_info b WHERE p.enrollment_id = e.enrollment_id 
+                AND p.course_id = c.course_id AND p.bank_id = b.bank_id AND b.bank_name = 'CB Pay' ORDER BY p.created_at DESC;
+                        ";
+                        $result = mysqli_query($conn, $sqlQuery);
+                        $data = array();
+                        foreach ($result as $row) {
+                            $data[] = $row;
+                        }
+                        $firstEle = array_shift($data);
+                        $data[] = $firstEle;
+                }
+            break;
+        case "Wave Money": {
+                $sqlQuery = "SELECT payment_id, uname, title, level_or_sub, bank_name, payment_amount, p.created_at AS created_at 
+                FROM payments p, enrollments e, courses c, banking_info b WHERE p.enrollment_id = e.enrollment_id 
+                AND p.course_id = c.course_id AND p.bank_id = b.bank_id AND b.bank_name = 'Wave Money' ORDER BY p.created_at DESC;
+                        ";
+                        $result = mysqli_query($conn, $sqlQuery);
+                        $data = array();
+                        foreach ($result as $row) {
+                            $data[] = $row;
+                        }
+                        $firstEle = array_shift($data);
+                        $data[] = $firstEle;
+                }
             break;
         default: {
-                echo "Sorry Bad Request";
+                    $sqlQuery = "SELECT payment_id, uname, title, level_or_sub, bank_name, payment_amount, p.created_at AS created_at 
+                                FROM payments p, enrollments e, courses c, banking_info b WHERE p.enrollment_id = e.enrollment_id 
+                                AND p.course_id = c.course_id AND p.bank_id = b.bank_id ORDER BY p.created_at DESC;
+                            ";
+                        $result = mysqli_query($conn, $sqlQuery);
+                        $data = array();
+                        foreach ($result as $row) {
+                            $data[] = $row;
+                        }
+                        $firstEle = array_shift($data);
+                        $data[] = $firstEle;
             }
     }
+    echo json_encode($data);
 ?>
