@@ -324,35 +324,11 @@ $result = mysqli_query($conn, "SELECT * from enrollments LEFT JOIN courses ON en
                                     New Enrollment
                                 </a>
                                 <div class="row">
-                                    <div class="col-11 col-lg-6 col-xl-4 mt-4">
-                                        <select name="filterByDate" id="filterByDate" class="form-control col-11">
-                                            <option value="" selected disabled>Filter By Date</option>
-                                            <option value="1">Last 7 days</option>
-                                            <option value="2">Last 30 days</option>
-                                            <option value="3">Last 3 months</option>
-                                            <option value="4">Last 6 months</option>
-                                        </select>
-                                    </div>
-                                    <!-- <div class="col-12 col-lg-6 col-xl-4 mt-4">
-                                        <select name="levelOrSub" id="levelOrSub" onchange="levelOrSub(event)" class="form-control col-11">
-                                            <option value="" selected disabled>Filter By Level or Subject</option>
-                                            <?php
-
-                                            ?>
-                                            <option value="1">Last 5 Months</option>
-                                            <?php
-
-                                            ?>
-                                        </select>
-                                    </div> -->
-                                    <!-- <div class="col-12 col-lg-6 col-xl-4 mt-4">
-                                        <select name="isPending" id="isPending" onchange="isPending(event)" class="form-control col-11">
-                                            <option value="" selected disabled>Filter By Pending</option>
-                                            <option value="0">Not Pending</option>
-                                            <option value="1">Pending</option>
-                                            ?>
-                                        </select>
-                                    </div> -->
+                                    <div class="col-11 col-lg-6 col-xl-6 mt-4 filter1"></div>
+                                    <div class="col-12 col-lg-6 col-xl-6 mt-4 filter2"></div>
+                                    <div class="col-12 col-lg-6 col-xl-4 mt-4 filter3"></div>
+                                    <div class="col-12 col-lg-6 col-xl-4 mt-4 filter4"></div>
+                                    <div class="col-12 col-lg-6 col-xl-4 mt-4 filter5"></div>
                                 </div>
                             </div>
                             <div class="card-body px-5">
@@ -361,7 +337,7 @@ $result = mysqli_query($conn, "SELECT * from enrollments LEFT JOIN courses ON en
                                         <thead>
                                             <tr>
                                                 <th>Photo</th>
-                                                <th>Course</th>
+                                                <th class="select-course-filter">Course</th>
                                                 <th>Name</th>
                                                 <th>Date of Birth</th>
                                                 <th>Father name</th>
@@ -370,10 +346,10 @@ $result = mysqli_query($conn, "SELECT * from enrollments LEFT JOIN courses ON en
                                                 <th>Education</th>
                                                 <th>Address</th>
                                                 <th>Phone</th>
-                                                <th>Payment</th>
-                                                <th>Paid Percent</th>
-                                                <th>Is Pending</th>
-                                                <th>created_at</th>
+                                                <th class="select-payment-filter">Payment</th>
+                                                <th class="select-paidPercent-filter">Paid Percent</th>
+                                                <th class="select-isPending-filter">Is Pending</th>
+                                                <th class="select-createdAt-filter">created_at</th>
                                                 <th>updated_at</th>
                                                 <th>Edit</th>
                                                 <th>Delete</th>
@@ -383,7 +359,7 @@ $result = mysqli_query($conn, "SELECT * from enrollments LEFT JOIN courses ON en
                                             <?php while ($row = mysqli_fetch_assoc($result)) : ?>
                                                 <tr onclick="setCurrentDetail(this)" data-toggle="modal" data-target="#detailModal" class="tb-row">
                                                     <td><img class="stu-img-table" src="<?= '../../user/backend/' . $row['photo'] ?>" alt="<?= $row['photo'] ?>"></td>
-                                                    <td style="max-width : 100px;"><?= $row['title'] ?></td>
+                                                    <td style="max-width : 100px;"><?php echo empty($row['level_or_sub']) ? $row['title'] :  $row['title'] . ' - ' . $row['level_or_sub'] ?></td>
                                                     <td style="max-width : 100px;"><?= $row['uname'] ?></td>
                                                     <td><?= $row['dob'] ?></td>
                                                     <td style="max-width : 100px;"><?= $row['fname'] ?></td>
@@ -717,9 +693,8 @@ $result = mysqli_query($conn, "SELECT * from enrollments LEFT JOIN courses ON en
     <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/datatables-demo.js"></script>
+    <script src="js/enroll-filter.js"></script>
     <script src="js/style.js"></script>
-    <script src="js/filter.js"></script>
 </body>
 
 </html>

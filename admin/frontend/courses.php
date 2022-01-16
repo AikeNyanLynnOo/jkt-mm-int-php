@@ -313,6 +313,14 @@ AND c.type_id = t.type_id");
                                     <i class="fas fa-fw fa-folder-plus"></i>
                                     New Course
                                 </a>
+                                <div class="row">
+                                    <div class="col-11 col-lg-6 col-xl-4 mt-4 filter1"></div>
+                                    <div class="col-12 col-lg-6 col-xl-4 mt-4 filter2"></div>
+                                    <div class="col-12 col-lg-6 col-xl-4 mt-4 filter3"></div>
+                                    <div class="col-12 col-lg-6 col-xl-4 mt-4 filter4"></div>
+                                    <div class="col-12 col-lg-6 col-xl-4 mt-4 filter5"></div>
+                                    <div class="col-12 col-lg-6 col-xl-4 mt-4 filter6"></div>
+                                </div>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -321,19 +329,19 @@ AND c.type_id = t.type_id");
                                             <tr>
                                                 <th>Course ID</th>
                                                 <th>Course Title</th>
-                                                <th>Category Title</th>
-                                                <th>Type Title</th>
-                                                <th>Level</th>
+                                                <th class="select-category-filter">Category Title</th>
+                                                <th class="select-type-filter">Type Title</th>
+                                                <th class="select-level-filter">Level</th>
                                                 <th>Fee</th>
-                                                <th>Instructor</th>
+                                                <th class="select-instructor-filter">Instructor</th>
                                                 <th>Days</th>
                                                 <th>Time</th>
                                                 <th>Start Date</th>
                                                 <th>Duration</th>
                                                 <th>Services</th>
-                                                <th>Discount Percent</th>
+                                                <th class="select-discount-filter">Discount Percent</th>
                                                 <th>Note</th>
-                                                <th>Created At</th>
+                                                <th class="select-createdAt-filter">Created At</th>
                                                 <th>Updated At</th>
                                                 <th>Edit</th>
                                                 <th>Delete</th>
@@ -663,7 +671,7 @@ AND c.type_id = t.type_id");
     <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/datatables-demo.js"></script>
+    <script src="js/courses-filter.js"></script>
     <script src="js/style.js"></script>
 </body>
 

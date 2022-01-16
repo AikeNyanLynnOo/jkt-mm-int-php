@@ -357,6 +357,22 @@ canvas {
   scrollbar-width: none; /* Firefox */
 }
 
+.filter-select-block {
+  margin: 10px;
+  padding: 25px 15px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 5px;
+  background-color: #5685e2;
+}
+
+.no-data {
+  margin: 30px;
+  color: red;
+  font-size: 28px;
+  font-weight: 600;
+  font-style: italic;
+}
+
 @media only screen and (max-width: 991px) {
   .mychart-left,
   .mychart-right {
