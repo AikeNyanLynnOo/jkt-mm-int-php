@@ -2,9 +2,10 @@ function filterByTime(e) {
   $(".payment-block").html(``);
   // console.log(typeof e.target.value);
   $.post(
-    "filterPaymentByTime.php",
+    "filterPayment.php",
     {
-      selectedValue: e.target.value,
+      filteredByTime: e.target.value,
+      filteredByBanking: $("#filterByPayment").val()
     },
     function (data) {
       console.log(data);
@@ -61,9 +62,10 @@ function filterByPayment(e) {
   $("#payment-block").html(``);
   // console.log(e.target.value);
   $.post(
-    "filterPaymentByBank.php",
+    "filterPayment.php",
     {
-      selectedValue: e && e.target.value,
+        filteredByBanking: e.target.value,
+        filteredByTime: $("#filterByTime").val()
     },
     function (data) {
       console.log(data);

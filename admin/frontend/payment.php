@@ -235,7 +235,7 @@ $noti_result = mysqli_query($conn, $get_notifications);
                 <div class="container">
                     <div class="row my-4 filter-select-block">
                         <div class="col-12 col-lg-4">
-                            <select onchange="filterByTime(event)" class="form-control col-10">
+                            <select onchange="filterByTime(event)" class="form-control col-10" id="filterByTime">
                                 <option value="">Filter By Time</option>
                                 <option value="1">Last 7 Days</option>
                                 <option value="2">Last 30 Days</option>
@@ -244,7 +244,7 @@ $noti_result = mysqli_query($conn, $get_notifications);
                             </select>
                         </div>
                         <div class="col-12 col-lg-4">
-                            <select onchange="filterByPayment(event)" class="form-control col-10">
+                            <select onchange="filterByPayment(event)" class="form-control col-10" id="filterByPayment">
                                 <option value="">Filter By Banking</option>
                                 <?php
                                     $bank_query = "SELECT DISTINCT bank_name from banking_info b, payments p WHERE b.bank_id = p.bank_id";

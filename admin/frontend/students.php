@@ -258,7 +258,7 @@ $noti_result = mysqli_query($conn, $get_notifications);
                                     New Enrollment
                                 </a>
                             </div> -->
-                            <div class="card-body">
+                            <div class="card-body px-5">
                                 <div class="table-responsive">
                                     <table class="table table-bordered my-table" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
@@ -437,7 +437,7 @@ $noti_result = mysqli_query($conn, $get_notifications);
     <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/datatables-demo.js"></script>
+    <script src="js/studentDataTable.js"></script>
     <script src="js/students.js"></script>
 </body>
 
