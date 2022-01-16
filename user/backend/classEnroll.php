@@ -28,6 +28,9 @@ include("../../admin/confs/config.php");
 // for mail
 include("../../admin/mail/sendMail.php");
 
+// for noti
+include("../backend/newNoti.php");
+
 // STEP 1 
 $photo = $_FILES['photo'];
 $uname = $_POST['uname'];
@@ -235,6 +238,7 @@ if ($org_width > "300" || $org_height > "300") {
         }
         if ($afterTryingToSend[0]) {
             unset($_SESSION['response']);
+            addNewNoti("new pending enrollment", "please go to students and search for enrollment id", "PENDING_REQUEST", $lastInserted, null);
             header("location: ../frontend/enrollSuccess.php");
             exit();
         } else {
@@ -247,6 +251,7 @@ if ($org_width > "300" || $org_height > "300") {
             "data" => $_POST,
         );
     }
+    // addNewNoti("new pending enrollment", "please go to students and search for enrollment id", "PENDING_REQUEST", $lastInserted, null);
 } else {
     if (file_exists("uploads/$nrcNumber.$file_extension")) unlink("uploads/$nrcNumber.$file_extension");
     $target = "uploads/" . "$nrcNumber.$file_extension";
@@ -286,10 +291,10 @@ if ($org_width > "300" || $org_height > "300") {
             1)";
         mysqli_query($conn, $insert_into_enrollments);
         $lastInserted = $conn->insert_id;
-
+        
         $select_from_courses = "SELECT * FROM courses WHERE course_id = $courseId";
         $course_result = mysqli_query($conn, $select_from_courses);
-
+        
         $row = mysqli_fetch_assoc($course_result);
         if ($email == "") {
             unset($_SESSION['response']);
@@ -306,6 +311,7 @@ if ($org_width > "300" || $org_height > "300") {
         }
         if ($afterTryingToSend[0]) {
             unset($_SESSION['response']);
+            addNewNoti("new pending enrollment", "please go to students and search for enrollment id", "PENDING_REQUEST", $lastInserted, null);
             header("location: ../frontend/enrollSuccess.php");
             exit();
         } else {
