@@ -6,6 +6,19 @@ include "../confs/config.php";
 $get_notifications = "SELECT * FROM notifications WHERE seen=0 AND created_at >= DATE_SUB(NOW(),INTERVAL 6 HOUR)";
 $noti_result = mysqli_query($conn, $get_notifications);
 
+$pending_query = "SELECT * FROM enrollments WHERE is_pending=1";
+$pending_result = mysqli_query($conn, $pending_query);
+
+$current_students_query = "SELECT * FROM enrollments WHERE is_pending=0";
+$current_students_result = mysqli_query($conn, $current_students_query);
+
+$current_courses_query = "SELECT * FROM courses c, enrollments e WHERE e.course_id=c.course_id GROUP BY c.course_id";
+$current_courses_result = mysqli_query($conn, $current_courses_query);
+
+$annual_income_query = "SELECT
+SUM(CASE WHEN YEAR(`created_at`) = YEAR(CURDATE()) THEN payment_amount ELSE 0 END) AS income FROM payments;";
+$annual_income_result = mysqli_query($conn, $annual_income_query);
+$annual_income_row = mysqli_fetch_assoc($annual_income_result);
 ?>
 <html lang="en">
 
@@ -252,11 +265,11 @@ $noti_result = mysqli_query($conn, $get_notifications);
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Earnings (Monthly)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                                Income (Annual)</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">MMKs <?php echo $annual_income_row["income"]  ?></div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -270,18 +283,35 @@ $noti_result = mysqli_query($conn, $get_notifications);
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Earnings (Annual)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                                                Opening Courses</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo mysqli_num_rows($current_courses_result) ?></div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                            <i class="fas fa-folder-open fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Studying Students</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo mysqli_num_rows($current_students_result) ?></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-users fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Earnings (Monthly) Card Example -->
+                        <!-- Earnings (Monthly) Card Example
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-info shadow h-100 py-2">
                                 <div class="card-body">
@@ -306,7 +336,7 @@ $noti_result = mysqli_query($conn, $get_notifications);
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
                         <!-- Pending Requests Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
@@ -315,8 +345,8 @@ $noti_result = mysqli_query($conn, $get_notifications);
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Pending Requests</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                                Pending Enrollments</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo mysqli_num_rows($pending_result) ?></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-comments fa-2x text-gray-300"></i>
