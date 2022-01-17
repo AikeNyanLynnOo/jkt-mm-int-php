@@ -281,7 +281,7 @@ $noti_result = mysqli_query($conn, $get_notifications);
                                                 <th>Phone</th>
                                                 <th class="select-payment-filter">Payment</th>
                                                 <th class="select-paidPercent-filter">Paid Percent</th>
-                                                <th class="select-isPending-filter">Is Pending</th>
+                                                <th class="select-isPending-filter">Approved</th>
                                                 <th class="select-createdAt-filter">created_at</th>
                                                 <th>updated_at</th>
                                                 <th>Edit</th>
@@ -289,11 +289,16 @@ $noti_result = mysqli_query($conn, $get_notifications);
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php while ($row = mysqli_fetch_assoc($result)) : ?>
+                                            <?php
+                                                include('../auth/hashFunc.php'); 
+                                                while ($row = mysqli_fetch_assoc($result)) : 
+                                                    $nrcNo = substr($row['nrc'], strlen($row['nrc'])-6, strlen($row['nrc']));
+                                                    $newNrc = encrypt_decrypt("encrypt", $nrcNo);
+                                            ?>
                                                 <tr onclick="setCurrentDetail(this)" data-toggle="modal" data-target="#detailModal" class="tb-row">
                                                     <td><img class="stu-img-table" src="<?= '../../user/backend/' . $row['photo'] ?>" alt="<?= $row['photo'] ?>"></td>
                                                     <td style="max-width : 100px;"><?php echo empty($row['level_or_sub']) ? $row['title'] :  $row['title'] . ' - ' . $row['level_or_sub'] ?></td>
-                                                    <td style="max-width : 100px;"><?= $row['uname'] ?></td>
+                                                    <td style="max-width : 100px;"><a href="students.php?id=<?php echo $newNrc; ?>"><?= $row['uname'] ?></a></td>
                                                     <td><?= $row['dob'] ?></td>
                                                     <td style="max-width : 100px;"><?= $row['fname'] ?></td>
                                                     <td style="max-width : 100px;"><?= $row['nrc'] ?></td>
@@ -305,7 +310,7 @@ $noti_result = mysqli_query($conn, $get_notifications);
                                                     <td><?= $row['phone'] ?></td>
                                                     <td><?= $row['payment_method'] ?></td>
                                                     <td><?= $row['paid_percent'] . "%" ?></td>
-                                                    <td><?= $row['is_pending'] ?></td>
+                                                    <td class="pending-badges"><?php echo $row['is_pending'] == 0 ? "&#9989;" : "&#10060;" ?></td>
                                                     <td><?= $row['created_at'] ?></td>
                                                     <td><?= $row['updated_at'] ?></td>
                                                     <td><button class="tb-btn tb-btn-edit" onclick="setCurrentEditing(event,this,<?php echo $row['enrollment_id'] ?>,<?php echo $row['course_id'] ?>)" data-toggle="modal" data-target="#editingModal"><i class="fa fa-pencil"></i></button></td>
@@ -317,7 +322,9 @@ $noti_result = mysqli_query($conn, $get_notifications);
                                 </div>
                             </div>
                         </div>
-
+                        <select>
+                            <option data-content="<i class='fas fa-check-circle pending-true-badges'></i>"></option>
+                        </select>
                     </div>
                 </div>
                 <!-- /.container-fluid -->
@@ -440,11 +447,11 @@ $noti_result = mysqli_query($conn, $get_notifications);
                         </table>
                     </div>
                 </div>
-                <div class="modal-footer row justify-content-between px-5 mx-2">
-                    <div>
+                <div class="modal-footer row text-right px-5 mx-2">
+                    <!-- <div>
                         <button class="tb-btn d-inline tb-btn-edit"><i class="fa fa-pencil mr-1"></i>Edit</button>
                         <button class="tb-btn d-inline tb-btn-delete"><i class="fa fa-trash mr-1"></i>Delete</button>
-                    </div>
+                    </div> -->
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                 </div>
             </div>

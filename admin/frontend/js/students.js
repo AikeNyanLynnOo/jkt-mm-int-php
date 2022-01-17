@@ -33,3 +33,34 @@ function setCurrentDetail(row) {
   detailAddress.innerText = rowArr[7];
   detailPhone.innerText = rowArr[8];
 }
+
+// function decryptUsingAES256(para) {
+//   let _key = CryptoJS.enc.Utf8.parse('JKT-2019-20IT85-MM-JP');
+//   let _iv = CryptoJS.enc.Utf8.parse('JKT-2019-serV1ce-MM-JP');
+  
+//   this.decrypted = CryptoJS.AES.decrypt(
+//     para, _key, {
+//       keySize: 16,
+//       iv: _iv,
+//       mode: CryptoJS.mode.CBC,
+//       padding: CryptoJS.pad.Pkcs7
+//     }).toString(CryptoJS.enc.Utf8);
+//     return this.decrypted
+// }
+
+$(document).ready(function () {
+  const params = new URLSearchParams(window.location.search);
+  let getParam = params.get('id');
+  // let table = $("#dataTable").DataTable();
+  let decrypted = '';
+
+  $.post(
+    "decrypt.php", {
+      encryptedId: getParam 
+    },
+    function (data) {
+      $("#dataTable").DataTable().column(4)
+      .search(data.toString()).draw();
+    }
+   )
+})

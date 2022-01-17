@@ -77,11 +77,12 @@ $(document).ready(function () {
           var column = this;
           // console.log(column)
           var select = $(
-            '<select class="form-control col-11"><option value="">Filter by Is Pending</option></select>'
+            '<select class="form-control col-11"><option value="">Filter by Approved</option></select>'
           )
             .appendTo($(".filter4").empty())
             .on("change", function () {
-              var val = $.fn.dataTable.util.escapeRegex($(this).val());
+              var val = $(this).val();
+              console.log(val)
               column.search(val ? "^" + val + "$" : "", true, false).draw();
             });
 
@@ -90,7 +91,10 @@ $(document).ready(function () {
             .unique()
             .sort()
             .each(function (d, j) {
-              select.append('<option value="' + d + '">' + d + "</option>");
+              console.log(d, j);
+              select.append(`
+                <option value='${d}'>${d}</option>
+              `);
             });
         });
 

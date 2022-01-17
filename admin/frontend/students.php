@@ -268,7 +268,7 @@ $noti_result = mysqli_query($conn, $get_notifications);
                                                 <th>Name</th>
                                                 <th>Dob</th>
                                                 <th>Father name</th>
-                                                <th>Nrc</th>
+                                                <th class="filter-link">Nrc</th>
                                                 <th>Email</th>
                                                 <th>Education</th>
                                                 <th>Address</th>
@@ -437,7 +437,6 @@ $noti_result = mysqli_query($conn, $get_notifications);
     <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="js/studentDataTable.js"></script>
     <script src="js/students.js"></script>
 </body>
 
