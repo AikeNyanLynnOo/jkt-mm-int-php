@@ -373,6 +373,10 @@ canvas {
   font-style: italic;
 }
 
+.link:hover {
+  text-decoration: none;
+}
+
 @media only screen and (max-width: 991px) {
   .mychart-left,
   .mychart-right {
