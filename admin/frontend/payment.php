@@ -125,6 +125,12 @@ $noti_result = mysqli_query($conn, $get_notifications);
                     <span>Payments</span></a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link" href="./pendingPayments.php">
+                    <i class="fas fa-fw fa-dollar-sign"></i>
+                    <span>Pending Payments</span></a>
+            </li>
+
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
@@ -261,7 +267,7 @@ $noti_result = mysqli_query($conn, $get_notifications);
                         $query = "SELECT payment_id, uname, title, level_or_sub, bank_name, payment_amount, 
                                       p.created_at AS created_at FROM payments p, enrollments e, courses c, banking_info b 
                                       WHERE p.enrollment_id = e.enrollment_id AND p.course_id = c.course_id 
-                                      AND p.bank_id = b.bank_id ORDER BY created_at DESC";
+                                      AND p.bank_id = b.bank_id AND p.is_pending = 0 ORDER BY created_at DESC";
                         $result = mysqli_query($conn, $query);
                         while ($row = mysqli_fetch_assoc($result)) :
                         ?>

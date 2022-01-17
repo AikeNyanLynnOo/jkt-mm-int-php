@@ -146,7 +146,7 @@ if (!isset($_GET["enroll_id"])) {
             $bank_id = $bank_row["bank_id"];
             ?>
             <p class="enroll-description">Please fill out this form to confirm your payment</p>
-            <form id="paymentForm" action="../../backend/enrollSubmit.php" method="POST" enctype="multipart/form-data">
+            <form id="paymentForm" action="../backend/enrollSubmit.php" method="POST" enctype="multipart/form-data">
               <span id="nrc" class="hidden"><?php echo $row['nrc']; ?></span>
               <div class="row mx-2">
                 <label for="payment_amount">Enter Payment Amount (MMKs)</label>

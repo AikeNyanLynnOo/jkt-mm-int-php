@@ -5,7 +5,8 @@ function filterByTime(e) {
     "filterPayment.php",
     {
       filteredByTime: e.target.value,
-      filteredByBanking: $("#filterByPayment").val()
+      filteredByBanking: $("#filterByPayment").val(),
+      is_pending : 0,
     },
     function (data) {
       console.log(data);
@@ -65,7 +66,8 @@ function filterByPayment(e) {
     "filterPayment.php",
     {
         filteredByBanking: e.target.value,
-        filteredByTime: $("#filterByTime").val()
+        filteredByTime: $("#filterByTime").val(),
+        is_pending : 0,
     },
     function (data) {
       console.log(data);

@@ -136,6 +136,11 @@ if (!isset($_GET["id"])) {
                     <i class="fas fa-fw fa-dollar-sign"></i>
                     <span>Payments</span></a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./pendingPayments.php">
+                    <i class="fas fa-fw fa-dollar-sign"></i>
+                    <span>Pending Payments</span></a>
+            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
