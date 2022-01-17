@@ -409,19 +409,19 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                     <div class="row bank-container">
                       <div class="col-12 col-sm-11 col-md-4 col-lg-4 col-xl-4 text-center">
                         <label class="bank">
-                          <input type="radio" name="payment_method" value="CB banking" <?php echo "checked" ?> />
+                          <input type="radio" name="payment_method" value="CB Bank" <?php echo "checked" ?> />
                           <div class="bank-image" style="background-image: url(./assets/images/banks/CB.png)"></div>
                         </label>
                       </div>
                       <div class="col-12 col-sm-11 col-md-4 col-lg-4 col-xl-4 text-center">
                         <label class="bank">
-                          <input type="radio" name="payment_method" value="KBZ banking" />
+                          <input type="radio" name="payment_method" value="KBZ Bank" />
                           <div class="bank-image" style="background-image: url(./assets/images/banks/kbz.png)"></div>
                         </label>
                       </div>
                       <div class="col-12 col-sm-11 col-md-4 col-lg-4 col-xl-4 text-center">
                         <label class="bank">
-                          <input type="radio" name="payment_method" value="AYA banking" />
+                          <input type="radio" name="payment_method" value="AYA Bank" />
                           <div class="bank-image" style="background-image: url(./assets/images/banks/AYA.png)"></div>
                         </label>
                       </div>
@@ -608,19 +608,19 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                     <div class="row bank-container">
                       <div class="col-12 col-sm-11 col-md-4 col-lg-4 col-xl-4 text-center">
                         <label class="bank">
-                          <input type="radio" name="payment_method" value="CB banking" />
+                          <input type="radio" name="payment_method" value="CB Bank" />
                           <div class="bank-image" style="background-image: url(./assets/images/banks/CB.png)"></div>
                         </label>
                       </div>
                       <div class="col-12 col-sm-11 col-md-4 col-lg-4 col-xl-4 text-center">
                         <label class="bank">
-                          <input type="radio" name="payment_method" value="KBZ banking" />
+                          <input type="radio" name="payment_method" value="KBZ Bank" />
                           <div class="bank-image" style="background-image: url(./assets/images/banks/kbz.png)"></div>
                         </label>
                       </div>
                       <div class="col-12 col-sm-11 col-md-4 col-lg-4 col-xl-4 text-center">
                         <label class="bank">
-                          <input type="radio" name="payment_method" value="AYA banking" />
+                          <input type="radio" name="payment_method" value="AYA Bank" />
                           <div class="bank-image" style="background-image: url(./assets/images/banks/AYA.png)"></div>
                         </label>
                       </div>
@@ -628,7 +628,7 @@ $response = isset($_SESSION["response"]) ? $_SESSION["response"] : null;
                     <div class="row bank-container">
                       <div class="col-12 col-sm-11 col-md-4 col-lg-4 col-xl-4 text-center">
                         <label class="bank">
-                          <input type="radio" name="payment_method" value="Kpay" />
+                          <input type="radio" name="payment_method" value="KBZ Pay" />
                           <div class="bank-image" style="background-image: url(./assets/images/banks/KPAY.png)"></div>
                         </label>
                       </div>

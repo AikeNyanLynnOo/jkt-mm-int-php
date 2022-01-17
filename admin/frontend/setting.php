@@ -370,10 +370,10 @@ $noti_result = mysqli_query($conn, $get_notifications);
                                         <div class="form-group">
                                             <select name="bankName" id="bankName" class="form-control form-control-user" required>
                                                 <option value="" selected disabled>Select Bank</option>
-                                                <option value="AYA">AYA</option>
-                                                <option value="KBZ">KBZ</option>
-                                                <option value="CB">CB</option>
-                                                <option value="UAB">UAB</option>
+                                                <option value="AYA Bank">AYA Bank</option>
+                                                <option value="KBZ Bank">KBZ Bank</option>
+                                                <option value="CB Bank">CB Bank</option>
+                                                <option value="UAB Bank">UAB Bank</option>
                                                 <option value="Shwe Bank">Shwe Bank</option>
                                                 <option value="A Bank">A Bank</option>
                                                 <option value="AYA Pay">AYA Pay</option>

@@ -558,10 +558,10 @@ $noti_result = mysqli_query($conn, $get_notifications);
                             <label for="paymentMethod">Choose Payment Method</label>
                             <select id="paymentMethod" name="paymentMethod" class="form-control" required>
                                 <option value="" selected disabled>Payment Method</option>
-                                <option value="CB Banking">CB Banking</option>
-                                <option value="KBZ Banking">KBZ Banking</option>
-                                <option value="AYA Banking">AYA Banking</option>
-                                <option value="Kpay">Kpay</option>
+                                <option value="CB Bank">CB Bank</option>
+                                <option value="KBZ Bank">KBZ Bank</option>
+                                <option value="AYA Bank">AYA Bank</option>
+                                <option value="KBZ Pay">KBZ Pay</option>
                                 <option value="Cash">Cash</option>
                             </select>
                         </div>
