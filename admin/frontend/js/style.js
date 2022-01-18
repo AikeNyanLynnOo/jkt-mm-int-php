@@ -172,16 +172,6 @@ function setCurrentEditing(event, row, idx, classIdx) {
 //   xhr.send();
 // }
 
-// nrcCode.addEventListener("change", function (e) {
-//   getTownship(e.target.value);
-// });
-// userImg.addEventListener("change", function (e) {
-//   const [file] = userImg.files;
-//   if (file) {
-//     imagePreview.src = URL.createObjectURL(file);
-//   }
-// });
-
 function setCurrentDeleting(event, row, idx) {
   $("#deletingModal").modal("show");
   event.stopPropagation();
