@@ -3,6 +3,7 @@
 if (!isset($_GET["enroll_id"])) {
   header("location: ../frontend/index.html");
 }
+include_once '../../admin/auth/hashFunc.php';
 ?>
 
 <!DOCTYPE html>
@@ -135,8 +136,8 @@ if (!isset($_GET["enroll_id"])) {
           <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
             <?php
             include_once('../../admin/confs/config.php');
-            $enrollId = $_GET['enroll_id'];
-            $nrc = "SELECT * FROM enrollments WHERE enrollment_id = $enrollId";
+            $decryptedEnrollId = encrypt_decrypt("decrypt", $_GET['enroll_id']);
+            $nrc = "SELECT * FROM enrollments e, students s WHERE e.student_id = s.student_id AND enrollment_id = $decryptedEnrollId";
             $nrc_result = mysqli_query($conn, $nrc);
             $row = mysqli_fetch_assoc($nrc_result);
             $payment_method = $row["payment_method"];
