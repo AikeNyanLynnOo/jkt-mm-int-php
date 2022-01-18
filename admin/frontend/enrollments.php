@@ -267,12 +267,14 @@ $noti_result = mysqli_query($conn, $get_notifications);
                                     <i class="fas fa-fw fa-user-plus"></i>
                                     New Enrollment
                                 </a>
-                                <div class="row">
-                                    <div class="col-12 col-lg-6 col-xl-6 mt-4 filter1"></div>
-                                    <div class="col-12 col-lg-6 col-xl-6 mt-4 filter2"></div>
-                                    <div class="col-12 col-lg-6 col-xl-4 mt-4 filter3"></div>
-                                    <div class="col-12 col-lg-6 col-xl-4 mt-4 filter4"></div>
-                                    <div class="col-12 col-lg-6 col-xl-4 mt-4 filter5"></div>
+                                <div class="row mb-2 mt-4">
+                                    <div class="col-12 col-md-6 filter1"></div>
+                                    <div class="col-12 col-md-6 filter2"></div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-12 col-md-4 filter3"></div>
+                                    <div class="col-12 col-md-4 filter4"></div>
+                                    <div class="col-12 col-md-4 filter5"></div>
                                 </div>
                             </div>
                             <div class="card-body px-5">

@@ -245,7 +245,7 @@ $noti_result = mysqli_query($conn, $get_notifications);
                 <div class="container">
                     <div class="row my-4 filter-select-block">
                         <div class="col-12 col-lg-4">
-                            <select onchange="filterByTime(event)" class="form-control col-10" id="filterByTime">
+                            <select onchange="filterByTime(event)" class="form-control col-12 mb-2 mb-lg-0" id="filterByTime">
                                 <option value="">Filter By Time</option>
                                 <option value="1">Last 7 Days</option>
                                 <option value="2">Last 30 Days</option>
@@ -254,24 +254,39 @@ $noti_result = mysqli_query($conn, $get_notifications);
                             </select>
                         </div>
                         <div class="col-12 col-lg-4">
-                            <select onchange="filterByPayment(event)" class="form-control col-10" id="filterByPayment">
+                            <select onchange="filterByPayment(event)" class="form-control col-12" id="filterByPayment">
                                 <option value="">Filter By Banking</option>
                                 <?php
-                                    $bank_query = "SELECT DISTINCT bank_name from banking_info b, payments p WHERE b.bank_id = p.bank_id";
-                                    $bank_result = mysqli_query($conn, $bank_query);
-                                    while($row1 = mysqli_fetch_array($bank_result)) :
+                                $bank_query = "SELECT DISTINCT bank_name from banking_info b, payments p WHERE b.bank_id = p.bank_id";
+                                $bank_result = mysqli_query($conn, $bank_query);
+                                while ($row1 = mysqli_fetch_array($bank_result)) :
                                 ?>
-                                        <option value="<?php echo $row1['bank_name'] ?>"><?= $row1['bank_name'] ?></option>
+                                    <option value="<?php echo $row1['bank_name'] ?>"><?= $row1['bank_name'] ?></option>
                                 <?php endwhile ?>
                             </select>
                         </div>
                     </div>
                     <div class="row payment-block">
                         <?php
-                        $query = "SELECT payment_id, uname, title, level_or_sub, bank_name, payment_amount, 
-                                      p.created_at AS created_at FROM payments p, enrollments e, courses c, banking_info b 
-                                      WHERE p.enrollment_id = e.enrollment_id AND p.course_id = c.course_id 
-                                      AND p.bank_id = b.bank_id AND p.is_pending = 0 ORDER BY created_at DESC";
+                        $query = "SELECT
+                        payment_id,
+                        student_name,
+                        title,
+                        level_or_sub,
+                        bank_name,
+                        payment_amount,
+                        p.created_at AS created_at
+                    FROM
+                        payments p,
+                        enrollments e,
+                        students s,
+                        courses c,
+                        banking_info b
+                    WHERE
+                        p.enrollment_id = e.enrollment_id AND e.student_id = s.student_id AND p.course_id = c.course_id AND p.bank_id = b.bank_id AND p.is_pending = 0
+                    ORDER BY
+                        created_at
+                    DESC";
                         $result = mysqli_query($conn, $query);
                         while ($row = mysqli_fetch_assoc($result)) :
                         ?>
@@ -283,7 +298,7 @@ $noti_result = mysqli_query($conn, $get_notifications);
                                     </div>
                                     <div class="row my-3">
                                         <div class="transaction-label col-6">Registered Student Name : </div>
-                                        <div class="transaction-data col-6"><?php echo $row['uname']; ?></div>
+                                        <div class="transaction-data col-6"><?php echo $row['student_name']; ?></div>
                                     </div>
                                     <div class="row my-3">
                                         <div class="transaction-label col-6">Registered Course: </div>

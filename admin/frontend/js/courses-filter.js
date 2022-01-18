@@ -8,7 +8,7 @@ $(document).ready(function () {
           var column = this;
           // console.log(column)
           var select = $(
-            '<select class="form-control col-11"><option value="">Filter by Category</option></select>'
+            '<select class="form-control"><option value="">Filter by Category</option></select>'
           )
             .appendTo($(".filter1").empty())
             .on("change", function () {
@@ -31,7 +31,7 @@ $(document).ready(function () {
           var column = this;
           // console.log(column)
           var select = $(
-            '<select class="form-control col-11"><option value="">Filter by Type</option></select>'
+            '<select class="form-control"><option value="">Filter by Type</option></select>'
           )
             .appendTo($(".filter2").empty())
             .on("change", function () {
@@ -54,7 +54,7 @@ $(document).ready(function () {
           var column = this;
           // console.log(column)
           var select = $(
-            '<select class="form-control col-11"><option value="">Filter by Level</option></select>'
+            '<select class="form-control"><option value="">Filter by Level</option></select>'
           )
             .appendTo($(".filter3").empty())
             .on("change", function () {
@@ -77,7 +77,7 @@ $(document).ready(function () {
           var column = this;
           // console.log(column)
           var select = $(
-            '<select class="form-control col-11"><option value="">Filter by Instructor</option></select>'
+            '<select class="form-control"><option value="">Filter by Instructor</option></select>'
           )
             .appendTo($(".filter4").empty())
             .on("change", function () {
@@ -100,7 +100,7 @@ $(document).ready(function () {
           var column = this;
           // console.log(column)
           var select = $(
-            '<select class="form-control col-11"><option value="">Filter by Discount</option></select>'
+            '<select class="form-control"><option value="">Filter by Discount</option></select>'
           )
             .appendTo($(".filter5").empty())
             .on("change", function () {
@@ -123,7 +123,7 @@ $(document).ready(function () {
           var column = this;
           // console.log(column)
           var select = $(
-            '<select class="form-control col-11"><option value="">Filter by Created Date</option></select>'
+            '<select class="form-control"><option value="">Filter by Created Date</option></select>'
           )
             .appendTo($(".filter6").empty())
             .on("change", function () {
