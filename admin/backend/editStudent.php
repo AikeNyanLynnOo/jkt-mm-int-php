@@ -7,7 +7,7 @@ include("../../admin/confs/config.php");
 // include("../mail/sendMail.php");
 
 // STEP 1 
-$studentId = $_POST['studentId'];
+$studentId = intval($_POST['studentId']);
 $photo = $_FILES['photo'];
 $uname = $_POST['uname'];
 $dob = $_POST['dob'];
@@ -134,12 +134,12 @@ if ($photo["size"] > 0) {
             fname='$fname', 
             nrc='$nrc', 
             email='$email', 
-            education='$education', 
-            address='$address', 
             phone='$phone', 
+            education='$education', 
+            address='$address'
             WHERE student_id = $student_id";
 
-            mysqli_query($conn, $update_to_enrollments);
+            mysqli_query($conn, $update_to_students);
             header("location: ../frontend/students.php");
         } else {
             // $response = array(
@@ -154,20 +154,20 @@ if ($photo["size"] > 0) {
         if (move_uploaded_file($_FILES["photo"]["tmp_name"], "../../user/backend/" . $target)) {
             // continue to insert to db cuz image upload succeed.
             $update_to_students = "UPDATE students SET
-            uname='$uname', 
+            student_name='$uname', 
             dob='$dob', 
             fname='$fname', 
             nrc='$nrc', 
             email='$email', 
+            phone='$phone', 
             education='$education', 
             address='$address', 
-            phone='$phone', 
             photo='$target',
             created_at='$created_at',
-            updated_at=now(),
+            updated_at=now()
             WHERE student_id = $studentId";
 
-            mysqli_query($conn, $update_to_enrollments);
+            mysqli_query($conn, $update_to_students);
             header("location: ../frontend/enrollments.php");
         } else {
             // $response = array(
@@ -181,19 +181,18 @@ if ($photo["size"] > 0) {
 } else {
     $src = $_POST["notChangeImg"];
     $update_to_students = "UPDATE students SET 
-            uname='$uname', 
-            dob='$dob', 
-            fname='$fname', 
-            nrc='$nrc', 
-            email='$email', 
-            education='$education', 
-            address='$address', 
-            phone='$phone',
-            photo='$src',
-            created_at='$created_at',
-            updated_at=now(),
+            student_name='{$uname}', 
+            dob='{$dob}', 
+            fname='{$fname}', 
+            nrc='{$nrc}', 
+            email='{$email}', 
+            phone='{$phone}',
+            education='{$education}', 
+            address='{$address}', 
+            photo='{$src}',
+            created_at='{$created_at}',
+            updated_at=now()
             WHERE student_id = $studentId";
-
     mysqli_query($conn, $update_to_students);
     header("location: ../frontend/students.php");
 }

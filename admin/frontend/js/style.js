@@ -148,30 +148,6 @@ function setCurrentEditing(event, row, idx, classIdx) {
   createdAt.value = rowArr[6];
 }
 
-// function getTownship(state) {
-//   let selected_township = nrcArr[1].slice(0, -9);
-//   var xhr = new XMLHttpRequest();
-//   xhr.open("GET", "./nrc.php", true);
-//   xhr.onload = function () {
-//     var nrcJson = JSON.parse(xhr.responseText);
-//     nrcJson.sort((a, b) => (a.name_en > b.name_en ? 1 : -1));
-//     $("#township").html(`<option value="" selected disabled>Township</option>`);
-//     nrcJson.forEach((value) => {
-//       var option = document.createElement("option");
-//       if (state == value.nrc_code) {
-//         let township = value.name_en + " - " + value.name_mm;
-//         option.innerText = township;
-//         option.setAttribute("value", township);
-//         document.getElementById("township").appendChild(option);
-//         if (selected_township === township) {
-//           $(`#township option[value='${township}'`).prop("selected", true);
-//         }
-//       }
-//     });
-//   };
-//   xhr.send();
-// }
-
 function setCurrentDeleting(event, row, idx) {
   $("#deletingModal").modal("show");
   event.stopPropagation();

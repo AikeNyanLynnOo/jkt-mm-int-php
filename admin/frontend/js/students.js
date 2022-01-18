@@ -36,6 +36,9 @@ function student_detail(row) {
 }
 
 // student detail
+var studentId = document.getElementById("studentId");
+var imagePreview = document.getElementById("imagePreview");
+var notChangeImg = document.getElementById("notChangeImg");
 var uname = document.getElementById("uname");
 var dob = document.getElementById("dob");
 var fname = document.getElementById("fname");
@@ -47,9 +50,11 @@ var email = document.getElementById("email");
 var phone = document.getElementById("phone");
 var education = document.getElementById("education");
 var address = document.getElementById("address");
+var createdAt = document.getElementById("createdAt");
 
 // deleting
-// var stuName = document.getElementById("stuName");
+var stuName = document.getElementById("stuName");
+var studentDeletingId = document.getElementById("studentDeletingId");
 
 function student_edit(event, row, idx) {
   $("#editingModal").modal("show");
@@ -85,6 +90,7 @@ function student_edit(event, row, idx) {
   education.value = rowArr[6];
   address.value = rowArr[7].trim();
   phone.value = rowArr[8];
+  createdAt.value = rowArr[9];
 }
 
 function getTownship(state) {
@@ -120,6 +126,23 @@ userImg && userImg.addEventListener("change", function (e) {
     imagePreview.src = URL.createObjectURL(file);
   }
 });
+
+function student_delete(event, row, idx) {
+  $("#deletingModal").modal("show");
+  event.stopPropagation();
+  var tr = row.closest("tr");
+  var tds = tr.children;
+  var rowArr = [];
+  for (var i = 0; i < tds.length; i++) {
+    if (i == 0) {
+      rowArr.push(tds[i].children[0].alt);
+    } else {
+      rowArr.push(tds[i].textContent);
+    }
+  }
+  stuName.innerText = rowArr[2];
+  studentDeletingId.value = idx;
+}
 
 $(document).ready(function () {
   const params = new URLSearchParams(window.location.search);

@@ -534,6 +534,32 @@ $noti_result = mysqli_query($conn, $get_notifications);
         </div>
     </div>
 
+    <!-- deleting modal -->
+    <div class="modal fade" id="deletingModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Deleting</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>You are going to delete <span id="stuName" class="font-weight-bold"></span>. 
+                    This can't be undone. <span style="color: red; font-weight: bold; font-style: italic;">Are you sure to delete?</span></p>
+                    <form action="../backend/deleteStudent.php" id="deleteForm" method="POST">
+                        <input type="hidden" name="studentDeletingId" id="studentDeletingId" />
+                        <hr />
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <button class="btn btn-primary" type="submit">Delete</button>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
