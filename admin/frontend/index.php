@@ -272,7 +272,7 @@ $annual_income_row = mysqli_fetch_assoc($annual_income_result);
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                     Income (Annual)</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">MMKs <?php echo $annual_income_row["income"]  ?></div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">MMKs <?php echo number_format($annual_income_row["income"])  ?></div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>

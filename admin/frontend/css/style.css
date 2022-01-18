@@ -387,6 +387,15 @@ canvas {
   font-size: 20px;
 }
 
+.uname-link a {
+  color: #858796;
+  text-decoration: underline;
+}
+
+.uname-link a:hover {
+  color: #5685e2;
+}
+
 @media only screen and (max-width: 991px) {
   .mychart-left,
   .mychart-right {

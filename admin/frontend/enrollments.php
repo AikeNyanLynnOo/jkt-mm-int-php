@@ -304,7 +304,7 @@ $noti_result = mysqli_query($conn, $get_notifications);
                                                 <tr onclick="setCurrentDetail(this)" data-toggle="modal" data-target="#detailModal" class="tb-row">
                                                     <td><img class="stu-img-table" src="<?= '../../user/backend/' . $row['photo'] ?>" alt="<?= $row['photo'] ?>"></td>
                                                     <td style="max-width : 100px;"><?php echo empty($row['level_or_sub']) ? $row['title'] :  $row['title'] . ' - ' . $row['level_or_sub'] ?></td>
-                                                    <td style="max-width : 100px;"><a href="students.php?id=<?php echo $newNrc; ?>"><?= $row['uname'] ?></a></td>
+                                                    <td style="max-width : 100px;" class="uname-link"><a href="students.php?id=<?php echo $newNrc; ?>"><?= $row['uname'] ?></a></td>
                                                     <td><?= $row['dob'] ?></td>
                                                     <td style="max-width : 100px;"><?= $row['fname'] ?></td>
                                                     <td style="max-width : 100px;"><?= $row['nrc'] ?></td>
