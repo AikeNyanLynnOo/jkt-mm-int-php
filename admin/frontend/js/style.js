@@ -160,10 +160,10 @@ function getTownship(state) {
   xhr.send();
 }
 
-nrcCode.addEventListener("change", function (e) {
+nrcCode && nrcCode.addEventListener("change", function (e) {
   getTownship(e.target.value);
 });
-userImg.addEventListener("change", function (e) {
+nrcCode && userImg.addEventListener("change", function (e) {
   const [file] = userImg.files;
   if (file) {
     imagePreview.src = URL.createObjectURL(file);

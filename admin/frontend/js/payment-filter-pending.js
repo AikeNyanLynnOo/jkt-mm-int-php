@@ -1,28 +1,28 @@
-function filterByTime(e) {
-    $(".payment-block").html(``);
-    // console.log(typeof e.target.value);
-    $.post(
-      "filterPayment.php",
-      {
-        filteredByTime: e.target.value,
-        filteredByBanking: $("#filterByPayment").val(),
-        is_pending : 1,
-      },
-      function (data) {
-        console.log(data);
-        let renderData = ``;
-          for (var i in data) {
-              if (!data[i]) {
-                  renderData = `
+function filterByTimePending(e) {
+  $(".payment-block").html(``);
+  // console.log(typeof e.target.value);
+  $.post(
+    "filterPayment.php",
+    {
+      filteredByTime: e.target.value,
+      filteredByBanking: $("#filterByPayment").val(),
+      is_pending: 1,
+    },
+    function (data) {
+      console.log(data);
+      let renderData = ``;
+      for (var i in data) {
+        if (!data[i]) {
+          renderData = `
                     <div class="col-12 p-2 no-data">
                         There is no data.
                     </div>
-                  `
-              } else {
-                  let course = data[i].level_or_sub
-              ? data[i].title + " - " + data[i].level_or_sub
-              : data[i].title;
-                  renderData += `
+                  `;
+        } else {
+          let course = data[i].level_or_sub
+            ? data[i].title + " - " + data[i].level_or_sub
+            : data[i].title;
+          renderData += `
                       <div class="col-12 col-lg-6 p-2">
                           <div class="card card-block shadow mb-3 px-3 pt-3">
                               <div class="row my-3">
@@ -52,38 +52,38 @@ function filterByTime(e) {
                           </div>
                       </div>
                   `;
-              }
-          }
-        $(".payment-block").html(renderData);
+        }
       }
-    );
-  }
-  
-  function filterByPayment(e) {
-    $("#payment-block").html(``);
-    // console.log(e.target.value);
-    $.post(
-      "filterPayment.php",
-      {
-          filteredByBanking: e.target.value,
-          filteredByTime: $("#filterByTime").val(),
-          is_pending : 1,
-      },
-      function (data) {
-        console.log(data);
-        let renderData = ``;
-          for (var i in data) {
-              if (!data[i]) {
-                  renderData = `
+      $(".payment-block").html(renderData);
+    }
+  );
+}
+
+function filterByPaymentPending(e) {
+  $("#payment-block").html(``);
+  // console.log(e.target.value);
+  $.post(
+    "filterPayment.php",
+    {
+      filteredByBanking: e.target.value,
+      filteredByTime: $("#filterByTime").val(),
+      is_pending: 1,
+    },
+    function (data) {
+      console.log(data);
+      let renderData = ``;
+      for (var i in data) {
+        if (!data[i]) {
+          renderData = `
                     <div class="col-12 p-2 no-data">
                         There is no data.
                     </div>
-                  `
-              } else {
-                  let course = data[i].level_or_sub
-              ? data[i].title + " - " + data[i].level_or_sub
-              : data[i].title;
-                  renderData += `
+                  `;
+        } else {
+          let course = data[i].level_or_sub
+            ? data[i].title + " - " + data[i].level_or_sub
+            : data[i].title;
+          renderData += `
                       <div class="col-12 col-lg-6 p-2">
                           <div class="card card-block shadow mb-3 px-3 pt-3">
                               <div class="row my-3">
@@ -110,13 +110,21 @@ function filterByTime(e) {
                                   <div class="transaction-label col-6">Transferred At : </div>
                                   <div class="transaction-data col-6">${data[i].created_at}</div>
                               </div>
+                              <div class="row my-3 justify-content-between px-3">
+                                  <button class="my-2 btn btn-info" data-toggle="modal" data-target="#detailViewPayment" onclick="setCurrentDetailPayment(${data[i].payment_id})">Detail<i class="ml-1 fa fa-thumbtack"></i></button>
+                                  <button class="my-2 btn btn-danger" data-toggle="modal" data-target="#deleteConfirm" onclick="setCurrentDeletingPayment(${data[i].payment_id})">
+                                      Delete <i class="ml-1 fa fa-trash"></i>
+                                  </button>
+                                  <button class="my-2 btn btn-primary" data-toggle="modal" data-target="#approveConfirm" onclick="setCurrentApproving(${data[i].payment_id})">
+                                      Approve <i class="ml-1 fa fa-check"></i>
+                                  </button>
+                              </div>
                           </div>
                       </div>
                   `;
-              }
-          }
-        $(".payment-block").html(renderData);
+        }
       }
-    );
-  }
-  
+      $(".payment-block").html(renderData);
+    }
+  );
+}

@@ -240,7 +240,7 @@ $noti_result = mysqli_query($conn, $get_notifications);
                 <div class="container">
                     <div class="row my-4 filter-select-block">
                         <div class="col-12 col-lg-4">
-                            <select onchange="filterByTime(event)" class="form-control col-10" id="filterByTime">
+                            <select onchange="filterByTimePending(event)" class="form-control col-10" id="filterByTime">
                                 <option value="">Filter By Time</option>
                                 <option value="1">Last 7 Days</option>
                                 <option value="2">Last 30 Days</option>
@@ -249,7 +249,7 @@ $noti_result = mysqli_query($conn, $get_notifications);
                             </select>
                         </div>
                         <div class="col-12 col-lg-4">
-                            <select onchange="filterByPayment(event)" class="form-control col-10" id="filterByPayment">
+                            <select onchange="filterByPaymentPending(event)" class="form-control col-10" id="filterByPayment">
                                 <option value="">Filter By Banking</option>
                                 <?php
                                 $bank_query = "SELECT DISTINCT bank_name from banking_info b, payments p WHERE b.bank_id = p.bank_id";
@@ -262,8 +262,14 @@ $noti_result = mysqli_query($conn, $get_notifications);
                         </div>
                     </div>
                     <div class="row payment-block">
+                        <form id="deleteForm" class="my-2" action="../backend/deletePayment.php" method="POST">
+                            <input type="hidden" name="payment_id" id="deletingId">
+                        </form>
+                        <form id="approveForm" class="my-2" action="../backend/approvePayment.php" method="POST">
+                            <input type="hidden" name="payment_id" id="approvingId">
+                        </form>
                         <?php
-                        $query = "SELECT payment_id, uname, title, level_or_sub, bank_name, payment_amount, 
+                        $query = "SELECT payment_id, uname, title, level_or_sub, bank_name, payment_amount,screenshot,
                                       p.created_at AS created_at FROM payments p, enrollments e, courses c, banking_info b 
                                       WHERE p.enrollment_id = e.enrollment_id AND p.course_id = c.course_id 
                                       AND p.bank_id = b.bank_id AND p.is_pending = 1 ORDER BY created_at DESC";
@@ -297,17 +303,13 @@ $noti_result = mysqli_query($conn, $get_notifications);
                                         <div class="transaction-data col-6"><?php echo $row['created_at']; ?></div>
                                     </div>
                                     <div class="row my-3 justify-content-between px-3">
-                                        <button class="my-2 btn btn-info" data-toggle="modal" data-target="#detailModal">Detail<i class="ml-1 fa fa-thumbtack"></i></button>
-                                        <button class="btn btn-warning my-2">
-                                            Edit <i class="ml-1 fa fa-pencil"></i>
-                                        </button>
-                                        <button class="btn btn-danger my-2">
+                                        <button class="my-2 btn btn-info" data-toggle="modal" data-target="#detailViewPayment" onclick="setCurrentDetailPayment(<?php echo $row['payment_id'] ?>)">Detail<i class="ml-1 fa fa-thumbtack"></i></button>
+                                        <button class="my-2 btn btn-danger" data-toggle="modal" data-target="#deleteConfirm" onclick="setCurrentDeletingPayment(<?php echo $row['payment_id'] ?>)">
                                             Delete <i class="ml-1 fa fa-trash"></i>
                                         </button>
-                                        <a class="btn btn-primary my-2" href="../backend/approvePayment.php?id=<?php echo $row['payment_id'] ?>">
+                                        <button class="my-2 btn btn-primary" data-toggle="modal" data-target="#approveConfirm" onclick="setCurrentApproving(<?php echo $row['payment_id'] ?>)">
                                             Approve <i class="ml-1 fa fa-check"></i>
-                                        </a>
-
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -315,6 +317,93 @@ $noti_result = mysqli_query($conn, $get_notifications);
                     </div>
                 </div>
                 <!-- /.container-fluid -->
+
+                <!-- modals -->
+
+
+                <div class="modal" tabindex="-1" id="deleteConfirm">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Delete Confirmation</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Are you sure to delete payment? </p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-danger" id="confirmDelBtn">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal" tabindex="-1" id="approveConfirm">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Approvement Confirmation</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Are you sure to approve payment? </p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" id="confirmAppBtn">Approve</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal" tabindex="-1" id="detailViewPayment">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Payment Detail</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <label>Screenshot</label>
+                                <img id="screenshot_img" class="d-block mx-auto" src="../../user/backend/paymentUploads/212111.jpg" alt="screenshot img" />
+                                <div class="row my-3">
+                                    <div class="transaction-label col-6">Transaction ID : </div>
+                                    <div class="transaction-data col-6" id="tid_pend_p"></div>
+                                </div>
+                                <div class="row my-3">
+                                    <div class="transaction-label col-6">Registered Student Name : </div>
+                                    <div class="transaction-data col-6" id="sname_pend_p"></div>
+                                </div>
+                                <div class="row my-3">
+                                    <div class="transaction-label col-6">Registered Course: </div>
+                                    <div class="transaction-data col-6" id="course_pend_p"></div>
+                                </div>
+                                <div class="row my-3">
+                                    <div class="transaction-label col-6">Transferred Banking : </div>
+                                    <div class="transaction-data col-6" id="banking_pend_p"></div>
+                                </div>
+                                <div class="row my-3">
+                                    <div class="transaction-label col-6">Payment Amount : </div>
+                                    <div class="transaction-data col-6" id="amount_pend_p"></div>
+                                </div>
+                                <div class="row my-3">
+                                    <div class="transaction-label col-6">Transferred At : </div>
+                                    <div class="transaction-data col-6" id="created_at_pend_p"></div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
 
             </div>
             <!-- End of Main Content -->
@@ -374,6 +463,7 @@ $noti_result = mysqli_query($conn, $get_notifications);
 
     <!-- Page level custom scripts -->
     <script src="js/payment-filter-pending.js"></script>
+    <script src="js/pending-payment.js"></script>
     <script src="js/style.js"></script>
 </body>
 
