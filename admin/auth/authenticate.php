@@ -1,6 +1,7 @@
 <?php 
     if(isset($_COOKIE['adminName'])){
-        $name = $_COOKIE['adminName'];
+        $adminName = $_COOKIE['adminName'];
+        header("location: ./index.php");
     } 
     
     if(isset($_SESSION['name'])) {

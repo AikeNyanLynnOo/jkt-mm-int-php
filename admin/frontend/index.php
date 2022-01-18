@@ -170,7 +170,7 @@ $annual_income_row = mysqli_fetch_assoc($annual_income_result);
                     </button>
 
                     <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search nav-title">
-                        <h3>Dashboard</h3>
+                        <h3>Dashboard<?php echo $_COOKIE['adminName'] ?></h3>
                     </div>
 
 

@@ -1,5 +1,6 @@
-// enrollments detail
+// students detail
 // var detailTitle = document.getElementById("detailTitle");
+var userImg = document.getElementById("userImg");
 var detailName = document.getElementById("detailName");
 var detailDob = document.getElementById("detailDob");
 var detailFname = document.getElementById("detailFname");
@@ -10,7 +11,7 @@ var detailEducation = document.getElementById("detailEducation");
 var detailAddress = document.getElementById("detailAddress");
 
 
-function setCurrentDetail(row) {
+function student_detail(row) {
   var tds = row.children;
   var rowArr = [];
   for (var i = 0; i < tds.length; i++) {
@@ -34,24 +35,96 @@ function setCurrentDetail(row) {
   detailPhone.innerText = rowArr[8];
 }
 
-// function decryptUsingAES256(para) {
-//   let _key = CryptoJS.enc.Utf8.parse('JKT-2019-20IT85-MM-JP');
-//   let _iv = CryptoJS.enc.Utf8.parse('JKT-2019-serV1ce-MM-JP');
-  
-//   this.decrypted = CryptoJS.AES.decrypt(
-//     para, _key, {
-//       keySize: 16,
-//       iv: _iv,
-//       mode: CryptoJS.mode.CBC,
-//       padding: CryptoJS.pad.Pkcs7
-//     }).toString(CryptoJS.enc.Utf8);
-//     return this.decrypted
-// }
+// student detail
+var uname = document.getElementById("uname");
+var dob = document.getElementById("dob");
+var fname = document.getElementById("fname");
+var nrcCode = document.getElementById("nrcCode");
+var township = document.getElementById("township");
+var type = document.getElementById("type");
+var nrcNumber = document.getElementById("nrcNumber");
+var email = document.getElementById("email");
+var phone = document.getElementById("phone");
+var education = document.getElementById("education");
+var address = document.getElementById("address");
+
+// deleting
+// var stuName = document.getElementById("stuName");
+
+function student_edit(event, row, idx) {
+  $("#editingModal").modal("show");
+  event.stopPropagation();
+  console.log(event)
+  // id_field.value = id;
+  var tr = row.closest("tr");
+  var tds = tr.children;
+  var rowArr = [];
+  for (var i = 0; i < tds.length; i++) {
+    if (i == 0) {
+      rowArr.push(tds[i].children[0].alt);
+    } else {
+      rowArr.push(tds[i].textContent);
+    }
+  }
+
+  console.log(rowArr);
+  studentId.value = idx;
+  imagePreview.src = "../../user/backend/" + rowArr[0];
+  notChangeImg.value = rowArr[0];
+  uname.value = rowArr[1];
+  dob.value = rowArr[2];
+  fname.value = rowArr[3];
+
+  nrcArr = rowArr[4].split("/");
+  nrcCode.value = nrcArr[0];
+  getTownship(nrcArr[0]);
+  township.value = nrcArr[1].slice(0, -9);
+  type.value = nrcArr[1].slice(-9, -6);
+  nrcNumber.value = nrcArr[1].slice(-6);
+  email.value = rowArr[5];
+  education.value = rowArr[6];
+  address.value = rowArr[7].trim();
+  phone.value = rowArr[8];
+}
+
+function getTownship(state) {
+  let selected_township = nrcArr[1].slice(0, -9);
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "./nrc.php", true);
+  xhr.onload = function () {
+    var nrcJson = JSON.parse(xhr.responseText);
+    nrcJson.sort((a, b) => (a.name_en > b.name_en ? 1 : -1));
+    $("#township").html(`<option value="" selected disabled>Township</option>`);
+    nrcJson.forEach((value) => {
+      var option = document.createElement("option");
+      if (state == value.nrc_code) {
+        let township = value.name_en + " - " + value.name_mm;
+        option.innerText = township;
+        option.setAttribute("value", township);
+        document.getElementById("township").appendChild(option);
+        if (selected_township === township) {
+          $(`#township option[value='${township}'`).prop("selected", true);
+        }
+      }
+    });
+  };
+  xhr.send();
+}
+
+nrcCode.addEventListener("change", function (e) {
+  getTownship(e.target.value);
+});
+userImg.addEventListener("change", function (e) {
+  const [file] = userImg.files;
+  if (file) {
+    imagePreview.src = URL.createObjectURL(file);
+  }
+});
 
 $(document).ready(function () {
   const params = new URLSearchParams(window.location.search);
   let getParam = params.get('id');
-  // let table = $("#dataTable").DataTable();
+  $("#dataTable").DataTable();
   let decrypted = '';
 
   $.post(

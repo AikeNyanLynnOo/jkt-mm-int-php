@@ -3,7 +3,7 @@ session_start();
 include_once '../auth/authenticate.php';
 // include('checkUser.php');
 include("../confs/config.php");
-$query = "SELECT uname, dob, fname, e.nrc AS nrc, email, education, address, phone, photo FROM enrollments e INNER JOIN (SELECT nrc, MIN(enrollment_id) AS id FROM enrollments GROUP BY nrc) AS b ON e.nrc = b.nrc AND e.enrollment_id = b.id";
+$query = "SELECT * FROM students";
 $result = mysqli_query($conn, $query);
 // $currentEditingID = "";
 // $currentDeletingID = "";
@@ -280,18 +280,18 @@ $noti_result = mysqli_query($conn, $get_notifications);
                                                 <th>Phone</th>
                                                 <!-- <th>Payment</th>
                                                 <th>Paid Percent</th>
-                                                <th>Is Pending</th>
+                                                <th>Is Pending</th> -->
                                                 <th>created_at</th>
                                                 <th>updated_at</th>
                                                 <th>Edit</th>
-                                                <th>Delete</th> -->
+                                                <th>Delete</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php while ($row = mysqli_fetch_assoc($result)) : ?>
-                                                <tr onclick="setCurrentDetail(this)" data-toggle="modal" data-target="#detailModal" class="tb-row">
+                                                <tr onclick="student_detail(this)" data-toggle="modal" data-target="#detailModal" class="tb-row">
                                                     <td><img class="stu-img-table" src="<?= '../../user/backend/' . $row['photo'] ?>" alt="<?= $row['photo'] ?>"></td>
-                                                    <td style="max-width : 100px;"><?= $row['uname'] ?></td>
+                                                    <td style="max-width : 100px;"><?= $row['student_name'] ?></td>
                                                     <td><?= $row['dob'] ?></td>
                                                     <td style="max-width : 100px;"><?= $row['fname'] ?></td>
                                                     <td style="max-width : 100px;"><?= $row['nrc'] ?></td>
@@ -299,6 +299,10 @@ $noti_result = mysqli_query($conn, $get_notifications);
                                                     <td style="max-width : 100px;"><?= $row['education'] ?></td>
                                                     <td style="max-width : 150px;"><p style="max-height: 120px;overflow-y:scroll;" class="hide-scroll"><?= $row['address'] ?></p></td>
                                                     <td><?= $row['phone'] ?></td>
+                                                    <td><?= $row['created_at'] ?></td>
+                                                    <td><?= $row['updated_at'] ?></td>
+                                                    <td><button class="tb-btn tb-btn-edit" onclick="student_edit(event,this,<?php echo $row['student_id'] ?>)" data-toggle="modal" data-target="#editingModal"><i class="fa fa-pencil"></i></button></td>
+                                                    <td><button class="tb-btn tb-btn-delete" onclick="student_delete(event,this,<?php echo $row['student_id'] ?>)" data-toggle="modal" data-target="#deletingModal"><i class="fa fa-trash"></button></i></td>
                                                 </tr>
                                             <?php endwhile; ?>
                                         </tbody>
@@ -423,6 +427,108 @@ $noti_result = mysqli_query($conn, $get_notifications);
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- editing modal -->
+    <div class="modal fade" id="editingModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Editing</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="col-12" id="editingModal" action="../backend/editStudent.php" method="POST" enctype="multipart/form-data">
+                        <input type="hidden" name="studentId" id="studentId" />
+                        <input type="hidden" name="notChangeImg" id="notChangeImg" />
+                        <input type="hidden" name="createdAt" id="createdAt" />
+                        <div class="form-group mb-4 row align-items-center justify-content-between px-3">
+                            <img src="" id="imagePreview" name="image-preview" alt="User Image Preview" class="preview-img-edit" />
+                            <input type="file" name="photo" id="userImg" class="preview-input-edit" />
+                            <label for="userImg" class="upload-label">Re upload image</label>
+                            <span class="help-block" id="userImgErr"></span>
+                        </div>
+                        <div class="form-group mb-4">
+                                <label for="dob">Enter Student Name</label>
+                                <input type="text" name="uname" id="uname" class="form-control" required />
+                        </div>
+                        <div class="mb-4 mx-auto row justify-content-between">
+                            <div class="input-right">
+                                <label for="dob">Choose Birthday</label>
+                                <input type="date" name="dob" id="dob" class="form-control" required />
+                            </div>
+                            <div class=" input-left mb-3 mb-md-0">
+                                <label for="fname">Enter Father Name</label>
+                                <input type="text" name="fname" id="fname" class="form-control" placeholder="eg. U Kyaw" required />
+                            </div>
+                        </div>
+                        <div class="mb-4 mx-auto row justify-content-between">
+                            <div class="input-25">
+                                <label for="nrcCode">State</label>
+                                <select id="nrcCode" name="nrcCode" class="form-control form-control-user" required>
+                                    <option value="" selected disabled>State</option>
+                                    <?php
+                                    foreach ([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14] as $state) {
+                                    ?>
+                                        <option value='<?= $state ?>'><?= $state ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                            <div class="input-30">
+                                <label for="township">Township</label>
+                                <select id="township" name="township" class="form-control form-control-user" required>
+                                    <option value="" selected disabled>State</option>
+                                </select>
+                            </div>
+                            <div class="input-25">
+                                <label for="type">Type</label>
+                                <select id="type" name="type" class="form-control form-control-user" required>
+                                    <option value="" selected disabled>Type</option>
+                                    <option value="(C)">(C) - (နိုင်)</option>
+                                    <option value="(AC)">(AC) - (ဧည့်)</option>
+                                    <option value="(NC)">(NC) - (ပြု)</option>
+                                    <option value="(V)">(V) - (စ)</option>
+                                    <option value="(M)">(M) - (သ)</option>
+                                    <option value="(N)">(N) - (သီ)</option>
+                                </select>
+                            </div>
+                            <div class="input-20">
+                                <label for="nrcNumber">Nrc Number</label>
+                                <input type="number" class="form-control" name="nrcNumber" id="nrcNumber" placeholder="123456" required />
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label for="email">Enter Email</label>
+                            <input type="email" name="email" id="email" class="form-control" placeholder="eg. student@gmail.com" required />
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label for="phone">Enter Phone</label>
+                            <input type="text" name="phone" id="phone" class="form-control" placeholder="09..." required />
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label for="education">Enter Education</label>
+                            <input type="text" name="education" id="education" class="form-control" placeholder="University or High School" required />
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label for="address">Enter Address</label>
+                            <textarea name="address" id="address" cols="30" rows="5" class="form-control" placeholder="eg. No - , Yangon" required></textarea>
+                        </div>
+
+                        <hr />
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <input class="btn btn-primary" type="submit" value="Update">
+                    </form>
+                </div>
+                <div class="modal-footer">
                 </div>
             </div>
         </div>

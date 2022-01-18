@@ -3,7 +3,8 @@ session_start();
 include_once '../auth/authenticate.php';
 // include('checkUser.php');
 include("../confs/config.php");
-$result = mysqli_query($conn, "SELECT * from enrollments LEFT JOIN courses ON enrollments.course_id = courses.course_id;");
+$result = mysqli_query($conn, "SELECT enrollment_id, e.course_id AS course_id, title, level_or_sub, photo, student_name, nrc, payment_method, paid_percent, is_pending, e.created_at AS created_at,
+e.updated_at AS updated_at FROM enrollments e, students s, courses c WHERE e.student_id = s.student_id AND e.course_id = c.course_id");
 // $currentEditingID = "";
 // $currentDeletingID = "";
 
@@ -263,7 +264,7 @@ $noti_result = mysqli_query($conn, $get_notifications);
                                     New Enrollment
                                 </a>
                                 <div class="row">
-                                    <div class="col-11 col-lg-6 col-xl-6 mt-4 filter1"></div>
+                                    <div class="col-12 col-lg-6 col-xl-6 mt-4 filter1"></div>
                                     <div class="col-12 col-lg-6 col-xl-6 mt-4 filter2"></div>
                                     <div class="col-12 col-lg-6 col-xl-4 mt-4 filter3"></div>
                                     <div class="col-12 col-lg-6 col-xl-4 mt-4 filter4"></div>
@@ -278,13 +279,6 @@ $noti_result = mysqli_query($conn, $get_notifications);
                                                 <th>Photo</th>
                                                 <th class="select-course-filter">Course</th>
                                                 <th>Name</th>
-                                                <th>Date of Birth</th>
-                                                <th>Father name</th>
-                                                <th>Nrc</th>
-                                                <th>Email</th>
-                                                <th>Education</th>
-                                                <th>Address</th>
-                                                <th>Phone</th>
                                                 <th class="select-payment-filter">Payment</th>
                                                 <th class="select-paidPercent-filter">Paid Percent</th>
                                                 <th class="select-isPending-filter">Approved</th>
@@ -304,16 +298,7 @@ $noti_result = mysqli_query($conn, $get_notifications);
                                                 <tr onclick="setCurrentDetail(this)" data-toggle="modal" data-target="#detailModal" class="tb-row">
                                                     <td><img class="stu-img-table" src="<?= '../../user/backend/' . $row['photo'] ?>" alt="<?= $row['photo'] ?>"></td>
                                                     <td style="max-width : 100px;"><?php echo empty($row['level_or_sub']) ? $row['title'] :  $row['title'] . ' - ' . $row['level_or_sub'] ?></td>
-                                                    <td style="max-width : 100px;" class="uname-link"><a href="students.php?id=<?php echo $newNrc; ?>"><?= $row['uname'] ?></a></td>
-                                                    <td><?= $row['dob'] ?></td>
-                                                    <td style="max-width : 100px;"><?= $row['fname'] ?></td>
-                                                    <td style="max-width : 100px;"><?= $row['nrc'] ?></td>
-                                                    <td style="max-width : 100px;"><?= $row['email'] ?></td>
-                                                    <td style="max-width : 100px;"><?= $row['education'] ?></td>
-                                                    <td style="max-width : 150px;">
-                                                        <p style="max-height: 120px;overflow-y:scroll;" class="hide-scroll"><?= $row['address'] ?></p>
-                                                    </td>
-                                                    <td><?= $row['phone'] ?></td>
+                                                    <td style="max-width : 100px;" class="uname-link"><a href="students.php?id=<?php echo $newNrc; ?>"><?= $row['student_name'] ?></a></td>
                                                     <td><?= $row['payment_method'] ?></td>
                                                     <td><?= $row['paid_percent'] . "%" ?></td>
                                                     <td class="pending-badges"><?php echo $row['is_pending'] == 0 ? "&#9989;" : "&#10060;" ?></td>
@@ -328,9 +313,6 @@ $noti_result = mysqli_query($conn, $get_notifications);
                                 </div>
                             </div>
                         </div>
-                        <select>
-                            <option data-content="<i class='fas fa-check-circle pending-true-badges'></i>"></option>
-                        </select>
                     </div>
                 </div>
                 <!-- /.container-fluid -->
@@ -411,7 +393,7 @@ $noti_result = mysqli_query($conn, $get_notifications);
                                     <td>Student Name</td>
                                     <td id="detailName"></td>
                                 </tr>
-                                <tr>
+                                <!-- <tr>
                                     <td>Date of Birth</td>
                                     <td id="detailDob"></td>
                                 </tr>
@@ -440,7 +422,7 @@ $noti_result = mysqli_query($conn, $get_notifications);
                                     <td>Address</td>
                                     <td id="detailAddress">
                                     </td>
-                                </tr>
+                                </tr> -->
                                 <tr>
                                     <td>Payment Method</td>
                                     <td id="detailPaymentMethod"></td>
@@ -481,9 +463,12 @@ $noti_result = mysqli_query($conn, $get_notifications);
                         <input type="hidden" name="createdAt" id="createdAt" />
                         <div class="form-group mb-4 row align-items-center justify-content-between px-3">
                             <img src="" id="imagePreview" name="image-preview" alt="User Image Preview" class="preview-img-edit" />
-                            <input type="file" name="photo" id="userImg" class="preview-input-edit" />
+                            <!-- <input type="file" name="photo" id="userImg" class="preview-input-edit" />
                             <label for="userImg" class="upload-label">Re upload image</label>
-                            <span class="help-block" id="userImgErr"></span>
+                            <span class="help-block" id="userImgErr"></span> -->
+                        </div>
+                        <div class="form-group mb-4">
+                            <label name="uname" id="uname" class="form-control" placeholder="eg. Aung Aung" ></label>
                         </div>
                         <div class="form-group mb-4">
                             <label for="categoryId">Choose Course</label>
@@ -497,11 +482,7 @@ $noti_result = mysqli_query($conn, $get_notifications);
                                 <?php } ?>
                             </select>
                         </div>
-                        <div class="form-group mb-4">
-                            <label for="uname">Enter Full Name</label>
-                            <input type="text" name="uname" id="uname" class="form-control" placeholder="eg. Aung Aung" required />
-                        </div>
-                        <div class="mb-4 mx-auto row justify-content-between">
+                        <!-- <div class="mb-4 mx-auto row justify-content-between">
                             <div class="input-right">
                                 <label for="dob">Choose Birthday</label>
                                 <input type="date" name="dob" id="dob" class="form-control" required />
@@ -517,10 +498,10 @@ $noti_result = mysqli_query($conn, $get_notifications);
                                 <select id="nrcCode" name="nrcCode" class="form-control form-control-user" required>
                                     <option value="" selected disabled>State</option>
                                     <?php
-                                    foreach ([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14] as $state) {
+                                    //foreach ([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14] as $state) {
                                     ?>
-                                        <option value='<?= $state ?>'><?= $state ?></option>
-                                    <?php } ?>
+                                        <option value='<?php // $state ?>'><?php // $state ?></option>
+                                    <?php //} ?>
                                 </select>
                             </div>
                             <div class="input-30">
@@ -565,7 +546,7 @@ $noti_result = mysqli_query($conn, $get_notifications);
                         <div class="form-group mb-4">
                             <label for="address">Enter Address</label>
                             <textarea name="address" id="address" cols="30" rows="5" class="form-control" placeholder="eg. No - , Yangon" required></textarea>
-                        </div>
+                        </div> -->
 
                         <div class="form-group mb-4">
                             <label for="paymentMethod">Choose Payment Method</label>
@@ -586,7 +567,7 @@ $noti_result = mysqli_query($conn, $get_notifications);
                         <div class="form-group mb-4">
                             <div class="form-check form-switch">
                                 <input class="form-check-input" type="checkbox" id="isPending" name="isPending">
-                                <label class="form-check-label" for="isPending">Is Pending?</label>
+                                <label class="form-check-label" for="isPending">Approved ?</label>
                             </div>
                         </div>
                         <hr />
@@ -602,7 +583,7 @@ $noti_result = mysqli_query($conn, $get_notifications);
 
     <!-- deleting modal -->
     <div class="modal fade" id="deletingModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Deleting</h5>
@@ -611,7 +592,8 @@ $noti_result = mysqli_query($conn, $get_notifications);
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>You are going to delete <span id="stuName" class="font-weight-bold"></span>'s enrollment. This can't be undone. Are you sure to delete?</p>
+                    <p>You are going to delete <span id="stuName" class="font-weight-bold"></span>'s enrollment. 
+                    This can't be undone. <span style="color: red; font-weight: bold; font-style: italic;">Are you sure to delete?</span></p>
                     <form action="../backend/deleteEnrollment.php" id="deleteForm" method="POST">
                         <input type="hidden" name="enrollmentDeletingId" id="enrollmentDeletingId" />
                         <hr />

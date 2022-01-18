@@ -5,16 +5,16 @@ var notChangeImg = document.getElementById("notChangeImg");
 var userImg = document.getElementById("userImg");
 var classId = document.getElementById("classId");
 var uname = document.getElementById("uname");
-var dob = document.getElementById("dob");
-var fname = document.getElementById("fname");
-var nrcCode = document.getElementById("nrcCode");
-var township = document.getElementById("township");
-var type = document.getElementById("type");
-var nrcNumber = document.getElementById("nrcNumber");
-var email = document.getElementById("email");
-var phone = document.getElementById("phone");
-var education = document.getElementById("education");
-var address = document.getElementById("address");
+// var dob = document.getElementById("dob");
+// var fname = document.getElementById("fname");
+// var nrcCode = document.getElementById("nrcCode");
+// var township = document.getElementById("township");
+// var type = document.getElementById("type");
+// var nrcNumber = document.getElementById("nrcNumber");
+// var email = document.getElementById("email");
+// var phone = document.getElementById("phone");
+// var education = document.getElementById("education");
+// var address = document.getElementById("address");
 var paymentMethod = document.getElementById("paymentMethod");
 var paidPercent = document.getElementById("paidPercent");
 var isPending = document.getElementById("isPending");
@@ -23,13 +23,13 @@ var createdAt = document.getElementById("createdAt");
 // enrollments detail
 var detailTitle = document.getElementById("detailTitle");
 var detailName = document.getElementById("detailName");
-var detailDob = document.getElementById("detailDob");
-var detailFname = document.getElementById("detailFname");
-var detailNrc = document.getElementById("detailNrc");
-var detailEmail = document.getElementById("detailEmail");
-var detailPhone = document.getElementById("detailPhone");
-var detailEducation = document.getElementById("detailEducation");
-var detailAddress = document.getElementById("detailAddress");
+// var detailDob = document.getElementById("detailDob");
+// var detailFname = document.getElementById("detailFname");
+// var detailNrc = document.getElementById("detailNrc");
+// var detailEmail = document.getElementById("detailEmail");
+// var detailPhone = document.getElementById("detailPhone");
+// var detailEducation = document.getElementById("detailEducation");
+// var detailAddress = document.getElementById("detailAddress");
 var detailPaymentMethod = document.getElementById("detailPaymentMethod");
 var detailPaidPercent = document.getElementById("detailPaidPercent");
 var pendingBadge = document.getElementById("pendingBadge");
@@ -104,77 +104,90 @@ function setCurrentEditing(event, row, idx, classIdx) {
   var tr = row.closest("tr");
   var tds = tr.children;
   var rowArr = [];
+  let approved = '';
   for (var i = 0; i < tds.length; i++) {
     if (i == 0) {
       rowArr.push(tds[i].children[0].alt);
     } else {
-      rowArr.push(tds[i].textContent);
+      if(i == 5) {
+        rowArr.push(tds[i].innerHTML);
+      } else {
+        rowArr.push(tds[i].textContent);
+      }
     }
   }
-
+  console.log(rowArr);
   enrollmentId.value = idx;
   imagePreview.src = "../../user/backend/" + rowArr[0];
   notChangeImg.value = rowArr[0];
   classId.value = classIdx;
-  uname.value = rowArr[2];
-  dob.value = rowArr[3];
-  fname.value = rowArr[4];
+  uname.innerHTML = rowArr[2];
+  // dob.value = rowArr[3];
+  // fname.value = rowArr[4];
 
-  nrcArr = rowArr[5].split("/");
-  nrcCode.value = nrcArr[0];
-  getTownship(nrcArr[0]);
-  township.value = nrcArr[1].slice(0, -9);
-  type.value = nrcArr[1].slice(-9, -6);
-  nrcNumber.value = nrcArr[1].slice(-6);
-  email.value = rowArr[6];
-  education.value = rowArr[7];
-  address.value = rowArr[8].trim();
-  phone.value = rowArr[9];
-  paymentMethod.value = rowArr[10];
-  paidPercent.value = rowArr[11].substring(0, rowArr[11].length - 1);
-  isPending.checked = (rowArr[12] == "1" && true) || false;
-  createdAt.value = rowArr[13];
-}
-
-function getTownship(state) {
-  let selected_township = nrcArr[1].slice(0, -9);
-  var xhr = new XMLHttpRequest();
-  xhr.open("GET", "./nrc.php", true);
-  xhr.onload = function () {
-    var nrcJson = JSON.parse(xhr.responseText);
-    nrcJson.sort((a, b) => (a.name_en > b.name_en ? 1 : -1));
-    $("#township").html(`<option value="" selected disabled>Township</option>`);
-    nrcJson.forEach((value) => {
-      var option = document.createElement("option");
-      if (state == value.nrc_code) {
-        let township = value.name_en + " - " + value.name_mm;
-        option.innerText = township;
-        option.setAttribute("value", township);
-        document.getElementById("township").appendChild(option);
-        if (selected_township === township) {
-          $(`#township option[value='${township}'`).prop("selected", true);
-        }
-      }
-    });
-  };
-  xhr.send();
-}
-
-nrcCode.addEventListener("change", function (e) {
-  getTownship(e.target.value);
-});
-userImg.addEventListener("change", function (e) {
-  const [file] = userImg.files;
-  if (file) {
-    imagePreview.src = URL.createObjectURL(file);
+  // nrcArr = rowArr[5].split("/");
+  // nrcCode.value = nrcArr[0];
+  // getTownship(nrcArr[0]);
+  // township.value = nrcArr[1].slice(0, -9);
+  // type.value = nrcArr[1].slice(-9, -6);
+  // nrcNumber.value = nrcArr[1].slice(-6);
+  // email.value = rowArr[6];
+  // education.value = rowArr[7];
+  // address.value = rowArr[8].trim();
+  // phone.value = rowArr[9];
+  paymentMethod.value = rowArr[3];
+  paidPercent.value = rowArr[4].substring(0, rowArr[4].length - 1);
+  console.log(rowArr[5])
+  if (rowArr[5] == "✅") {
+    approved = true;
+  } else if (rowArr[5] == "❌") {
+    approved = false;
   }
-});
+  console.log(approved)
+  isPending.checked = (approved == "1" && true) || false;
+  createdAt.value = rowArr[6];
+}
+
+// function getTownship(state) {
+//   let selected_township = nrcArr[1].slice(0, -9);
+//   var xhr = new XMLHttpRequest();
+//   xhr.open("GET", "./nrc.php", true);
+//   xhr.onload = function () {
+//     var nrcJson = JSON.parse(xhr.responseText);
+//     nrcJson.sort((a, b) => (a.name_en > b.name_en ? 1 : -1));
+//     $("#township").html(`<option value="" selected disabled>Township</option>`);
+//     nrcJson.forEach((value) => {
+//       var option = document.createElement("option");
+//       if (state == value.nrc_code) {
+//         let township = value.name_en + " - " + value.name_mm;
+//         option.innerText = township;
+//         option.setAttribute("value", township);
+//         document.getElementById("township").appendChild(option);
+//         if (selected_township === township) {
+//           $(`#township option[value='${township}'`).prop("selected", true);
+//         }
+//       }
+//     });
+//   };
+//   xhr.send();
+// }
+
+// nrcCode.addEventListener("change", function (e) {
+//   getTownship(e.target.value);
+// });
+// userImg.addEventListener("change", function (e) {
+//   const [file] = userImg.files;
+//   if (file) {
+//     imagePreview.src = URL.createObjectURL(file);
+//   }
+// });
 
 function setCurrentDeleting(event, row, idx) {
   $("#deletingModal").modal("show");
   event.stopPropagation();
   var tr = row.closest("tr");
   var tds = tr.children;
+  console.log(tds)
   var rowArr = [];
   for (var i = 0; i < tds.length; i++) {
     if (i == 0) {
@@ -183,6 +196,7 @@ function setCurrentDeleting(event, row, idx) {
       rowArr.push(tds[i].textContent);
     }
   }
+  console.log(rowArr[2])
 
   stuName.innerText = rowArr[2];
   enrollmentDeletingId.value = idx;
@@ -205,16 +219,16 @@ function setCurrentDetail(row) {
   detailImage.src = "../../user/backend/" + rowArr[0];
   detailTitle.innerText = rowArr[1];
   detailName.innerText = rowArr[2];
-  detailDob.innerText = rowArr[3];
-  detailFname.innerText = rowArr[4];
+  // detailDob.innerText = rowArr[3];
+  // detailFname.innerText = rowArr[4];
 
-  detailNrc.innerText = rowArr[5];
-  detailEmail.innerText = rowArr[6];
-  detailEducation.innerText = rowArr[7];
-  detailAddress.innerText = rowArr[8].trim();
-  detailPhone.innerText = rowArr[9];
-  detailPaymentMethod.innerText = rowArr[10];
-  detailPaidPercent.innerText = rowArr[11];
+  // detailNrc.innerText = rowArr[5];
+  // detailEmail.innerText = rowArr[6];
+  // detailEducation.innerText = rowArr[7];
+  // detailAddress.innerText = rowArr[8].trim();
+  // detailPhone.innerText = rowArr[9];
+  detailPaymentMethod.innerText = rowArr[3];
+  detailPaidPercent.innerText = rowArr[4];
   if (rowArr[12] == "1") {
     pendingBadge.innerText = "Pending";
     pendingBadge.style.backgroundColor = "#ff6347";

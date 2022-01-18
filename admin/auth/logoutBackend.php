@@ -7,6 +7,6 @@
     $hour = time() - 3600 * 24 * 30;
     setcookie('adminId', "", $hour);
     setcookie('adminName', "", $hour);
-    // setcookie('active', "", $hour);
+    setcookie('active', "", $hour);
     header("Location: ../frontend/login.php");
 ?>
