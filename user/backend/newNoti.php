@@ -1,6 +1,6 @@
 <?php
 
-include("../confs/config.php");
+include("../../admin/confs/config.php");
 
 function addNewNoti($title, $description, $type, $enrollment_id, $payment_id)
 {
